@@ -1,0 +1,10 @@
+# Visual Code
+.vscode/
+
+# Eclipse
+.settings/
+.classpath
+.project
+
+# Maven
+target/
