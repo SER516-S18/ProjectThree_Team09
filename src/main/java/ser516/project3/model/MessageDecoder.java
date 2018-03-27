@@ -1,7 +1,5 @@
 package ser516.project3.model;
 
-import ser516.project3.model.Message;
-
 import java.io.StringReader;
 
 import javax.json.Json;
