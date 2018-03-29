@@ -1,141 +1,146 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  
-  <groupId>ser516.project3</groupId>
-  <artifactId>project3</artifactId>
-  <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
-  
-  <name>Project3</name>
-  <url>http://asu.edu</url>
-  
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>1.3.2</version>
-    </dependency>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <dependency>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>cobertura-maven-plugin</artifactId>
-      <version>2.7</version>
-      <scope>test</scope>
-    </dependency>
+	<groupId>ser516.project3</groupId>
+	<artifactId>project3</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0-SNAPSHOT</version>
 
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>5.0.1</version>
-      <scope>test</scope>
-    </dependency>
+	<name>Project3</name>
+	<url>http://asu.edu</url>
 
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.0.1</version>
-      <scope>test</scope>
-    </dependency>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.3.2</version>
+		</dependency>
 
-    <dependency>
-      <groupId>org.junit.vintage</groupId>
-      <artifactId>junit-vintage-engine</artifactId>
-      <version>4.12.1</version>
-      <scope>test</scope>
-    </dependency>
+		<dependency>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>cobertura-maven-plugin</artifactId>
+			<version>2.7</version>
+			<scope>test</scope>
+		</dependency>
 
-    <dependency>
-      <groupId>org.junit.platform</groupId>
-      <artifactId>junit-platform-launcher</artifactId>
-      <version>1.0.1</version>
-      <scope>test</scope>
-    </dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.0.1</version>
+			<scope>test</scope>
+		</dependency>
 
-    <dependency>
-      <groupId>org.junit.platform</groupId>
-      <artifactId>junit-platform-runner</artifactId>
-      <version>1.0.1</version>
-      <scope>test</scope>
-    </dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.0.1</version>
+			<scope>test</scope>
+		</dependency>
 
-    <dependency>
-      <groupId>javax.websocket</groupId>
-      <artifactId>javax.websocket-api</artifactId>
-      <version>1.0</version>
-    </dependency>
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<version>4.12.1</version>
+			<scope>test</scope>
+		</dependency>
 
-    <dependency>
-      <groupId>org.glassfish.tyrus</groupId>
-      <artifactId>tyrus-server</artifactId>
-      <version>1.1</version>
-    </dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-launcher</artifactId>
+			<version>1.0.1</version>
+			<scope>test</scope>
+		</dependency>
 
-    <dependency>
-      <groupId>org.glassfish.tyrus</groupId>
-      <artifactId>tyrus-client</artifactId>
-      <version>1.1</version>
-    </dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-runner</artifactId>
+			<version>1.0.1</version>
+			<scope>test</scope>
+		</dependency>
 
-    <dependency>
-      <groupId>org.glassfish.tyrus</groupId>
-      <artifactId>tyrus-container-grizzly</artifactId>
-      <version>1.1</version>
-    </dependency>
+		<dependency>
+			<groupId>javax.websocket</groupId>
+			<artifactId>javax.websocket-api</artifactId>
+			<version>1.0</version>
+		</dependency>
 
-    <dependency>
-      <groupId>org.glassfish</groupId>
-      <artifactId>javax.json</artifactId>
-      <version>1.0.4</version>
-    </dependency>
-  </dependencies>
+		<dependency>
+			<groupId>org.glassfish.tyrus</groupId>
+			<artifactId>tyrus-server</artifactId>
+			<version>1.1</version>
+		</dependency>
 
-  <build>
-    <plugins>
-      <!-- Use JDK 1.8 -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
+		<dependency>
+			<groupId>org.glassfish.tyrus</groupId>
+			<artifactId>tyrus-client</artifactId>
+			<version>1.1</version>
+		</dependency>
 
-      <!-- https://stackoverflow.com/a/36970518 -->
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <!-- latest version (2.20.1) does not work well with JUnit5 -->
-        <version>2.19.1</version>
-        <dependencies>
-          <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-surefire-provider</artifactId>
-            <version>1.0.3</version>
-          </dependency>
-          <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.0.3</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-      
-      <!-- Generate executable jar -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <configuration>
-          <archive>
-            <manifest>
-              <addClasspath>true</addClasspath>
-              <mainClass>ser516.project3.client.Client</mainClass>
-            </manifest>
-          </archive>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+		<dependency>
+			<groupId>org.glassfish.tyrus</groupId>
+			<artifactId>tyrus-container-grizzly</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- Use JDK 1.8 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<!-- https://stackoverflow.com/a/36970518 -->
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<!-- latest version (2.20.1) does not work well with JUnit5 -->
+				<version>2.19.1</version>
+				<configuration>
+				<!-- TOGGLE THE BELOW VALUE TO RUN TEST CASES WHILE BUILDING -->
+					<skipTests>true</skipTests>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.junit.platform</groupId>
+						<artifactId>junit-platform-surefire-provider</artifactId>
+						<version>1.0.3</version>
+					</dependency>
+					<dependency>
+						<groupId>org.junit.jupiter</groupId>
+						<artifactId>junit-jupiter-engine</artifactId>
+						<version>5.0.3</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+			<!-- Generate executable jar -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>ser516.project3.client.Client</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
