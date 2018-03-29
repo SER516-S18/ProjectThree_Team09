@@ -178,42 +178,46 @@ public class Message {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Message [lookingRight=");
-		builder.append(lookingRight);
-		builder.append(", lookingLeft=");
-		builder.append(lookingLeft);
-		builder.append(", lookingDown=");
-		builder.append(lookingDown);
-		builder.append(", lookingUp=");
-		builder.append(lookingUp);
-		builder.append(", eyebrowRaise=");
-		builder.append(eyebrowRaise);
+		builder.append("Message [blink=");
+		builder.append(blink);
 		builder.append(", rightWink=");
 		builder.append(rightWink);
 		builder.append(", leftWink=");
 		builder.append(leftWink);
-		builder.append(", blink=");
-		builder.append(blink);
-		builder.append(", eyesOpen=");
-		builder.append(eyesOpen);
+		builder.append(", lookingRight=");
+		builder.append(lookingRight);
+		builder.append(", lookingLeft=");
+		builder.append(lookingLeft);
+		builder.append(", furrowBrow=");
+		builder.append(furrowBrow);
+		builder.append(", raiseBrow=");
+		builder.append(raiseBrow);
 		builder.append(", smile=");
 		builder.append(smile);
 		builder.append(", clench=");
 		builder.append(clench);
-		builder.append(", meditation=");
-		builder.append(meditation);
-		builder.append(", frustration=");
-		builder.append(frustration);
-		builder.append(", engagementBoredom=");
-		builder.append(engagementBoredom);
-		builder.append(", excitementShortTerm=");
-		builder.append(excitementShortTerm);
-		builder.append(", excitementLongTerm=");
-		builder.append(excitementLongTerm);
+		builder.append(", leftSmirk=");
+		builder.append(leftSmirk);
+		builder.append(", rightSmirk=");
+		builder.append(rightSmirk);
+		builder.append(", laugh=");
+		builder.append(laugh);
+		builder.append(", interest=");
+		builder.append(interest);
+		builder.append(", engagement=");
+		builder.append(engagement);
+		builder.append(", stress=");
+		builder.append(stress);
+		builder.append(", relaxation=");
+		builder.append(relaxation);
+		builder.append(", excitement=");
+		builder.append(excitement);
+		builder.append(", focus=");
+		builder.append(focus);
 		builder.append("]");
 		return builder.toString();
 	}
-    
-    
 
+
+    
 }
