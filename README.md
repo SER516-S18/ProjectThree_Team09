@@ -15,6 +15,8 @@ The `mvn package` command will build the client into an executable fat JAR file 
 ```bash
 java -jar target/project3-1.0-SNAPSHOT.jar
 ```
+## Import Project on Eclipse
+File >> Import >> Maven >> Existing Maven Projects >> Browse to Project Folder(Directory with pom.xml) 
 
 ## Code Coverage
 
