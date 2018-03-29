@@ -20,8 +20,8 @@ public class MessageDecoderTest {
 
             assertEquals(message.getBlink(), false);
             assertEquals(message.getClench(), false);
-            assertEquals(message.getEngagementBoredom(), 0.0);
-            assertEquals(message.getExcitementShortTerm(), 0.0);
+            assertEquals(message.getEngagement(), 0.0);
+            assertEquals(message.getExcitement(), 0.0);
         }
         catch (Exception e) {
             e.printStackTrace();
