@@ -8,64 +8,35 @@ package ser516.project3.model;
  */
 public class Message {
 
-    // Expressive Attributes.
-    private boolean lookingRight;
-    private boolean lookingLeft;
-    private boolean lookingDown;
-    private boolean lookingUp;
-    private boolean eyebrowRaise;
+    // Expression Attributes.
+    private boolean blink;
     private boolean rightWink;
     private boolean leftWink;
-    private boolean blink;
-    private boolean eyesOpen;
-    private boolean smile;
-    private boolean clench;
+    private boolean lookingRight;
+    private boolean lookingLeft;
 
-    // Affective Attributes.
-    private double meditation;
-    private double frustration;
-    private double engagementBoredom;
-    private double excitementShortTerm;
-    private double excitementLongTerm;
+    private double furrowBrow;
+    private double raiseBrow;
+    private double smile;
+    private double clench;
+    private double leftSmirk;
+    private double rightSmirk;
+    private double laugh;
 
-    public void setLookingRight(boolean attribute) {
-        this.lookingRight = attribute;
+    // Emotion Attributes.
+    private double interest;
+    private double engagement;
+    private double stress;
+    private double relaxation;
+    private double excitement;
+    private double focus;
+
+    public void setBlink(boolean attribute) {
+        this.blink = attribute;
     }
 
-    public boolean getLookingRight() {
-        return this.lookingRight;
-    }
-
-    public void setLookingLeft(boolean attribute) {
-        this.lookingLeft = attribute;
-    }
-
-    public boolean getLookingLeft() {
-        return this.lookingLeft;
-    }
-
-    public void setLookingDown(boolean attribute) {
-        this.lookingDown = attribute;
-    }
-
-    public boolean getLookingDown() {
-        return this.lookingDown;
-    }
-
-    public void setLookingUp(boolean attribute) {
-        this.lookingUp = attribute;
-    }
-
-    public boolean getLookingUp() {
-        return this.lookingUp;
-    }
-
-    public void setEyebrowRaise(boolean attribute) {
-        this.eyebrowRaise = attribute;
-    }
-
-    public boolean getEyebrowRaise() {
-        return this.eyebrowRaise;
+    public boolean getBlink() {
+        return this.blink;
     }
 
     public void setRightWink(boolean attribute) {
@@ -84,76 +55,124 @@ public class Message {
         return this.leftWink;
     }
 
-    public void setBlink(boolean attribute) {
-        this.blink = attribute;
+    public void setLookingRight(boolean attribute) {
+        this.lookingRight = attribute;
     }
 
-    public boolean getBlink() {
-        return this.blink;
+    public boolean getLookingRight() {
+        return this.lookingRight;
     }
 
-    public void setEyesOpen(boolean attribute) {
-        this.eyesOpen = attribute;
+    public void setLookingLeft(boolean attribute) {
+        this.lookingLeft = attribute;
     }
 
-    public boolean getEyesOpen() {
-        return this.eyesOpen;
+    public boolean getLookingLeft() {
+        return this.lookingLeft;
     }
 
-    public void setSmile(boolean attribute) {
+    public void setFurrowBrow(double attribute) {
+        this.furrowBrow = attribute;
+    }
+
+    public double getFurrowBrow() {
+        return this.furrowBrow;
+    }
+
+    public void setRaiseBrow(double attribute) {
+        this.raiseBrow = attribute;
+    }
+
+    public double getRaiseBrow() {
+        return this.raiseBrow;
+    }
+
+    public void setSmile(double attribute) {
         this.smile = attribute;
     }
 
-    public boolean getSmile() {
+    public double getSmile() {
         return this.smile;
     }
 
-    public void setClench(boolean attribute) {
+    public void setClench(double attribute) {
         this.clench = attribute;
     }
 
-    public boolean getClench() {
+    public double getClench() {
         return this.clench;
     }
 
-    public void setMeditation(double attribute) {
-        this.meditation = attribute;
+    public void setLeftSmirk(double attribute) {
+        this.leftSmirk = attribute;
     }
 
-    public double getMeditation() {
-        return this.meditation;
+    public double getLeftSmirk() {
+        return this.leftSmirk;
     }
 
-    public void setFrustration(double attribute) {
-        this.frustration = attribute;
+    public void setRightSmirk(double attribute) {
+        this.rightSmirk = attribute;
     }
 
-    public double getFrustration() {
-        return this.frustration;
+    public double getRightSmirk() {
+        return this.rightSmirk;
     }
 
-    public void setEngagementBoredom(double attribute) {
-        this.engagementBoredom = attribute;
+    public void setLaugh(double attribute) {
+        this.laugh = attribute;
     }
 
-    public double getEngagementBoredom() {
-        return this.engagementBoredom;
+    public double getLaugh() {
+        return this.laugh;
     }
 
-    public void setExcitementShortTerm(double attribute) {
-        this.excitementShortTerm = attribute;
+    public void setInterest(double attribute) {
+        this.interest = attribute;
     }
 
-    public double getExcitementShortTerm() {
-        return this.excitementShortTerm;
+    public double getInterest() {
+        return this.interest;
     }
 
-    public void setExcitementLongTerm(double attribute) {
-        this.excitementLongTerm = attribute;
+    public void setEngagement(double attribute) {
+        this.engagement = attribute;
     }
 
-    public double getExcitementLongTerm() {
-        return this.excitementLongTerm;
+    public double getEngagement() {
+        return this.engagement;
+    }
+
+    public void setStress(double attribute) {
+        this.stress = attribute;
+    }
+
+    public double getStress() {
+        return this.stress;
+    }
+
+    public void setRelaxation(double attribute) {
+        this.relaxation = attribute;
+    }
+
+    public double getRelaxation() {
+        return this.relaxation;
+    }
+
+    public void setExcitement(double attribute) {
+        this.excitement = attribute;
+    }
+
+    public double getExcitement() {
+        return this.excitement;
+    }
+
+    public void setFocus(double attribute) {
+        this.focus = attribute;
+    }
+
+    public double getFocus() {
+        return this.focus;
     }
 
 }

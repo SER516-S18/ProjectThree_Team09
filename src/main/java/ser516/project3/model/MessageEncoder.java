@@ -27,36 +27,38 @@ public class MessageEncoder implements Encoder.Text<Message> {
         Map<String, Object> config = new HashMap<String, Object>();
         JsonBuilderFactory factory = Json.createBuilderFactory(config);
         
-        // Build "Expressive" object.
-        JsonObject expressiveObject = factory
+        // Build "Expression" object.
+        JsonObject expressionObject = factory
             .createObjectBuilder()
-            .add("LookingRight", message.getLookingRight())
-            .add("LookingLeft", message.getLookingLeft())
-            .add("LookingDown", message.getLookingDown())
-            .add("LookingUp", message.getLookingUp())
-            .add("EyebrowRaise", message.getEyebrowRaise())
+            .add("Blink", message.getBlink())
             .add("RightWink", message.getRightWink())
             .add("LeftWink", message.getLeftWink())
-            .add("Blink", message.getBlink())
-            .add("EyesOpen", message.getEyesOpen())
+            .add("LookingRight", message.getLookingRight())
+            .add("LookingLeft", message.getLookingLeft())
+            .add("FurrowBrow", message.getFurrowBrow())
+            .add("RaiseBrow", message.getRaiseBrow())
             .add("Smile", message.getSmile())
             .add("Clench", message.getClench())
+            .add("LeftSmirk", message.getLeftSmirk())
+            .add("RightSmirk", message.getRightSmirk())
+            .add("Laugh", message.getLaugh())
             .build();
         
-        // Build "Affective" object.
-        JsonObject affectiveObject = factory
+        // Build "Emotion" object.
+        JsonObject emotionObject = factory
             .createObjectBuilder()
-            .add("Meditation", message.getMeditation())
-            .add("Frustration", message.getFrustration())
-            .add("EngagementBoredom", message.getEngagementBoredom())
-            .add("ExcitementShortTerm", message.getExcitementShortTerm())
-            .add("ExcitementLongTerm", message.getExcitementLongTerm())
+            .add("Interest", message.getInterest())
+            .add("Engagement", message.getEngagement())
+            .add("Stress", message.getStress())
+            .add("Relaxation", message.getRelaxation())
+            .add("Excitement", message.getExcitement())
+            .add("Focus", message.getFocus())
             .build();
 
         return Json
             .createObjectBuilder()
-            .add("Expressive", expressiveObject)
-            .add("Affective", affectiveObject)
+            .add("Expression", expressionObject)
+            .add("Emotion", emotionObject)
             .build()
             .toString();
     }
