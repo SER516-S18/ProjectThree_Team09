@@ -27,28 +27,30 @@ public class MessageDecoder implements Decoder.Text<Message> {
 
         // Read the payload.
         JsonObject root = Json.createReader(new StringReader(payload)).readObject();
-        JsonObject expressiveAttributes = root.getJsonObject("Expressive");
-        JsonObject affectiveAttributes = root.getJsonObject("Affective");
+        JsonObject expressionAttributes = root.getJsonObject("Expression");
+        JsonObject emotionAttributes = root.getJsonObject("Emotion");
 
-        // Unmarshal the expressive attributes.
-        message.setLookingRight(expressiveAttributes.getBoolean("LookingRight"));
-        message.setLookingLeft(expressiveAttributes.getBoolean("LookingLeft"));
-        message.setLookingDown(expressiveAttributes.getBoolean("LookingDown"));
-        message.setLookingUp(expressiveAttributes.getBoolean("LookingUp"));
-        message.setEyebrowRaise(expressiveAttributes.getBoolean("EyebrowRaise"));
-        message.setRightWink(expressiveAttributes.getBoolean("RightWink"));
-        message.setLeftWink(expressiveAttributes.getBoolean("LeftWink"));
-        message.setBlink(expressiveAttributes.getBoolean("Blink"));
-        message.setEyesOpen(expressiveAttributes.getBoolean("EyesOpen"));
-        message.setSmile(expressiveAttributes.getBoolean("Smile"));
-        message.setClench(expressiveAttributes.getBoolean("Clench"));
+        // Unmarshal the expression attributes.
+        message.setBlink(expressionAttributes.getBoolean("Blink"));
+        message.setRightWink(expressionAttributes.getBoolean("RightWink"));
+        message.setLeftWink(expressionAttributes.getBoolean("LeftWink"));
+        message.setLookingRight(expressionAttributes.getBoolean("LookingRight"));
+        message.setLookingLeft(expressionAttributes.getBoolean("LookingLeft"));
+        message.setFurrowBrow(expressionAttributes.getJsonNumber("FurrowBrow").doubleValue());
+        message.setRaiseBrow(expressionAttributes.getJsonNumber("RaiseBrow").doubleValue());
+        message.setSmile(expressionAttributes.getJsonNumber("Smile").doubleValue());
+        message.setClench(expressionAttributes.getJsonNumber("Clench").doubleValue());
+        message.setLeftSmirk(expressionAttributes.getJsonNumber("LeftSmirk").doubleValue());
+        message.setRightSmirk(expressionAttributes.getJsonNumber("RightSmirk").doubleValue());
+        message.setLaugh(expressionAttributes.getJsonNumber("Laugh").doubleValue());
 
-        // Unmarshal the affective attributes.
-        message.setMeditation(affectiveAttributes.getJsonNumber("Meditation").doubleValue());
-        message.setFrustration(affectiveAttributes.getJsonNumber("Frustration").doubleValue());
-        message.setEngagementBoredom(affectiveAttributes.getJsonNumber("EngagementBoredom").doubleValue());
-        message.setExcitementShortTerm(affectiveAttributes.getJsonNumber("ExcitementShortTerm").doubleValue());
-        message.setExcitementLongTerm(affectiveAttributes.getJsonNumber("ExcitementLongTerm").doubleValue());
+        // Unmarshal the emotion attributes.
+        message.setInterest(emotionAttributes.getJsonNumber("Interest").doubleValue());
+        message.setEngagement(emotionAttributes.getJsonNumber("Engagement").doubleValue());
+        message.setStress(emotionAttributes.getJsonNumber("Stress").doubleValue());
+        message.setRelaxation(emotionAttributes.getJsonNumber("Relaxation").doubleValue());
+        message.setExcitement(emotionAttributes.getJsonNumber("Excitement").doubleValue());
+        message.setFocus(emotionAttributes.getJsonNumber("Focus").doubleValue());
 
         return message;
     }
