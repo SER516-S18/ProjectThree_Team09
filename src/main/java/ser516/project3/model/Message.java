@@ -156,4 +156,45 @@ public class Message {
         return this.excitementLongTerm;
     }
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Message [lookingRight=");
+		builder.append(lookingRight);
+		builder.append(", lookingLeft=");
+		builder.append(lookingLeft);
+		builder.append(", lookingDown=");
+		builder.append(lookingDown);
+		builder.append(", lookingUp=");
+		builder.append(lookingUp);
+		builder.append(", eyebrowRaise=");
+		builder.append(eyebrowRaise);
+		builder.append(", rightWink=");
+		builder.append(rightWink);
+		builder.append(", leftWink=");
+		builder.append(leftWink);
+		builder.append(", blink=");
+		builder.append(blink);
+		builder.append(", eyesOpen=");
+		builder.append(eyesOpen);
+		builder.append(", smile=");
+		builder.append(smile);
+		builder.append(", clench=");
+		builder.append(clench);
+		builder.append(", meditation=");
+		builder.append(meditation);
+		builder.append(", frustration=");
+		builder.append(frustration);
+		builder.append(", engagementBoredom=");
+		builder.append(engagementBoredom);
+		builder.append(", excitementShortTerm=");
+		builder.append(excitementShortTerm);
+		builder.append(", excitementLongTerm=");
+		builder.append(excitementLongTerm);
+		builder.append("]");
+		return builder.toString();
+	}
+    
+    
+
 }
