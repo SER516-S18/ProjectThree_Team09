@@ -2,6 +2,14 @@ package ser516.project3.server.service;
 
 public interface ServerConnectionServiceInterface {
 	
-	void createServerSocketThread();
+	/**
+	 * Initializes the socket end point
+	 */
+	void initServerEndpoint();
+	
+	/**
+	 * Stops the web socket endpoint
+	 */
+	void stopServerEndpoint();
 
 }

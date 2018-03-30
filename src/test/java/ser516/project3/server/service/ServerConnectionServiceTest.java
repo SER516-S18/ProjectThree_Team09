@@ -10,7 +10,7 @@ class ServerConnectionServiceTest {
 	@Test
 	void testCreateServerSocketThread() {
 		ServerConnectionServiceInterface serverConnectionServiceInterface = new ServerConnectionServiceImpl();
-		serverConnectionServiceInterface.createServerSocketThread();
+		serverConnectionServiceInterface.initServerEndpoint();
 	}
 
 }
