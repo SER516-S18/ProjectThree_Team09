@@ -1,43 +1,43 @@
 package ser516.project3.server.service;
 
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+import org.glassfish.tyrus.server.Server;
 
 public class ServerConnectionServiceImpl implements ServerConnectionServiceInterface {
 
 	private static final int PORT = 1516;
-
-	@SuppressWarnings("resource")
+	private Server server;
 	@Override
-	public void createServerSocketThread() {
-		ServerSocket serverSocket = null;
-		Socket socket = null;
-		try {
-			serverSocket = new ServerSocket(PORT);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	public void initServerEndpoint() {
+		server = new Server("localhost", PORT, "", null, ServerConnectionEndpoint.class);
+	    try {
+	        server.start();
+	        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	        reader.readLine();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        server.stop();
+	    }
+	}
 
-		while (true) {
-			try {
-				socket = serverSocket.accept();
-			} catch (IOException e) {
-				System.out.println("I/O error: " + e);
-			}
-			
-			new ServerSocketThread(socket).start();
-		}
-
+	@Override
+	public void stopServerEndpoint() {
+		server.stop();
 	}
 	
 	/**
 	 * Just for testing purposes
 	 * @param args
+	 * @throws InterruptedException 
 	 */
-	public static void main(String[] args) {
-		new ServerConnectionServiceImpl().createServerSocketThread();
+	public static void main(String[] args) throws InterruptedException {
+		ServerConnectionServiceImpl obj = new ServerConnectionServiceImpl();
+		obj.initServerEndpoint();
+		
 	}
+
 
 }
