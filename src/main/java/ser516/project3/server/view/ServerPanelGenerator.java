@@ -22,6 +22,11 @@ public class ServerPanelGenerator {
 
 	private static final Font FONT = new Font("Courier New", Font.BOLD, 17);
 
+	/**
+	 * This method will initialize the top JPanels of the server application
+	 * 
+	 * @return the top JPanel
+	 */
 	public static JPanel createTopPanels() {
 		JPanel topPanel = new JPanel();
 
@@ -90,6 +95,10 @@ public class ServerPanelGenerator {
 
 	}
 
+	/**
+	 * This method will initialize the second sub panel of the Server window
+	 * @return the second sub-panel
+	 */
 	public static Component createConfigurationPanels() {
 		JPanel configPanel = new JPanel();
 		configPanel.setOpaque(false);

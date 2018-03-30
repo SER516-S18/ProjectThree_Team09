@@ -1,0 +1,7 @@
+2018-03-30 01:22:54 ERROR ServerConnectionEndpoint:58 - Error occurred in Server Endpoint
+2018-03-30 01:23:54 INFO  ClientConnectionServiceImpl:24 - Connecting to ws://localhost:1516/server
+2018-03-30 01:23:54 INFO  ServerConnectionEndpoint:31 - New Client connected :::: Wrapped: Basic
+2018-03-30 01:23:55 INFO  ClientConnectionEndpoint:23 - Connected to endpoint: Wrapped: Basic
+2018-03-30 01:23:58 INFO  ServerConnectionEndpoint:31 - New Client connected :::: Wrapped: Basic
+2018-03-30 01:23:58 ERROR ServerConnectionEndpoint:58 - Error occurred in Server Endpoint
+2018-03-30 01:24:27 ERROR ServerConnectionEndpoint:58 - Error occurred in Server Endpoint

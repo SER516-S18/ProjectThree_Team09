@@ -11,49 +11,55 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import org.apache.log4j.Logger;
+
 import ser516.project3.model.Message;
 import ser516.project3.model.MessageEncoder;
 
+/**
+ * The Web server socket endpoint class for the server application
+ * @author User
+ *
+ */
 @ServerEndpoint(value = "/server", encoders = { MessageEncoder.class })
 public class ServerConnectionEndpoint {
+
+	final static Logger logger = Logger.getLogger(ServerConnectionEndpoint.class);
 
 	@OnOpen
 	public void onOpen(final Session session) throws IOException {
 		try {
-			//TODO: Here the logic is to start sending the message json based on the value of auto send flag
-			//TODO: If the flag is false, just send the json once, else keep sending based on the interval
+			// TODO: Here the logic is to start sending the message json based on the value
+			// of auto send flag
+			// TODO: If the flag is false, just send the json once, else keep sending based
+			// on the interval
+			logger.info("New Client connected :::: " + session.getBasicRemote());
 			session.getBasicRemote().sendObject(new Message());
 		} catch (IOException | EncodeException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error occurred in onOpen method :::: " + e.getStackTrace());
 		}
 	}
 
 	@OnMessage
-	public String onMessage(String message, Session session) {
-		try {
-			//TODO: We have to write logic of what to do when we receive message from the client
-			session.getBasicRemote().sendObject(new Message());
-		} catch (IOException | EncodeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "";
+	public void onMessage(String message, Session session) {
+		// TODO: We have to write logic of what to do when we receive message from the
+		// client
 	}
 
 	@OnClose
 	public void onClose(Session session, CloseReason closeReason) {
-		System.out.println("onClose: " + closeReason);
+		logger.info("onClose: " + closeReason);
 		try {
 			session.getBasicRemote().sendText("Connection closed");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error occurred while sending text::::" + e.getStackTrace());
 		}
 	}
 
 	@OnError
 	public void onError(Session session, Throwable t) {
-		System.out.println("onError: " + t);
+		logger.error("Error occurred in Server Endpoint");
 	}
 }
