@@ -7,7 +7,7 @@ class ClientConnectionServiceTest {
 	@Test
 	void testCreateClientConnection() {
 		ClientConnectionServiceInterface clientConnectionServiceInterface = new ClientConnectionServiceImpl();
-		clientConnectionServiceInterface.createClientConnection();
+		clientConnectionServiceInterface.createClientConnection("localhost", 1516, "server");
 	}
 
 }

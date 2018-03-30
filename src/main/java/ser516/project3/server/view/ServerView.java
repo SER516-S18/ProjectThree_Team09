@@ -7,9 +7,17 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 
+/**
+ * The JFrame class of Server application
+ * @author User
+ *
+ */
 @SuppressWarnings("serial")
 public class ServerView extends JFrame{
 	
+	/**
+	 * Constructor to initialize all the components of the server application
+	 */
 	public ServerView(){
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Server");
