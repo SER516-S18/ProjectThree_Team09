@@ -6,5 +6,9 @@
 .classpath
 .project
 
+# IntellIj
+project3.iml
+.idea
+
 # Maven
 target/
