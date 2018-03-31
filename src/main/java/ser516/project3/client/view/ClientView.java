@@ -16,8 +16,7 @@ public class ClientView extends JFrame{
 	private static PerformanceMetricView performanceMetricTabInstance;
 	private static ExpressionsView expressionsTabInstance;
 	private static JTabbedPane expressionsEmotionsCombinedTab;
-	//to do : replace with header panel displaying connection info etc.
-	private static JPanel toBeReplacedWithHeaderPanel;
+	private static HeaderView headerPanel;
 	
 	public static ClientView getClientView() {
 		if(clientViewInstance ==null) {
@@ -33,7 +32,7 @@ public class ClientView extends JFrame{
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(1400, 650));
 
-		toBeReplacedWithHeaderPanel = new HeaderView();
+		headerPanel = new HeaderView();
 		expressionsEmotionsCombinedTab = new JTabbedPane();
 
 		performanceMetricTabInstance = new PerformanceMetricView();
@@ -44,7 +43,7 @@ public class ClientView extends JFrame{
 		splitPane = new JSplitPane();
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);  
         splitPane.setDividerLocation(100);                    
-        splitPane.setTopComponent(toBeReplacedWithHeaderPanel);                  
+        splitPane.setTopComponent(headerPanel);
         splitPane.setBottomComponent(expressionsEmotionsCombinedTab);
 		
 		add(splitPane);
