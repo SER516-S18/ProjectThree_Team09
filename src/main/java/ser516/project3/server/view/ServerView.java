@@ -22,10 +22,7 @@ public class ServerView extends JFrame{
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Server");
 		setMinimumSize(new Dimension(500, 800));
-//		setLayout(new GridLayout(0, 1));
 		setLayout(new BorderLayout());
-//		setBackground(BLUE);
-		//TODO: Add panel rows vertically
 		setVisible(true);
 		add(ServerPanelGenerator.createTopPanels(), BorderLayout.PAGE_START);
 		add(ServerPanelGenerator.createConfigurationPanels(), BorderLayout.CENTER);

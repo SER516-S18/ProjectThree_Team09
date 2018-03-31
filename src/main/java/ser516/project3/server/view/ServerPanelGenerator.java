@@ -17,6 +17,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
+import ser516.project3.utilities.InputVerifierNumericals;
+import ser516.project3.utilities.ServerCommonData;
 
 public class ServerPanelGenerator {
 
@@ -41,18 +46,38 @@ public class ServerPanelGenerator {
 		Border compound = BorderFactory.createCompoundBorder(marginBorder, titledBorder);
 		topPanel.setBorder(compound);
 
-		JLabel intervalLabel = new JLabel("Interval:  ");
+		JLabel intervalLabel = new JLabel("Interval (seconds):  ");
 		intervalLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		intervalLabel.setOpaque(true);
 
-		JTextField intervalInputTextField = new JTextField();
+		JTextField intervalInputTextField = new JTextField("1");
+		intervalInputTextField.setInputVerifier(new InputVerifierNumericals());
 		intervalInputTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+		intervalInputTextField.setColumns(3);
 		intervalInputTextField.setHorizontalAlignment(SwingConstants.CENTER);
+		intervalInputTextField.getDocument().addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+//				updateIntervalInputTextField(intervalInputTextField);
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+//				updateIntervalInputTextField(intervalInputTextField);
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				updateIntervalInputTextField(intervalInputTextField);
+			}
+
+		});
 
 		JButton buttonToggle = new JButton("Start / Stop");
 
-		JCheckBox radio = new JCheckBox("Auto Repeat", false);
-		radio.setHorizontalAlignment(SwingConstants.CENTER);
+		JCheckBox autoRepeatCheckBox = new JCheckBox("Auto Repeat", false);
+		autoRepeatCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
@@ -89,7 +114,7 @@ public class ServerPanelGenerator {
 		c.weightx = 0.5;
 		c.gridx = 1;
 		c.gridy = 1;
-		topPanel.add(radio, c);
+		topPanel.add(autoRepeatCheckBox, c);
 
 		return topPanel;
 
@@ -97,6 +122,7 @@ public class ServerPanelGenerator {
 
 	/**
 	 * This method will initialize the second sub panel of the Server window
+	 * 
 	 * @return the second sub-panel
 	 */
 	public static Component createConfigurationPanels() {
@@ -110,9 +136,13 @@ public class ServerPanelGenerator {
 		configPanel.setBorder(compound);
 
 		configPanel.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		
+		new GridBagConstraints();
+
 		return configPanel;
+	}
+
+	private static void updateIntervalInputTextField(JTextField intervalInputTextField) {
+		ServerCommonData.getInstance().setInterval(Integer.parseInt(intervalInputTextField.getText()));
 	}
 
 }
