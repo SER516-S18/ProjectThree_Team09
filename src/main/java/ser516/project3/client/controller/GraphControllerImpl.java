@@ -37,79 +37,63 @@ public class GraphControllerImpl implements GraphControllerInterface {
   }
 
   /**
-   * Sets the X-axis display length in the <code>GraphModel</code>.
-   *
-   * @param XLength length of X-axis
+   * @inheritDoc
    */
   public void setXLength(int XLength) {
     graphModel.setXLength(XLength);
   }
 
   /**
-   * Gets the X-axis display length in the <code>GraphModel</code>.
-   *
-   * @return length of X-axis
+   * @inheritDoc
    */
   public int getXLength() {
     return graphModel.getXLength();
   }
 
   /**
-   * Sets the no of channels in the <code>GraphModel</code>.
-   *
-   * @param noOfChannels no of channels in the <code>GraphModel</code>
+   * @inheritDoc
    */
   public void setNoOfChannels(int noOfChannels) {
     graphModel.setNoOfChannels(noOfChannels);
   }
 
   /**
-   * Gets the no of channels in the <code>GraphModel</code>.
-   *
-   * @return no of channels in the <code>GraphModel</code>.
+   * @inheritDoc
    */
   public int getNoOfChannels() {
     return graphModel.getNoOfChannels();
   }
 
   /**
-   * Sets the list of colors for each channel in the <code>GraphModel</code>.
-   *
-   * @param channelColors list of colors for each channel in the <code>GraphModel</code>
+   * @inheritDoc
    */
   public void setChannelColors(Color channelColors[]) {
     graphModel.setChannelColors(channelColors);
   }
 
   /**
-   * Gets the list of colors for each channel in the <code>GraphModel</code>.
-   *
-   * @return list of colors for each channel in the <code>GraphModel</code>
+   * @inheritDoc
    */
   public Color[] getChannelColors() {
     return graphModel.getChannelColors();
   }
 
   /**
-   * Sets the coordinate values for each channel in the <code>GraphModel</code>.
-   *
-   * @param graphData list of coordinate values for each channel in the <code>GraphModel</code>
+   * @inheritDoc
    */
   public void setGraphData(ArrayList<ArrayList<CoordinatesModel>> graphData) {
     graphModel.setGraphData(graphData);
   }
 
   /**
-   * Gets the coordinate values for each channel in the <code>GraphModel</code>.
-   *
-   * @return list of coordinate values for each channel in the <code>GraphModel</code>
+   * @inheritDoc
    */
   public ArrayList<ArrayList<CoordinatesModel>> getGraphData() {
     return graphModel.getGraphData();
   }
 
   /**
-   * Updates the GraphView using the new data from the <code>GraphModel</code>.
+   * @inheritDoc
    */
   public void updateGraphView() {
     graphView.updateGraphView(graphModel);
