@@ -26,14 +26,13 @@ class GraphControllerImplTest {
     Color channelColors[] = new Color[] { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.GRAY };
     graphControllerInterface.setChannelColors(channelColors);
 
-    int x = 0;
     ArrayList<ArrayList<CoordinatesModel>> graphData = new ArrayList<ArrayList<CoordinatesModel>>();
-    for(int i = 0; i < 10; i++, x++) {
+    for(int xCoordinate = 0; xCoordinate < 10; xCoordinate++) {
       ArrayList<CoordinatesModel> coordinatesList = new ArrayList<CoordinatesModel>();
-      for(int j = 0; j < graphControllerInterface.getNoOfChannels(); j++) {
+      for(int channelNo = 0; channelNo < graphControllerInterface.getNoOfChannels(); channelNo++) {
         Random rand = new Random();
-        double y = rand.nextDouble();
-        coordinatesList.add(new CoordinatesModel(x, y + j));
+        double yCoordinate = rand.nextDouble();
+        coordinatesList.add(new CoordinatesModel(xCoordinate, yCoordinate + channelNo));
       }
       graphData.add(coordinatesList);
     }
