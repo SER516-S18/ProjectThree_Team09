@@ -33,7 +33,7 @@ public class ClientView extends JFrame{
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(1400, 650));
 
-		toBeReplacedWithHeaderPanel = new JPanel();
+		toBeReplacedWithHeaderPanel = new HeaderView();
 		expressionsEmotionsCombinedTab = new JTabbedPane();
 
 		performanceMetricTabInstance = new PerformanceMetricView();
