@@ -12,42 +12,42 @@ public class ClientView extends JFrame{
 	
 	private static ClientView clientViewInstance=null;
 	
-	JSplitPane splitPane;
-	PerformanceMetricTab performanceMetricTabInstance;
-	ExpressionsTab expressionTabInstance;
-	JTabbedPane expressionsEmotionsCombinedTab;
+	private static JSplitPane splitPane;
+	private static PerformanceMetricView performanceMetricTabInstance;
+	private static ExpressionsView expressionsTabInstance;
+	private static JTabbedPane expressionsEmotionsCombinedTab;
 	//to do : replace with header panel displaying connection info etc.
-	JPanel toBeReplacedWithHeaderPanel;
+	private static JPanel toBeReplacedWithHeaderPanel;
 	
 	public static ClientView getClientView() {
 		if(clientViewInstance ==null) {
 			clientViewInstance=new ClientView();
 		}
 		return clientViewInstance;
-	} 
-	
-	
-	public void  initializeClientUI() {
-		toBeReplacedWithHeaderPanel=new JPanel();
-		splitPane = new JSplitPane();
+	}
 
-		expressionsEmotionsCombinedTab=new JTabbedPane();
-		performanceMetricTabInstance=new PerformanceMetricTab();
-		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		this.setMinimumSize(new Dimension(800, 600));
-		
-		expressionTabInstance=new ExpressionsTab();
-		
+	/**
+	 *
+	 */
+	public void  initializeClientUI() {
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setMinimumSize(new Dimension(800, 600));
+
+		toBeReplacedWithHeaderPanel = new JPanel();
+		expressionsEmotionsCombinedTab = new JTabbedPane();
+
+		performanceMetricTabInstance = new PerformanceMetricView();
+		expressionsTabInstance = new ExpressionsView();
 		expressionsEmotionsCombinedTab.addTab("Performance Metric", performanceMetricTabInstance);
-		expressionsEmotionsCombinedTab.addTab("Expressions", expressionTabInstance);
+		expressionsEmotionsCombinedTab.addTab("Expressions", expressionsTabInstance);
+
+		splitPane = new JSplitPane();
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);  
         splitPane.setDividerLocation(100);                    
         splitPane.setTopComponent(toBeReplacedWithHeaderPanel);                  
         splitPane.setBottomComponent(expressionsEmotionsCombinedTab);
 		
-		this.add(splitPane);
-		this.setVisible(true);
-		
+		add(splitPane);
+		setVisible(true);
 	}
-
 }
