@@ -4,11 +4,8 @@ public class ClientControllerImpl implements ClientControllerInterface{
 
 	@Override
 	public void startClient() {
-		//TODO: start data reception form server
+		// TODO Auto-generated method stub
 		
-		//Registering the observer on client start
-		PerformanceMetricGraphObserver performanceMetricObserver= new PerformanceMetricGraphObserver();
-		PerformanceMetricDataObservable.getInstance().addObserver(performanceMetricObserver);
 	}
 
 }

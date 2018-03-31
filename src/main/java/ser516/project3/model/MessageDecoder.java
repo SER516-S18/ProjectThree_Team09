@@ -27,13 +27,8 @@ public class MessageDecoder implements Decoder.Text<Message> {
 
         // Read the payload.
         JsonObject root = Json.createReader(new StringReader(payload)).readObject();
-        JsonObject timeAttributes= root.getJsonObject("Time-Attributes");
         JsonObject expressionAttributes = root.getJsonObject("Expression");
         JsonObject emotionAttributes = root.getJsonObject("Emotion");
-        
-        //Unmarshal the time attributes
-        message.setInterval(timeAttributes.getJsonNumber("Interval").doubleValue());
-        message.setTimeStamp(timeAttributes.getJsonNumber("TimeStamp").doubleValue());
 
         // Unmarshal the expression attributes.
         message.setBlink(expressionAttributes.getBoolean("Blink"));

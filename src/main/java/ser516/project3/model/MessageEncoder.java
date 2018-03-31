@@ -27,13 +27,6 @@ public class MessageEncoder implements Encoder.Text<Message> {
         Map<String, Object> config = new HashMap<String, Object>();
         JsonBuilderFactory factory = Json.createBuilderFactory(config);
         
-        //Build Time attributes
-        JsonObject timeAttributes=factory
-        		.createObjectBuilder()
-        		.add("Interval", message.getInterval())
-        		.add("TimeStamp", message.getTimeStamp()).build();
-      
-        
         // Build "Expression" object.
         JsonObject expressionObject = factory
             .createObjectBuilder()
@@ -64,7 +57,6 @@ public class MessageEncoder implements Encoder.Text<Message> {
 
         return Json
             .createObjectBuilder()
-            .add("Time-Attributes", timeAttributes)
             .add("Expression", expressionObject)
             .add("Emotion", emotionObject)
             .build()
