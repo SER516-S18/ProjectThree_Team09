@@ -4,13 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ExpressionsView extends JPanel{
-    public ExpressionsView(){
-        setLayout(new BorderLayout());
-        setOpaque(false);
-        setBorder(BorderFactory.createLineBorder(Color.black));
+    private static final Color LIGHTGREY = new Color(245, 245, 245);
 
-        add(new JPanel(), BorderLayout.WEST ); // Need to replace with a panel for displaying the face.
-        add(new GraphView(), BorderLayout.EAST );
+    public ExpressionsView(){
+        setLayout(new GridLayout(1, 2, 8, 8 ));
+        setBackground(LIGHTGREY);
+
+        add(new JPanel(), BorderLayout.LINE_START ); // Need to replace with a panel for displaying the face.
+        add(new GraphView(), BorderLayout.LINE_END );
         setVisible(true);
     }
 }

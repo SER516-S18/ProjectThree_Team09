@@ -30,7 +30,7 @@ public class ClientView extends JFrame{
 	 */
 	public void  initializeClientUI() {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setMinimumSize(new Dimension(800, 600));
+		setMinimumSize(new Dimension(1400, 650));
 
 		headerPanel = new HeaderView();
 		expressionsEmotionsCombinedTab = new JTabbedPane();
