@@ -4,13 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PerformanceMetricView extends JPanel{
-	public PerformanceMetricView(){
-		setLayout(new BorderLayout());
-        setOpaque(false);
-        setBorder(BorderFactory.createLineBorder(Color.black));
+	private static final Color LIGHTGREY = new Color(245, 245, 245);
 
-		add(new GraphView(), BorderLayout.WEST );
-		add(new JPanel(), BorderLayout.EAST ); // Need to replace with a panel for displaying the 6 emotion buttons.
+	public PerformanceMetricView(){
+		setLayout(new GridLayout(1, 2, 8, 8 ));
+		setBackground(LIGHTGREY);
+
+		add(new GraphView(), BorderLayout.LINE_START );
+		add(new JPanel(), BorderLayout.LINE_END ); // Need to replace with a panel for displaying the 6 emotion buttons.
 		setVisible(true);
 	}
 }
