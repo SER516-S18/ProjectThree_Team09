@@ -6,6 +6,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * HeaderView class to implement the header view for client to show and update the client status
+ * @author  Vishakha Singal
+ * @version 1.0
+ */
+
 public class HeaderView extends JPanel {
 
     JLabel connectionLabel;
@@ -27,7 +33,7 @@ public class HeaderView extends JPanel {
         connectionTextLabel.setVerticalTextPosition(JLabel.CENTER);
         bagConstraints.gridx = 0;
         bagConstraints.gridy = 0;
-        bagConstraints.insets = new Insets(0,0,0,10);
+        bagConstraints.insets = new Insets(0,0,10,10);
         this.add(connectionTextLabel,bagConstraints);
 
         connectionLabel = new JLabel("Not Connected");
@@ -35,12 +41,12 @@ public class HeaderView extends JPanel {
         connectionLabel.setVerticalTextPosition(JLabel.CENTER);
         bagConstraints.gridx = 1;
         bagConstraints.gridy = 0;
-        bagConstraints.insets = new Insets(0,0,0,10);
+        bagConstraints.insets = new Insets(0,0,10,10);
         this.add(connectionLabel,bagConstraints);
 
         connectButton = new JButton("Connect");
         connectButton.setBackground(Color.RED);
-        connectButton.setPreferredSize(new Dimension(120, 40));
+        connectButton.setPreferredSize(new Dimension(120, 35));
         bagConstraints.gridx = 2;
         bagConstraints.gridy = 0;
         bagConstraints.gridheight = 3;
@@ -74,6 +80,13 @@ public class HeaderView extends JPanel {
 
     private void invokeConnectButtonListener(ActionEvent e) {
         //May need to update this for commondata class
+        //TODO: To be replaced by connection status from controller
+        Boolean isConnected = true;
+        if (isConnected) {
+            new ConnectionPopUpView();
+        } else {
+            //Disconnect the service
+        }
     }
 
     public void updateConnectionLabel(boolean isConnected) {
