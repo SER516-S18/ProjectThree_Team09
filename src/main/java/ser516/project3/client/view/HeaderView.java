@@ -23,6 +23,7 @@ public class HeaderView extends JPanel {
 	JButton connectButton;
 	JButton serverButton;
 	JDialog connectionPopUpView;
+	JDialog serverDialog;
 
 	public HeaderView() {
 		this.setLayout(new BorderLayout());
@@ -78,7 +79,11 @@ public class HeaderView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new ServerView();
+				if(serverDialog == null) {
+					serverDialog = new ServerView();
+				} else {
+					serverDialog.setVisible(true);
+				}
 			}
 
 		});
@@ -106,6 +111,8 @@ public class HeaderView extends JPanel {
 		// TODO: To be replaced by connection status from controller
 		if (connectionPopUpView == null) {
 			connectionPopUpView = new ConnectionPopUpView();
+		} else {
+			connectionPopUpView.setVisible(true);
 		}
 	}
 

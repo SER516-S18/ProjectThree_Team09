@@ -26,16 +26,21 @@ public class ClientControllerImpl implements ClientControllerInterface {
 
 	@Override
 	public void toggleConnectionToServer(String ipAddress, int port) {
-		if(connected) {
-//			clientConnectionService.stopClientConnection();
-//			connected = false;
-			//TODO: Find a way to stop the client container
+		if (connected) {
+			clientConnectionService.stopClientConnection();
+			connected = false;
+			// TODO: Find a way to stop the client container
 		} else {
 			clientConnectionService = new ClientConnectionServiceImpl();
 			clientConnectionService.createClientConnection(ipAddress, port, ClientConstants.ENDPOINT);
 			connected = true;
 		}
-		
 	}
-	
+
+	@Override
+	public void stopClientConnector() {
+		clientConnectionService.stopClientConnection();
+		connected = false;
+	}
+
 }

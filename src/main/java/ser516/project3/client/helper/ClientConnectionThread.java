@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.websocket.ContainerProvider;
 import javax.websocket.DeploymentException;
+import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
 
 import org.apache.log4j.Logger;
@@ -24,6 +25,8 @@ public class ClientConnectionThread implements Runnable {
 	private String endpoint;
 	
 	private WebSocketContainer container;
+	
+	private Session clientSession;
 
 	public ClientConnectionThread(final String ipAddress, final int port, final String endpoint) {
 		this.ipAddress = ipAddress;
@@ -38,11 +41,26 @@ public class ClientConnectionThread implements Runnable {
 		String uri = "ws://" + ipAddress + ":" + port + "/" + endpoint;
 		logger.info("Connecting to " + uri);
 		try {
-			container.connectToServer(ClientConnectionEndpoint.class, URI.create(uri));
+			clientSession = container.connectToServer(ClientConnectionEndpoint.class, URI.create(uri));
 			messageLatch.await(100, TimeUnit.SECONDS);
 		} catch (DeploymentException | IOException | InterruptedException e) {
 			logger.error("Exception occurred in createClientConnection method::::" + e.getStackTrace().toString());
 		}
 
 	}
+
+	/**
+	 * @return the clientSession
+	 */
+	public Session getClientSession() {
+		return clientSession;
+	}
+
+	/**
+	 * @param clientSession the clientSession to set
+	 */
+	public void setClientSession(Session clientSession) {
+		this.clientSession = clientSession;
+	}
+	
 }

@@ -28,4 +28,9 @@ public class ServerControllerImpl implements ServerControllerInterface {
 		}
 	}
 
+	@Override
+	public void stopServer() {
+		serverConnectionService.stopServerEndpoint();
+	}
+
 }

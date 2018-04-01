@@ -15,4 +15,9 @@ public interface ClientControllerInterface {
 	 */
 	void toggleConnectionToServer(final String ipAddress, final int port);
 	
+	/**
+	 * Forces the client to stop
+	 */
+	void stopClientConnector();
+	
 }

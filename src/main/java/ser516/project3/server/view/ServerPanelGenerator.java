@@ -383,4 +383,11 @@ public class ServerPanelGenerator {
 	private static void updateEyeAutoReset(Boolean eyeAutoResetVal) {
 		ServerCommonData.getInstance().setEyeAutoReset(eyeAutoResetVal);
 	}
+
+	/**
+	 * @return the serverControllerImpl
+	 */
+	public static ServerControllerImpl getServerControllerImpl() {
+		return serverControllerImpl;
+	}
 }
