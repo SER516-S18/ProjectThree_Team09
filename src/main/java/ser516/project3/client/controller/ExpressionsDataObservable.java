@@ -26,7 +26,7 @@ public class ExpressionsDataObservable extends Observable {
 	/**
 	 * Creates a singleton instance . If exists, returns it, else creates it.
 	 * 
-	 * @return instance of the ClientCommonData
+	 * @return instance of the ExpressionsDataObservable
 	 */
 	public static ExpressionsDataObservable getInstance() {
 		if (instance == null) {
