@@ -16,3 +16,4 @@ target/
 
 #log
 *.log
+*.log.*

@@ -1,56 +1,19 @@
-package ser516.project3.client.service;
+package ser516.project3.utilities;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.websocket.ClientEndpoint;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
-
-import org.apache.log4j.Logger;
-
-import ser516.project3.client.controller.ExpressionsDataObservable;
-import ser516.project3.client.controller.PerformanceMetricDataObservable;
 import ser516.project3.model.CoordinatesModel;
 import ser516.project3.model.Message;
-import ser516.project3.model.MessageDecoder;
 
 /**
- * This class acts as an end point of the connection and provides the message
- * bean that is further used to instantiate singleton data objects for
- * performance metrics and expressions.
+ * This class converts message bean in to a format that can be understood by
+ * various UI elements like graph
  * 
  * 
- * @author Varun Srivastava, Manish Tandon
+ * @author Manish Tandon
  *
  */
-@ClientEndpoint(decoders = { MessageDecoder.class })
-public class ClientConnectionEndpoint {
-
-	final static Logger logger = Logger.getLogger(ClientConnectionEndpoint.class);
-
-	@OnOpen
-	public void onOpen(Session session) {
-		logger.info("Connected to endpoint: " + session.getBasicRemote());
-		try {
-			session.getBasicRemote().sendText("Test Text");
-		} catch (IOException ex) {
-			logger.error("Exception in onOpen method::::" + ex.getStackTrace());
-		}
-	}
-
-	@OnMessage
-	public void processMessage(Message messageBean, Session session) {
-		PerformanceMetricDataObservable.getInstance().addToListValues(convertMessageToPeformanceMetrics(messageBean));
-		ExpressionsDataObservable.getInstance().addToListValues(convertMessageToExpressionsData(messageBean));
-	}
-
-	@OnError
-	public void processError(Throwable t) {
-		logger.error("Error occurred in Client End Point");
-	}
+public class MessageFormatConverter {
 
 	/**
 	 * 
@@ -60,7 +23,7 @@ public class ClientConnectionEndpoint {
 	 * @param messageObject
 	 * @return ArrayList of coordinates for populating performance metrics graph
 	 */
-	private ArrayList<CoordinatesModel> convertMessageToPeformanceMetrics(Message messageObject) {
+	public static ArrayList<CoordinatesModel> convertMessageToPeformanceMetrics(Message messageObject) {
 		ArrayList<CoordinatesModel> resultCoordinateModel = new ArrayList<CoordinatesModel>();
 
 		CoordinatesModel currentCoordModelInterest = new CoordinatesModel(messageObject.getTimeStamp(),
@@ -93,7 +56,7 @@ public class ClientConnectionEndpoint {
 	 * @param messageObject
 	 * @return ArrayList of coordinates for populating expressions graph
 	 */
-	private ArrayList<CoordinatesModel> convertMessageToExpressionsData(Message messageObject) {
+	public static ArrayList<CoordinatesModel> convertMessageToExpressionsData(Message messageObject) {
 		ArrayList<CoordinatesModel> resultExpressionsCoordinateModel = new ArrayList<CoordinatesModel>();
 		CoordinatesModel currentCoordModelBlink = new CoordinatesModel(messageObject.getTimeStamp(),
 				(messageObject.getBlink()) ? 1 : 0);

@@ -7,4 +7,9 @@ public interface ServerControllerInterface {
 	 */
 	void startServer();
 	
+	/**
+	 * Forces the server to close
+	 */
+	void stopServer();
+	
 }

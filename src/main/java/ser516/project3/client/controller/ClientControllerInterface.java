@@ -8,4 +8,16 @@ public interface ClientControllerInterface {
 	 */
 	void startClient();
 	
+	/**
+	 * Method to connect to a server end point
+	 * @param ipAddress
+	 * @param port
+	 */
+	void toggleConnectionToServer(final String ipAddress, final int port);
+	
+	/**
+	 * Forces the client to stop
+	 */
+	void stopClientConnector();
+	
 }

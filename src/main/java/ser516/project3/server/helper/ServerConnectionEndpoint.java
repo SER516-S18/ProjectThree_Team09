@@ -1,4 +1,4 @@
-package ser516.project3.server.service;
+package ser516.project3.server.helper;
 
 import java.io.IOException;
 
@@ -15,9 +15,11 @@ import org.apache.log4j.Logger;
 
 import ser516.project3.model.Message;
 import ser516.project3.model.MessageEncoder;
+import ser516.project3.utilities.ServerCommonData;
 
 /**
  * The Web server socket endpoint class for the server application
+ * 
  * @author User
  *
  */
@@ -34,8 +36,16 @@ public class ServerConnectionEndpoint {
 			// TODO: If the flag is false, just send the json once, else keep sending based
 			// on the interval
 			logger.info("New Client connected :::: " + session.getBasicRemote());
-			session.getBasicRemote().sendObject(new Message());
-		} catch (IOException | EncodeException e) {
+			if (ServerCommonData.getInstance().isAutoRepeat()) {
+				while(true) {
+					session.getBasicRemote().sendObject(new Message());
+					Thread.sleep(ServerCommonData.getInstance().getInterval()*1000);
+				}
+			} else {
+				session.getBasicRemote().sendObject(new Message());
+			}
+
+		} catch (IOException | EncodeException | InterruptedException e) {
 			// TODO Auto-generated catch block
 			logger.error("Error occurred in onOpen method :::: " + e.getStackTrace());
 		}
@@ -44,7 +54,7 @@ public class ServerConnectionEndpoint {
 	@OnMessage
 	public void onMessage(String message, Session session) {
 		// TODO: We have to write logic of what to do when we receive message from the
-		// client
+		// client. Or not!
 	}
 
 	@OnClose

@@ -35,3 +35,11 @@
 2018-03-30 18:23:46 INFO  ClientConnectionEndpoint:23 - Connected to endpoint: Wrapped: Basic
 2018-03-30 18:25:27 INFO  ServerConnectionEndpoint:52 - onClose: CloseReason[1006,Closed abnormally.]
 2018-03-30 18:25:27 ERROR ServerConnectionEndpoint:63 - Error occurred in Server Endpoint
+2018-03-31 22:55:18 ERROR ServerConnectionServiceImpl:22 - Error occurred while trying to start the server websocket::::[Ljava.lang.StackTraceElement;@19bb07ed
+2018-03-31 22:56:57 INFO  ClientConnectionServiceImpl:24 - Connecting to ws://localhost:1516/server
+2018-03-31 22:56:58 INFO  ServerConnectionEndpoint:36 - New Client connected :::: Wrapped: Basic
+2018-03-31 22:56:58 INFO  ClientConnectionEndpoint:36 - Connected to endpoint: Wrapped: Basic
+2018-03-31 22:58:38 INFO  ServerConnectionEndpoint:52 - onClose: CloseReason[1006,Closed abnormally.]
+2018-03-31 22:58:38 ERROR ServerConnectionEndpoint:63 - Error occurred in Server Endpoint
+2018-04-01 10:28:15 INFO  ServerPanelGenerator:77 - Testing stuff
+2018-04-01 14:40:41 INFO  ServerPanelGenerator:77 - Testing stuff
