@@ -8,4 +8,11 @@ public interface ClientControllerInterface {
 	 */
 	void startClient();
 	
+	/**
+	 * Method to connect to a server end point
+	 * @param ipAddress
+	 * @param port
+	 */
+	void connectServer(final String ipAddress, final int port);
+	
 }

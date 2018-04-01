@@ -30,13 +30,4 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
 		}
 	}
 
-	/**
-	 * Just for testing purposes
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		new ClientConnectionServiceImpl().createClientConnection("localhost", 1516, "server");
-	}
-
 }
