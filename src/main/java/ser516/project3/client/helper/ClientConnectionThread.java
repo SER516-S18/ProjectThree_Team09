@@ -11,7 +11,11 @@ import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
 
 import org.apache.log4j.Logger;
-
+/**
+ * Thread class to create a client web socket end point
+ * @author User
+ *
+ */
 public class ClientConnectionThread implements Runnable {
 
 	final static Logger logger = Logger.getLogger(ClientConnectionThread.class);
@@ -28,6 +32,12 @@ public class ClientConnectionThread implements Runnable {
 	
 	private Session clientSession;
 
+	/**
+	 * Parameterized constructor with connection details
+	 * @param ipAddress - host name of the server
+	 * @param port - the port of the server
+	 * @param endpoint - The URI end point of the web socket
+	 */
 	public ClientConnectionThread(final String ipAddress, final int port, final String endpoint) {
 		this.ipAddress = ipAddress;
 		this.port = port;
@@ -42,7 +52,7 @@ public class ClientConnectionThread implements Runnable {
 		logger.info("Connecting to " + uri);
 		try {
 			clientSession = container.connectToServer(ClientConnectionEndpoint.class, URI.create(uri));
-			messageLatch.await(100, TimeUnit.SECONDS);
+			messageLatch.await(0, TimeUnit.SECONDS);
 		} catch (DeploymentException | IOException | InterruptedException e) {
 			logger.error("Exception occurred in createClientConnection method::::" + e.getStackTrace().toString());
 		}
