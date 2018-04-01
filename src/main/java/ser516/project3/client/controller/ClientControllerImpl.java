@@ -6,9 +6,14 @@ public class ClientControllerImpl implements ClientControllerInterface {
 	public void startClient() {
 		// TODO: start data reception form server
 
-		// Registering the observer on client start
+		// Registering the observers on client start
 		PerformanceMetricGraphObserver performanceMetricObserver = new PerformanceMetricGraphObserver();
 		PerformanceMetricDataObservable.getInstance().addObserver(performanceMetricObserver);
+		
+		FaceViewObserver faceObserver=new FaceViewObserver();
+		ExpressionsDataObservable.getInstance().addObserver(faceObserver);
+		
+		
 
 	}
 
