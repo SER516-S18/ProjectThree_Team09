@@ -11,5 +11,10 @@ public interface ClientConnectionServiceInterface {
 	 * @param endpoint
 	 */
 	void createClientConnection(final String ipAddress, final int port, final String endpoint);
+	
+	/**
+	 * Stops the connection to the server
+	 */
+	void stopClientConnection();
 
 }

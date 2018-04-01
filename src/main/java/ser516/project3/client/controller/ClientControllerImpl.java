@@ -28,9 +28,4 @@ public class ClientControllerImpl implements ClientControllerInterface {
 		clientConnectionService.createClientConnection(ipAddress, port, ClientConstants.ENDPOINT);
 
 	}
-	
-	public static void main(String[] args) {
-		new ClientControllerImpl().connectServer("localhost", 1516);
-	}
-
 }
