@@ -13,6 +13,8 @@ public class ClientControllerImpl implements ClientControllerInterface {
 		FaceViewObserver faceObserver=new FaceViewObserver();
 		ExpressionsDataObservable.getInstance().addObserver(faceObserver);
 		
+		ExpressionsGraphObserver expGraphObserver=new ExpressionsGraphObserver();
+		ExpressionsDataObservable.getInstance().addObserver(expGraphObserver);
 		
 
 	}
