@@ -43,6 +43,7 @@ public class GraphView extends JPanel{
   public GraphView() {
     graphModel = new GraphModel();
     graphModel.setNoOfChannels(0);
+    graphModel.setXLength(1);
     initializeGraph();
     add(chartPanel);
     setVisible(true);
@@ -99,8 +100,12 @@ public class GraphView extends JPanel{
         false);
 
     XYPlot plot = chart.getXYPlot();
+
     ValueAxis range = plot.getRangeAxis();
     range.setVisible(false);
+    range = plot.getDomainAxis();
+    range.setRange(0, graphModel.getXLength());
+
 
     XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
 
