@@ -114,6 +114,7 @@ public class ServerPanelGenerator {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				logger.info("Start button pressed");
+				updateIntervalInputTextField(intervalInputTextField);
 				serverControllerImpl.startServer();
 			}
 		});

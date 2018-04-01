@@ -45,6 +45,7 @@ public class ClientConnectionEndpoint {
 	public void processMessage(Message messageBean, Session session) {
 		PerformanceMetricDataObservable.getInstance().addToListValues(convertMessageToPeformanceMetrics(messageBean));
 		ExpressionsDataObservable.getInstance().addToListValues(convertMessageToExpressionsData(messageBean));
+		logger.info("Received data:::: " + messageBean);
 	}
 
 	@OnError
