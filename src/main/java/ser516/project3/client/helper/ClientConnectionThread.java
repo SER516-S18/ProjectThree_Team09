@@ -11,8 +11,6 @@ import javax.websocket.WebSocketContainer;
 
 import org.apache.log4j.Logger;
 
-import ser516.project3.client.service.ClientConnectionEndpoint;
-
 public class ClientConnectionThread implements Runnable {
 
 	final static Logger logger = Logger.getLogger(ClientConnectionThread.class);
