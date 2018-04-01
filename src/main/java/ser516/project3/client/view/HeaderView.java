@@ -5,7 +5,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import ser516.project3.server.view.*;
 /**
  * HeaderView class to implement the header view for client to show and update the client status
  * @author  Vishakha Singal
@@ -17,6 +17,7 @@ public class HeaderView extends JPanel {
     JLabel connectionLabel;
     JLabel timeStampLabel;
     JButton connectButton;
+    JButton serverButton;
 
     public HeaderView() {
         this.setLayout(new BorderLayout());
@@ -59,7 +60,24 @@ public class HeaderView extends JPanel {
                 invokeConnectButtonListener(e);
             }
         });
+        
+        serverButton = new JButton("Open Server");
+        serverButton.setBackground(Color.BLUE);
+        serverButton.setPreferredSize(new Dimension(100, 100));
+        bagConstraints.gridx = -1;
+        bagConstraints.gridy = -1;
+        bagConstraints.gridheight = 2;
+        bagConstraints.insets = new Insets(7,5,5,0);
+        this.add(serverButton, bagConstraints);
+        serverButton.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ServerView();
+			}
+        	
+        });
+        
         JLabel timestampTextLabel = new JLabel("Time Stamp: ");
         timestampTextLabel.setHorizontalAlignment(JLabel.RIGHT);
         timestampTextLabel.setVerticalTextPosition(JLabel.CENTER);
