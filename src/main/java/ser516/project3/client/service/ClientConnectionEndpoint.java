@@ -19,7 +19,7 @@ import ser516.project3.model.MessageDecoder;
 
 /**
  * This class acts as an end point of the connection and provides the message
- * bean that is further used to instantiate a singleton data objects for
+ * bean that is further used to instantiate singleton data objects for
  * performance metrics and expressions.
  * 
  * 
