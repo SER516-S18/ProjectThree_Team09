@@ -1,35 +1,18 @@
 package ser516.project3.server.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import javax.swing.AbstractButton;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-import javax.swing.JTextField;
-import javax.swing.JToggleButton;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import org.apache.log4j.Logger;
 
@@ -171,160 +154,30 @@ public class ServerPanelGenerator {
 	 */
 	public static Component createConfigurationPanels() {
 		JPanel configPanel = new JPanel();
-		JPanel timerPanel = new JPanel();
-		JPanel emotionsPanel = new JPanel();
-		JPanel expressionPanel = new JPanel();
-		JPanel consolePanel = new JPanel();
+        JPanel timerPanel = createTimerPanel();
+        JPanel emotionsPanel = createEmotionsPanel();
+        JPanel expressionPanel = createExpressionPanel();
+        JPanel consolePanel = createConsolePanel();
 
 		JSplitPane splitPane1 = new JSplitPane();
 		JSplitPane splitPane2 = new JSplitPane();
 		JSplitPane splitPane3 = new JSplitPane();
 
-		String[] lowerFaceList = { "Smile", "Clench", "Smirk Left", "Smirk Right", "Laugh" };
-		String[] upperFaceList = { "Raise Brow", "Furrow Brow" };
-		String[] eyeList = { "Blink", "Wink Left", "Wink Right", "Look Left", "Look Right" };
-
 		configPanel.setOpaque(false);
-		Border titledBorder = new TitledBorder(null, "Configuration", TitledBorder.LEADING, TitledBorder.TOP, FONT,
-				null);
+
+        configPanel.add(timerPanel);
+        configPanel.add(emotionsPanel);
+        configPanel.add(expressionPanel);
+        configPanel.add(consolePanel);
+
+		Border titledBorder = new TitledBorder(null, "Configuration", TitledBorder.LEADING,
+                TitledBorder.TOP, FONT, null);
 		Border marginBorder = BorderFactory.createEmptyBorder(30, 10, 30, 10);
 
 		Border compound = BorderFactory.createCompoundBorder(marginBorder, titledBorder);
 		configPanel.setBorder(compound);
 
 		configPanel.setLayout(new BorderLayout(0, 0));
-
-		expressionPanel.setLayout(new GridBagLayout());
-
-		emotionsPanel
-				.setBorder(new TitledBorder(null, "Emotions", TitledBorder.LEADING, TitledBorder.TOP, SUBFONT, null));
-		expressionPanel.setBorder(
-				new TitledBorder(null, "Expressions", TitledBorder.LEADING, TitledBorder.TOP, SUBFONT, null));
-		consolePanel
-				.setBorder(new TitledBorder(null, "Console", TitledBorder.LEADING, TitledBorder.TOP, SUBFONT, null));
-
-		JLabel lowerFaceLabel = new JLabel("Lower Face");
-		GridBagConstraints lowerFaceGridConstraints = new GridBagConstraints();
-		lowerFaceGridConstraints.gridx = 1;
-		lowerFaceGridConstraints.gridy = 1;
-		expressionPanel.add(lowerFaceLabel, lowerFaceGridConstraints);
-
-		JComboBox<Object> lowerFaceCombo = new JComboBox<Object>();
-		lowerFaceCombo.setModel(new DefaultComboBoxModel<Object>(lowerFaceList));
-		GridBagConstraints lowerFaceComboGbc = new GridBagConstraints();
-		lowerFaceComboGbc.gridx = 2;
-		lowerFaceComboGbc.gridy = 1;
-		expressionPanel.add(lowerFaceCombo, lowerFaceComboGbc);
-
-		lowerFaceCombo.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				updateLowerFace(String.valueOf(lowerFaceCombo.getSelectedItem()));
-			}
-		});
-
-		JToggleButton lowerFaceActivateButton = new JToggleButton("Activate");
-		GridBagConstraints lowerFaceActivateButtonConstraints = new GridBagConstraints();
-		lowerFaceActivateButtonConstraints.gridx = 3;
-		lowerFaceActivateButtonConstraints.gridy = 1;
-		expressionPanel.add(lowerFaceActivateButton, lowerFaceActivateButtonConstraints);
-
-		lowerFaceActivateButton.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent ev) {
-				if (ev.getStateChange() == ItemEvent.SELECTED) {
-					updateLowerFaceAct(true);
-				} else {
-					updateLowerFaceAct(false);
-				}
-			}
-		});
-
-		JLabel upperFaceLbl = new JLabel("Upper Face");
-		GridBagConstraints upperFaceGbc = new GridBagConstraints();
-		upperFaceGbc.gridx = 1;
-		upperFaceGbc.gridy = 2;
-		expressionPanel.add(upperFaceLbl, upperFaceGbc);
-
-		JComboBox<Object> upperFaceCombo = new JComboBox<Object>();
-		upperFaceCombo.setModel(new DefaultComboBoxModel<Object>(upperFaceList));
-		GridBagConstraints upperFaceComboConstraints = new GridBagConstraints();
-		upperFaceComboConstraints.gridx = 2;
-		upperFaceComboConstraints.gridy = 2;
-		expressionPanel.add(upperFaceCombo, upperFaceComboConstraints);
-
-		upperFaceCombo.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-
-				updateUpperFace(String.valueOf(upperFaceCombo.getSelectedItem()));
-			}
-		});
-
-		JToggleButton upperFaceAct = new JToggleButton("Activate");
-		GridBagConstraints upperFaceActGbc = new GridBagConstraints();
-		upperFaceActGbc.gridx = 3;
-		upperFaceActGbc.gridy = 2;
-		expressionPanel.add(upperFaceAct, upperFaceActGbc);
-
-		upperFaceAct.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent ev) {
-				if (ev.getStateChange() == ItemEvent.SELECTED) {
-					updateUpperFaceAct(true);
-				} else {
-					updateUpperFaceAct(false);
-				}
-			}
-		});
-
-		JLabel eyeLabel = new JLabel("Eye");
-		GridBagConstraints eyeGbc = new GridBagConstraints();
-		eyeGbc.gridx = 1;
-		eyeGbc.gridy = 3;
-		expressionPanel.add(eyeLabel, eyeGbc);
-
-		JComboBox<Object> eyeCombo = new JComboBox<Object>();
-		eyeCombo.setModel(new DefaultComboBoxModel<Object>(eyeList));
-		GridBagConstraints eyeComboConstraints = new GridBagConstraints();
-		eyeComboConstraints.gridx = 2;
-		eyeComboConstraints.gridy = 3;
-		expressionPanel.add(eyeCombo, eyeComboConstraints);
-
-		eyeCombo.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				updateEye(String.valueOf(eyeCombo.getSelectedItem()));
-			}
-		});
-
-		JToggleButton eyeActivateButton = new JToggleButton("Activate");
-		GridBagConstraints eyeActConstraints = new GridBagConstraints();
-		eyeActConstraints.gridx = 3;
-		eyeActConstraints.gridy = 3;
-		expressionPanel.add(eyeActivateButton, eyeActConstraints);
-
-		eyeActivateButton.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent ev) {
-				if (ev.getStateChange() == ItemEvent.SELECTED) {
-					updateEyeAct(true);
-				} else {
-					updateEyeAct(false);
-				}
-			}
-		});
-
-		JCheckBox eyeCheckBox = new JCheckBox("Auto Reset");
-		GridBagConstraints eyeCheckBoxConstraints = new GridBagConstraints();
-		eyeCheckBoxConstraints.gridx = 4;
-		eyeCheckBoxConstraints.gridy = 3;
-		expressionPanel.add(eyeCheckBox, eyeCheckBoxConstraints);
-
-		eyeCheckBox.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				AbstractButton abstractButton = (AbstractButton) e.getSource();
-				updateEyeAutoReset(abstractButton.getModel().isSelected());
-			}
-		});
 
 		splitPane3.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane3.setDividerLocation(150);
@@ -350,6 +203,164 @@ public class ServerPanelGenerator {
 		configPanel.add(splitPane1);
 		return configPanel;
 	}
+    public static JPanel createExpressionPanel(){
+        JPanel expressionPanel = new JPanel();
+        String[] lowerFaceList = { "Smile", "Clench", "Smirk Left", "Smirk Right", "Laugh" };
+        String[] upperFaceList = { "Raise Brow", "Furrow Brow" };
+        String[] eyeList = { "Blink", "Wink Left", "Wink Right", "Look Left", "Look Right" };
+        Dimension spinnerDimension = new Dimension(60, 30);
+        JLabel lowerFaceLbl = new JLabel("Lower Face");
+
+        expressionPanel.setLayout(new GridBagLayout());
+        expressionPanel.setBorder(new TitledBorder(null, "Expressions", TitledBorder.LEADING,
+                TitledBorder.TOP, SUBFONT, null));
+
+        GridBagConstraints lowerFaceGbc = new GridBagConstraints();
+        lowerFaceGbc.gridx = 1;
+        lowerFaceGbc.gridy = 1;
+        expressionPanel.add(lowerFaceLbl, lowerFaceGbc);
+
+        JComboBox<Object> lowerFaceCombo = new JComboBox<Object>();
+        lowerFaceCombo.setModel(new DefaultComboBoxModel<Object>(lowerFaceList));
+        lowerFaceCombo.setPreferredSize(new Dimension(120,30));
+        GridBagConstraints lowerFaceComboGbc = new GridBagConstraints();
+        lowerFaceComboGbc.gridx = 2;
+        lowerFaceComboGbc.gridy = 1;
+        expressionPanel.add(lowerFaceCombo, lowerFaceComboGbc);
+
+        lowerFaceCombo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                updateLowerFace(String.valueOf(lowerFaceCombo.getSelectedItem()));
+            }
+        });
+
+        SpinnerModel lowerFaceModel = new SpinnerNumberModel(0.0, 0.0, 1.0, 0.1);
+        JSpinner lowerFaceSpinner = new JSpinner(lowerFaceModel);
+
+        lowerFaceSpinner.setPreferredSize(spinnerDimension);
+        GridBagConstraints lowerFaceActGbc = new GridBagConstraints();
+        lowerFaceActGbc.gridx = 3;
+        lowerFaceActGbc.gridy = 1;
+        expressionPanel.add(lowerFaceSpinner, lowerFaceActGbc);
+
+        lowerFaceSpinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                //To be implemented
+            }
+        });
+
+        JLabel upperFaceLbl = new JLabel("Upper Face");
+        GridBagConstraints upperFaceGbc = new GridBagConstraints();
+        upperFaceGbc.gridx = 1;
+        upperFaceGbc.gridy = 2;
+        expressionPanel.add(upperFaceLbl, upperFaceGbc);
+
+        JComboBox<Object> upperFaceCombo = new JComboBox<Object>();
+        upperFaceCombo.setModel(new DefaultComboBoxModel<Object>(upperFaceList));
+        upperFaceCombo.setPreferredSize(new Dimension(120,30));
+
+        GridBagConstraints upperFaceComboGbc = new GridBagConstraints();
+        upperFaceComboGbc.gridx = 2;
+        upperFaceComboGbc.gridy = 2;
+        expressionPanel.add(upperFaceCombo, upperFaceComboGbc);
+
+        upperFaceCombo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                updateUpperFace(String.valueOf(upperFaceCombo.getSelectedItem()));
+            }
+        });
+
+        SpinnerModel upperFaceModel = new SpinnerNumberModel(0.00, 0.00, 1.00, 0.10);
+        JSpinner upperFaceSpinner = new JSpinner(upperFaceModel);
+
+        upperFaceSpinner.setPreferredSize(spinnerDimension);
+        GridBagConstraints upperFaceActGbc = new GridBagConstraints();
+        upperFaceActGbc.gridx = 3;
+        upperFaceActGbc.gridy = 2;
+        expressionPanel.add(upperFaceSpinner, upperFaceActGbc);
+
+        upperFaceSpinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                //To be implemented
+            }
+        });
+
+        JLabel eyeLabel = new JLabel("Eye");
+        GridBagConstraints eyeGbc = new GridBagConstraints();
+        eyeGbc.gridx = 1;
+        eyeGbc.gridy = 3;
+        expressionPanel.add(eyeLabel, eyeGbc);
+
+        JComboBox<Object> eyeCombo = new JComboBox<Object>();
+        eyeCombo.setModel(new DefaultComboBoxModel<Object>(eyeList));
+        eyeCombo.setPreferredSize(new Dimension(120,30));
+
+        GridBagConstraints eyeComboGbc = new GridBagConstraints();
+        eyeComboGbc.gridx = 2;
+        eyeComboGbc.gridy = 3;
+        expressionPanel.add(eyeCombo, eyeComboGbc);
+
+        eyeCombo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                updateEye(String.valueOf(eyeCombo.getSelectedItem()));
+            }
+        });
+
+        JToggleButton eyeAct = new JToggleButton("Activate");
+        eyeAct.setPreferredSize(new Dimension(90,30));
+        GridBagConstraints eyeActGbc = new GridBagConstraints();
+        eyeActGbc.gridx = 3;
+        eyeActGbc.gridy = 3;
+        expressionPanel.add(eyeAct, eyeActGbc);
+
+        eyeAct.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent ev) {
+                if (ev.getStateChange() == ItemEvent.SELECTED) {
+                    updateEyeAct(true);
+                } else {
+                    updateEyeAct(false);
+                }
+            }
+        });
+
+        JCheckBox eyeCheckBox = new JCheckBox("Auto Reset");
+        GridBagConstraints eyeCheckBoxGbc = new GridBagConstraints();
+        eyeCheckBoxGbc.gridx = 4;
+        eyeCheckBoxGbc.gridy = 3;
+        expressionPanel.add(eyeCheckBox, eyeCheckBoxGbc);
+
+        eyeCheckBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                AbstractButton abstractButton = (AbstractButton) e.getSource();
+                updateEyeAutoReset(abstractButton.getModel().isSelected());
+            }
+        });
+        return expressionPanel;
+    }
+
+    public static JPanel createEmotionsPanel(){
+        JPanel emotionsPanel=new JPanel();
+        emotionsPanel.setBorder(new TitledBorder(null, "Emotions", TitledBorder.LEADING,
+                TitledBorder.TOP, SUBFONT, null));
+        //Add Components to emotions panel here
+        return emotionsPanel;
+    }
+
+    public static JPanel createConsolePanel(){
+        JPanel consolePanel=new JPanel();
+        consolePanel.setBorder(new TitledBorder(null, "Console", TitledBorder.LEADING,
+                TitledBorder.TOP, SUBFONT, null));
+        //Add Components to Console panel here
+        return consolePanel;
+    }
+
+    public static JPanel createTimerPanel(){
+        JPanel timerPanel=new JPanel();
+        //Add Components to Timer panel here
+        return timerPanel;
+    }
 
 	private static void updateIntervalInputTextField(JTextField intervalInputTextField) {
 		try {
