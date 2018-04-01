@@ -22,6 +22,8 @@ public class ClientConnectionThread implements Runnable {
 	private int port;
 
 	private String endpoint;
+	
+	private WebSocketContainer container;
 
 	public ClientConnectionThread(final String ipAddress, final int port, final String endpoint) {
 		this.ipAddress = ipAddress;
@@ -32,14 +34,14 @@ public class ClientConnectionThread implements Runnable {
 	@Override
 	public void run() {
 		messageLatch = new CountDownLatch(1);
-		WebSocketContainer container = ContainerProvider.getWebSocketContainer();
+		container = ContainerProvider.getWebSocketContainer();
 		String uri = "ws://" + ipAddress + ":" + port + "/" + endpoint;
 		logger.info("Connecting to " + uri);
 		try {
 			container.connectToServer(ClientConnectionEndpoint.class, URI.create(uri));
 			messageLatch.await(100, TimeUnit.SECONDS);
 		} catch (DeploymentException | IOException | InterruptedException e) {
-			logger.error("Exception occurred in createClientConnection method::::" + e.getStackTrace());
+			logger.error("Exception occurred in createClientConnection method::::" + e.getStackTrace().toString());
 		}
 
 	}

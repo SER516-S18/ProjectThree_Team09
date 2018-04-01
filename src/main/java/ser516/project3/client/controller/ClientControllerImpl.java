@@ -5,6 +5,8 @@ import ser516.project3.client.service.ClientConnectionServiceInterface;
 import ser516.project3.constants.ClientConstants;
 
 public class ClientControllerImpl implements ClientControllerInterface {
+	private boolean connected = false;
+	ClientConnectionServiceInterface clientConnectionService;
 
 	@Override
 	public void startClient() {
@@ -23,9 +25,17 @@ public class ClientControllerImpl implements ClientControllerInterface {
 	}
 
 	@Override
-	public void connectServer(String ipAddress, int port) {
-		ClientConnectionServiceInterface clientConnectionService = new ClientConnectionServiceImpl();
-		clientConnectionService.createClientConnection(ipAddress, port, ClientConstants.ENDPOINT);
-
+	public void toggleConnectionToServer(String ipAddress, int port) {
+		if(connected) {
+//			clientConnectionService.stopClientConnection();
+//			connected = false;
+			//TODO: Find a way to stop the client container
+		} else {
+			clientConnectionService = new ClientConnectionServiceImpl();
+			clientConnectionService.createClientConnection(ipAddress, port, ClientConstants.ENDPOINT);
+			connected = true;
+		}
+		
 	}
+	
 }

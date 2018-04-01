@@ -27,6 +27,7 @@ public class ConnectionPopUpView extends JDialog {
 	private int port;
 
 	public ConnectionPopUpView() {
+		clientControllerImpl = new ClientControllerImpl();
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(280, 200));
 		setResizable(false);
@@ -137,8 +138,7 @@ public class ConnectionPopUpView extends JDialog {
 	}
 
 	private void invokeConnectButtonListener(ActionEvent e) {
-		clientControllerImpl = new ClientControllerImpl();
-		clientControllerImpl.connectServer(ipAddress, port);
+		clientControllerImpl.toggleConnectionToServer(ipAddress, port);
 	}
 
 }

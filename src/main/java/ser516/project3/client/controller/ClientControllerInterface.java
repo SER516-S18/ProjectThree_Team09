@@ -13,6 +13,6 @@ public interface ClientControllerInterface {
 	 * @param ipAddress
 	 * @param port
 	 */
-	void connectServer(final String ipAddress, final int port);
+	void toggleConnectionToServer(final String ipAddress, final int port);
 	
 }
