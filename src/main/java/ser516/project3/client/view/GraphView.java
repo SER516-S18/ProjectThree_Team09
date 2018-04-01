@@ -8,6 +8,7 @@ import javax.swing.*;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
@@ -42,6 +43,7 @@ public class GraphView extends JPanel{
   public GraphView() {
     graphModel = new GraphModel();
     graphModel.setNoOfChannels(0);
+    graphModel.setXLength(1);
     initializeGraph();
     add(chartPanel);
     setVisible(true);
@@ -98,6 +100,12 @@ public class GraphView extends JPanel{
         false);
 
     XYPlot plot = chart.getXYPlot();
+
+    ValueAxis range = plot.getRangeAxis();
+    range.setVisible(false);
+    range = plot.getDomainAxis();
+    range.setRange(0, graphModel.getXLength());
+
 
     XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
 

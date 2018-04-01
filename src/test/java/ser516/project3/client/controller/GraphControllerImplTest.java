@@ -36,6 +36,7 @@ class GraphControllerImplTest {
       }
       graphData.add(coordinatesList);
     }
+    graphControllerInterface.setXLength(100);
     graphControllerInterface.setGraphData(graphData);
     graphControllerInterface.updateGraphView();
   }

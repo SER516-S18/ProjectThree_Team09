@@ -12,3 +12,7 @@ project3.iml
 
 # Maven
 target/
+
+
+#log
+*.log
