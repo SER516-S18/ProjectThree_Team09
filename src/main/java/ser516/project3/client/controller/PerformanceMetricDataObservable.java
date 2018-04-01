@@ -35,7 +35,7 @@ public class PerformanceMetricDataObservable extends Observable {
 	 * Creates a singleton instance . If exists, returns
 	 * it, else creates it.
 	 * 
-	 * @return instance of the ClientCommonData
+	 * @return instance of the PerformanceMetricDataObservable
 	 */
 	public static PerformanceMetricDataObservable getInstance() {
 		if (instance == null) {
