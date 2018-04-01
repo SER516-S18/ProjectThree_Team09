@@ -1,5 +1,6 @@
 package ser516.project3.server.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -10,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -18,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
@@ -28,11 +31,17 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import org.apache.log4j.Logger;
+
+import ser516.project3.server.controller.ServerControllerImpl;
 import ser516.project3.utilities.InputVerifierNumericals;
 import ser516.project3.utilities.ServerCommonData;
-import java.awt.BorderLayout;
 
 public class ServerPanelGenerator {
+
+	final static Logger logger = Logger.getLogger(ServerPanelGenerator.class);
+	
+	private static ServerControllerImpl serverControllerImpl = new ServerControllerImpl();;
 
 	private static final Font FONT = new Font("Courier New", Font.BOLD, 17);
 	private static final Font SUBFONT = new Font("Courier New", Font.BOLD, 14);
@@ -46,15 +55,15 @@ public class ServerPanelGenerator {
 		JPanel topPanel = new JPanel();
 
 		topPanel.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
+		GridBagConstraints gridBagConstraint = new GridBagConstraints();
 
 		topPanel.setOpaque(false);
 
 		Border titledBorder = new TitledBorder(null, "Graph", TitledBorder.LEADING, TitledBorder.TOP, FONT, null);
 		Border marginBorder = BorderFactory.createEmptyBorder(30, 10, 10, 10);
 
-		Border compound = BorderFactory.createCompoundBorder(marginBorder, titledBorder);
-		topPanel.setBorder(compound);
+		Border compoundBorder = BorderFactory.createCompoundBorder(marginBorder, titledBorder);
+		topPanel.setBorder(compoundBorder);
 
 		JLabel intervalLabel = new JLabel("Interval (seconds):  ");
 		intervalLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -65,66 +74,85 @@ public class ServerPanelGenerator {
 		intervalInputTextField.setBorder(BorderFactory.createLineBorder(Color.black));
 		intervalInputTextField.setColumns(3);
 		intervalInputTextField.setHorizontalAlignment(SwingConstants.CENTER);
+		logger.info("Testing stuff");
 		intervalInputTextField.getDocument().addDocumentListener(new DocumentListener() {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				// updateIntervalInputTextField(intervalInputTextField);
+				logger.info("Removed value of interval");
 			}
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				// updateIntervalInputTextField(intervalInputTextField);
+				updateIntervalInputTextField(intervalInputTextField);
+				logger.info("Changed value of interval: " + intervalInputTextField.getText());
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				updateIntervalInputTextField(intervalInputTextField);
 			}
 
 		});
 
-		JButton buttonToggle = new JButton("Start / Stop");
 
 		JCheckBox autoRepeatCheckBox = new JCheckBox("Auto Repeat", false);
 		autoRepeatCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
+		autoRepeatCheckBox.addActionListener(new ActionListener() {
 
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 0;
-		c.gridy = 0;
-		c.ipady = 40;
-		topPanel.add(intervalLabel, c);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				logger.info("Value of auto Repeat toggle changed: " + autoRepeatCheckBox.isSelected());
+				ServerCommonData.getInstance().setAutoRepeat(autoRepeatCheckBox.isSelected());
+			}
 
+		});
+		
+		JButton buttonToggle = new JButton("Start / Stop");
 		buttonToggle.setHorizontalAlignment(SwingConstants.CENTER);
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx = 0.5;
-		c.gridx = 1;
-		c.gridy = 0;
-		c.ipady = 10;
-		topPanel.add(intervalInputTextField, c);
+		buttonToggle.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				logger.info("Start button pressed");
+				serverControllerImpl.startServer();
+			}
+		});
 
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weighty = 2.0;
-		c.gridx = 2;
-		c.gridy = 0;
-		c.ipady = 40;
-		c.insets = new Insets(0, 50, 0, 50); // left-right padding
-		topPanel.add(buttonToggle, c);
+		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraint.gridx = 0;
+		gridBagConstraint.gridy = 0;
+		gridBagConstraint.ipady = 40;
+		topPanel.add(intervalLabel, gridBagConstraint);
 
-		c.ipady = 10;
-		c.insets = new Insets(0, 0, 0, 0); // reset
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx = 0.5;
-		c.gridx = 0;
-		c.gridy = 1;
+		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraint.weightx = 0.5;
+		gridBagConstraint.gridx = 1;
+		gridBagConstraint.gridy = 0;
+		gridBagConstraint.ipady = 10;
+		topPanel.add(intervalInputTextField, gridBagConstraint);
 
-		topPanel.add(Box.createGlue(), c);
+		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraint.weighty = 2.0;
+		gridBagConstraint.gridx = 2;
+		gridBagConstraint.gridy = 0;
+		gridBagConstraint.ipady = 40;
+		gridBagConstraint.insets = new Insets(0, 50, 0, 50); // left-right padding
+		topPanel.add(buttonToggle, gridBagConstraint);
 
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx = 0.5;
-		c.gridx = 1;
-		c.gridy = 1;
-		topPanel.add(autoRepeatCheckBox, c);
+		gridBagConstraint.ipady = 10;
+		gridBagConstraint.insets = new Insets(0, 0, 0, 0); // reset
+		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraint.weightx = 0.5;
+		gridBagConstraint.gridx = 0;
+		gridBagConstraint.gridy = 1;
+
+		topPanel.add(Box.createGlue(), gridBagConstraint);
+
+		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraint.weightx = 0.5;
+		gridBagConstraint.gridx = 1;
+		gridBagConstraint.gridy = 1;
+		topPanel.add(autoRepeatCheckBox, gridBagConstraint);
 
 		return topPanel;
 
@@ -319,7 +347,12 @@ public class ServerPanelGenerator {
 	}
 
 	private static void updateIntervalInputTextField(JTextField intervalInputTextField) {
-		ServerCommonData.getInstance().setInterval(Integer.parseInt(intervalInputTextField.getText()));
+		try {
+
+			ServerCommonData.getInstance().setInterval(Integer.parseInt(intervalInputTextField.getText()));
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(null, "You must input a valid number for this field!");
+		}
 	}
 
 	private static void updateLowerFace(String lowerFaceVal) {
