@@ -19,5 +19,9 @@ public interface ClientControllerInterface {
 	 * Forces the client to stop
 	 */
 	void stopClientConnector();
-	
+
+	/**
+	 * Creates the Client View
+	 */
+	void initializeClientView();
 }

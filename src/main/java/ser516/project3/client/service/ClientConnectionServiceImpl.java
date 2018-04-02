@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.apache.log4j.Logger;
 
+import ser516.project3.client.controller.PerformanceMetricDataObservable;
+import ser516.project3.client.controller.PerformanceMetricGraphObserver;
 import ser516.project3.client.helper.ClientConnectionThread;
 
 public class ClientConnectionServiceImpl implements ClientConnectionServiceInterface {
@@ -13,13 +15,18 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
 
 	@Override
 	public void createClientConnection(final String ipAddress, final int port, final String endpoint) {
+
+		// Registering the observers on client start
+		PerformanceMetricGraphObserver performanceMetricObserver = new PerformanceMetricGraphObserver();
+		PerformanceMetricDataObservable.getInstance().addObserver(performanceMetricObserver);
+		
 		threadInstance = new ClientConnectionThread(ipAddress, port, endpoint);
 		clientConnectionThread = new Thread(threadInstance);
 		clientConnectionThread.start();
 	}
 
 	@Override
-	public void stopClientConnection(){
+	public void stopClientConnection() {
 		try {
 			threadInstance.getClientSession().close();
 		} catch (IOException e) {

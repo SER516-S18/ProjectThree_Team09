@@ -1,6 +1,8 @@
 package ser516.project3.client.controller;
 
+import ser516.project3.client.view.GraphView;
 import ser516.project3.model.CoordinatesModel;
+import ser516.project3.model.GraphModel;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -75,4 +77,14 @@ public interface GraphControllerInterface {
    * Updates the GraphView using the new data from the <code>GraphModel</code>.
    */
   void updateGraphView();
+
+  /**
+   * Gets the Graph View
+   */
+  GraphView getGraphView();
+
+  /**
+   * Gets the Graph Model
+   */
+  GraphModel getGraphModel();
 }

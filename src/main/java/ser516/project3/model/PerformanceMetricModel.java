@@ -18,6 +18,18 @@ public class PerformanceMetricModel {
   private Color excitementColor;
   private Color focusColor;
 
+  private int displayLength;
+
+  public PerformanceMetricModel() {
+    interestColor = Color.RED;
+    engagementColor = Color.GREEN;
+    stressColor = Color.BLUE;
+    relaxationColor = Color.YELLOW;
+    excitementColor = Color.ORANGE;
+    focusColor = Color.MAGENTA;
+    displayLength = 30;
+  }
+
   /**
    * Sets the color for interest emotion.
    *
@@ -59,7 +71,7 @@ public class PerformanceMetricModel {
    *
    * @param stressColor color for stress emotion
    */
-  public void setsStressColor(Color stressColor) {
+  public void setStressColor(Color stressColor) {
     this.stressColor = stressColor;
   }
 
@@ -124,5 +136,23 @@ public class PerformanceMetricModel {
    */
   public Color getFocusColor() {
     return focusColor;
+  }
+
+  /**
+   * Sets the display length for the x axis.
+   *
+   * @param displayLength the display length for the x axis
+   */
+  public void setDisplayLength(int displayLength) {
+    this.displayLength = displayLength;
+  }
+
+  /**
+   * Gets the display length for the x axis.
+   *
+   * @return the display length for the x axis
+   */
+  public int getDisplayLength() {
+    return displayLength;
   }
 }

@@ -3,6 +3,10 @@ package ser516.project3.client.controller;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import org.apache.log4j.Logger;
+
+import ser516.project3.client.view.GraphView;
+import ser516.project3.client.view.PerformanceMetricView;
 import ser516.project3.model.CoordinatesModel;
 
 /**
@@ -14,7 +18,29 @@ import ser516.project3.model.CoordinatesModel;
  *
  */
 public class PerformanceMetricDataObservable extends Observable {
+
+	final static Logger logger = Logger.getLogger(PerformanceMetricDataObservable.class);
 	private ArrayList<ArrayList<CoordinatesModel>> performanceMetricData;
+
+	private PerformanceMetricView performanceMetricView;
+
+	private GraphView graphView;
+
+	public GraphView getGraphView() {
+		return graphView;
+	}
+
+	public void setGraphView(GraphView graphView) {
+		this.graphView = graphView;
+	}
+
+	public PerformanceMetricView getPerformanceMetricView() {
+		return performanceMetricView;
+	}
+
+	public void setPerformanceMetricView(PerformanceMetricView performanceMetricView) {
+		this.performanceMetricView = performanceMetricView;
+	}
 
 	public ArrayList<ArrayList<CoordinatesModel>> getPerformanceMetricData() {
 		return performanceMetricData;
@@ -38,10 +64,17 @@ public class PerformanceMetricDataObservable extends Observable {
 	 * @return instance of the PerformanceMetricDataObservable
 	 */
 	public static PerformanceMetricDataObservable getInstance() {
-		if (instance == null) {
-			instance = new PerformanceMetricDataObservable();
+		
+		try {
+			if (instance == null) {
+				instance = new PerformanceMetricDataObservable();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
 		}
 		return instance;
+		
 	}
 
 	/**
@@ -56,6 +89,5 @@ public class PerformanceMetricDataObservable extends Observable {
 		setChanged();
 		this.notifyObservers();
 	}
-
 
 }

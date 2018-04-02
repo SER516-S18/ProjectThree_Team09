@@ -1,13 +1,11 @@
 package ser516.project3.client.controller;
 
+import java.awt.Color;
+import java.util.ArrayList;
+
 import ser516.project3.client.view.GraphView;
 import ser516.project3.model.CoordinatesModel;
 import ser516.project3.model.GraphModel;
-
-import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * GraphControllerImpl is a class to communicate between the GraphModel and
@@ -97,5 +95,19 @@ public class GraphControllerImpl implements GraphControllerInterface {
    */
   public void updateGraphView() {
     graphView.updateGraphView(graphModel);
+  }
+
+  /**
+   * @inheritDoc
+   */
+  public GraphView getGraphView() {
+    return graphView;
+  }
+
+  /**
+   * @inheritDoc
+   */
+  public GraphModel getGraphModel() {
+    return graphModel;
   }
 }
