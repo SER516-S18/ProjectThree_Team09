@@ -6,10 +6,10 @@ import ser516.project3.client.view.PerformanceMetricView;
 import ser516.project3.model.GraphModel;
 import ser516.project3.model.PerformanceMetricModel;
 
-public class PerformanceMetricController {
-  PerformanceMetricModel performanceMetricModel;
-  PerformanceMetricView performanceMetricView;
-  GraphControllerInterface graphController;
+public class PerformanceMetricController implements PerformanceMetricInterface{
+  private PerformanceMetricModel performanceMetricModel;
+  private PerformanceMetricView performanceMetricView;
+  private GraphControllerInterface graphController;
 
   public PerformanceMetricController(PerformanceMetricModel performanceMetricModel, PerformanceMetricView performanceMetricView) {
     this.performanceMetricModel = performanceMetricModel;
@@ -20,10 +20,16 @@ public class PerformanceMetricController {
     graphController = new GraphControllerImpl(graphModel, graphView);
   }
 
+  /**
+   * @inheritDoc
+   */
   public void initializePerformanceMetricView() {
     performanceMetricView.initializePerformanceMetricUI(graphController.getGraphView());
   }
 
+  /**
+   * @inheritDoc
+   */
   public PerformanceMetricView getPerformanceMetricView() {
     return performanceMetricView;
   }
