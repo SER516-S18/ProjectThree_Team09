@@ -15,4 +15,10 @@ public interface PerformanceMetricInterface {
    * @return the view for Performance Metrics
    */
   PerformanceMetricView getPerformanceMetricView();
+
+  /**
+   *
+   * @return the controller for Graph
+   */
+  GraphControllerInterface getGraphController();
 }

@@ -9,6 +9,7 @@ import ser516.project3.model.PerformanceMetricModel;
 public class PerformanceMetricController implements PerformanceMetricInterface{
   private PerformanceMetricModel performanceMetricModel;
   private PerformanceMetricView performanceMetricView;
+
   private GraphControllerInterface graphController;
 
   public PerformanceMetricController(PerformanceMetricModel performanceMetricModel, PerformanceMetricView performanceMetricView) {
@@ -32,5 +33,12 @@ public class PerformanceMetricController implements PerformanceMetricInterface{
    */
   public PerformanceMetricView getPerformanceMetricView() {
     return performanceMetricView;
+  }
+
+  /**
+   * @inheritDoc
+   */
+  public GraphControllerInterface getGraphController() {
+    return graphController;
   }
 }
