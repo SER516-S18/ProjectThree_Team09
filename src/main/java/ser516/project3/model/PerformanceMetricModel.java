@@ -68,7 +68,7 @@ public class PerformanceMetricModel {
    *
    * @param stressColor color for stress emotion
    */
-  public void setsStressColor(Color stressColor) {
+  public void setStressColor(Color stressColor) {
     this.stressColor = stressColor;
   }
 

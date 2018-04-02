@@ -4,12 +4,6 @@ import ser516.project3.client.view.PerformanceMetricView;
 
 public interface PerformanceMetricInterface {
   /**
-   * Creates the components in the Performance Metrics view. This includes the graph
-   * and the emotions.
-   */
-  void initializePerformanceMetricView();
-
-  /**
    * Gets the view for Performance Metrics
    *
    * @return the view for Performance Metrics
@@ -17,8 +11,8 @@ public interface PerformanceMetricInterface {
   PerformanceMetricView getPerformanceMetricView();
 
   /**
-   *
-   * @return the controller for Graph
+   * Gets the controller for the Graph.
+   * @return the controller for the Graph
    */
   GraphControllerInterface getGraphController();
 }

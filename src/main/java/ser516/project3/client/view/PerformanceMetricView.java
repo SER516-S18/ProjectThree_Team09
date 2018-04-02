@@ -2,11 +2,13 @@ package ser516.project3.client.view;
 
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.PerformanceMetricModel;
+import ser516.project3.utilities.NumberTextField;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /*This class contains performance metrics view
  * where emotion button is displayed on the right
@@ -16,6 +18,15 @@ import java.awt.*;
  */
 public class PerformanceMetricView extends JPanel{
 	private PerformanceMetricModel performanceMetricModel;
+
+	private NumberTextField displayLengthField;
+
+	private JButton interestButton;
+	private JButton engagementButton;
+	private JButton stressButton;
+	private JButton relaxationButton;
+	private JButton excitementButton;
+	private JButton focusButton;
 
 	private static final Color LIGHTGREY = new Color(245, 245, 245);
 	private static final Color BLACK = new Color(0, 0, 0);
@@ -40,7 +51,6 @@ public class PerformanceMetricView extends JPanel{
 	 */
 	private Component getEmotionPanel() {
 		JPanel mainPanel;
-		JTextField displayLengthField;
 		JLabel displaylengthLabel;
 		JLabel secondsLabel;
 		
@@ -57,22 +67,28 @@ public class PerformanceMetricView extends JPanel{
 
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 1;
-		mainPanel.add(getEmotionButton(ClientConstants.INTEREST, performanceMetricModel.getInterestColor()), gridBagConstraints);
+		interestButton = getEmotionButton(ClientConstants.INTEREST, performanceMetricModel.getInterestColor());
+		mainPanel.add(interestButton, gridBagConstraints);
 		gridBagConstraints.gridx = 2;
 		gridBagConstraints.gridy = 1;
-		mainPanel.add(getEmotionButton(ClientConstants.ENGAGEMENT, performanceMetricModel.getEngagementColor()), gridBagConstraints);
+		engagementButton = getEmotionButton(ClientConstants.ENGAGEMENT, performanceMetricModel.getEngagementColor());
+		mainPanel.add(engagementButton, gridBagConstraints);
 		gridBagConstraints.gridx = 3;
 		gridBagConstraints.gridy = 1;
-		mainPanel.add(getEmotionButton(ClientConstants.STRESS, performanceMetricModel.getStressColor()), gridBagConstraints);
+		stressButton = getEmotionButton(ClientConstants.STRESS, performanceMetricModel.getStressColor());
+		mainPanel.add(stressButton, gridBagConstraints);
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 2;
-		mainPanel.add(getEmotionButton(ClientConstants.RELAXATION, performanceMetricModel.getRelaxationColor()), gridBagConstraints);
+		relaxationButton = getEmotionButton(ClientConstants.RELAXATION, performanceMetricModel.getRelaxationColor());
+		mainPanel.add(relaxationButton, gridBagConstraints);
 		gridBagConstraints.gridx = 2;
 		gridBagConstraints.gridy = 2;
-		mainPanel.add(getEmotionButton(ClientConstants.EXCITEMENT, performanceMetricModel.getExcitementColor()), gridBagConstraints);
+		excitementButton = getEmotionButton(ClientConstants.EXCITEMENT, performanceMetricModel.getExcitementColor());
+		mainPanel.add(excitementButton, gridBagConstraints);
 		gridBagConstraints.gridx = 3;
 		gridBagConstraints.gridy = 2;
-		mainPanel.add(getEmotionButton(ClientConstants.FOCUS, performanceMetricModel.getFocusColor()), gridBagConstraints);
+		focusButton = getEmotionButton(ClientConstants.FOCUS, performanceMetricModel.getFocusColor());
+		mainPanel.add(focusButton, gridBagConstraints);
 
 		gridBagConstraints.insets = new Insets(10, 5, 10, 5);
 		gridBagConstraints.gridx = 1;
@@ -85,13 +101,13 @@ public class PerformanceMetricView extends JPanel{
 
 		gridBagConstraints.gridx = 2;
 		gridBagConstraints.gridy = 3;
-		displayLengthField = new JTextField();
+		displayLengthField = new NumberTextField();
 		displayLengthField.setBackground(LIGHTPINK);
 		displayLengthField.setHorizontalAlignment(SwingConstants.CENTER);
 		displayLengthField.setFont(FONT);
 		displayLengthField.setBorder(new LineBorder(BLACK));
-		mainPanel.add(displayLengthField, gridBagConstraints);
 		displayLengthField.setColumns(10);
+		mainPanel.add(displayLengthField, gridBagConstraints);
 
 		gridBagConstraints.gridx = 3;
 		gridBagConstraints.gridy = 3;
@@ -121,5 +137,24 @@ public class PerformanceMetricView extends JPanel{
 		emotionButton.setHorizontalAlignment(SwingConstants.CENTER);
 		emotionButton.setFont(FONT);
 		return emotionButton;
+	}
+
+	public void addEmotionButtonsListener(ActionListener actionListener) {
+		interestButton.addActionListener(actionListener);
+		engagementButton.addActionListener(actionListener);
+		stressButton.addActionListener(actionListener);
+		relaxationButton.addActionListener(actionListener);
+		excitementButton.addActionListener(actionListener);
+		focusButton.addActionListener(actionListener);
+	}
+
+	public void updatePerformanceMetricView(PerformanceMetricModel performanceMetricModel) {
+		this.performanceMetricModel = performanceMetricModel;
+		interestButton.setBackground(this.performanceMetricModel.getInterestColor());
+		engagementButton.setBackground(this.performanceMetricModel.getEngagementColor());
+		stressButton.setBackground(this.performanceMetricModel.getStressColor());
+		relaxationButton.setBackground(this.performanceMetricModel.getRelaxationColor());
+		excitementButton.setBackground(this.performanceMetricModel.getExcitementColor());
+		focusButton.setBackground(this.performanceMetricModel.getFocusColor());
 	}
 }

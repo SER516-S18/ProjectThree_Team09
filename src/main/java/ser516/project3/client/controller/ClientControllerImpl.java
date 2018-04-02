@@ -45,7 +45,6 @@ public class ClientControllerImpl implements ClientControllerInterface {
 		PerformanceMetricModel performanceMetricModel = new PerformanceMetricModel();
 		PerformanceMetricView performanceMetricView = new PerformanceMetricView(performanceMetricModel);
 		performanceMetricController = new PerformanceMetricController(performanceMetricModel, performanceMetricView);
-		performanceMetricController.initializePerformanceMetricView();
 	}
 
 	
