@@ -39,7 +39,7 @@ public class ClientControllerImpl implements ClientControllerInterface {
 		headerController = new HeaderController(headerModel, headerView);
 
 		ExpressionsModel expressionsModel = new ExpressionsModel();
-		ExpressionsView expressionsView = new ExpressionsView();
+		ExpressionsView expressionsView = new ExpressionsView(expressionsModel);
 		expressionsController = new ExpressionsController(expressionsModel, expressionsView);
 
 		PerformanceMetricModel performanceMetricModel = new PerformanceMetricModel();
