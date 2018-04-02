@@ -59,13 +59,6 @@ public class HeaderView extends JPanel {
 		bagConstraints.gridheight = 3;
 		bagConstraints.insets = new Insets(0, 20, 0, 20);
 		this.add(connectButton, bagConstraints);
-		connectButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				invokeConnectButtonListener(e);
-			}
-		});
 
 		serverButton = new JButton("Open Server");
 		serverButton.setBackground(Color.BLUE);
@@ -106,14 +99,8 @@ public class HeaderView extends JPanel {
 
 	}
 
-	private void invokeConnectButtonListener(ActionEvent e) {
-		// May need to update this for commondata class
-		// TODO: To be replaced by connection status from controller
-		if (connectionPopUpView == null) {
-			connectionPopUpView = new ConnectionPopUpView();
-		} else {
-			connectionPopUpView.setVisible(true);
-		}
+	public void addConnectButtonListener(ActionListener actionListener) {
+		connectButton.addActionListener(actionListener);
 	}
 
 	public void updateConnectionLabel(boolean isConnected) {

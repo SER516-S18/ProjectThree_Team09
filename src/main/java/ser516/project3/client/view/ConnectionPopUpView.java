@@ -27,6 +27,7 @@ import org.apache.log4j.Logger;
 
 import ser516.project3.client.controller.ClientControllerImpl;
 import ser516.project3.client.controller.ClientControllerInterface;
+import ser516.project3.model.ConnectionPopUpModel;
 
 /**
  * ConnectioonPopUp class to show the pop up dialog in which user can enter the
@@ -40,20 +41,28 @@ import ser516.project3.client.controller.ClientControllerInterface;
 public class ConnectionPopUpView extends JDialog {
 	final static Logger logger = Logger.getLogger(ConnectionPopUpView.class);
 	private ClientControllerInterface clientControllerImpl;
+	private ConnectionPopUpModel connectionPopUpModel;
 	private String ipAddress;
+	private JPanel mainPanel;
+	private JButton connectButton;
 	private int port;
 
-	public ConnectionPopUpView() {
+	public ConnectionPopUpView(ConnectionPopUpModel connectionPopUpModel) {
 
+		this.connectionPopUpModel = connectionPopUpModel;
 		clientControllerImpl = new ClientControllerImpl();
+
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(280, 200));
 		setResizable(false);
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+		initializeConnectionPopUpView();
+	}
 
-		JPanel mainPanel = new JPanel();
+	private void initializeConnectionPopUpView() {
+		mainPanel = new JPanel();
 
 		mainPanel.setLayout(new BorderLayout());
 		mainPanel.setOpaque(false);
@@ -90,12 +99,12 @@ public class ConnectionPopUpView extends JDialog {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				ipAddress = ipAddressTextField.getText();
+				connectionPopUpModel.setIpAddress(ipAddressTextField.getText());
 			}
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				ipAddress = ipAddressTextField.getText();
+				connectionPopUpModel.setIpAddress(ipAddressTextField.getText());
 			}
 
 			@Override
@@ -114,7 +123,7 @@ public class ConnectionPopUpView extends JDialog {
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				try {
-					port = Integer.parseInt(portNumberTextField.getText());
+					connectionPopUpModel.setPortNumber(Integer.parseInt(portNumberTextField.getText()));
 				} catch (NumberFormatException ex) {
 					JOptionPane.showMessageDialog(null, "You must input a valid number for this field!");
 				}
@@ -123,7 +132,7 @@ public class ConnectionPopUpView extends JDialog {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				try {
-					port = Integer.parseInt(portNumberTextField.getText());
+					connectionPopUpModel.setPortNumber(Integer.parseInt(portNumberTextField.getText()));
 				} catch (NumberFormatException ex) {
 					JOptionPane.showMessageDialog(null, "You must input a valid number for this field!");
 				}
@@ -134,7 +143,7 @@ public class ConnectionPopUpView extends JDialog {
 			}
 		});
 
-		JButton connectButton = new JButton("Connect");
+		connectButton = new JButton("Connect");
 		connectButton.setBackground(Color.RED);
 		connectButton.setPreferredSize(new Dimension(120, 35));
 		bagConstraints.gridx = 0;
@@ -142,13 +151,6 @@ public class ConnectionPopUpView extends JDialog {
 		bagConstraints.gridwidth = 2;
 		bagConstraints.insets = new Insets(20, 20, 0, 20);
 		mainPanel.add(connectButton, bagConstraints);
-		connectButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				invokeConnectButtonListener(e);
-			}
-		});
 
 		add(mainPanel);
 		setVisible(true);
@@ -163,8 +165,8 @@ public class ConnectionPopUpView extends JDialog {
 		});
 	}
 
-	private void invokeConnectButtonListener(ActionEvent e) {
-		clientControllerImpl.toggleConnectionToServer(ipAddress, port);
+	public void addConnectButtonListener(ActionListener actionListener) {
+		connectButton.addActionListener(actionListener);
 	}
 
 }

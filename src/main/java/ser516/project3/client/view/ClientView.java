@@ -1,5 +1,8 @@
 package ser516.project3.client.view;
 
+import ser516.project3.client.controller.HeaderController;
+import ser516.project3.model.HeaderModel;
+
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
@@ -33,6 +36,9 @@ public class ClientView extends JFrame {
 		setMinimumSize(new Dimension(1400, 650));
 
 		headerPanel = new HeaderView();
+		HeaderModel headerModel = new HeaderModel(); // Temporary. Will move to client controller.
+		HeaderController headerController = new HeaderController(headerModel, headerPanel); // Temporary. Will move to client controller.
+
 		expressionsEmotionsCombinedTab = new JTabbedPane();
 
 		performanceMetricTabInstance = new PerformanceMetricView();
