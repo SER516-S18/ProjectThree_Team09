@@ -118,7 +118,7 @@ public class ConnectionPopUpView extends JDialog {
 		bagConstraints.insets = new Insets(0, 0, 10, 0);
 		mainPanel.add(ipAddressTextField, bagConstraints);
 
-		portNumberTextField = new JTextField(connectionPopUpModel.getPortNumber());
+		portNumberTextField = new JTextField("" + connectionPopUpModel.getPortNumber());
 		portNumberTextField.setPreferredSize(new Dimension(80, 20));
 		bagConstraints.gridx = 1;
 		bagConstraints.gridy = 1;

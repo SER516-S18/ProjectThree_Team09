@@ -6,7 +6,7 @@ public class ConnectionPopUpModel {
 
   public ConnectionPopUpModel() {
     ipAddress = "localhost";
-    portNumber = 1756;
+    portNumber = 1516;
   }
 
   public String getIpAddress() {
