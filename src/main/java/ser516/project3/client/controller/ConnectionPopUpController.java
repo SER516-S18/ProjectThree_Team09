@@ -14,8 +14,8 @@ public class ConnectionPopUpController {
   private ConnectionPopUpView connectionPopUpView;
   private ConnectionPopUpModel connectionPopUpModel;
 
-  public ConnectionPopUpController() {
-    connectionPopUpModel = new ConnectionPopUpModel();
+  public ConnectionPopUpController(ConnectionPopUpModel connectionPopUpModel) {
+    this.connectionPopUpModel = connectionPopUpModel;
     connectionPopUpView = new ConnectionPopUpView(connectionPopUpModel);
 
     connectionPopUpView.addConnectButtonListener(new ConnectListener());

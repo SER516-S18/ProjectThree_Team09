@@ -26,6 +26,7 @@ import org.apache.log4j.Logger;
 import ser516.project3.client.controller.ClientControllerImpl;
 import ser516.project3.client.controller.ClientControllerInterface;
 import ser516.project3.model.ConnectionPopUpModel;
+import ser516.project3.utilities.NumberTextField;
 
 /**
  * ConnectioonPopUp class to show the pop up dialog in which user can enter the
@@ -42,7 +43,7 @@ public class ConnectionPopUpView extends JDialog {
 	private JLabel ipAddressLabel;
 	private JLabel portNumberLabel;
 	private JTextField ipAddressTextField;
-	private JTextField portNumberTextField;
+	private NumberTextField portNumberTextField;
 	private JButton connectButton;
 
 	public ConnectionPopUpView(ConnectionPopUpModel connectionPopUpModel) {
@@ -118,7 +119,7 @@ public class ConnectionPopUpView extends JDialog {
 		bagConstraints.insets = new Insets(0, 0, 10, 0);
 		mainPanel.add(ipAddressTextField, bagConstraints);
 
-		portNumberTextField = new JTextField("" + connectionPopUpModel.getPortNumber());
+		portNumberTextField = new NumberTextField("" + connectionPopUpModel.getPortNumber());
 		portNumberTextField.setPreferredSize(new Dimension(80, 20));
 		bagConstraints.gridx = 1;
 		bagConstraints.gridy = 1;

@@ -9,6 +9,10 @@ import static java.awt.event.KeyEvent.VK_DELETE;
 public class NumberTextField extends JTextField {
   private static final long serialVersionUID = 1L;
 
+  public NumberTextField(String input) {
+    setText(input);
+  }
+
   @Override
   public void processKeyEvent(KeyEvent keyEvent) {
     if ((keyEvent.getKeyChar() == VK_BACK_SPACE || keyEvent.getKeyChar() == VK_DELETE) ||
