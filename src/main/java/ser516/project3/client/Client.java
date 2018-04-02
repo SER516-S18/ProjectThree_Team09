@@ -1,6 +1,7 @@
 package ser516.project3.client;
 
-import ser516.project3.client.view.ClientView;
+import ser516.project3.client.controller.ClientControllerImpl;
+import ser516.project3.client.controller.ClientControllerInterface;
 
 /**
  * Main class to initialize the client
@@ -11,7 +12,8 @@ public class Client
 {
     public static void main(String[] args)
     {
-    	ClientView.getClientView().initializeClientUI();
+        ClientControllerInterface clientController = new ClientControllerImpl();
+        clientController.initializeClientView();
     }
     
 }

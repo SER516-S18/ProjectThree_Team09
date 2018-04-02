@@ -25,4 +25,8 @@ public class HeaderController {
       connectionPopUpController = new ConnectionPopUpController();
     }
   }
+
+  public HeaderView getHeaderView() {
+    return headerView;
+  }
 }

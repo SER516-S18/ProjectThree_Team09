@@ -1,12 +1,43 @@
 package ser516.project3.client.controller;
 
+import ser516.project3.client.Client;
 import ser516.project3.client.service.ClientConnectionServiceImpl;
 import ser516.project3.client.service.ClientConnectionServiceInterface;
+import ser516.project3.client.view.ClientView;
+import ser516.project3.client.view.ExpressionsView;
+import ser516.project3.client.view.HeaderView;
+import ser516.project3.client.view.PerformanceMetricView;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.model.ExpressionsModel;
+import ser516.project3.model.HeaderModel;
+import ser516.project3.model.PerformanceMetricModel;
+import ser516.project3.server.view.ServerView;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ClientControllerImpl implements ClientControllerInterface {
 	private boolean connected = false;
-	ClientConnectionServiceInterface clientConnectionService;
+	private ClientConnectionServiceInterface clientConnectionService;
+	private ClientView clientView;
+	private ServerView serverDialog;
+	private HeaderController headerController;
+	private ExpressionsController expressionsController;
+	private PerformanceMetricController performanceMetricController;
+
+	public ClientControllerImpl() {
+		HeaderModel headerModel = new HeaderModel();
+		HeaderView headerView = new HeaderView();
+		headerController = new HeaderController(headerModel, headerView);
+
+		ExpressionsModel expressionsModel = new ExpressionsModel();
+		ExpressionsView expressionsView = new ExpressionsView();
+		expressionsController = new ExpressionsController(expressionsModel, expressionsView);
+
+		PerformanceMetricModel performanceMetricModel = new PerformanceMetricModel();
+		PerformanceMetricView performanceMetricView = new PerformanceMetricView();
+		performanceMetricController = new PerformanceMetricController(performanceMetricModel, performanceMetricView);
+	}
 
 	@Override
 	public void startClient() {
@@ -43,4 +74,23 @@ public class ClientControllerImpl implements ClientControllerInterface {
 		connected = false;
 	}
 
+	@Override
+	public void initializeClientView() {
+		clientView = ClientView.getClientView();
+		clientView.initializeClientUI(headerController.getHeaderView(),
+				performanceMetricController.getPerformanceMetricView(),
+				expressionsController.getExpressionsView());
+		clientView.addServerMenuItemListener(new ServerMenuItemListener());
+	}
+
+	class ServerMenuItemListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(serverDialog == null) {
+				serverDialog = new ServerView();
+			} else {
+				serverDialog.setVisible(true);
+			}
+		}
+	}
 }

@@ -28,11 +28,9 @@ public class ClientView extends JFrame {
 	private static PerformanceMetricView performanceMetricTabInstance;
 	private static ExpressionsView expressionsTabInstance;
 	private static JTabbedPane expressionsEmotionsCombinedTab;
-	private static HeaderView headerPanel;
-	JMenu optionsMenu;
-	JMenuItem serverMenuItem;
-	JMenuBar menuBar;
-	JDialog serverDialog;
+	private JMenu optionsMenu;
+	private JMenuItem serverMenuItem;
+	private JMenuBar menuBar;
 
 
 	public static ClientView getClientView() {
@@ -45,7 +43,7 @@ public class ClientView extends JFrame {
 	/**
 	 *
 	 */
-	public void initializeClientUI() {
+	public void initializeClientUI(HeaderView headerView, PerformanceMetricView performanceMetricView, ExpressionsView expressionsView) {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(1400, 650));
 		
@@ -56,37 +54,24 @@ public class ClientView extends JFrame {
 		serverMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
 		optionsMenu.add(serverMenuItem);
 		menuBar.add(optionsMenu);
-		serverMenuItem.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(serverDialog == null) {
-					serverDialog = new ServerView();
-				} else {
-					serverDialog.setVisible(true);
-				}
-			}});
-		
-		
-		headerPanel = new HeaderView();
-		HeaderModel headerModel = new HeaderModel(); // Temporary. Will move to client controller.
-		HeaderController headerController = new HeaderController(headerModel, headerPanel); // Temporary. Will move to client controller.
 
 		expressionsEmotionsCombinedTab = new JTabbedPane();
 
-		performanceMetricTabInstance = new PerformanceMetricView();
-		expressionsTabInstance = new ExpressionsView();
-		expressionsEmotionsCombinedTab.addTab("Performance Metric", performanceMetricTabInstance);
-		expressionsEmotionsCombinedTab.addTab("Expressions", expressionsTabInstance);
+		expressionsEmotionsCombinedTab.addTab("Performance Metric", performanceMetricView);
+		expressionsEmotionsCombinedTab.addTab("Expressions", expressionsView);
 
 		splitPane = new JSplitPane();
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane.setDividerLocation(100);
-		splitPane.setTopComponent(headerPanel);
+		splitPane.setTopComponent(headerView);
 		splitPane.setBottomComponent(expressionsEmotionsCombinedTab);
 
 		add(splitPane);
 		setJMenuBar(menuBar);
 		setVisible(true);
+	}
+
+	public void addServerMenuItemListener(ActionListener actionListener) {
+		serverMenuItem.addActionListener(actionListener);
 	}
 }
