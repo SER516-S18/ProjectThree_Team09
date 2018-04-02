@@ -344,7 +344,133 @@ public class ServerPanelGenerator {
         JPanel emotionsPanel=new JPanel();
         emotionsPanel.setBorder(new TitledBorder(null, "Emotions", TitledBorder.LEADING,
                 TitledBorder.TOP, SUBFONT, null));
-        //Add Components to emotions panel here
+        
+        Dimension spinnerDimension = new Dimension(65, 30);
+        Double current = new Double(0.00);
+        Double min = new Double(0.00);
+        Double max = new Double(1.00);
+        Double step = new Double(0.10);
+        
+        JLabel interest_label = new JLabel("Interest");
+        GridBagConstraints interestGbc = new GridBagConstraints();
+        interestGbc.gridx = 1;
+        interestGbc.gridy = 1;
+        emotionsPanel.add(interest_label, interestGbc);
+
+        SpinnerModel interest_spinner = new SpinnerNumberModel(current, min, max, step);
+        JSpinner i_spinner = new JSpinner(interest_spinner);
+        i_spinner.setPreferredSize(spinnerDimension);
+        GridBagConstraints i_spinnerGbc = new GridBagConstraints();
+        i_spinnerGbc.gridx = 3;
+        i_spinnerGbc.gridy = 1;
+        emotionsPanel.add(i_spinner, i_spinnerGbc);
+        i_spinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                //To be implemented
+            }
+        });
+
+        JLabel engagement_label = new JLabel("Engagement");
+        GridBagConstraints engagementGbc = new GridBagConstraints();
+        engagementGbc.gridx = 1;
+        engagementGbc.gridy = 2;
+        emotionsPanel.add(engagement_label, engagementGbc);
+
+        SpinnerModel engagement_spinner = new SpinnerNumberModel(current, min, max, step);
+        JSpinner e_spinner = new JSpinner(engagement_spinner);
+        e_spinner.setPreferredSize(spinnerDimension);
+        GridBagConstraints e_spinnerGbc = new GridBagConstraints();
+        e_spinnerGbc.gridx = 3;
+        e_spinnerGbc.gridy = 2;
+        emotionsPanel.add(e_spinner, e_spinnerGbc);
+        e_spinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                //To be implemented
+            }
+        });
+
+        JLabel excitement_label = new JLabel("Excitement");
+        GridBagConstraints excitementGbc = new GridBagConstraints();
+        excitementGbc.gridx = 1;
+        excitementGbc.gridy = 3;
+        emotionsPanel.add(excitement_label, excitementGbc);
+
+        SpinnerModel excitement_spinner = new SpinnerNumberModel(current, min, max, step);
+        JSpinner ex_spinner = new JSpinner(excitement_spinner);
+        ex_spinner.setPreferredSize(spinnerDimension);
+        GridBagConstraints ex_spinnerGbc = new GridBagConstraints();
+        ex_spinnerGbc.gridx = 3;
+        ex_spinnerGbc.gridy = 3;
+        emotionsPanel.add(ex_spinner, ex_spinnerGbc);
+        ex_spinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                //To be implemented
+            }
+        });
+        
+        JLabel stress_label = new JLabel("Stress");
+        GridBagConstraints stressGbc = new GridBagConstraints();
+        stressGbc.gridx = 2;
+        stressGbc.gridy = 2;
+        emotionsPanel.add(stress_label, stressGbc);
+
+        SpinnerModel stress_spinner = new SpinnerNumberModel(current, min, max, step);
+        JSpinner s_spinner = new JSpinner(stress_spinner);
+        s_spinner.setPreferredSize(spinnerDimension);
+        GridBagConstraints s_spinnerGbc = new GridBagConstraints();
+        s_spinnerGbc.gridx = 3;
+        s_spinnerGbc.gridy = 4;
+        emotionsPanel.add(s_spinner, s_spinnerGbc);
+        s_spinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                //To be implemented
+            }
+        });
+        
+        JLabel relaxation_label = new JLabel("Relaxation");
+        GridBagConstraints relaxationGbc = new GridBagConstraints();
+        relaxationGbc.gridx = 1;
+        relaxationGbc.gridy = 5;
+        emotionsPanel.add(relaxation_label, relaxationGbc);
+
+        SpinnerModel relaxation_spinner = new SpinnerNumberModel(current, min, max, step);
+        JSpinner r_spinner = new JSpinner(relaxation_spinner);
+        r_spinner.setPreferredSize(spinnerDimension);
+        GridBagConstraints r_spinnerGbc = new GridBagConstraints();
+        r_spinnerGbc.gridx = 3;
+        r_spinnerGbc.gridy = 5;
+        emotionsPanel.add(r_spinner, r_spinnerGbc);
+        r_spinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                //To be implemented
+            }
+        });
+        
+        JLabel focus_label = new JLabel("Focus");
+        GridBagConstraints focusGbc = new GridBagConstraints();
+        focusGbc.gridx = 1;
+        focusGbc.gridy = 6;
+        emotionsPanel.add(focus_label, focusGbc);
+
+        SpinnerModel focus_spinner = new SpinnerNumberModel(current, min, max, step);
+        JSpinner f_spinner = new JSpinner(focus_spinner);
+        f_spinner.setPreferredSize(spinnerDimension);
+        GridBagConstraints f_spinnerGbc = new GridBagConstraints();
+        f_spinnerGbc.gridx = 3;
+        f_spinnerGbc.gridy = 6;
+        emotionsPanel.add(f_spinner, f_spinnerGbc);
+        f_spinner.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                //To be implemented
+            }
+        });
+
         return emotionsPanel;
     }
 
