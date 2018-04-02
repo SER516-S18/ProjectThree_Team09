@@ -79,11 +79,13 @@ public class GraphView extends JPanel{
       series[i] = new XYSeries(i);
     }
 
-    for (ArrayList<CoordinatesModel> data: graphModel.getGraphData()) {
-      for(int i = 0; i < graphModel.getNoOfChannels(); i++) {
-        double xCoordinate = data.get(i).getXCoordinate();
-        double yCoordinate = data.get(i).getYCoordinate();
-        series[i].add(xCoordinate, yCoordinate);
+    if(graphModel.getGraphData() != null) {
+      for (ArrayList<CoordinatesModel> data: graphModel.getGraphData()) {
+        for(int i = 0; i < graphModel.getNoOfChannels(); i++) {
+          double xCoordinate = data.get(i).getXCoordinate();
+          double yCoordinate = data.get(i).getYCoordinate();
+          series[i].add(xCoordinate, yCoordinate);
+        }
       }
     }
 
@@ -109,8 +111,10 @@ public class GraphView extends JPanel{
 
     XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
 
-    for (int i = 0; i < graphModel.getNoOfChannels(); i++) {
-      renderer.setSeriesPaint(i, graphModel.getChannelColors()[i]);
+    if(graphModel.getChannelColors() != null) {
+      for (int i = 0; i < graphModel.getNoOfChannels(); i++) {
+        renderer.setSeriesPaint(i, graphModel.getChannelColors()[i]);
+      }
     }
 
     plot.setRenderer(renderer);

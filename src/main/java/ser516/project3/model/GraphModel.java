@@ -1,5 +1,7 @@
 package ser516.project3.model;
 
+import ser516.project3.client.view.GraphView;
+
 import java.awt.*;
 import java.util.ArrayList;
 

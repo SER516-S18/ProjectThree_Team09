@@ -28,12 +28,23 @@ public class PerformanceMetricController implements PerformanceMetricInterface{
   public PerformanceMetricController(PerformanceMetricModel performanceMetricModel, PerformanceMetricView performanceMetricView) {
     this.performanceMetricModel = performanceMetricModel;
     this.performanceMetricView = performanceMetricView;
+    initializeGraph();
+    performanceMetricView.initializePerformanceMetricUI(graphController.getGraphView());
+    this.performanceMetricView.addEmotionButtonsListener(new EmotionButtonsListener());
+  }
 
+  private void initializeGraph() {
     GraphModel graphModel = new GraphModel();
     GraphView graphView = new GraphView();
     graphController = new GraphControllerImpl(graphModel, graphView);
-    performanceMetricView.initializePerformanceMetricUI(graphController.getGraphView());
-    this.performanceMetricView.addEmotionButtonsListener(new EmotionButtonsListener());
+    graphController.setNoOfChannels(6);
+    graphController.setXLength(performanceMetricModel.getDisplayLength());
+    Color channelColors[] = {
+        performanceMetricModel.getInterestColor(), performanceMetricModel.getEngagementColor(),
+        performanceMetricModel.getStressColor(), performanceMetricModel.getRelaxationColor(),
+        performanceMetricModel.getExcitementColor(), performanceMetricModel.getFocusColor()};
+    graphController.setChannelColors(channelColors);
+    graphController.updateGraphView();
   }
 
   /**
@@ -106,6 +117,12 @@ public class PerformanceMetricController implements PerformanceMetricInterface{
           break;
       }
       performanceMetricView.updatePerformanceMetricView(performanceMetricModel);
+      Color channelColors[] = {
+          performanceMetricModel.getInterestColor(), performanceMetricModel.getEngagementColor(),
+          performanceMetricModel.getStressColor(), performanceMetricModel.getRelaxationColor(),
+          performanceMetricModel.getExcitementColor(), performanceMetricModel.getFocusColor()};
+      graphController.setChannelColors(channelColors);
+      graphController.updateGraphView();
     }
   }
 }
