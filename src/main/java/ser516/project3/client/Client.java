@@ -12,7 +12,7 @@ public class Client
 {
     public static void main(String[] args)
     {
-        ClientControllerInterface clientController = new ClientControllerImpl();
+        ClientControllerInterface clientController = ClientControllerImpl.getInstance();
         clientController.initializeClientView();
     }
     

@@ -1,10 +1,13 @@
 package ser516.project3.client.controller;
 
+import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import ser516.project3.client.view.GraphView;
-import ser516.project3.model.GraphModel;
+import org.apache.log4j.Logger;
+
+import ser516.project3.model.CoordinatesModel;
 
 /**
  * 
@@ -16,19 +19,39 @@ import ser516.project3.model.GraphModel;
  *
  */
 public class PerformanceMetricGraphObserver implements Observer {
+
+	final static Logger logger = Logger.getLogger(PerformanceMetricGraphObserver.class);
+
 	/**
 	 * 
-	 * Overriding the update method in Observer class to update the graph
-	 * .
+	 * Overriding the update method in Observer class to update the graph .
 	 */
 	@Override
 	public void update(Observable observable, Object observerObj) {
+
 		PerformanceMetricDataObservable performanceMetricData = (PerformanceMetricDataObservable) observable;
-		GraphModel graphModel = new GraphModel();
-		GraphView graphView = new GraphView();
-		GraphControllerInterface graphControllerInterface = new GraphControllerImpl(graphModel, graphView);
+		ArrayList<ArrayList<CoordinatesModel>> pmd = performanceMetricData.getPerformanceMetricData();
+		logger.info("test data");
+
+		for (ArrayList<CoordinatesModel> each : pmd) {
+			for (CoordinatesModel cm : each) {
+				System.out.println(cm.getXCoordinate() + "," + cm.getYCoordinate());
+			}
+		}
+
+		GraphControllerInterface graphControllerInterface = ClientControllerImpl.getInstance()
+				.getPerformanceMetricController().getGraphController();
+
+		graphControllerInterface.setNoOfChannels(6);
+		Color channelColors[] = new Color[] { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE,
+				Color.GRAY };
+		graphControllerInterface.setChannelColors(channelColors);
+		graphControllerInterface.setXLength(100);
 		graphControllerInterface.setGraphData(performanceMetricData.getPerformanceMetricData());
 		graphControllerInterface.updateGraphView();
+
+		ClientControllerImpl.getInstance().getPerformanceMetricController().getPerformanceMetricView().revalidate();
+		ClientControllerImpl.getInstance().getPerformanceMetricController().getPerformanceMetricView().repaint();
 	}
 
 }

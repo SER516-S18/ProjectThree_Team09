@@ -23,7 +23,16 @@ public class ClientControllerImpl implements ClientControllerInterface {
 	private HeaderController headerController;
 	private ExpressionsController expressionsController;
 	private PerformanceMetricController performanceMetricController;
+	public PerformanceMetricController getPerformanceMetricController() {
+		return performanceMetricController;
+	}
 
+
+	public void setPerformanceMetricController(PerformanceMetricController performanceMetricController) {
+		this.performanceMetricController = performanceMetricController;
+	}
+
+	private static ClientControllerImpl instance;
 	public ClientControllerImpl() {
 		HeaderModel headerModel = new HeaderModel();
 		HeaderView headerView = new HeaderView();
@@ -39,6 +48,18 @@ public class ClientControllerImpl implements ClientControllerInterface {
 		performanceMetricController.initializePerformanceMetricView();
 	}
 
+	
+	/**
+	 * Creates a singleton instance . If exists, returns it, else creates it.
+	 * 
+	 * @return instance of the ClientControllerImpl
+	 */
+	public static ClientControllerImpl getInstance() {
+		if (instance == null) {
+			instance = new ClientControllerImpl();
+		}
+		return instance;
+	}
 	@Override
 	public void startClient() {
 		// TODO: start data reception form server

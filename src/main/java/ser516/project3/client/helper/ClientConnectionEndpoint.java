@@ -1,7 +1,6 @@
 package ser516.project3.client.helper;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.websocket.ClientEndpoint;
 import javax.websocket.OnError;
@@ -13,7 +12,6 @@ import org.apache.log4j.Logger;
 
 import ser516.project3.client.controller.ExpressionsDataObservable;
 import ser516.project3.client.controller.PerformanceMetricDataObservable;
-import ser516.project3.model.CoordinatesModel;
 import ser516.project3.model.Message;
 import ser516.project3.model.MessageDecoder;
 import ser516.project3.utilities.MessageFormatConverter;
@@ -44,9 +42,10 @@ public class ClientConnectionEndpoint {
 
 	@OnMessage
 	public void processMessage(Message messageBean, Session session) {
+		logger.info("Received data:::: " + messageBean);
 		PerformanceMetricDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToPeformanceMetrics(messageBean));
 		ExpressionsDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToExpressionsData(messageBean));
-		logger.info("Received data:::: " + messageBean);
+		
 	}
 
 	@OnError
