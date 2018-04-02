@@ -105,4 +105,11 @@ public class GraphControllerImpl implements GraphControllerInterface {
   public GraphView getGraphView() {
     return graphView;
   }
+
+  /**
+   * @inheritDoc
+   */
+  public GraphModel getGraphModel() {
+    return graphModel;
+  }
 }

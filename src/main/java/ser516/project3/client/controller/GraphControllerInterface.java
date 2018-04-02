@@ -2,6 +2,7 @@ package ser516.project3.client.controller;
 
 import ser516.project3.client.view.GraphView;
 import ser516.project3.model.CoordinatesModel;
+import ser516.project3.model.GraphModel;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -78,7 +79,12 @@ public interface GraphControllerInterface {
   void updateGraphView();
 
   /**
-   * Gets the GraphView
+   * Gets the Graph View
    */
   GraphView getGraphView();
+
+  /**
+   * Gets the Graph Model
+   */
+  GraphModel getGraphModel();
 }
