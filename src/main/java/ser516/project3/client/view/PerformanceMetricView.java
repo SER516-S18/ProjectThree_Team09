@@ -41,6 +41,10 @@ public class PerformanceMetricView extends JPanel{
 	}
 
 	public void initializePerformanceMetricUI(GraphView graphView) {
+		graphView.setLayout(new GridLayout(1, 1, 8, 8));
+		graphView.setOpaque(false);
+		graphView.setBorder(new TitledBorder(null, "Graph",
+				TitledBorder.LEADING, TitledBorder.TOP, FONT, null));
 		add(graphView, BorderLayout.LINE_START );
 		add(getEmotionPanel(), BorderLayout.LINE_END );
 		setVisible(true);
