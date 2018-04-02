@@ -18,6 +18,15 @@ public class PerformanceMetricModel {
   private Color excitementColor;
   private Color focusColor;
 
+  public PerformanceMetricModel() {
+    interestColor = Color.RED;
+    engagementColor = Color.GREEN;
+    stressColor = Color.BLUE;
+    relaxationColor = Color.YELLOW;
+    excitementColor = Color.ORANGE;
+    focusColor = Color.MAGENTA;
+  }
+
   /**
    * Sets the color for interest emotion.
    *

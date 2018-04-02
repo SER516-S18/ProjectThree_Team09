@@ -43,7 +43,7 @@ public class ClientControllerImpl implements ClientControllerInterface {
 		expressionsController = new ExpressionsController(expressionsModel, expressionsView);
 
 		PerformanceMetricModel performanceMetricModel = new PerformanceMetricModel();
-		PerformanceMetricView performanceMetricView = new PerformanceMetricView();
+		PerformanceMetricView performanceMetricView = new PerformanceMetricView(performanceMetricModel);
 		performanceMetricController = new PerformanceMetricController(performanceMetricModel, performanceMetricView);
 		performanceMetricController.initializePerformanceMetricView();
 	}
