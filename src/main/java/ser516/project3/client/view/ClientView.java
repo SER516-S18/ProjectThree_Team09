@@ -1,15 +1,10 @@
 package ser516.project3.client.view;
 
-import ser516.project3.client.controller.HeaderController;
-import ser516.project3.model.HeaderModel;
-import ser516.project3.server.view.ServerView;
-
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -19,14 +14,11 @@ import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 import javax.swing.WindowConstants;
 
-@SuppressWarnings("serial")
 public class ClientView extends JFrame {
 
 	private static ClientView clientViewInstance = null;
 
 	private static JSplitPane splitPane;
-	private static PerformanceMetricView performanceMetricTabInstance;
-	private static ExpressionsView expressionsTabInstance;
 	private static JTabbedPane expressionsEmotionsCombinedTab;
 	private JMenu optionsMenu;
 	private JMenuItem serverMenuItem;

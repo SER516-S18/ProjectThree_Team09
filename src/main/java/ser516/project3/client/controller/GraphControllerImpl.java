@@ -98,4 +98,11 @@ public class GraphControllerImpl implements GraphControllerInterface {
   public void updateGraphView() {
     graphView.updateGraphView(graphModel);
   }
+
+  /**
+   * @inheritDoc
+   */
+  public GraphView getGraphView() {
+    return graphView;
+  }
 }

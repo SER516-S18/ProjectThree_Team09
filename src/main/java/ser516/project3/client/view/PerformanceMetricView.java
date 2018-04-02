@@ -1,5 +1,9 @@
 package ser516.project3.client.view;
 
+import ser516.project3.client.controller.GraphControllerImpl;
+import ser516.project3.client.controller.GraphControllerInterface;
+import ser516.project3.model.GraphModel;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -21,15 +25,17 @@ public class PerformanceMetricView extends JPanel{
 	public PerformanceMetricView(){
 		setLayout(new GridLayout(1, 2, 8, 8 ));
 		setBackground(LIGHTGREY);
-		add(new GraphView(), BorderLayout.LINE_START );
-		add(getEmotionPanel(), BorderLayout.LINE_END ); 
+	}
+
+	public void initializePerformanceMetricUI(GraphView graphView) {
+		add(graphView, BorderLayout.LINE_START );
+		add(getEmotionPanel(), BorderLayout.LINE_END );
 		setVisible(true);
 	}
 	
 	/* This method returns a panel of 6 buttons,
 	 * 2 labels and 1 text field.
 	 */
-	
 	private Component getEmotionPanel() {
 
 		

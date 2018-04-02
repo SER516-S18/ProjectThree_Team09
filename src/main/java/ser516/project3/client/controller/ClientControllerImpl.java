@@ -1,6 +1,5 @@
 package ser516.project3.client.controller;
 
-import ser516.project3.client.Client;
 import ser516.project3.client.service.ClientConnectionServiceImpl;
 import ser516.project3.client.service.ClientConnectionServiceInterface;
 import ser516.project3.client.view.ClientView;
@@ -37,6 +36,7 @@ public class ClientControllerImpl implements ClientControllerInterface {
 		PerformanceMetricModel performanceMetricModel = new PerformanceMetricModel();
 		PerformanceMetricView performanceMetricView = new PerformanceMetricView();
 		performanceMetricController = new PerformanceMetricController(performanceMetricModel, performanceMetricView);
+		performanceMetricController.initializePerformanceMetricView();
 	}
 
 	@Override
