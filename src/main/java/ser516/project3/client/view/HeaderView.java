@@ -21,8 +21,6 @@ public class HeaderView extends JPanel {
 	private JLabel connectionTextLabel;
 	private JLabel timestampTextLabel;
 	private JButton connectButton;
-	private JButton serverButton;
-	private JDialog serverDialog;
 
 	public HeaderView() {
 		setLayout(new BorderLayout());
@@ -81,27 +79,6 @@ public class HeaderView extends JPanel {
 		bagConstraints.gridheight = 3;
 		bagConstraints.insets = new Insets(0, 20, 0, 20);
 		add(connectButton, bagConstraints);
-
-		serverButton = new JButton("Open Server");
-		serverButton.setBackground(Color.BLUE);
-		serverButton.setPreferredSize(new Dimension(100, 100));
-		bagConstraints.gridx = -1;
-		bagConstraints.gridy = -1;
-		bagConstraints.gridheight = 2;
-		bagConstraints.insets = new Insets(7, 5, 5, 0);
-		add(serverButton, bagConstraints);
-		serverButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(serverDialog == null) {
-					serverDialog = new ServerView();
-				} else {
-					serverDialog.setVisible(true);
-				}
-			}
-
-		});
 	}
 
 	public void addConnectButtonListener(ActionListener actionListener) {
