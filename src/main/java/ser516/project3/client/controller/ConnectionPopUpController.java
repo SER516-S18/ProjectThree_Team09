@@ -26,8 +26,8 @@ public class ConnectionPopUpController {
   class ConnectListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-      ClientControllerInterface clientControllerImpl = new ClientControllerImpl();
-      clientControllerImpl.toggleConnectionToServer(connectionPopUpModel.getIpAddress(), connectionPopUpModel.getPortNumber());
+      ClientControllerImpl.getInstance().toggleConnectionToServer(connectionPopUpModel.getIpAddress(), connectionPopUpModel.getPortNumber());
+      connectionPopUpView.dispose();
     }
   }
 
