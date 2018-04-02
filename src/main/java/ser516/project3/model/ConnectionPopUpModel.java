@@ -5,7 +5,7 @@ public class ConnectionPopUpModel {
   private int portNumber;
 
   public ConnectionPopUpModel() {
-    ipAddress = "127.0.0.1";
+    ipAddress = "localhost";
     portNumber = 1756;
   }
 

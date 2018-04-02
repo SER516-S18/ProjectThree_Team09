@@ -18,12 +18,11 @@ import ser516.project3.server.view.*;
 @SuppressWarnings("serial")
 public class HeaderView extends JPanel {
 
-	JLabel connectionLabel;
-	JLabel timeStampLabel;
-	JButton connectButton;
-	JButton serverButton;
-	JDialog connectionPopUpView;
-	JDialog serverDialog;
+	private JLabel connectionLabel;
+	private JLabel timeStampLabel;
+	private JButton connectButton;
+	private JButton serverButton;
+	private JDialog serverDialog;
 
 	public HeaderView() {
 		this.setLayout(new BorderLayout());
