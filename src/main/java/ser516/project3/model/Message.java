@@ -197,7 +197,11 @@ public class Message {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Message [blink=");
+		builder.append("Message [timeStamp=");
+		builder.append(timeStamp);
+		builder.append(", interval=");
+		builder.append(interval);
+		builder.append(", blink=");
 		builder.append(blink);
 		builder.append(", rightWink=");
 		builder.append(rightWink);
