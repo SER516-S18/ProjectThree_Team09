@@ -16,6 +16,7 @@ import javax.swing.event.ChangeListener;
 
 import org.apache.log4j.Logger;
 
+import ser516.project3.model.ConsoleModel;
 import ser516.project3.server.controller.ServerControllerImpl;
 import ser516.project3.utilities.InputVerifierNumericals;
 import ser516.project3.utilities.ServerCommonData;
@@ -475,11 +476,9 @@ public class ServerPanelGenerator {
     }
 
     public static JPanel createConsolePanel(){
-        JPanel consolePanel=new JPanel();
-        consolePanel.setBorder(new TitledBorder(null, "Console", TitledBorder.LEADING,
-                TitledBorder.TOP, SUBFONT, null));
-        //Add Components to Console panel here
-        return consolePanel;
+	    ConsoleView consoleView = new ConsoleView();
+        ConsoleModel.getInstance().addObserver(consoleView);
+        return consoleView.getConsolePanel();
     }
 
     public static JPanel createTimerPanel(){
