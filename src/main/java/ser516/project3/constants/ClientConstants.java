@@ -37,8 +37,6 @@ public class ClientConstants {
 	public final static String IP_ADDRESS = "IP Address: ";
 	public final static String PORT_NUMBER = "Port Number: ";
 	public final static String OK = "OK";
-	public final static String NO_IP_ADDRESS_MESSAGE = "Please enter a valid IP Address";
-	public final static String NO_PORT_NO_MESSAGE = "Please enter a valid Port Number";
 
 	// Graph Constants
 	public final static String GRAPH = "Graph";
@@ -48,6 +46,13 @@ public class ClientConstants {
 	public final static String STATUS = "Status:";
 	public final static String CONNECT = "Connect";
 	public final static String CONNECTED = "Connected";
-	public final static String NOT_CONNECTED = "Not Connected";
+	public final static String DISCONNECTED = "Disconnected";
 	public final static String TIME_STAMP = "Time Stamp: ";
+	public final static String DISCONNECT = "Disconnect";
+
+	//Error message Constants
+	public final static String ERROR_STRING = "Error";
+	public final static String NO_IP_ADDRESS_MESSAGE = "Please enter a valid IP Address";
+	public final static String NO_PORT_NO_MESSAGE = "Please enter a valid Port Number";
+	public final static String NO_CONNECTION_MESSAGE = "Could not connect to server.";
 }

@@ -35,7 +35,7 @@ public class ClientControllerImpl implements ClientControllerInterface {
 	private static ClientControllerImpl instance;
 	public ClientControllerImpl() {
 		HeaderModel headerModel = new HeaderModel();
-		HeaderView headerView = new HeaderView();
+		HeaderView headerView = new HeaderView(headerModel);
 		headerController = new HeaderController(headerModel, headerView);
 
 		ExpressionsModel expressionsModel = new ExpressionsModel();
@@ -101,6 +101,11 @@ public class ClientControllerImpl implements ClientControllerInterface {
 				performanceMetricController.getPerformanceMetricView(),
 				expressionsController.getExpressionsView());
 		clientView.addServerMenuItemListener(new ServerMenuItemListener());
+	}
+
+	public void setConnectionStatus(boolean connectionStatus) {
+		connected = connectionStatus;
+		headerController.setConnectionStatus(connectionStatus);
 	}
 
 	class ServerMenuItemListener implements ActionListener {

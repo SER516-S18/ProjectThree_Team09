@@ -32,4 +32,9 @@ public class HeaderController {
   public HeaderView getHeaderView() {
     return headerView;
   }
+
+  public void setConnectionStatus(boolean connectionStatus) {
+    headerModel.setConnectionStatus(connectionStatus);
+    headerView.updateConnectionLabel();
+  }
 }

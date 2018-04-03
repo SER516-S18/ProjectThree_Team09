@@ -3,11 +3,10 @@ package ser516.project3.client.view;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import ser516.project3.constants.ClientConstants;
-import ser516.project3.server.view.*;
+import ser516.project3.model.HeaderModel;
 
 /**
  * HeaderView class to implement the header view for client to show and update
@@ -23,8 +22,10 @@ public class HeaderView extends JPanel {
 	private JLabel connectionTextLabel;
 	private JLabel timestampTextLabel;
 	private JButton connectButton;
+	private HeaderModel headerModel;
 
-	public HeaderView() {
+	public HeaderView(HeaderModel headerModel) {
+		this.headerModel = headerModel;
 		setLayout(new BorderLayout());
 		setOpaque(false);
 		setBorder(new EmptyBorder(8, 8, 8, 8));
@@ -47,7 +48,7 @@ public class HeaderView extends JPanel {
 		bagConstraints.insets = new Insets(0, 0, 10, 10);
 		add(connectionTextLabel, bagConstraints);
 
-		connectionLabel = new JLabel(ClientConstants.NOT_CONNECTED);
+		connectionLabel = new JLabel(ClientConstants.DISCONNECTED);
 		connectionLabel.setHorizontalTextPosition(JLabel.LEFT);
 		connectionLabel.setVerticalTextPosition(JLabel.CENTER);
 		bagConstraints.gridx = 1;
@@ -87,14 +88,14 @@ public class HeaderView extends JPanel {
 		connectButton.addActionListener(actionListener);
 	}
 
-	public void updateConnectionLabel(boolean isConnected) {
+	public void updateConnectionLabel() {
 		// May need to update this
-		if (isConnected) {
-			connectButton.setText("Disconnect");
-			connectionLabel.setText("Connected");
+		if (headerModel.isConnectionStatus()) {
+			connectButton.setText(ClientConstants.DISCONNECT);
+			connectionLabel.setText(ClientConstants.CONNECTED);
 		} else {
-			connectButton.setText("Connect");
-			connectionLabel.setText("Not Connected");
+			connectButton.setText(ClientConstants.CONNECT);
+			connectionLabel.setText(ClientConstants.DISCONNECTED);
 		}
 	}
 }
