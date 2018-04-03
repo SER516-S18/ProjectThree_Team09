@@ -247,7 +247,6 @@ public class ServerPanelGenerator {
         lowerFaceSpinner.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                //To be implemented
             	 updateLowerFaceVal((Double) lowerFaceSpinner.getValue());
             }
         });
@@ -285,7 +284,6 @@ public class ServerPanelGenerator {
         upperFaceSpinner.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                //To be implemented
             	updateUpperFaceVal((Double)upperFaceSpinner.getValue());
             }
         });
