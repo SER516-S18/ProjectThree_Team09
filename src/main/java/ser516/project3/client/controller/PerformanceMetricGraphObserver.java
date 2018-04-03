@@ -42,11 +42,6 @@ public class PerformanceMetricGraphObserver implements Observer {
 		GraphControllerInterface graphControllerInterface = ClientControllerImpl.getInstance()
 				.getPerformanceMetricController().getGraphController();
 
-		graphControllerInterface.setNoOfChannels(6);
-		Color channelColors[] = new Color[] { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE,
-				Color.GRAY };
-		graphControllerInterface.setChannelColors(channelColors);
-		graphControllerInterface.setXLength(100);
 		graphControllerInterface.setGraphData(performanceMetricData.getPerformanceMetricData());
 		graphControllerInterface.updateGraphView();
 
