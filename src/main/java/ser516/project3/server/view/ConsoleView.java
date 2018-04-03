@@ -1,6 +1,9 @@
 package ser516.project3.server.view;
 
+import ser516.project3.model.ConsoleModel;
+
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.util.Observable;
@@ -18,20 +21,17 @@ public class ConsoleView implements Observer {
         consolePanel = new JPanel();
         consolePanel.setBorder(new TitledBorder(null, "Console", TitledBorder.LEADING,
                 TitledBorder.TOP, SUBFONT, null));
-        consolePanel.setLayout(new GridBagLayout());
+        consolePanel.setLayout(new FlowLayout());
 
-        GridBagConstraints bagConstraints = new GridBagConstraints();
-        bagConstraints.fill = GridBagConstraints.HORIZONTAL;
-
-        //Add Components to Console panel here
         consoleOutput = new JTextArea();
-        consoleOutput.setPreferredSize(new Dimension(200,200));
+        consoleOutput.setPreferredSize(new Dimension(400,130));
         consoleOutput.setEditable(false);
         consoleOutput.setBackground(LIGHTGREY);
         consoleOutput.setFont(new Font("Courier New", Font.PLAIN, 15));
-        bagConstraints.gridx = 0;
-        bagConstraints.gridy = 0;
-        consolePanel.add(consoleOutput,bagConstraints);
+        Border border = BorderFactory.createLineBorder(Color.BLACK);
+        consoleOutput.setBorder(BorderFactory.createCompoundBorder(border,
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        consolePanel.add(consoleOutput);
     }
 
     public JPanel getConsolePanel() {
@@ -40,7 +40,9 @@ public class ConsoleView implements Observer {
 
     @Override
     public void update(Observable messageArrayObject, Object observerObj) {
-        //TODO: update textarea
-        System.out.println("Log"+messageArrayObject);
+        //messageArrayObject is ConsoleModel object
+        ConsoleModel model = (ConsoleModel) messageArrayObject;
+        String message = model.getLogArray().get(model.getLogArray().size() - 1);
+        consoleOutput.append(message);
     }
 }
