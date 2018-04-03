@@ -2,6 +2,7 @@ package ser516.project3.server.service;
 
 import org.apache.log4j.Logger;
 
+import ser516.project3.model.ConsoleModel;
 import ser516.project3.server.helper.ServerContainerThread;
 import ser516.project3.utilities.ServerCommonData;
 
@@ -15,6 +16,7 @@ public class ServerConnectionServiceImpl implements ServerConnectionServiceInter
 		threadInstance = new ServerContainerThread();
 		serverContainerThread = new Thread(threadInstance);
 		serverContainerThread.start();
+		ConsoleModel.getInstance().logMessage("Success! Yippieee!");
 	}
 
 	@Override
