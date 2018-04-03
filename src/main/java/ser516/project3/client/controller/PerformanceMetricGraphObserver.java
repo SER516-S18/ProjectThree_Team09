@@ -33,11 +33,6 @@ public class PerformanceMetricGraphObserver implements Observer {
 		ArrayList<ArrayList<CoordinatesModel>> pmd = performanceMetricData.getPerformanceMetricData();
 		logger.info("test data");
 
-		for (ArrayList<CoordinatesModel> each : pmd) {
-			for (CoordinatesModel cm : each) {
-				System.out.println(cm.getXCoordinate() + "," + cm.getYCoordinate());
-			}
-		}
 
 		GraphControllerInterface graphControllerInterface = ClientControllerImpl.getInstance()
 				.getPerformanceMetricController().getGraphController();
