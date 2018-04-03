@@ -1,5 +1,8 @@
 package ser516.project3.client.controller;
 
+/**
+ * @author Varun Srivastava, Adhiraj Tikku
+ */
 public interface ClientControllerInterface {
 	
 	/**
