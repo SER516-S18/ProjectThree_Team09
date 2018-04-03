@@ -22,7 +22,7 @@ public class ClientConstants {
 	public final static String EMOTIONS = "Emotions";
 	public final static String INTEREST = "Interest";
 	public final static String ENGAGEMENT = "Engagement";
-	public final static String STRESS = "Stress";
+	public final static String STRESS = "  Stress  ";
 	public final static String RELAXATION = "Relaxation";
 	public final static String EXCITEMENT = "Excitement";
 	public final static String FOCUS = "Focus";
@@ -37,6 +37,8 @@ public class ClientConstants {
 	public final static String IP_ADDRESS = "IP Address: ";
 	public final static String PORT_NUMBER = "Port Number: ";
 	public final static String OK = "OK";
+	public final static String NO_IP_ADDRESS_MESSAGE = "Please enter a valid IP Address";
+	public final static String NO_PORT_NO_MESSAGE = "Please enter a valid Port Number";
 
 	// Graph Constants
 	public final static String GRAPH = "Graph";

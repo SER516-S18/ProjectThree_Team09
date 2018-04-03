@@ -19,7 +19,7 @@ public class NumberTextField extends JTextField {
         keyEvent.getKeyChar() == VK_ENTER ||
         keyEvent.getKeyChar() == VK_LEFT ||
         keyEvent.getKeyChar() == VK_RIGHT) ||
-        (getText().length() < 5 && (Character.isDigit(keyEvent.getKeyChar())))) {
+        (getText().length() < 4 && (Character.isDigit(keyEvent.getKeyChar())))) {
       super.processKeyEvent(keyEvent);
     }
     keyEvent.consume();
