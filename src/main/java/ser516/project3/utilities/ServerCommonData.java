@@ -9,7 +9,6 @@ public class ServerCommonData {
 	private int interval;
 	private boolean autoRepeat;
 	private boolean serverStarted = false;
-	
 
 	protected ServerCommonData() {
 
@@ -23,7 +22,7 @@ public class ServerCommonData {
 		return instance;
 	}
 
-	public static Message getMessage() {
+	public Message getMessage() {
 		return message;
 	}
 
@@ -41,7 +40,6 @@ public class ServerCommonData {
 	public void setInterval(int interval) {
 		this.interval = interval;
 	}
-
 
 	/**
 	 * @return the autoRepeat
@@ -66,7 +64,8 @@ public class ServerCommonData {
 	}
 
 	/**
-	 * @param serverStarted the serverStarted to set
+	 * @param serverStarted
+	 *            the serverStarted to set
 	 */
 	public void setServerStarted(boolean serverStarted) {
 		this.serverStarted = serverStarted;
