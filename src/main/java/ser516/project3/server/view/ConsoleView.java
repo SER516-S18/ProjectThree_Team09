@@ -16,7 +16,7 @@ import java.util.Observer;
 /**
  * Class to create console and print the status to console
  * with timestamp.
- * @author Vishakha, Zain
+ * @author Vishakha, Zain, Pratik
  *
  */
 
@@ -75,5 +75,9 @@ public class ConsoleView implements Observer {
 
         consoleOutput.append("[" + df.format(dateObj) + "] : " + message);
         consoleOutput.append("\n");
+    }
+
+    public void clear(){
+        consoleOutput.setText("");
     }
 }

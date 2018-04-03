@@ -41,4 +41,8 @@ public class ServerView extends JDialog {
 		});
 	}
 
+	public static void main(String[] args){
+		new ServerView();
+	}
+
 }
