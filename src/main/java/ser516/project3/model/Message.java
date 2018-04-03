@@ -33,6 +33,123 @@ public class Message {
 	private double relaxation;
 	private double excitement;
 	private double focus;
+	
+	// Expression Attributes
+	private String upperFace;
+	private String eye;
+	private Double lowerFaceVal;
+	private Double upperFaceVal;
+	private Boolean eyeAct;
+	private Boolean eyeAutoReset;
+	private String lowerFace;
+	
+	/**
+	 * @return the lowerFace Parameter
+	 */
+	public String getLowerFace() {
+		return lowerFace;
+	}
+
+	/**
+	 * @param lowerFace
+	 *            - sets the lowerFace attribute
+	 */
+	public void setLowerFace(String lowerFace) {
+		this.lowerFace = lowerFace;
+	}
+
+	/**
+	 * @return the upperFace
+	 */
+	public String getUpperFace() {
+		return upperFace;
+	}
+
+	/**
+	 * @param upperFace
+	 *            - sets the upperFace attribute
+	 */
+	public void setUpperFace(String upperFace) {
+		this.upperFace = upperFace;
+	}
+
+	/**
+	 * @return the eye attribute
+	 */
+	public String getEye() {
+		return eye;
+	}
+
+	/**
+	 * @param eye
+	 *            - sets the eye attribute
+	 */
+	public void setEye(String eye) {
+		this.eye = eye;
+	}
+
+	/**
+	 * @return the Lower Face Activated Button value
+	 */
+	public Double getLowerFaceVal() {
+		return lowerFaceVal;
+	}
+
+	/**
+	 * @param lowerFaceVal the lowerFaceVal to set
+	 */
+	public void setLowerFaceVal(Double lowerFaceVal) {
+		this.lowerFaceVal = lowerFaceVal;
+	}
+
+	/**
+	 * @return the upperFaceVal
+	 */
+	public Double getUpperFaceVal() {
+		return upperFaceVal;
+	}
+
+	/**
+	 * @param upperFaceVal the upperFaceVal to set
+	 */
+	public void setUpperFaceVal(Double upperFaceVal) {
+		this.upperFaceVal = upperFaceVal;
+	}
+
+	/**
+	 * @return the eyeAct
+	 */
+	public Boolean getEyeAct() {
+		return eyeAct;
+	}
+
+	/**
+	 * @param eyeAct the eyeAct to set
+	 */
+	public void setEyeAct(Boolean eyeAct) {
+		System.out.println(eyeAct);
+		this.eyeAct = eyeAct;
+	}
+
+
+	/**
+	 * @return the eye Auto Reset Value
+	 */
+	public Boolean getEyeAutoReset() {
+		return eyeAutoReset;
+	}
+
+	/**
+	 * @param eyeAutoReset
+	 *            - sets the eye Auto Reset attribute
+	 */
+	public void setEyeAutoReset(Boolean eyeAutoReset) {
+		this.eyeAutoReset = eyeAutoReset;
+	}
+
+
+	
+	
 
 	public double getInterval() {
 		return interval;
