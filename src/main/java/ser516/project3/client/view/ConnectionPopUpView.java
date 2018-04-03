@@ -74,15 +74,6 @@ public class ConnectionPopUpView extends JDialog {
 
 		add(mainPanel);
 		setVisible(true);
-
-		// add a window listener
-		ConnectionPopUpView.this.addWindowListener(new WindowAdapter() {
-			public void windowClosed(WindowEvent e) {
-				clientControllerImpl.stopClientConnector();
-				logger.info("popup window closed");
-			}
-
-		});
 	}
 
 	private void createMainPanel() {

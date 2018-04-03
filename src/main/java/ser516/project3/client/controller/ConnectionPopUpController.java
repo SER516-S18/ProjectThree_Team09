@@ -1,6 +1,8 @@
 package ser516.project3.client.controller;
 
+import ser516.project3.client.Client;
 import ser516.project3.client.view.ConnectionPopUpView;
+import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.ConnectionPopUpModel;
 
 import javax.swing.*;
@@ -26,8 +28,18 @@ public class ConnectionPopUpController {
   class ConnectListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-      ClientControllerImpl.getInstance().toggleConnectionToServer(connectionPopUpModel.getIpAddress(), connectionPopUpModel.getPortNumber());
-      connectionPopUpView.dispose();
+      if (connectionPopUpModel.getIpAddress().length() == 0) {
+        final JDialog dialog = new JDialog();
+        dialog.setAlwaysOnTop(true);
+        JOptionPane.showMessageDialog(dialog, ClientConstants.NO_IP_ADDRESS_MESSAGE);
+      } else if (connectionPopUpModel.getPortNumber() <= 0) {
+        final JDialog dialog = new JDialog();
+        dialog.setAlwaysOnTop(true);
+        JOptionPane.showMessageDialog(dialog, ClientConstants.NO_PORT_NO_MESSAGE);
+      } else {
+        ClientControllerImpl.getInstance().toggleConnectionToServer(connectionPopUpModel.getIpAddress(), connectionPopUpModel.getPortNumber());
+        connectionPopUpView.dispose();
+      }
     }
   }
 
@@ -61,7 +73,7 @@ public class ConnectionPopUpController {
       try {
         connectionPopUpModel.setPortNumber(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
       } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(null, "You must input a valid number for this field!");
+        connectionPopUpModel.setPortNumber(0);
       } catch(BadLocationException ex) {
         System.out.println(ex);
       }
@@ -71,8 +83,6 @@ public class ConnectionPopUpController {
     public void insertUpdate(DocumentEvent e) {
       try {
         connectionPopUpModel.setPortNumber(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
-      } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(null, "You must input a valid number for this field!");
       } catch(BadLocationException ex) {
         System.out.println(ex);
       }
