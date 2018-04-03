@@ -2,6 +2,12 @@ package ser516.project3.model;
 
 import java.util.ArrayList;
 
+/**
+ * It stores the messages for console
+ *
+ * @author Zain, Vishakha
+ *
+ */
 public class ConsoleModel extends java.util.Observable {
 
     private static ConsoleModel instance;
