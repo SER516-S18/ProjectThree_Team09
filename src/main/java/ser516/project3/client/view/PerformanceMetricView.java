@@ -100,7 +100,7 @@ public class PerformanceMetricView extends JPanel{
 		gridBagConstraints.insets = new Insets(10, 5, 10, 5);
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 3;
-		displaylengthLabel = new JLabel(ClientConstants.DISPLAYLENGTH);
+		displaylengthLabel = new JLabel(ClientConstants.DISPLAY_LENGTH);
 		displaylengthLabel.setHorizontalTextPosition(SwingConstants.RIGHT);
 		displaylengthLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		displaylengthLabel.setFont(FONT);
