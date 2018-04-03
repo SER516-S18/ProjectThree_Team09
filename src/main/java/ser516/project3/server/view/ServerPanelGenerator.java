@@ -25,7 +25,7 @@ public class ServerPanelGenerator {
 
 	final static Logger logger = Logger.getLogger(ServerPanelGenerator.class);
 	
-	private static ServerControllerImpl serverControllerImpl = new ServerControllerImpl();;
+	private static ServerControllerImpl serverControllerImpl = new ServerControllerImpl();
 
 	private static final Font FONT = new Font("Courier New", Font.BOLD, 17);
 	private static final Font SUBFONT = new Font("Courier New", Font.BOLD, 14);
@@ -248,6 +248,7 @@ public class ServerPanelGenerator {
             @Override
             public void stateChanged(ChangeEvent e) {
                 //To be implemented
+            	 updateLowerFaceVal((Double) lowerFaceSpinner.getValue());
             }
         });
 
@@ -285,6 +286,7 @@ public class ServerPanelGenerator {
             @Override
             public void stateChanged(ChangeEvent e) {
                 //To be implemented
+            	updateUpperFaceVal((Double)upperFaceSpinner.getValue());
             }
         });
 
@@ -497,31 +499,31 @@ public class ServerPanelGenerator {
 	}
 
 	private static void updateLowerFace(String lowerFaceValue) {
-		ServerCommonData.getInstance().setLowerFace(lowerFaceValue);
+		ServerCommonData.getInstance().getMessage().setLowerFace(lowerFaceValue);
 	}
 
 	private static void updateUpperFace(String upperFaceValue) {
-		ServerCommonData.getInstance().setUpperFace(upperFaceValue);
+		ServerCommonData.getInstance().getMessage().setUpperFace(upperFaceValue);
 	}
 
 	private static void updateEye(String eyeValue) {
-		ServerCommonData.getInstance().setEye(eyeValue);
+		ServerCommonData.getInstance().getMessage().setEye(eyeValue);
 	}
 
-	private static void updateLowerFaceAct(Boolean lowerFaceValue) {
-		ServerCommonData.getInstance().setLowerFaceAct(lowerFaceValue);
+	private static void updateLowerFaceVal(Double lowerFaceValue) {
+		ServerCommonData.getInstance().getMessage().setLowerFaceVal(lowerFaceValue);
 	}
 
-	private static void updateUpperFaceAct(Boolean upperFaceValue) {
-		ServerCommonData.getInstance().setUpperFaceAct(upperFaceValue);
+	private static void updateUpperFaceVal(Double upperFaceValue) {
+		ServerCommonData.getInstance().getMessage().setUpperFaceVal(upperFaceValue);
 	}
 
 	private static void updateEyeAct(Boolean eyeVal) {
-		ServerCommonData.getInstance().setEyeAct(eyeVal);
+		ServerCommonData.getInstance().getMessage().setEyeAct(eyeVal);
 	}
 
 	private static void updateEyeAutoReset(Boolean eyeAutoResetVal) {
-		ServerCommonData.getInstance().setEyeAutoReset(eyeAutoResetVal);
+		ServerCommonData.getInstance().getMessage().setEyeAutoReset(eyeAutoResetVal);
 	}
 
 	/**
