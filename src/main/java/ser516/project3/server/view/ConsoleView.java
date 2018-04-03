@@ -55,7 +55,7 @@ public class ConsoleView implements Observer {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                consoleOutput.setText(null);
+                clear();
             }
         });
 
@@ -78,6 +78,6 @@ public class ConsoleView implements Observer {
     }
 
     public void clear(){
-        consoleOutput.setText("");
+        consoleOutput.setText(null);
     }
 }
