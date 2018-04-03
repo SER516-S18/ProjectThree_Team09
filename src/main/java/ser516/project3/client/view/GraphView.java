@@ -17,6 +17,7 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
+import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.CoordinatesModel;
 import ser516.project3.model.GraphModel;
 
@@ -97,7 +98,7 @@ public class GraphView extends JPanel{
   }
 
   private JFreeChart createChart(final XYDataset dataSet) {
-    JFreeChart chart = ChartFactory.createXYLineChart("", "Time (seconds)",
+    JFreeChart chart = ChartFactory.createXYLineChart("", ClientConstants.TIME_IN_SECONDS,
         "", dataSet, PlotOrientation.VERTICAL, true, true,
         false);
 

@@ -1,5 +1,7 @@
 package ser516.project3.client.view;
 
+import ser516.project3.constants.ClientConstants;
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,17 +42,17 @@ public class ClientView extends JFrame {
 		setMinimumSize(new Dimension(1400, 650));
 		
 		menuBar = new JMenuBar();
-		optionsMenu = new JMenu("Options");
+		optionsMenu = new JMenu(ClientConstants.OPTIONS);
 		optionsMenu.setMnemonic(KeyEvent.VK_O);
-		serverMenuItem = new JMenuItem("Open Server");
+		serverMenuItem = new JMenuItem(ClientConstants.OPEN_SERVER);
 		serverMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
 		optionsMenu.add(serverMenuItem);
 		menuBar.add(optionsMenu);
 
 		expressionsEmotionsCombinedTab = new JTabbedPane();
 
-		expressionsEmotionsCombinedTab.addTab("Performance Metric", performanceMetricView);
-		expressionsEmotionsCombinedTab.addTab("Expressions", expressionsView);
+		expressionsEmotionsCombinedTab.addTab(ClientConstants.PERFORMANCE_METRICS, performanceMetricView);
+		expressionsEmotionsCombinedTab.addTab(ClientConstants.EXPRESSIONS, expressionsView);
 
 		splitPane = new JSplitPane();
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);

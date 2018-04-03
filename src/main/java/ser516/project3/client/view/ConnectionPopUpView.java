@@ -25,6 +25,7 @@ import org.apache.log4j.Logger;
 
 import ser516.project3.client.controller.ClientControllerImpl;
 import ser516.project3.client.controller.ClientControllerInterface;
+import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.ConnectionPopUpModel;
 import ser516.project3.utilities.NumberTextField;
 
@@ -54,7 +55,7 @@ public class ConnectionPopUpView extends JDialog {
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(280, 200));
 		setResizable(false);
-		setTitle("Connect to Server");
+		setTitle(ClientConstants.CONNECTION_POP_UP_TITLE);
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
@@ -94,7 +95,7 @@ public class ConnectionPopUpView extends JDialog {
 	}
 
 	private void createLabels(GridBagConstraints bagConstraints) {
-		ipAddressLabel = new JLabel("IP Address: ");
+		ipAddressLabel = new JLabel(ClientConstants.IP_ADDRESS);
 		ipAddressLabel.setHorizontalAlignment(JLabel.RIGHT);
 		ipAddressLabel.setVerticalTextPosition(JLabel.CENTER);
 		bagConstraints.gridx = 0;
@@ -102,7 +103,7 @@ public class ConnectionPopUpView extends JDialog {
 		bagConstraints.insets = new Insets(0, 0, 10, 10);
 		mainPanel.add(ipAddressLabel, bagConstraints);
 
-		portNumberLabel = new JLabel("Port Number:");
+		portNumberLabel = new JLabel(ClientConstants.PORT_NUMBER);
 		portNumberLabel.setHorizontalAlignment(JLabel.RIGHT);
 		portNumberLabel.setVerticalTextPosition(JLabel.CENTER);
 		bagConstraints.gridx = 0;
@@ -128,7 +129,7 @@ public class ConnectionPopUpView extends JDialog {
 	}
 
 	private void createConnectButton(GridBagConstraints bagConstraints) {
-		connectButton = new JButton("Connect");
+		connectButton = new JButton(ClientConstants.OK);
 		connectButton.setBackground(Color.RED);
 		connectButton.setPreferredSize(new Dimension(120, 35));
 		bagConstraints.gridx = 0;

@@ -14,10 +14,7 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 
 public class PerformanceMetricController implements PerformanceMetricInterface{
   private PerformanceMetricModel performanceMetricModel;
@@ -31,6 +28,7 @@ public class PerformanceMetricController implements PerformanceMetricInterface{
     initializeGraph();
     performanceMetricView.initializePerformanceMetricUI(graphController.getGraphView());
     this.performanceMetricView.addEmotionButtonsListener(new EmotionButtonsListener());
+    this.performanceMetricView.addDisplayLengthListener(new DisplayLengthKeyListener(), new DisplayLengthDocumentListener());
   }
 
   private void initializeGraph() {
@@ -116,13 +114,65 @@ public class PerformanceMetricController implements PerformanceMetricInterface{
           }
           break;
       }
-      performanceMetricView.updatePerformanceMetricView(performanceMetricModel);
+
       Color channelColors[] = {
           performanceMetricModel.getInterestColor(), performanceMetricModel.getEngagementColor(),
           performanceMetricModel.getStressColor(), performanceMetricModel.getRelaxationColor(),
           performanceMetricModel.getExcitementColor(), performanceMetricModel.getFocusColor()};
       graphController.setChannelColors(channelColors);
       graphController.updateGraphView();
+
+      performanceMetricView.updatePerformanceMetricView(performanceMetricModel);
+      performanceMetricView.revalidate();
+      performanceMetricView.repaint();
+    }
+  }
+
+  public class DisplayLengthKeyListener extends KeyAdapter{
+    @Override
+    public void keyPressed(KeyEvent e) {
+      if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+        graphController.updateGraphView();
+        performanceMetricView.updatePerformanceMetricView(performanceMetricModel);
+        performanceMetricView.revalidate();
+        performanceMetricView.repaint();
+      }
+    }
+  }
+
+  class DisplayLengthDocumentListener implements DocumentListener {
+    @Override
+    public void removeUpdate(DocumentEvent e) {
+      try {
+        if(e.getDocument().getLength() == 0) {
+          performanceMetricModel.setDisplayLength(1);
+          graphController.setXLength(1);
+        } else {
+          performanceMetricModel.setDisplayLength(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
+          graphController.setXLength(performanceMetricModel.getDisplayLength());
+        }
+      } catch(BadLocationException ex) {
+        System.out.println(ex);
+      }
+    }
+
+    @Override
+    public void insertUpdate(DocumentEvent e) {
+      try {
+        if(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())) == 0) {
+          performanceMetricModel.setDisplayLength(1);
+          graphController.setXLength(1);
+        } else {
+          performanceMetricModel.setDisplayLength(Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength())));
+          graphController.setXLength(performanceMetricModel.getDisplayLength());
+        }
+      } catch(BadLocationException ex) {
+        System.out.println(ex);
+      }
+    }
+
+    @Override
+    public void changedUpdate(DocumentEvent e) {
     }
   }
 }
