@@ -5,6 +5,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import ser516.project3.constants.ClientConstants;
 import ser516.project3.server.view.*;
 
 /**
@@ -37,7 +39,7 @@ public class HeaderView extends JPanel {
 	}
 
 	private void createLabels(GridBagConstraints bagConstraints) {
-		connectionTextLabel = new JLabel("Status:");
+		connectionTextLabel = new JLabel(ClientConstants.STATUS);
 		connectionTextLabel.setHorizontalAlignment(JLabel.RIGHT);
 		connectionTextLabel.setVerticalTextPosition(JLabel.CENTER);
 		bagConstraints.gridx = 0;
@@ -45,7 +47,7 @@ public class HeaderView extends JPanel {
 		bagConstraints.insets = new Insets(0, 0, 10, 10);
 		add(connectionTextLabel, bagConstraints);
 
-		connectionLabel = new JLabel("Not Connected");
+		connectionLabel = new JLabel(ClientConstants.NOT_CONNECTED);
 		connectionLabel.setHorizontalTextPosition(JLabel.LEFT);
 		connectionLabel.setVerticalTextPosition(JLabel.CENTER);
 		bagConstraints.gridx = 1;
@@ -53,7 +55,7 @@ public class HeaderView extends JPanel {
 		bagConstraints.insets = new Insets(0, 0, 10, 10);
 		add(connectionLabel, bagConstraints);
 
-		timestampTextLabel = new JLabel("Time Stamp: ");
+		timestampTextLabel = new JLabel(ClientConstants.TIME_STAMP);
 		timestampTextLabel.setHorizontalAlignment(JLabel.RIGHT);
 		timestampTextLabel.setVerticalTextPosition(JLabel.CENTER);
 		bagConstraints.gridx = 0;
@@ -71,7 +73,7 @@ public class HeaderView extends JPanel {
 	}
 
 	private void createButtons(GridBagConstraints bagConstraints) {
-		connectButton = new JButton("Connect");
+		connectButton = new JButton(ClientConstants.CONNECT);
 		connectButton.setBackground(Color.RED);
 		connectButton.setPreferredSize(new Dimension(120, 35));
 		bagConstraints.gridx = 2;

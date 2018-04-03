@@ -1,5 +1,6 @@
 package ser516.project3.client.view;
 
+import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.ExpressionsModel;
 
 import javax.swing.*;
@@ -21,7 +22,7 @@ public class ExpressionsView extends JPanel{
     public void initializeExpressionsUI(GraphView graphView) {
         graphView.setLayout(new GridLayout(1, 1, 8, 8));
         graphView.setOpaque(false);
-        graphView.setBorder(new TitledBorder(null, "Graph",
+        graphView.setBorder(new TitledBorder(null, ClientConstants.GRAPH,
             TitledBorder.LEADING, TitledBorder.TOP, FONT, null));
         add(new JPanel(), BorderLayout.LINE_START ); // Need to replace with a panel for displaying the face.
         add(graphView, BorderLayout.LINE_END );

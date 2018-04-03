@@ -7,8 +7,11 @@ import ser516.project3.utilities.NumberTextField;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyListener;
 
 /*This class contains performance metrics view
  * where emotion button is displayed on the right
@@ -97,7 +100,7 @@ public class PerformanceMetricView extends JPanel{
 		gridBagConstraints.insets = new Insets(10, 5, 10, 5);
 		gridBagConstraints.gridx = 1;
 		gridBagConstraints.gridy = 3;
-		displaylengthLabel = new JLabel(ClientConstants.DISPLAYLENGTH);
+		displaylengthLabel = new JLabel(ClientConstants.DISPLAY_LENGTH);
 		displaylengthLabel.setHorizontalTextPosition(SwingConstants.RIGHT);
 		displaylengthLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		displaylengthLabel.setFont(FONT);
@@ -152,6 +155,11 @@ public class PerformanceMetricView extends JPanel{
 		focusButton.addActionListener(actionListener);
 	}
 
+	public void addDisplayLengthListener(KeyAdapter keyAdapter, DocumentListener documentListener) {
+		displayLengthField.addKeyListener(keyAdapter);
+		displayLengthField.getDocument().addDocumentListener(documentListener);
+	}
+
 	public void updatePerformanceMetricView(PerformanceMetricModel performanceMetricModel) {
 		this.performanceMetricModel = performanceMetricModel;
 		interestButton.setBackground(this.performanceMetricModel.getInterestColor());
@@ -160,5 +168,6 @@ public class PerformanceMetricView extends JPanel{
 		relaxationButton.setBackground(this.performanceMetricModel.getRelaxationColor());
 		excitementButton.setBackground(this.performanceMetricModel.getExcitementColor());
 		focusButton.setBackground(this.performanceMetricModel.getFocusColor());
+		displayLengthField.setText("" + this.performanceMetricModel.getDisplayLength());
 	}
 }
