@@ -108,6 +108,24 @@
 			<artifactId>jcommon</artifactId>
 			<version>1.0.23</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.weblookandfeel</groupId>
+			<artifactId>weblaf-core</artifactId>
+			<version>1.2.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.weblookandfeel</groupId>
+			<artifactId>weblaf-ui</artifactId>
+			<version>1.2.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.seaglasslookandfeel</groupId>
+			<artifactId>seaglasslookandfeel</artifactId>
+			<version>0.2.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -4,12 +4,12 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
@@ -35,6 +35,9 @@ public class GraphView extends JPanel{
   private JFreeChart chart;
   private ChartPanel chartPanel;
   private GraphModel graphModel;
+
+  private static final int TITLE_FONT_SIZE = 17;
+  private static final int GRAPH_AXIS_FONT_SIZE = 14;
 
   /**
    * Initializes a graph instance and creates a default empty
@@ -67,9 +70,15 @@ public class GraphView extends JPanel{
   }
 
   private void initializeGraph() {
+    setLayout(new GridLayout(1, 1, 8, 8));
+    setBorder(new TitledBorder(null, ClientConstants.GRAPH,
+        TitledBorder.CENTER, TitledBorder.TOP, new Font(ClientConstants.FONT_NAME, Font.BOLD, TITLE_FONT_SIZE), null));
+    setBackground(Color.decode("#AFAFAF"));
     XYSeriesCollection dataSet = new XYSeriesCollection();
     chart = createChart(dataSet);
     chartPanel = new ChartPanel(chart);
+    add(chartPanel);
+    setVisible(true);
   }
 
   private XYDataset createDataSet() {
@@ -98,16 +107,19 @@ public class GraphView extends JPanel{
   }
 
   private JFreeChart createChart(final XYDataset dataSet) {
-    JFreeChart chart = ChartFactory.createXYLineChart("", ClientConstants.TIME_IN_SECONDS,
-        "", dataSet, PlotOrientation.VERTICAL, true, true,
+    JFreeChart chart = ChartFactory.createXYLineChart("", "",
+        "", dataSet, PlotOrientation.VERTICAL, false, true,
         false);
+    chart.setBackgroundPaint(Color.decode("#AFAFAF"));
 
     XYPlot plot = chart.getXYPlot();
-
     ValueAxis range = plot.getRangeAxis();
-    range.setVisible(false);
+    range.setTickLabelPaint(Color.WHITE);
+    range.setTickLabelFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, GRAPH_AXIS_FONT_SIZE));
     range = plot.getDomainAxis();
     range.setRange(0, graphModel.getXLength());
+    range.setTickLabelPaint(Color.WHITE);
+    range.setTickLabelFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, GRAPH_AXIS_FONT_SIZE));
 
 
     XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
@@ -119,12 +131,10 @@ public class GraphView extends JPanel{
     }
 
     plot.setRenderer(renderer);
-    plot.setBackgroundPaint(Color.GRAY);
+    plot.setBackgroundPaint(Color.decode("#676165"));
 
     plot.setRangeGridlinesVisible(false);
     plot.setDomainGridlinesVisible(false);
-
-    chart.getLegend().setFrame(BlockBorder.NONE);
 
     return chart;
   }

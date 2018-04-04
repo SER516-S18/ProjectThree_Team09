@@ -15,6 +15,8 @@ public class ClientConstants {
 	// Client View Constants
 	public final static String OPTIONS = "Options";
 	public final static String OPEN_SERVER = "Open Server";
+	public final static String FONT_NAME = "Courier New";
+	public final static String FRAME_COLOR_HEX = "#D1D1D1";
 
 
 	// Performance Metrics Constants
