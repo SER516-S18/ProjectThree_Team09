@@ -3,21 +3,16 @@ package ser516.project3.server.view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import org.apache.log4j.Logger;
 
 import ser516.project3.model.ConsoleModel;
-import ser516.project3.model.Message.AbstractExpression;
 import ser516.project3.server.controller.ServerControllerImpl;
 import ser516.project3.utilities.InputVerifierNumericals;
 import ser516.project3.utilities.ServerCommonData;
@@ -29,7 +24,7 @@ public class ServerPanelGenerator {
 	private static ServerControllerImpl serverControllerImpl = new ServerControllerImpl();
 
 	private static final Font FONT = new Font("Courier New", Font.BOLD, 17);
-	private static final Font SUBFONT = new Font("Courier New", Font.BOLD, 14);
+	//private static final Font SUBFONT = new Font("Courier New", Font.BOLD, 14);
 	private static final String INTERVAL_LABEL_NAME = "Interval (seconds):  ";
 	private static final String AUTO_REPEAT_CHECKBOX_NAME = "Auto Repeat";
 	private static final String TOGGLE_START_STOP = "Start / Stop";
@@ -208,17 +203,6 @@ public class ServerPanelGenerator {
 		ExpressionsView expressionsView = new ExpressionsView();
 		return expressionsView.getExpressionsPanel();
 	}
-
-	public enum EmotionPanel{
-		Interest(1, 1, 3, 1), Engagement(1, 2, 3, 2), Excitement(1, 3, 3, 3), Stress(2, 2, 3, 4), Relaxation(1, 5, 3, 5), Focus(1, 6, 3, 6);
-		int gbc_x, gbc_y, spinner_x, spinner_y;
-		private EmotionPanel(int gbc_x, int gbc_y, int spinner_x, int spinner_y){
-			this.gbc_x = gbc_x;
-			this.gbc_y = gbc_y;
-			this.spinner_x = spinner_x;
-			this.spinner_y = spinner_y;
-		}
-	}
 	
 	public static JPanel createEmotionsPanel() {
 		EmotionsView emotionsView = new EmotionsView();
@@ -245,9 +229,6 @@ public class ServerPanelGenerator {
 			JOptionPane.showMessageDialog(null, "You must input a valid number for this field!");
 		}
 	}
-	
-
-
 
 	/**
 	 * @return the serverControllerImpl
