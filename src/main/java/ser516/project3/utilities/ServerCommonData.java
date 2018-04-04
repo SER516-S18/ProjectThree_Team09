@@ -6,6 +6,8 @@ public class ServerCommonData {
 
 	private static ServerCommonData instance = null;
 	private static Message message;
+
+
 	private int interval;
 	private boolean autoRepeat;
 	private boolean serverStarted = false;
@@ -22,6 +24,11 @@ public class ServerCommonData {
 		return instance;
 	}
 
+	
+	public static void setMessage(Message message) {
+		ServerCommonData.message = message;
+	}
+	
 	public Message getMessage() {
 		return message;
 	}

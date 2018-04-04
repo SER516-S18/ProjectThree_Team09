@@ -31,18 +31,26 @@ public class ServerConnectionEndpoint {
 	@OnOpen
 	public void onOpen(final Session session) throws IOException {
 		try {
-			// TODO: Here the logic is to start sending the message json based on the value
+			//  Here the logic is to start sending the message json based on the value
 			// of auto send flag
-			// TODO: If the flag is false, just send the json once, else keep sending based
+			//  If the flag is false, just send the json once, else keep sending based
 			// on the interval
 			logger.info("New Client connected :::: " + session.getBasicRemote());
-			if (ServerCommonData.getInstance().isAutoRepeat()) {
-				while(true) {
-					session.getBasicRemote().sendObject(new Message());
-					Thread.sleep(ServerCommonData.getInstance().getInterval()*1000);
+			ServerCommonData serverCommonDataObject = ServerCommonData.getInstance();
+			if (serverCommonDataObject.isAutoRepeat()) {
+				while (true) {
+					//send the message object
+					session.getBasicRemote().sendObject(serverCommonDataObject.getMessage());
+					
+					//increment the time elapsed
+					long timeElapsed = (long) ServerCommonData.getInstance().getMessage().getTimeStamp();
+					double dataInterval = ServerCommonData.getInstance().getMessage().getInterval();
+					ServerCommonData.getInstance().getMessage().setTimeStamp(timeElapsed + dataInterval);
+
+					Thread.sleep((long) (serverCommonDataObject.getMessage().getInterval() * 1000));
 				}
 			} else {
-				session.getBasicRemote().sendObject(new Message());
+				session.getBasicRemote().sendObject(serverCommonDataObject.getMessage());
 			}
 
 		} catch (IOException | EncodeException | InterruptedException e) {
