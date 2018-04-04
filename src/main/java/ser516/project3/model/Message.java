@@ -13,9 +13,9 @@ public class Message {
 
 	private double interval;
 	private double timeStamp;
-	private HashMap<String, Double> emotionMap;
-	private HashMap<String, Double> abstractExpressionMap;
-	private HashMap<String, Boolean> concreteExpressionMap;
+	private HashMap<String, Double> emotionMap = new HashMap<String, Double>();
+	private HashMap<String, Double> abstractExpressionMap = new HashMap<String, Double>();
+	private HashMap<String, Boolean> concreteExpressionMap = new HashMap<String, Boolean>();
 
 
 	public double getInterval() {
