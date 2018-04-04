@@ -73,13 +73,13 @@ public class Message {
 		builder.append("Message [timeStamp=").append(timeStamp);
 		builder.append(", interval=").append(interval);
 		for(Emotion em : Emotion.values()) {
-			builder.append(", "+ em.name()+"=").append(emotionMap.get(em));
+			builder.append(", "+ em.name()+"=").append(this.emotionMap.get(em.name()));
 		}
 		for(AbstractExpression exp : AbstractExpression.values()) {
-			builder.append(", "+exp.name()+"=").append(abstractExpressionMap.get(exp));
+			builder.append(", "+exp.name()+"=").append(this.abstractExpressionMap.get(exp.name()));
 		}
 		for(ConcreteExpression exp : ConcreteExpression.values()) {
-			builder.append(", "+exp.name()+"=").append(concreteExpressionMap.get(exp));
+			builder.append(", "+exp.name()+"=").append(this.concreteExpressionMap.get(exp.name()));
 		}
 		return builder.toString();
 	}
