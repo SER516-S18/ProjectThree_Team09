@@ -17,6 +17,7 @@ import javax.swing.event.ChangeListener;
 import org.apache.log4j.Logger;
 
 import ser516.project3.model.ConsoleModel;
+import ser516.project3.model.Message.AbstractExpression;
 import ser516.project3.server.controller.ServerControllerImpl;
 import ser516.project3.utilities.InputVerifierNumericals;
 import ser516.project3.utilities.ServerCommonData;
@@ -352,6 +353,17 @@ public class ServerPanelGenerator {
 		return expressionPanel;
 	}
 
+	public enum EmotionPanel{
+		Interest(1, 1, 3, 1), Engagement(1, 2, 3, 2), Excitement(1, 3, 3, 3), Stress(2, 2, 3, 4), Relaxation(1, 5, 3, 5), Focus(1, 6, 3, 6);
+		int gbc_x, gbc_y, spinner_x, spinner_y;
+		private EmotionPanel(int gbc_x, int gbc_y, int spinner_x, int spinner_y){
+			this.gbc_x = gbc_x;
+			this.gbc_y = gbc_y;
+			this.spinner_x = spinner_x;
+			this.spinner_y = spinner_y;
+		}
+	}
+	
 	public static JPanel createEmotionsPanel() {
 		JPanel emotionsPanel = new JPanel();
 		emotionsPanel
@@ -363,126 +375,26 @@ public class ServerPanelGenerator {
 		Double max = new Double(1.00);
 		Double step = new Double(0.10);
 
-		JLabel interest_label = new JLabel("Interest");
-		GridBagConstraints interestGbc = new GridBagConstraints();
-		interestGbc.gridx = 1;
-		interestGbc.gridy = 1;
-		emotionsPanel.add(interest_label, interestGbc);
-
-		SpinnerModel interest_spinner = new SpinnerNumberModel(current, min, max, step);
-		JSpinner i_spinner = new JSpinner(interest_spinner);
-		i_spinner.setPreferredSize(spinnerDimension);
-		GridBagConstraints i_spinnerGbc = new GridBagConstraints();
-		i_spinnerGbc.gridx = 3;
-		i_spinnerGbc.gridy = 1;
-		emotionsPanel.add(i_spinner, i_spinnerGbc);
-		i_spinner.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				ServerCommonData.getInstance().getMessage().setInterest((Double) i_spinner.getValue());
-			}
-		});
-
-		JLabel engagement_label = new JLabel("Engagement");
-		GridBagConstraints engagementGbc = new GridBagConstraints();
-		engagementGbc.gridx = 1;
-		engagementGbc.gridy = 2;
-		emotionsPanel.add(engagement_label, engagementGbc);
-
-		SpinnerModel engagement_spinner = new SpinnerNumberModel(current, min, max, step);
-		JSpinner e_spinner = new JSpinner(engagement_spinner);
-		e_spinner.setPreferredSize(spinnerDimension);
-		GridBagConstraints e_spinnerGbc = new GridBagConstraints();
-		e_spinnerGbc.gridx = 3;
-		e_spinnerGbc.gridy = 2;
-		emotionsPanel.add(e_spinner, e_spinnerGbc);
-		e_spinner.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				ServerCommonData.getInstance().getMessage().setEngagement((Double) e_spinner.getValue());
-			}
-		});
-
-		JLabel excitement_label = new JLabel("Excitement");
-		GridBagConstraints excitementGbc = new GridBagConstraints();
-		excitementGbc.gridx = 1;
-		excitementGbc.gridy = 3;
-		emotionsPanel.add(excitement_label, excitementGbc);
-
-		SpinnerModel excitement_spinner = new SpinnerNumberModel(current, min, max, step);
-		JSpinner ex_spinner = new JSpinner(excitement_spinner);
-		ex_spinner.setPreferredSize(spinnerDimension);
-		GridBagConstraints ex_spinnerGbc = new GridBagConstraints();
-		ex_spinnerGbc.gridx = 3;
-		ex_spinnerGbc.gridy = 3;
-		emotionsPanel.add(ex_spinner, ex_spinnerGbc);
-		ex_spinner.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				ServerCommonData.getInstance().getMessage().setExcitement((Double) ex_spinner.getValue());
-			}
-		});
-
-		JLabel stress_label = new JLabel("Stress");
-		GridBagConstraints stressGbc = new GridBagConstraints();
-		stressGbc.gridx = 2;
-		stressGbc.gridy = 2;
-		emotionsPanel.add(stress_label, stressGbc);
-
-		SpinnerModel stress_spinner = new SpinnerNumberModel(current, min, max, step);
-		JSpinner s_spinner = new JSpinner(stress_spinner);
-		s_spinner.setPreferredSize(spinnerDimension);
-		GridBagConstraints s_spinnerGbc = new GridBagConstraints();
-		s_spinnerGbc.gridx = 3;
-		s_spinnerGbc.gridy = 4;
-		emotionsPanel.add(s_spinner, s_spinnerGbc);
-		s_spinner.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				ServerCommonData.getInstance().getMessage().setStress((Double) s_spinner.getValue());
-			}
-		});
-
-		JLabel relaxation_label = new JLabel("Relaxation");
-		GridBagConstraints relaxationGbc = new GridBagConstraints();
-		relaxationGbc.gridx = 1;
-		relaxationGbc.gridy = 5;
-		emotionsPanel.add(relaxation_label, relaxationGbc);
-
-		SpinnerModel relaxation_spinner = new SpinnerNumberModel(current, min, max, step);
-		JSpinner r_spinner = new JSpinner(relaxation_spinner);
-		r_spinner.setPreferredSize(spinnerDimension);
-		GridBagConstraints r_spinnerGbc = new GridBagConstraints();
-		r_spinnerGbc.gridx = 3;
-		r_spinnerGbc.gridy = 5;
-		emotionsPanel.add(r_spinner, r_spinnerGbc);
-		r_spinner.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				ServerCommonData.getInstance().getMessage().setRelaxation((Double) r_spinner.getValue());
-			}
-		});
-
-		JLabel focus_label = new JLabel("Focus");
-		GridBagConstraints focusGbc = new GridBagConstraints();
-		focusGbc.gridx = 1;
-		focusGbc.gridy = 6;
-		emotionsPanel.add(focus_label, focusGbc);
-
-		SpinnerModel focus_spinner = new SpinnerNumberModel(current, min, max, step);
-		JSpinner f_spinner = new JSpinner(focus_spinner);
-		f_spinner.setPreferredSize(spinnerDimension);
-		GridBagConstraints f_spinnerGbc = new GridBagConstraints();
-		f_spinnerGbc.gridx = 3;
-		f_spinnerGbc.gridy = 6;
-		emotionsPanel.add(f_spinner, f_spinnerGbc);
-		f_spinner.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				ServerCommonData.getInstance().getMessage().setFocus((Double) f_spinner.getValue());
-			}
-		});
-
+		for(EmotionPanel em : EmotionPanel.values()) {
+			JLabel interest_label = new JLabel(em.name());
+			GridBagConstraints gbc = new GridBagConstraints();
+			gbc.gridx = em.gbc_x;
+			gbc.gridy = em.gbc_y;
+			emotionsPanel.add(interest_label, gbc);
+			SpinnerModel spinner = new SpinnerNumberModel(current, min, max, step);
+			JSpinner jspinner = new JSpinner(spinner);
+			jspinner.setPreferredSize(spinnerDimension);
+			GridBagConstraints spinnerGbc = new GridBagConstraints();
+			spinnerGbc.gridx = em.spinner_x;
+			spinnerGbc.gridy = em.spinner_y;
+			emotionsPanel.add(jspinner, spinnerGbc);
+			jspinner.addChangeListener(new ChangeListener() {
+				@Override
+				public void stateChanged(ChangeEvent e) {
+					ServerCommonData.getInstance().getMessage().setEmotion(em.name(), (Double) jspinner.getValue());
+				}
+			});
+		}
 		return emotionsPanel;
 	}
 
@@ -505,101 +417,27 @@ public class ServerPanelGenerator {
 			JOptionPane.showMessageDialog(null, "You must input a valid number for this field!");
 		}
 	}
+	
 
 	private static void updateLowerFace(String lowerFaceAttribute, Double lowerFaceVal) {
-
-		switch (lowerFaceAttribute) {
-		case "Smile":
-			ServerCommonData.getInstance().getMessage().setSmile(lowerFaceVal);
-			ServerCommonData.getInstance().getMessage().setClench(0.0);
-			ServerCommonData.getInstance().getMessage().setLeftSmirk(0.0);
-			ServerCommonData.getInstance().getMessage().setRightSmirk(0.0);
-			ServerCommonData.getInstance().getMessage().setLaugh(0.0);
-			break;
-		case "Clench":
-			ServerCommonData.getInstance().getMessage().setClench(lowerFaceVal);
-			ServerCommonData.getInstance().getMessage().setSmile(0.0);
-			ServerCommonData.getInstance().getMessage().setLeftSmirk(0.0);
-			ServerCommonData.getInstance().getMessage().setRightSmirk(0.0);
-			ServerCommonData.getInstance().getMessage().setLaugh(0.0);
-			break;
-		case "Smirk Left":
-			ServerCommonData.getInstance().getMessage().setLeftSmirk(lowerFaceVal);
-			ServerCommonData.getInstance().getMessage().setSmile(0.0);
-			ServerCommonData.getInstance().getMessage().setClench(0.0);
-			ServerCommonData.getInstance().getMessage().setRightSmirk(0.0);
-			ServerCommonData.getInstance().getMessage().setLaugh(0.0);
-			break;
-		case "Smirk Right":
-			ServerCommonData.getInstance().getMessage().setRightSmirk(lowerFaceVal);
-			ServerCommonData.getInstance().getMessage().setSmile(0.0);
-			ServerCommonData.getInstance().getMessage().setClench(0.0);
-			ServerCommonData.getInstance().getMessage().setLeftSmirk(0.0);
-			ServerCommonData.getInstance().getMessage().setLaugh(0.0);
-			break;
-		case "Laugh":
-			ServerCommonData.getInstance().getMessage().setLaugh(lowerFaceVal);
-			ServerCommonData.getInstance().getMessage().setSmile(0.0);
-			ServerCommonData.getInstance().getMessage().setClench(0.0);
-			ServerCommonData.getInstance().getMessage().setLeftSmirk(0.0);
-			ServerCommonData.getInstance().getMessage().setRightSmirk(0.0);
-			break;
-		}
+			ServerCommonData.getInstance().getMessage().setAbstractExpression(AbstractExpression.smile.name() , lowerFaceAttribute.equals("Smile") ? lowerFaceVal : 0.0);
+			ServerCommonData.getInstance().getMessage().setAbstractExpression(AbstractExpression.clench.name(), lowerFaceAttribute.equals("Clench") ? lowerFaceVal : 0.0);
+			ServerCommonData.getInstance().getMessage().setAbstractExpression(AbstractExpression.leftSmirk.name(), lowerFaceAttribute.equals("Smirk Left") ? lowerFaceVal : 0.0);
+			ServerCommonData.getInstance().getMessage().setAbstractExpression(AbstractExpression.rightSmirk.name(), lowerFaceAttribute.equals("Smirk Right") ? lowerFaceVal : 0.0);
+			ServerCommonData.getInstance().getMessage().setAbstractExpression(AbstractExpression.laugh.name(), lowerFaceAttribute.equals("Laugh") ? lowerFaceVal : 0.0);
 	}
 
 	private static void updateUpperFace(String upperFaceAttribute, Double upperFaceVal) {
-
-		switch (upperFaceAttribute) {
-		case "Raise Brow":
-			ServerCommonData.getInstance().getMessage().setRaiseBrow(upperFaceVal);
-			ServerCommonData.getInstance().getMessage().setFurrowBrow(0.0);
-			break;
-		case "Furrow Brow":
-			ServerCommonData.getInstance().getMessage().setFurrowBrow(upperFaceVal);
-			ServerCommonData.getInstance().getMessage().setRaiseBrow(0.0);
-			break;
-		}
+			ServerCommonData.getInstance().getMessage().setAbstractExpression(AbstractExpression.raiseBrow.name(),  upperFaceAttribute.equals("Raise Brow") ? upperFaceVal : 0.0);
+			ServerCommonData.getInstance().getMessage().setAbstractExpression(AbstractExpression.furrowBrow.name(),  upperFaceAttribute.equals("Furrow Brow") ? upperFaceVal : 0.0);		
 	}
 
 	private static void updateEye(String eyeAttribute, Boolean eyeVal) {
-
-		switch (eyeAttribute) {
-		case "Blink":
-			ServerCommonData.getInstance().getMessage().setBlink(eyeVal);
-			ServerCommonData.getInstance().getMessage().setLeftWink(false);
-			ServerCommonData.getInstance().getMessage().setRightWink(false);
-			ServerCommonData.getInstance().getMessage().setLookingLeft(false);
-			ServerCommonData.getInstance().getMessage().setLookingRight(false);
-			break;
-		case "Wink Left":
-			ServerCommonData.getInstance().getMessage().setLeftWink(eyeVal);
-			ServerCommonData.getInstance().getMessage().setBlink(false);
-			ServerCommonData.getInstance().getMessage().setRightWink(false);
-			ServerCommonData.getInstance().getMessage().setLookingLeft(false);
-			ServerCommonData.getInstance().getMessage().setLookingRight(false);
-			break;
-		case "Wink Right":
-			ServerCommonData.getInstance().getMessage().setRightWink(eyeVal);
-			ServerCommonData.getInstance().getMessage().setBlink(false);
-			ServerCommonData.getInstance().getMessage().setLeftWink(false);
-			ServerCommonData.getInstance().getMessage().setLookingLeft(false);
-			ServerCommonData.getInstance().getMessage().setLookingRight(false);
-			break;
-		case "Look Left":
-			ServerCommonData.getInstance().getMessage().setLookingLeft(eyeVal);
-			ServerCommonData.getInstance().getMessage().setBlink(false);
-			ServerCommonData.getInstance().getMessage().setLeftWink(false);
-			ServerCommonData.getInstance().getMessage().setRightWink(false);
-			ServerCommonData.getInstance().getMessage().setLookingRight(false);
-			break;
-		case "Look Right":
-			ServerCommonData.getInstance().getMessage().setLookingRight(eyeVal);
-			ServerCommonData.getInstance().getMessage().setBlink(false);
-			ServerCommonData.getInstance().getMessage().setLeftWink(false);
-			ServerCommonData.getInstance().getMessage().setRightWink(false);
-			ServerCommonData.getInstance().getMessage().setLookingLeft(false);
-			break;
-		}
+			ServerCommonData.getInstance().getMessage().setConcreteExpression(AbstractExpression.blink.name(), eyeAttribute.equals("Blink") ? eyeVal : false);
+			ServerCommonData.getInstance().getMessage().setConcreteExpression(AbstractExpression.leftWink.name(), eyeAttribute.equals("Wink Left") ? eyeVal : false);
+			ServerCommonData.getInstance().getMessage().setConcreteExpression(AbstractExpression.rightWink.name(), eyeAttribute.equals("Wink Right") ? eyeVal : false);
+			ServerCommonData.getInstance().getMessage().setConcreteExpression(AbstractExpression.lookingLeft.name(), eyeAttribute.equals("Look Left") ? eyeVal : false);
+			ServerCommonData.getInstance().getMessage().setConcreteExpression(AbstractExpression.lookingRight.name(), eyeAttribute.equals("Look Right") ? eyeVal : false);
 	}
 
 	/**

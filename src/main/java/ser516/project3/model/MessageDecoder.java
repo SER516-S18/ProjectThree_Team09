@@ -8,6 +8,12 @@ import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 
+import ser516.project3.model.Message.AbstractExpression;
+import ser516.project3.model.Message.ConcreteExpression;
+import ser516.project3.model.Message.Emotion;
+
+
+
 public class MessageDecoder implements Decoder.Text<Message> {
 
     @Override
@@ -36,26 +42,16 @@ public class MessageDecoder implements Decoder.Text<Message> {
         message.setTimeStamp(timeAttributes.getJsonNumber("TimeStamp").doubleValue());
 
         // Unmarshal the expression attributes.
-        message.setBlink(expressionAttributes.getBoolean("Blink"));
-        message.setRightWink(expressionAttributes.getBoolean("RightWink"));
-        message.setLeftWink(expressionAttributes.getBoolean("LeftWink"));
-        message.setLookingRight(expressionAttributes.getBoolean("LookingRight"));
-        message.setLookingLeft(expressionAttributes.getBoolean("LookingLeft"));
-        message.setFurrowBrow(expressionAttributes.getJsonNumber("FurrowBrow").doubleValue());
-        message.setRaiseBrow(expressionAttributes.getJsonNumber("RaiseBrow").doubleValue());
-        message.setSmile(expressionAttributes.getJsonNumber("Smile").doubleValue());
-        message.setClench(expressionAttributes.getJsonNumber("Clench").doubleValue());
-        message.setLeftSmirk(expressionAttributes.getJsonNumber("LeftSmirk").doubleValue());
-        message.setRightSmirk(expressionAttributes.getJsonNumber("RightSmirk").doubleValue());
-        message.setLaugh(expressionAttributes.getJsonNumber("Laugh").doubleValue());
-
+        for(AbstractExpression aex : AbstractExpression.values()) {
+        	message.setAbstractExpression(aex.name(), expressionAttributes.getJsonNumber(aex.name()).doubleValue());
+        }
+        for(ConcreteExpression cex : ConcreteExpression.values()) {
+        	message.setConcreteExpression(cex.name(), expressionAttributes.getBoolean(cex.name()));
+        }
         // Unmarshal the emotion attributes.
-        message.setInterest(emotionAttributes.getJsonNumber("Interest").doubleValue());
-        message.setEngagement(emotionAttributes.getJsonNumber("Engagement").doubleValue());
-        message.setStress(emotionAttributes.getJsonNumber("Stress").doubleValue());
-        message.setRelaxation(emotionAttributes.getJsonNumber("Relaxation").doubleValue());
-        message.setExcitement(emotionAttributes.getJsonNumber("Excitement").doubleValue());
-        message.setFocus(emotionAttributes.getJsonNumber("Focus").doubleValue());
+        for(Emotion em : Emotion.values()) {
+        	message.setEmotion(em.name(), emotionAttributes.getJsonNumber(em.name()).doubleValue());
+        }
 
         return message;
     }

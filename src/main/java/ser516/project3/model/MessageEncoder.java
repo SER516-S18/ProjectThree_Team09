@@ -6,9 +6,14 @@ import java.util.Map;
 import javax.json.Json;
 import javax.json.JsonBuilderFactory;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
+
+import ser516.project3.model.Message.AbstractExpression;
+import ser516.project3.model.Message.ConcreteExpression;
+import ser516.project3.model.Message.Emotion;
 
 public class MessageEncoder implements Encoder.Text<Message> {
 
@@ -29,44 +34,28 @@ public class MessageEncoder implements Encoder.Text<Message> {
         
         
         //Build Time attributes
-        JsonObject timeAttributes=factory
-        		.createObjectBuilder()
-        		.add("Interval", message.getInterval())
-        		.add("TimeStamp", message.getTimeStamp()).build();
+        JsonObject timeAttributes=factory.createObjectBuilder()
+        								 .add("Interval", message.getInterval())
+        								 .add("TimeStamp", message.getTimeStamp()).build();
         
         // Build "Expression" object.
-        JsonObject expressionObject = factory
-            .createObjectBuilder()
-            .add("Blink", message.getBlink())
-            .add("RightWink", message.getRightWink())
-            .add("LeftWink", message.getLeftWink())
-            .add("LookingRight", message.getLookingRight())
-            .add("LookingLeft", message.getLookingLeft())
-            .add("FurrowBrow", message.getFurrowBrow())
-            .add("RaiseBrow", message.getRaiseBrow())
-            .add("Smile", message.getSmile())
-            .add("Clench", message.getClench())
-            .add("LeftSmirk", message.getLeftSmirk())
-            .add("RightSmirk", message.getRightSmirk())
-            .add("Laugh", message.getLaugh())
-            .build();
-        
+        JsonObjectBuilder expressionBuilder = factory.createObjectBuilder();   	
+        for(AbstractExpression aex : AbstractExpression.values()) {
+        	expressionBuilder.add(aex.name(), message.getAbstractExpression(aex.name()));
+        }
+        for(ConcreteExpression cex : ConcreteExpression.values()) {
+        	expressionBuilder.add(cex.name(), message.getConcreteExpression(cex.name()));
+        }        
         // Build "Emotion" object.
-        JsonObject emotionObject = factory
-            .createObjectBuilder()
-            .add("Interest", message.getInterest())
-            .add("Engagement", message.getEngagement())
-            .add("Stress", message.getStress())
-            .add("Relaxation", message.getRelaxation())
-            .add("Excitement", message.getExcitement())
-            .add("Focus", message.getFocus())
-            .build();
-
+        JsonObjectBuilder emotionBuilder = factory.createObjectBuilder();
+        for(Emotion em : Emotion.values()) {
+        	expressionBuilder.add(em.name(), message.getEmotion(em.name()));
+        }
         return Json
             .createObjectBuilder()
             .add("Time-Attributes", timeAttributes)
-            .add("Expression", expressionObject)
-            .add("Emotion", emotionObject)
+            .add("Expression", expressionBuilder.build())
+            .add("Emotion", emotionBuilder.build())
             .build()
             .toString();
     }

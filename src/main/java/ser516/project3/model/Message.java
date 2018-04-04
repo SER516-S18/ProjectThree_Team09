@@ -1,5 +1,7 @@
 package ser516.project3.model;
 
+import java.util.HashMap;
+
 /**
  * Message is a data model class that encapsulates the data messages sent
  * between the client and the server. The
@@ -11,28 +13,10 @@ public class Message {
 
 	private double interval;
 	private double timeStamp;
+	private HashMap<String, Double> emotionMap;
+	private HashMap<String, Double> abstractExpressionMap;
+	private HashMap<String, Boolean> concreteExpressionMap;
 
-	// Emotion Attributes.
-	private double interest;
-	private double engagement;
-	private double stress;
-	private double relaxation;
-	private double excitement;
-	private double focus;
-
-	// Expression Attributes.
-	private double smile;
-	private double clench;
-	private double leftSmirk;
-	private double rightSmirk;
-	private double laugh;
-	private double furrowBrow;
-	private double raiseBrow;
-	private boolean blink;
-	private boolean rightWink;
-	private boolean leftWink;
-	private boolean lookingRight;
-	private boolean lookingLeft;
 
 	public double getInterval() {
 		return interval;
@@ -49,209 +33,57 @@ public class Message {
 	public void setTimeStamp(double timeStamp) {
 		this.timeStamp = timeStamp;
 	}
-
-	public void setBlink(boolean attribute) {
-
-		this.blink = attribute;
+	
+	public void setEmotion(String em, Double val) {
+		this.emotionMap.put(em, val);
 	}
-
-	public boolean getBlink() {
-		return this.blink;
+	
+	public double getEmotion(String em) {
+		return this.emotionMap.get(em);
 	}
-
-	public void setRightWink(boolean attribute) {
-
-		this.rightWink = attribute;
+	
+	public void setAbstractExpression(String aex, Double val) {
+		this.abstractExpressionMap.put(aex, val);
 	}
-
-	public boolean getRightWink() {
-		return this.rightWink;
+	
+	public double getAbstractExpression(String aex) {
+		return this.abstractExpressionMap.get(aex);
 	}
-
-	public void setLeftWink(boolean attribute) {
-
-		this.leftWink = attribute;
+	
+	public void setConcreteExpression(String cex, Boolean val) {
+		this.concreteExpressionMap.put(cex, val);
 	}
-
-	public boolean getLeftWink() {
-		return this.leftWink;
+	
+	public Boolean getConcreteExpression(String cex) {
+		return this.concreteExpressionMap.get(cex);
 	}
-
-	public void setLookingRight(boolean attribute) {
-
-		this.lookingRight = attribute;
-	}
-
-	public boolean getLookingRight() {
-		return this.lookingRight;
-	}
-
-	public void setLookingLeft(boolean attribute) {
-
-		this.lookingLeft = attribute;
-	}
-
-	public boolean getLookingLeft() {
-		return this.lookingLeft;
-	}
-
-	public void setFurrowBrow(double attribute) {
-
-		this.furrowBrow = attribute;
-	}
-
-	public double getFurrowBrow() {
-		return this.furrowBrow;
-	}
-
-	public void setRaiseBrow(double attribute) {
-
-		this.raiseBrow = attribute;
-	}
-
-	public double getRaiseBrow() {
-		return this.raiseBrow;
-	}
-
-	public void setSmile(double attribute) {
-
-		this.smile = attribute;
-	}
-
-	public double getSmile() {
-		return this.smile;
-	}
-
-	public void setClench(double attribute) {
-
-		this.clench = attribute;
-	}
-
-	public double getClench() {
-		return this.clench;
-	}
-
-	public void setLeftSmirk(double attribute) {
-
-		this.leftSmirk = attribute;
-	}
-
-	public double getLeftSmirk() {
-		return this.leftSmirk;
-	}
-
-	public void setRightSmirk(double attribute) {
-
-		this.rightSmirk = attribute;
-	}
-
-	public double getRightSmirk() {
-		return this.rightSmirk;
-	}
-
-	public void setLaugh(double attribute) {
-
-		this.laugh = attribute;
-	}
-
-	public double getLaugh() {
-		return this.laugh;
-	}
-
-	public void setInterest(double attribute) {
-
-		this.interest = attribute;
-	}
-
-	public double getInterest() {
-		return this.interest;
-	}
-
-	public void setEngagement(double attribute) {
-		this.engagement = attribute;
-	}
-
-	public double getEngagement() {
-		return this.engagement;
-	}
-
-	public void setStress(double attribute) {
-		this.stress = attribute;
-	}
-
-	public double getStress() {
-		return this.stress;
-	}
-
-	public void setRelaxation(double attribute) {
-		this.relaxation = attribute;
-	}
-
-	public double getRelaxation() {
-		return this.relaxation;
-	}
-
-	public void setExcitement(double attribute) {
-		this.excitement = attribute;
-	}
-
-	public double getExcitement() {
-		return this.excitement;
-	}
-
-	public void setFocus(double attribute) {
-		this.focus = attribute;
-	}
-
-	public double getFocus() {
-		return this.focus;
-	}
-
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Message [timeStamp=");
-		builder.append(timeStamp);
-		builder.append(", interval=");
-		builder.append(interval);
-		builder.append(", blink=");
-		builder.append(blink);
-		builder.append(", rightWink=");
-		builder.append(rightWink);
-		builder.append(", leftWink=");
-		builder.append(leftWink);
-		builder.append(", lookingRight=");
-		builder.append(lookingRight);
-		builder.append(", lookingLeft=");
-		builder.append(lookingLeft);
-		builder.append(", furrowBrow=");
-		builder.append(furrowBrow);
-		builder.append(", raiseBrow=");
-		builder.append(raiseBrow);
-		builder.append(", smile=");
-		builder.append(smile);
-		builder.append(", clench=");
-		builder.append(clench);
-		builder.append(", leftSmirk=");
-		builder.append(leftSmirk);
-		builder.append(", rightSmirk=");
-		builder.append(rightSmirk);
-		builder.append(", laugh=");
-		builder.append(laugh);
-		builder.append(", interest=");
-		builder.append(interest);
-		builder.append(", engagement=");
-		builder.append(engagement);
-		builder.append(", stress=");
-		builder.append(stress);
-		builder.append(", relaxation=");
-		builder.append(relaxation);
-		builder.append(", excitement=");
-		builder.append(excitement);
-		builder.append(", focus=");
-		builder.append(focus);
-		builder.append("]");
+		builder.append("Message [timeStamp=").append(timeStamp);
+		builder.append(", interval=").append(interval);
+		for(Emotion em : Emotion.values()) {
+			builder.append(", "+ em.name()+"=").append(emotionMap.get(em));
+		}
+		for(AbstractExpression exp : AbstractExpression.values()) {
+			builder.append(", "+exp.name()+"=").append(abstractExpressionMap.get(exp));
+		}
+		for(ConcreteExpression exp : ConcreteExpression.values()) {
+			builder.append(", "+exp.name()+"=").append(concreteExpressionMap.get(exp));
+		}
 		return builder.toString();
 	}
+	
+	public enum Emotion{
+		interest, engagement, excitement, stress, relaxation, focus;
+	}
 
+	public enum AbstractExpression{
+		smile, clench, leftSmirk, rightSmirk, laugh, furrowBrow, raiseBrow, blink, rightWink, leftWink, lookingRight, lookingLeft;
+	}
+
+	public enum ConcreteExpression{
+		blink, rightWink, leftWink, lookingRight, lookingLeft;
+	}
 }
