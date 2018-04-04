@@ -39,6 +39,9 @@ public class Message {
 	}
 	
 	public double getEmotion(String em) {
+		if(em == null || this.emotionMap.get(em) == null) {
+			return 0.0;
+		}
 		return this.emotionMap.get(em);
 	}
 	
@@ -47,6 +50,9 @@ public class Message {
 	}
 	
 	public double getAbstractExpression(String aex) {
+		if(aex == null || this.abstractExpressionMap.get(aex) == null) {
+			return 0.0;
+		}
 		return this.abstractExpressionMap.get(aex);
 	}
 	
@@ -55,6 +61,9 @@ public class Message {
 	}
 	
 	public Boolean getConcreteExpression(String cex) {
+		if(cex == null || this.concreteExpressionMap.get(cex) == null) {
+			return false;
+		}
 		return this.concreteExpressionMap.get(cex);
 	}
 	
@@ -80,7 +89,7 @@ public class Message {
 	}
 
 	public enum AbstractExpression{
-		smile, clench, leftSmirk, rightSmirk, laugh, furrowBrow, raiseBrow, blink, rightWink, leftWink, lookingRight, lookingLeft;
+		smile, clench, leftSmirk, rightSmirk, laugh, furrowBrow, raiseBrow;
 	}
 
 	public enum ConcreteExpression{

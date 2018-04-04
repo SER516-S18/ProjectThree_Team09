@@ -49,7 +49,7 @@ public class MessageEncoder implements Encoder.Text<Message> {
         // Build "Emotion" object.
         JsonObjectBuilder emotionBuilder = factory.createObjectBuilder();
         for(Emotion em : Emotion.values()) {
-        	expressionBuilder.add(em.name(), message.getEmotion(em.name()));
+        	emotionBuilder.add(em.name(), message.getEmotion(em.name()));
         }
         return Json
             .createObjectBuilder()

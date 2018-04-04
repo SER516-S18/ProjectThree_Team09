@@ -6,6 +6,7 @@ import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
 
 import ser516.project3.model.Message.AbstractExpression;
+import ser516.project3.model.Message.ConcreteExpression;
 import ser516.project3.model.Message.Emotion;
 
 public class MessageDecoderTest {
@@ -21,7 +22,7 @@ public class MessageDecoderTest {
             MessageDecoder decoder = new MessageDecoder();
             Message message = decoder.decode(payload);
 
-            assertEquals(message.getAbstractExpression(AbstractExpression.blink.name()), false);
+            assertEquals(message.getAbstractExpression(ConcreteExpression.blink.name()), false);
             assertEquals(message.getAbstractExpression(AbstractExpression.clench.name()), false);
             assertEquals(message.getEmotion(Emotion.engagement.name()), 0.0);
             assertEquals(message.getEmotion(Emotion.excitement.name()), 0.0);
