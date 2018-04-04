@@ -35,36 +35,36 @@ public class Message {
 	}
 	
 	public void setEmotion(String em, Double val) {
-		this.emotionMap.put(em, val);
+		this.emotionMap.put(em.toLowerCase(), val);
 	}
 	
 	public double getEmotion(String em) {
-		if(em == null || this.emotionMap.get(em) == null) {
+		if(em == null || this.emotionMap.get(em.toLowerCase()) == null) {
 			return 0.0;
 		}
-		return this.emotionMap.get(em);
+		return this.emotionMap.get(em.toLowerCase());
 	}
 	
 	public void setAbstractExpression(String aex, Double val) {
-		this.abstractExpressionMap.put(aex, val);
+		this.abstractExpressionMap.put(aex.toLowerCase(), val);
 	}
 	
 	public double getAbstractExpression(String aex) {
-		if(aex == null || this.abstractExpressionMap.get(aex) == null) {
+		if(aex == null || this.abstractExpressionMap.get(aex.toLowerCase()) == null) {
 			return 0.0;
 		}
-		return this.abstractExpressionMap.get(aex);
+		return this.abstractExpressionMap.get(aex.toLowerCase());
 	}
 	
 	public void setConcreteExpression(String cex, Boolean val) {
-		this.concreteExpressionMap.put(cex, val);
+		this.concreteExpressionMap.put(cex.toLowerCase(), val);
 	}
 	
 	public Boolean getConcreteExpression(String cex) {
-		if(cex == null || this.concreteExpressionMap.get(cex) == null) {
+		if(cex == null || this.concreteExpressionMap.get(cex.toLowerCase()) == null) {
 			return false;
 		}
-		return this.concreteExpressionMap.get(cex);
+		return this.concreteExpressionMap.get(cex.toLowerCase());
 	}
 	
 	@Override
