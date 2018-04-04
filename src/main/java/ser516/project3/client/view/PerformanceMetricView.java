@@ -1,7 +1,6 @@
 package ser516.project3.client.view;
 
 import com.alee.laf.button.WebButton;
-
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.PerformanceMetricModel;
 import ser516.project3.utilities.NumberTextField;

@@ -1,11 +1,5 @@
 package ser516.project3.client.view;
 
-import java.awt.*;
-import java.util.ArrayList;
-
-import javax.swing.*;
-import javax.swing.border.TitledBorder;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -16,10 +10,14 @@ import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.CoordinatesModel;
 import ser516.project3.model.GraphModel;
+
+import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * GraphView is a class to represent the basic view template of a graph. A graph can

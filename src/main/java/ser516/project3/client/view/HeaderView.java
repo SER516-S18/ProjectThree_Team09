@@ -1,12 +1,12 @@
 package ser516.project3.client.view;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
-
 import com.alee.laf.button.WebButton;
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.HeaderModel;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * HeaderView class to implement the header view for client to show and update
