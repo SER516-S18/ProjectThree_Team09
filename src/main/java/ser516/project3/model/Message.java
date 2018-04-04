@@ -11,20 +11,6 @@ public class Message {
 
 	private double interval;
 	private double timeStamp;
-	// Expression Attributes.
-	private boolean blink;
-	private boolean rightWink;
-	private boolean leftWink;
-	private boolean lookingRight;
-	private boolean lookingLeft;
-
-	private double furrowBrow;
-	private double raiseBrow;
-	private double smile;
-	private double clench;
-	private double leftSmirk;
-	private double rightSmirk;
-	private double laugh;
 
 	// Emotion Attributes.
 	private double interest;
@@ -33,6 +19,20 @@ public class Message {
 	private double relaxation;
 	private double excitement;
 	private double focus;
+
+	// Expression Attributes.
+	private double smile;
+	private double clench;
+	private double leftSmirk;
+	private double rightSmirk;
+	private double laugh;
+	private double furrowBrow;
+	private double raiseBrow;
+	private boolean blink;
+	private boolean rightWink;
+	private boolean leftWink;
+	private boolean lookingRight;
+	private boolean lookingLeft;
 
 	public double getInterval() {
 		return interval;
@@ -51,6 +51,7 @@ public class Message {
 	}
 
 	public void setBlink(boolean attribute) {
+
 		this.blink = attribute;
 	}
 
@@ -59,6 +60,7 @@ public class Message {
 	}
 
 	public void setRightWink(boolean attribute) {
+
 		this.rightWink = attribute;
 	}
 
@@ -67,6 +69,7 @@ public class Message {
 	}
 
 	public void setLeftWink(boolean attribute) {
+
 		this.leftWink = attribute;
 	}
 
@@ -75,6 +78,7 @@ public class Message {
 	}
 
 	public void setLookingRight(boolean attribute) {
+
 		this.lookingRight = attribute;
 	}
 
@@ -83,6 +87,7 @@ public class Message {
 	}
 
 	public void setLookingLeft(boolean attribute) {
+
 		this.lookingLeft = attribute;
 	}
 
@@ -91,6 +96,7 @@ public class Message {
 	}
 
 	public void setFurrowBrow(double attribute) {
+
 		this.furrowBrow = attribute;
 	}
 
@@ -99,6 +105,7 @@ public class Message {
 	}
 
 	public void setRaiseBrow(double attribute) {
+
 		this.raiseBrow = attribute;
 	}
 
@@ -107,6 +114,7 @@ public class Message {
 	}
 
 	public void setSmile(double attribute) {
+
 		this.smile = attribute;
 	}
 
@@ -115,6 +123,7 @@ public class Message {
 	}
 
 	public void setClench(double attribute) {
+
 		this.clench = attribute;
 	}
 
@@ -123,6 +132,7 @@ public class Message {
 	}
 
 	public void setLeftSmirk(double attribute) {
+
 		this.leftSmirk = attribute;
 	}
 
@@ -131,6 +141,7 @@ public class Message {
 	}
 
 	public void setRightSmirk(double attribute) {
+
 		this.rightSmirk = attribute;
 	}
 
@@ -139,6 +150,7 @@ public class Message {
 	}
 
 	public void setLaugh(double attribute) {
+
 		this.laugh = attribute;
 	}
 
@@ -147,6 +159,7 @@ public class Message {
 	}
 
 	public void setInterest(double attribute) {
+
 		this.interest = attribute;
 	}
 

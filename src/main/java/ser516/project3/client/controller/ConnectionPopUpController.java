@@ -1,6 +1,5 @@
 package ser516.project3.client.controller;
 
-import ser516.project3.client.Client;
 import ser516.project3.client.view.ConnectionPopUpView;
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.ConnectionPopUpModel;
@@ -11,6 +10,14 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+/**
+ * It controls the flow of Connection Details pop up to
+ * enter the ip address and port number to connect to the
+ * server.
+ *
+ * @author vishakhasingal, Adhiraj Tikku
+ */
 
 public class ConnectionPopUpController {
   private ConnectionPopUpView connectionPopUpView;
@@ -25,6 +32,11 @@ public class ConnectionPopUpController {
     connectionPopUpView.addPortDocumentListener(new PortDocumentListener());
   }
 
+  /**
+   * Inner class to control click on ok button in Pop up
+   *
+   * @author Adhiraj Tikku
+   */
   class ConnectListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -43,6 +55,12 @@ public class ConnectionPopUpController {
     }
   }
 
+  /**
+   * Inner class to control the updations in the ip address
+   * text field and update the model accordingly.
+   *
+   * @author Adhiraj Tikku
+   */
   class IPDocumentListener implements DocumentListener {
     @Override
     public void removeUpdate(DocumentEvent e) {
@@ -67,6 +85,12 @@ public class ConnectionPopUpController {
     }
   }
 
+  /**
+   * Inner class to control the updations in the port number
+   * text field and update the model accordingly.
+   *
+   * @author Adhiraj Tikku
+   */
   class PortDocumentListener implements DocumentListener {
     @Override
     public void removeUpdate(DocumentEvent e) {

@@ -41,4 +41,5 @@ public class ServerView extends JDialog {
 		});
 	}
 
+
 }

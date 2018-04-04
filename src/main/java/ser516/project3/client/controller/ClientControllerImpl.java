@@ -15,7 +15,18 @@ import ser516.project3.server.view.ServerView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Main Client controller which controls the main client view rendering
+ * and acts like a mediator between the view classes, service classes
+ * and model classes.
+ *
+ * @author Varun Srivastava, Adhiraj Tikku, Vishakha Singal
+ */
+
 public class ClientControllerImpl implements ClientControllerInterface {
+
+	private static ClientControllerImpl instance;
+
 	private boolean connected = false;
 	private ClientConnectionServiceInterface clientConnectionService;
 	private ClientView clientView;
@@ -23,16 +34,17 @@ public class ClientControllerImpl implements ClientControllerInterface {
 	private HeaderController headerController;
 	private ExpressionsController expressionsController;
 	private PerformanceMetricController performanceMetricController;
+
+	/**
+	 * Getter for performanceMetricController
+	 *
+	 * @return returns the controller object
+	 */
 	public PerformanceMetricController getPerformanceMetricController() {
 		return performanceMetricController;
 	}
 
 
-	public void setPerformanceMetricController(PerformanceMetricController performanceMetricController) {
-		this.performanceMetricController = performanceMetricController;
-	}
-
-	private static ClientControllerImpl instance;
 	public ClientControllerImpl() {
 		HeaderModel headerModel = new HeaderModel();
 		HeaderView headerView = new HeaderView(headerModel);
@@ -59,6 +71,7 @@ public class ClientControllerImpl implements ClientControllerInterface {
 		}
 		return instance;
 	}
+
 	@Override
 	public void startClient() {
 		// TODO: start data reception form server
@@ -103,6 +116,12 @@ public class ClientControllerImpl implements ClientControllerInterface {
 		clientView.addServerMenuItemListener(new ServerMenuItemListener());
 	}
 
+	/**
+	 * Updates the connectionStatus for the controller classes and
+	 * also, updates the UI
+	 *
+	 * @param connectionStatus true if connected successfully else not.
+	 */
 	public void setConnectionStatus(boolean connectionStatus) {
 		connected = connectionStatus;
 		headerController.setConnectionStatus(connectionStatus);

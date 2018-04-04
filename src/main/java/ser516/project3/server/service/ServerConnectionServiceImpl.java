@@ -16,12 +16,13 @@ public class ServerConnectionServiceImpl implements ServerConnectionServiceInter
 		threadInstance = new ServerContainerThread();
 		serverContainerThread = new Thread(threadInstance);
 		serverContainerThread.start();
-		ConsoleModel.getInstance().logMessage("Success! Yippieee!");
+		ConsoleModel.getInstance().logMessage("Server Started");
 	}
 
 	@Override
 	public void stopServerEndpoint() {
 		threadInstance.getServer().stop();
+		ConsoleModel.getInstance().logMessage("Server Stopped");
 		serverContainerThread.interrupt();
 		ServerCommonData.getInstance().setServerStarted(false);
 	}

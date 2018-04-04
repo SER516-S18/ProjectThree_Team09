@@ -5,6 +5,10 @@ import ser516.project3.client.view.GraphView;
 import ser516.project3.model.ExpressionsModel;
 import ser516.project3.model.GraphModel;
 
+/**
+ *
+ * @author Adhiraj Tikku
+ */
 public class ExpressionsController {
   private ExpressionsModel expressionsModel;
   private ExpressionsView expressionsView;
