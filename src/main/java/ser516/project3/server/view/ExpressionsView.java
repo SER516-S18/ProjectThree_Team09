@@ -23,6 +23,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import ser516.project3.model.Message.AbstractExpression;
+import ser516.project3.model.Message.ConcreteExpression;
 import ser516.project3.utilities.ServerCommonData;
 
 public class ExpressionsView  {
@@ -201,15 +202,10 @@ public class ExpressionsView  {
 	}
 
 	private static void updateEye(String eyeAttribute, Boolean eyeVal) {
-		ServerCommonData.getInstance().getMessage().setConcreteExpression(AbstractExpression.blink.name(), 
-				eyeAttribute.equals("Blink") ? eyeVal : false);
-		ServerCommonData.getInstance().getMessage().setConcreteExpression(AbstractExpression.leftWink.name(), 
-				eyeAttribute.equals("Wink Left") ? eyeVal : false);
-		ServerCommonData.getInstance().getMessage().setConcreteExpression(AbstractExpression.rightWink.name(), 
-				eyeAttribute.equals("Wink Right") ? eyeVal : false);
-		ServerCommonData.getInstance().getMessage().setConcreteExpression(AbstractExpression.lookingLeft.name(), 
-				eyeAttribute.equals("Look Left") ? eyeVal : false);
-		ServerCommonData.getInstance().getMessage().setConcreteExpression(AbstractExpression.lookingRight.name(), 
-				eyeAttribute.equals("Look Right") ? eyeVal : false);
-	}
+		ServerCommonData.getInstance().getMessage().setConcreteExpression(ConcreteExpression.blink.name(), eyeAttribute.equals("Blink") ? eyeVal : false);
+		ServerCommonData.getInstance().getMessage().setConcreteExpression(ConcreteExpression.leftWink.name(), eyeAttribute.equals("Wink Left") ? eyeVal : false);
+		ServerCommonData.getInstance().getMessage().setConcreteExpression(ConcreteExpression.rightWink.name(), eyeAttribute.equals("Wink Right") ? eyeVal : false);
+		ServerCommonData.getInstance().getMessage().setConcreteExpression(ConcreteExpression.lookingLeft.name(), eyeAttribute.equals("Look Left") ? eyeVal : false);
+		ServerCommonData.getInstance().getMessage().setConcreteExpression(ConcreteExpression.lookingRight.name(), eyeAttribute.equals("Look Right") ? eyeVal : false);
+}
 }
