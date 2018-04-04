@@ -46,25 +46,25 @@ public class Message {
 	}
 	
 	public void setAbstractExpression(String aex, Double val) {
-		this.abstractExpressionMap.put(aex.toLowerCase(), val);
+		this.abstractExpressionMap.put(aex, val);
 	}
 	
 	public double getAbstractExpression(String aex) {
-		if(aex == null || this.abstractExpressionMap.get(aex.toLowerCase()) == null) {
+		if(aex == null || this.abstractExpressionMap.get(aex) == null) {
 			return 0.0;
 		}
-		return this.abstractExpressionMap.get(aex.toLowerCase());
+		return this.abstractExpressionMap.get(aex);
 	}
 	
 	public void setConcreteExpression(String cex, Boolean val) {
-		this.concreteExpressionMap.put(cex.toLowerCase(), val);
+		this.concreteExpressionMap.put(cex, val);
 	}
 	
 	public Boolean getConcreteExpression(String cex) {
-		if(cex == null || this.concreteExpressionMap.get(cex.toLowerCase()) == null) {
+		if(cex == null || this.concreteExpressionMap.get(cex) == null) {
 			return false;
 		}
-		return this.concreteExpressionMap.get(cex.toLowerCase());
+		return this.concreteExpressionMap.get(cex);
 	}
 	
 	@Override
