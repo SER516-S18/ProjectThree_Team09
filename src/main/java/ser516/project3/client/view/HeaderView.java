@@ -4,6 +4,7 @@ import com.alee.laf.button.WebButton;
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.HeaderModel;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -31,7 +32,7 @@ public class HeaderView extends JPanel {
 		this.headerModel = headerModel;
 		setBorder(null);
 		setLayout(new GridBagLayout());
-		setBackground(Color.decode("#AFAFAF"));
+		setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
 
 		GridBagConstraints bagConstraints = new GridBagConstraints();
 		bagConstraints.fill = GridBagConstraints.HORIZONTAL;
@@ -82,7 +83,7 @@ public class HeaderView extends JPanel {
 	private void createConnectButton(GridBagConstraints bagConstraints) {
 		connectButton = new WebButton(ClientConstants.CONNECT);
 		connectButton.setPreferredSize(new Dimension(120, 35));
-		connectButton.setBackground(Color.decode("#AFAFAF"));
+		connectButton.setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
 		connectButton.setBottomBgColor(Color.BLACK);
 		connectButton.setTopBgColor(Color.BLACK);
 		connectButton.setBottomSelectedBgColor(Color.WHITE);
@@ -100,7 +101,7 @@ public class HeaderView extends JPanel {
 	private void createServerOpenButton(GridBagConstraints bagConstraints) {
 		serverOpenButton = new WebButton(ClientConstants.OPEN_SERVER);
 		serverOpenButton.setPreferredSize(new Dimension(120, 35));
-		serverOpenButton.setBackground(Color.decode("#AFAFAF"));
+		serverOpenButton.setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
 		serverOpenButton.setBottomBgColor(Color.BLACK);
 		serverOpenButton.setTopBgColor(Color.BLACK);
 		serverOpenButton.setBottomSelectedBgColor(Color.WHITE);
@@ -108,8 +109,8 @@ public class HeaderView extends JPanel {
 		serverOpenButton.setForeground(Color.WHITE);
 		serverOpenButton.setDrawShade(false);
 		serverOpenButton.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE));
-		bagConstraints.gridx = -1;
-		bagConstraints.gridy = -1;
+		bagConstraints.gridx = 3;
+		bagConstraints.gridy = 0;
 		bagConstraints.gridheight = 3;
 		bagConstraints.insets = new Insets(0, 20, 0, 20);
 		add(serverOpenButton, bagConstraints);

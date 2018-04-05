@@ -71,7 +71,7 @@ public class GraphView extends JPanel{
     setLayout(new GridLayout(1, 1, 8, 8));
     setBorder(new TitledBorder(null, ClientConstants.GRAPH,
         TitledBorder.CENTER, TitledBorder.TOP, new Font(ClientConstants.FONT_NAME, Font.BOLD, TITLE_FONT_SIZE), null));
-    setBackground(Color.decode("#AFAFAF"));
+    setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
     XYSeriesCollection dataSet = new XYSeriesCollection();
     chart = createChart(dataSet);
     chartPanel = new ChartPanel(chart);
@@ -108,7 +108,7 @@ public class GraphView extends JPanel{
     JFreeChart chart = ChartFactory.createXYLineChart("", "",
         "", dataSet, PlotOrientation.VERTICAL, false, true,
         false);
-    chart.setBackgroundPaint(Color.decode("#AFAFAF"));
+    chart.setBackgroundPaint(Color.decode(ClientConstants.PANEL_COLOR_HEX));
 
     XYPlot plot = chart.getXYPlot();
     ValueAxis range = plot.getRangeAxis();
@@ -125,11 +125,12 @@ public class GraphView extends JPanel{
     if(graphModel.getChannelColors() != null) {
       for (int i = 0; i < graphModel.getNoOfChannels(); i++) {
         renderer.setSeriesPaint(i, graphModel.getChannelColors()[i]);
+        renderer.setSeriesShapesVisible(i, false);
       }
     }
 
     plot.setRenderer(renderer);
-    plot.setBackgroundPaint(Color.decode("#676165"));
+    plot.setBackgroundPaint(Color.decode(ClientConstants.GRAPH_COLOR_HEX));
 
     plot.setRangeGridlinesVisible(false);
     plot.setDomainGridlinesVisible(false);

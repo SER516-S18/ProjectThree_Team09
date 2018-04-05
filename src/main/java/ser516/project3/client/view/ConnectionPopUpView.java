@@ -1,5 +1,6 @@
 package ser516.project3.client.view;
 
+import com.alee.laf.button.WebButton;
 import org.apache.log4j.Logger;
 import ser516.project3.client.controller.ClientControllerImpl;
 import ser516.project3.client.controller.ClientControllerInterface;
@@ -29,7 +30,9 @@ public class ConnectionPopUpView extends JDialog {
 	private JLabel portNumberLabel;
 	private JTextField ipAddressTextField;
 	private NumberTextField portNumberTextField;
-	private JButton connectButton;
+	private WebButton okButton;
+
+	private final static int FONT_SIZE = 15;
 
 	public ConnectionPopUpView(ConnectionPopUpModel connectionPopUpModel) {
 
@@ -54,7 +57,7 @@ public class ConnectionPopUpView extends JDialog {
 
 		createLabels(bagConstraints);
 		createTextFields(bagConstraints);
-		createConnectButton(bagConstraints);
+		createOkButton(bagConstraints);
 
 		add(mainPanel);
 		setVisible(true);
@@ -63,7 +66,6 @@ public class ConnectionPopUpView extends JDialog {
 	private void createMainPanel() {
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
-		mainPanel.setOpaque(false);
 		mainPanel.setBorder(new EmptyBorder(8, 8, 8, 8));
 		mainPanel.setLayout(new GridBagLayout());
 		mainPanel.setBackground(Color.WHITE);
@@ -73,6 +75,7 @@ public class ConnectionPopUpView extends JDialog {
 		ipAddressLabel = new JLabel(ClientConstants.IP_ADDRESS);
 		ipAddressLabel.setHorizontalAlignment(JLabel.RIGHT);
 		ipAddressLabel.setVerticalTextPosition(JLabel.CENTER);
+		ipAddressLabel.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE));
 		bagConstraints.gridx = 0;
 		bagConstraints.gridy = 0;
 		bagConstraints.insets = new Insets(0, 0, 10, 10);
@@ -81,6 +84,7 @@ public class ConnectionPopUpView extends JDialog {
 		portNumberLabel = new JLabel(ClientConstants.PORT_NUMBER);
 		portNumberLabel.setHorizontalAlignment(JLabel.RIGHT);
 		portNumberLabel.setVerticalTextPosition(JLabel.CENTER);
+		portNumberLabel.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE));
 		bagConstraints.gridx = 0;
 		bagConstraints.gridy = 1;
 		bagConstraints.insets = new Insets(0, 0, 0, 10);
@@ -103,19 +107,26 @@ public class ConnectionPopUpView extends JDialog {
 		mainPanel.add(portNumberTextField, bagConstraints);
 	}
 
-	private void createConnectButton(GridBagConstraints bagConstraints) {
-		connectButton = new JButton(ClientConstants.OK);
-		connectButton.setBackground(Color.RED);
-		connectButton.setPreferredSize(new Dimension(120, 35));
+	private void createOkButton(GridBagConstraints bagConstraints) {
+		okButton = new WebButton(ClientConstants.OK);
+		okButton.setPreferredSize(new Dimension(120, 35));
+		okButton.setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
+		okButton.setBottomBgColor(Color.BLACK);
+		okButton.setTopBgColor(Color.BLACK);
+		okButton.setBottomSelectedBgColor(Color.WHITE);
+		okButton.setTopSelectedBgColor(Color.WHITE);
+		okButton.setForeground(Color.WHITE);
+		okButton.setDrawShade(false);
+		okButton.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE));
 		bagConstraints.gridx = 0;
 		bagConstraints.gridy = 2;
 		bagConstraints.gridwidth = 2;
 		bagConstraints.insets = new Insets(20, 20, 0, 20);
-		mainPanel.add(connectButton, bagConstraints);
+		mainPanel.add(okButton, bagConstraints);
 	}
 
 	public void addConnectButtonListener(ActionListener actionListener) {
-		connectButton.addActionListener(actionListener);
+		okButton.addActionListener(actionListener);
 	}
 
 	public void addIPDocumentListener(DocumentListener documentListener) {

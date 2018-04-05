@@ -12,7 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 
-/*This class contains performance metrics view
+/**This class contains performance metrics view
  * where emotion button is displayed on the right
  * and graph is displayed on the left.
  * 
@@ -37,7 +37,7 @@ public class PerformanceMetricView extends JPanel{
 	public PerformanceMetricView(PerformanceMetricModel performanceMetricModel){
 		this.performanceMetricModel = performanceMetricModel;
 		setLayout(new GridBagLayout());
-		setBackground(Color.decode("#AFAFAF"));
+		setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
 	}
 
 	public void initializePerformanceMetricUI(GraphView graphView) {
@@ -66,7 +66,7 @@ public class PerformanceMetricView extends JPanel{
 		mainPanel.setLayout(new GridBagLayout());
 		mainPanel.setBorder(new TitledBorder(null, ClientConstants.EMOTIONS, TitledBorder.CENTER,
 				TitledBorder.TOP, new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE), null));
-		mainPanel.setBackground(Color.decode("#AFAFAF"));
+		mainPanel.setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
 
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
 		createEmotionButtons(gridBagConstraints);
@@ -132,7 +132,7 @@ public class PerformanceMetricView extends JPanel{
 		gridBagConstraints.ipadx = 20;
 		gridBagConstraints.ipady = 20;
 		displayLengthField = new NumberTextField("" + performanceMetricModel.getDisplayLength());
-		displayLengthField.setBackground(Color.decode("#565c61"));
+		displayLengthField.setBackground(Color.decode(ClientConstants.TEXT_FIELD_COLOR_HEX));
 		displayLengthField.setForeground(Color.WHITE);
 		displayLengthField.setHorizontalAlignment(SwingConstants.CENTER);
 		displayLengthField.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE));
@@ -164,7 +164,7 @@ public class PerformanceMetricView extends JPanel{
 		emotionButton.setBottomBgColor(color);
 		emotionButton.setTopSelectedBgColor(color);
 		emotionButton.setForeground(Color.WHITE);
-		emotionButton.setBackground(Color.decode("#AFAFAF"));
+		emotionButton.setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
 		emotionButton.setOpaque(true);
 		emotionButton.setHorizontalTextPosition(SwingConstants.CENTER);
 		emotionButton.setRound(30);

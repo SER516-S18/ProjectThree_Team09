@@ -1,5 +1,7 @@
 package ser516.project3.model;
 
+import ser516.project3.constants.ClientConstants;
+
 import java.awt.*;
 
 /**
@@ -22,13 +24,13 @@ public class PerformanceMetricModel {
   private int displayLength;
 
   public PerformanceMetricModel() {
-    interestColor = Color.decode("#F20090");
-    engagementColor = Color.decode("#02AC9F");
-    stressColor = Color.decode("#90C340");
-    relaxationColor = Color.decode("#02ADFF");
-    excitementColor = Color.decode("#F86C1C");
-    focusColor = Color.decode("#ADAAFF");
-    displayLength = 30;
+    interestColor = Color.decode(ClientConstants.INTEREST_DEFAULT_COLOR_HEX);
+    engagementColor = Color.decode(ClientConstants.ENGAGEMENT_DEFAULT_COLOR_HEX);
+    stressColor = Color.decode(ClientConstants.STRESS_DEFAULT_COLOR_HEX);
+    relaxationColor = Color.decode(ClientConstants.RELAXATION_DEFAULT_COLOR_HEX);
+    excitementColor = Color.decode(ClientConstants.EXCITEMENT_DEFAULT_COLOR_HEX);
+    focusColor = Color.decode(ClientConstants.FOCUS_DEFAULT_COLOR_HEX);
+    displayLength = ClientConstants.DEFAULT_DISPLAY_LENGTH;
   }
 
   /**
