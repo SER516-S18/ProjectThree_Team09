@@ -18,8 +18,8 @@ import ser516.project3.utilities.InputVerifierNumericals;
 import ser516.project3.utilities.ServerCommonData;
 
 /**
- * Class to create components in expressions panel 
- * and listeners for each component
+ * Class to create components in expressions panel and listeners for each
+ * component
  * 
  * @author Varun
  *
@@ -49,8 +49,7 @@ public class ServerPanelGenerator {
 
 		topPanel.setOpaque(false);
 
-		Border titledBorder = new TitledBorder(null, "Graph", TitledBorder.LEADING, 
-				TitledBorder.TOP, FONT, null);
+		Border titledBorder = new TitledBorder(null, "Graph", TitledBorder.LEADING, TitledBorder.TOP, FONT, null);
 		Border marginBorder = BorderFactory.createEmptyBorder(30, 10, 10, 10);
 
 		Border compoundBorder = BorderFactory.createCompoundBorder(marginBorder, titledBorder);
@@ -103,9 +102,20 @@ public class ServerPanelGenerator {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				logger.info("Start button pressed");
+				logger.info("Start/Stop button pressed");
 				updateIntervalInputTextField(intervalInputTextField);
 				serverControllerImpl.startServer();
+				if (intervalInputTextField.isEditable()) {
+					intervalInputTextField.setEditable(false);}
+				else {
+					intervalInputTextField.setEditable(true);
+				}
+				if(autoRepeatCheckBox.isEnabled()) {
+					autoRepeatCheckBox.setEnabled(false);
+				}else {
+					autoRepeatCheckBox.setEnabled(true);
+				}
+					
 			}
 		});
 
@@ -172,8 +182,8 @@ public class ServerPanelGenerator {
 		configPanel.add(expressionPanel);
 		configPanel.add(consolePanel);
 
-		Border titledBorder = new TitledBorder(null, "Configuration", TitledBorder.LEADING, 
-				TitledBorder.TOP, FONT,null);
+		Border titledBorder = new TitledBorder(null, "Configuration", TitledBorder.LEADING, TitledBorder.TOP, FONT,
+				null);
 		Border marginBorder = BorderFactory.createEmptyBorder(30, 10, 30, 10);
 
 		Border compound = BorderFactory.createCompoundBorder(marginBorder, titledBorder);
@@ -210,10 +220,10 @@ public class ServerPanelGenerator {
 		ExpressionsView expressionsView = new ExpressionsView();
 		return expressionsView.getExpressionsPanel();
 	}
-	
+
 	public static JPanel createEmotionsPanel() {
 		EmotionsView emotionsView = new EmotionsView();
-		return emotionsView.getEmotionsPanel();	
+		return emotionsView.getEmotionsPanel();
 	}
 
 	public static JPanel createConsolePanel() {
@@ -229,8 +239,7 @@ public class ServerPanelGenerator {
 
 	private static void updateIntervalInputTextField(JTextField intervalInputTextField) {
 		try {
-			ServerCommonData.getInstance().getMessage().setInterval(
-					Integer.parseInt(intervalInputTextField.getText()));
+			ServerCommonData.getInstance().getMessage().setInterval(Integer.parseInt(intervalInputTextField.getText()));
 		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(null, "You must input a valid number for this field!");
 		}
