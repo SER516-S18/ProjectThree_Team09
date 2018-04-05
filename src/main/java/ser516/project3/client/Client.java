@@ -22,8 +22,10 @@ public class Client
             {
                 boolean seaGlassFound = false;
                 try {
-                    UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
-                    seaGlassFound = true;
+                    if(System.getProperty("os.name").substring(0, 7).equals("Windows")) {
+                        UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+                        seaGlassFound = true;
+                    }
                 } catch (Exception e) {
                     System.out.println("Seaglass Look and Feel UI not found");
                 }
