@@ -22,6 +22,7 @@ public class HeaderView extends JPanel {
 	private JLabel connectionTextLabel;
 	private JLabel timestampTextLabel;
 	private WebButton connectButton;
+	private WebButton serverOpenButton;
 	private HeaderModel headerModel;
 
 	private final static int FONT_SIZE = 15;
@@ -37,6 +38,7 @@ public class HeaderView extends JPanel {
 
 		createLabels(bagConstraints);
 		createConnectButton(bagConstraints);
+		createServerOpenButton(bagConstraints);
 	}
 
 	private void createLabels(GridBagConstraints gridbagConstraints) {
@@ -94,9 +96,31 @@ public class HeaderView extends JPanel {
 		bagConstraints.insets = new Insets(0, 20, 0, 20);
 		add(connectButton, bagConstraints);
 	}
+	
+	private void createServerOpenButton(GridBagConstraints bagConstraints) {
+		serverOpenButton = new WebButton(ClientConstants.OPEN_SERVER);
+		serverOpenButton.setPreferredSize(new Dimension(120, 35));
+		serverOpenButton.setBackground(Color.decode("#AFAFAF"));
+		serverOpenButton.setBottomBgColor(Color.BLACK);
+		serverOpenButton.setTopBgColor(Color.BLACK);
+		serverOpenButton.setBottomSelectedBgColor(Color.WHITE);
+		serverOpenButton.setTopSelectedBgColor(Color.WHITE);
+		serverOpenButton.setForeground(Color.WHITE);
+		serverOpenButton.setDrawShade(false);
+		serverOpenButton.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE));
+		bagConstraints.gridx = -1;
+		bagConstraints.gridy = -1;
+		bagConstraints.gridheight = 3;
+		bagConstraints.insets = new Insets(0, 20, 0, 20);
+		add(serverOpenButton, bagConstraints);
+	}
 
 	public void addConnectButtonListener(ActionListener actionListener) {
 		connectButton.addActionListener(actionListener);
+	}
+	
+	public void addServerOpenButtonListener(ActionListener actionListener) {
+		serverOpenButton.addActionListener(actionListener);
 	}
 
 	public void updateConnectionLabel() {

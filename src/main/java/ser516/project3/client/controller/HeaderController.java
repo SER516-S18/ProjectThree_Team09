@@ -3,6 +3,7 @@ package ser516.project3.client.controller;
 import ser516.project3.client.view.HeaderView;
 import ser516.project3.model.ConnectionPopUpModel;
 import ser516.project3.model.HeaderModel;
+import ser516.project3.server.view.ServerView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,7 @@ public class HeaderController {
 
   private HeaderView headerView;
   private HeaderModel headerModel;
+  private ServerView serverDialog;
   private ConnectionPopUpController connectionPopUpController;
   private ConnectionPopUpModel connectionPopUpModel;
 
@@ -20,6 +22,20 @@ public class HeaderController {
     this.headerModel = headerModel;
 
     this.headerView.addConnectButtonListener(new ConnectListener());
+    this.headerView.addServerOpenButtonListener(new ServerOpenListener());
+  }
+  
+  class ServerOpenListener implements ActionListener{
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(serverDialog == null) {
+			serverDialog = new ServerView();
+		} else {
+			serverDialog.setVisible(true);
+		}
+	}
+	  
   }
 
   class ConnectListener implements ActionListener {
