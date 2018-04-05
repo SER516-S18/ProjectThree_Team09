@@ -17,6 +17,14 @@ import ser516.project3.server.controller.ServerControllerImpl;
 import ser516.project3.utilities.InputVerifierNumericals;
 import ser516.project3.utilities.ServerCommonData;
 
+/**
+ * Class to create components in expressions panel 
+ * and listeners for each component
+ * 
+ * @author Varun
+ *
+ */
+
 public class ServerPanelGenerator {
 
 	final static Logger logger = Logger.getLogger(ServerPanelGenerator.class);
@@ -24,7 +32,6 @@ public class ServerPanelGenerator {
 	private static ServerControllerImpl serverControllerImpl = new ServerControllerImpl();
 
 	private static final Font FONT = new Font("Courier New", Font.BOLD, 17);
-	//private static final Font SUBFONT = new Font("Courier New", Font.BOLD, 14);
 	private static final String INTERVAL_LABEL_NAME = "Interval (seconds):  ";
 	private static final String AUTO_REPEAT_CHECKBOX_NAME = "Auto Repeat";
 	private static final String TOGGLE_START_STOP = "Start / Stop";
@@ -42,7 +49,8 @@ public class ServerPanelGenerator {
 
 		topPanel.setOpaque(false);
 
-		Border titledBorder = new TitledBorder(null, "Graph", TitledBorder.LEADING, TitledBorder.TOP, FONT, null);
+		Border titledBorder = new TitledBorder(null, "Graph", TitledBorder.LEADING, 
+				TitledBorder.TOP, FONT, null);
 		Border marginBorder = BorderFactory.createEmptyBorder(30, 10, 10, 10);
 
 		Border compoundBorder = BorderFactory.createCompoundBorder(marginBorder, titledBorder);
@@ -119,11 +127,11 @@ public class ServerPanelGenerator {
 		gridBagConstraint.gridx = 2;
 		gridBagConstraint.gridy = 0;
 		gridBagConstraint.ipady = 40;
-		gridBagConstraint.insets = new Insets(0, 50, 0, 50); // left-right padding
+		gridBagConstraint.insets = new Insets(0, 50, 0, 50);
 		topPanel.add(buttonToggle, gridBagConstraint);
 
 		gridBagConstraint.ipady = 10;
-		gridBagConstraint.insets = new Insets(0, 0, 0, 0); // reset
+		gridBagConstraint.insets = new Insets(0, 0, 0, 0);
 		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraint.weightx = 0.5;
 		gridBagConstraint.gridx = 0;
@@ -145,7 +153,6 @@ public class ServerPanelGenerator {
 	 * This method will initialize the second sub panel of the Server window
 	 * 
 	 * @return the second sub-panel
-	 * @wbp.parser.entryPoint
 	 */
 	public static Component createConfigurationPanels() {
 		JPanel configPanel = new JPanel();
@@ -165,8 +172,8 @@ public class ServerPanelGenerator {
 		configPanel.add(expressionPanel);
 		configPanel.add(consolePanel);
 
-		Border titledBorder = new TitledBorder(null, "Configuration", TitledBorder.LEADING, TitledBorder.TOP, FONT,
-				null);
+		Border titledBorder = new TitledBorder(null, "Configuration", TitledBorder.LEADING, 
+				TitledBorder.TOP, FONT,null);
 		Border marginBorder = BorderFactory.createEmptyBorder(30, 10, 30, 10);
 
 		Border compound = BorderFactory.createCompoundBorder(marginBorder, titledBorder);
@@ -206,8 +213,7 @@ public class ServerPanelGenerator {
 	
 	public static JPanel createEmotionsPanel() {
 		EmotionsView emotionsView = new EmotionsView();
-		return emotionsView.getEmotionsPanel();
-		
+		return emotionsView.getEmotionsPanel();	
 	}
 
 	public static JPanel createConsolePanel() {
@@ -223,7 +229,8 @@ public class ServerPanelGenerator {
 
 	private static void updateIntervalInputTextField(JTextField intervalInputTextField) {
 		try {
-			ServerCommonData.getInstance().getMessage().setInterval(Integer.parseInt(intervalInputTextField.getText()));
+			ServerCommonData.getInstance().getMessage().setInterval(
+					Integer.parseInt(intervalInputTextField.getText()));
 		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(null, "You must input a valid number for this field!");
 		}

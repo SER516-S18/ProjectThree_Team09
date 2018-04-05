@@ -15,14 +15,23 @@ import javax.swing.event.ChangeListener;
 
 import ser516.project3.utilities.ServerCommonData;
 
+/**
+ * Class to create components in emotions panel 
+ * and listeners for each component
+ * 
+ * @author Maitreyi, Janani, Ganesh
+ *
+ */
 public class EmotionsView {
 	JPanel emotionsPanel;
 	private static final Font SUBFONT = new Font("Courier New", Font.BOLD, 14);
 	
-	EmotionsView(){
+    // Constructor to initialize emotions panel.
+	public EmotionsView(){
 		emotionsPanel = new JPanel();;
 		
-		emotionsPanel.setBorder(new TitledBorder(null, "Emotions", TitledBorder.LEADING, TitledBorder.TOP, SUBFONT, null));
+		emotionsPanel.setBorder(new TitledBorder(null, "Emotions", TitledBorder.LEADING, 
+				TitledBorder.TOP, SUBFONT, null));
 		Dimension spinnerDimension = new Dimension(65, 30);
 		Double current = new Double(0.00);
 		Double min = new Double(0.00);
@@ -52,7 +61,8 @@ public class EmotionsView {
 	}
 	
 	public enum EmotionPanel{
-		Interest(1, 1, 3, 1), Engagement(1, 2, 3, 2), Excitement(1, 3, 3, 3), Stress(2, 2, 3, 4), Relaxation(1, 5, 3, 5), Focus(1, 6, 3, 6);
+		Interest(1, 1, 3, 1), Engagement(1, 2, 3, 2), Excitement(1, 3, 3, 3), Stress(2, 2, 3, 4), 
+														Relaxation(1, 5, 3, 5), Focus(1, 6, 3, 6);
 		int gbc_x, gbc_y, spinner_x, spinner_y;
 		private EmotionPanel(int gbc_x, int gbc_y, int spinner_x, int spinner_y){
 			this.gbc_x = gbc_x;
@@ -62,6 +72,7 @@ public class EmotionsView {
 		}
 	}
 	
+	// Method that returns the panel created
 	public JPanel getEmotionsPanel() {
         return emotionsPanel;
     }
