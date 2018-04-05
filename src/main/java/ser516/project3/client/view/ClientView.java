@@ -45,8 +45,8 @@ public class ClientView extends JFrame {
 		createLayout();
 		setJMenuBar(menuBar);
 
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
 
