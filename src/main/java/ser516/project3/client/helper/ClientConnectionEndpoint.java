@@ -2,16 +2,15 @@ package ser516.project3.client.helper;
 
 import java.io.IOException;
 
-import javax.websocket.ClientEndpoint;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
+import javax.swing.*;
+import javax.websocket.*;
 
 import org.apache.log4j.Logger;
 
+import ser516.project3.client.controller.ClientControllerImpl;
 import ser516.project3.client.controller.ExpressionsDataObservable;
 import ser516.project3.client.controller.PerformanceMetricDataObservable;
+import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.Message;
 import ser516.project3.model.MessageDecoder;
 import ser516.project3.utilities.MessageFormatConverter;
@@ -51,8 +50,18 @@ public class ClientConnectionEndpoint {
 
 	@OnError
 	public void processError(Throwable t) {
+
 		logger.error("Error occurred in Client End Point");
 	}
 
+	@OnClose
+	public void processClose(Session userSession, CloseReason reason) {
+		logger.error("Error occurred in Client End Point");
+
+		final JDialog dialog = new JDialog();
+		dialog.setAlwaysOnTop(true);
+		JOptionPane.showMessageDialog(dialog, ClientConstants.SERVER_STOPPED_MESSAGE,ClientConstants.ERROR_STRING,JOptionPane.ERROR_MESSAGE);
+		ClientControllerImpl.getInstance().stopClientConnector();
+	}
 	
 }

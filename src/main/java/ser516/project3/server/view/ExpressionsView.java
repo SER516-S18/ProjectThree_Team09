@@ -26,14 +26,23 @@ import ser516.project3.model.Message.AbstractExpression;
 import ser516.project3.model.Message.ConcreteExpression;
 import ser516.project3.utilities.ServerCommonData;
 
+
+/**
+ * Class to create components in expressions panel 
+ * and listeners for each component
+ * 
+ * @author Janani, Sangeetha, Ganesh
+ *
+ */
 public class ExpressionsView  {
 	JPanel expressionPanel;
 	String[] lowerFaceList = { "Smile", "Clench", "Smirk Left", "Smirk Right", "Laugh" };
 	String[] upperFaceList = { "Raise Brow", "Furrow Brow" };
 	String[] eyeList = { "Blink", "Wink Left", "Wink Right", "Look Left", "Look Right" };
-	Dimension spinnerDimension = new Dimension(60, 30);
+	Dimension spinnerDimension = new Dimension(80,30);
 	private static final Font SUBFONT = new Font("Courier New", Font.BOLD, 14);
 	
+	// Constructor to initialize expression panel.
 	public ExpressionsView() {	
 		expressionPanel = new JPanel();
 		
@@ -41,7 +50,8 @@ public class ExpressionsView  {
 
 		expressionPanel.setLayout(new GridBagLayout());
 		expressionPanel.setBorder(
-				new TitledBorder(null, "Expressions", TitledBorder.LEADING, TitledBorder.TOP, SUBFONT, null));
+				new TitledBorder(null, "Expressions", TitledBorder.LEADING, 
+						TitledBorder.TOP, SUBFONT, null));
 
 		GridBagConstraints lowerFaceGbc = new GridBagConstraints();
 		lowerFaceGbc.gridx = 1;
@@ -177,35 +187,53 @@ public class ExpressionsView  {
 			}
 		});
 	}
+	
+	// Method that returns the panel created
 	public JPanel getExpressionsPanel() {
         return expressionPanel;
     }
 	
 	private static void updateLowerFace(String lowerFaceAttribute, Double lowerFaceVal) {
-		ServerCommonData.getInstance().getMessage().setAbstractExpression(AbstractExpression.smile.name() , 
+		ServerCommonData.getInstance().getMessage().setAbstractExpression(
+				AbstractExpression.smile.name() , 
 				lowerFaceAttribute.equals("Smile") ? lowerFaceVal : 0.0);
-		ServerCommonData.getInstance().getMessage().setAbstractExpression(AbstractExpression.clench.name(), 
+		ServerCommonData.getInstance().getMessage().setAbstractExpression(
+				AbstractExpression.clench.name(), 
 				lowerFaceAttribute.equals("Clench") ? lowerFaceVal : 0.0);
-		ServerCommonData.getInstance().getMessage().setAbstractExpression(AbstractExpression.leftSmirk.name(), 
+		ServerCommonData.getInstance().getMessage().setAbstractExpression(
+				AbstractExpression.leftSmirk.name(), 
 				lowerFaceAttribute.equals("Smirk Left") ? lowerFaceVal : 0.0);
-		ServerCommonData.getInstance().getMessage().setAbstractExpression(AbstractExpression.rightSmirk.name(), 
+		ServerCommonData.getInstance().getMessage().setAbstractExpression(
+				AbstractExpression.rightSmirk.name(), 
 				lowerFaceAttribute.equals("Smirk Right") ? lowerFaceVal : 0.0);
-		ServerCommonData.getInstance().getMessage().setAbstractExpression(AbstractExpression.laugh.name(), 
+		ServerCommonData.getInstance().getMessage().setAbstractExpression(
+				AbstractExpression.laugh.name(), 
 				lowerFaceAttribute.equals("Laugh") ? lowerFaceVal : 0.0);
 	}
 
 	private static void updateUpperFace(String upperFaceAttribute, Double upperFaceVal) {
-		ServerCommonData.getInstance().getMessage().setAbstractExpression(AbstractExpression.raiseBrow.name(),  
+		ServerCommonData.getInstance().getMessage().setAbstractExpression(
+				AbstractExpression.raiseBrow.name(),  
 				upperFaceAttribute.equals("Raise Brow") ? upperFaceVal : 0.0);
-		ServerCommonData.getInstance().getMessage().setAbstractExpression(AbstractExpression.furrowBrow.name(),  
+		ServerCommonData.getInstance().getMessage().setAbstractExpression(
+				AbstractExpression.furrowBrow.name(),  
 				upperFaceAttribute.equals("Furrow Brow") ? upperFaceVal : 0.0);		
 	}
 
 	private static void updateEye(String eyeAttribute, Boolean eyeVal) {
-		ServerCommonData.getInstance().getMessage().setConcreteExpression(ConcreteExpression.blink.name(), eyeAttribute.equals("Blink") ? eyeVal : false);
-		ServerCommonData.getInstance().getMessage().setConcreteExpression(ConcreteExpression.leftWink.name(), eyeAttribute.equals("Wink Left") ? eyeVal : false);
-		ServerCommonData.getInstance().getMessage().setConcreteExpression(ConcreteExpression.rightWink.name(), eyeAttribute.equals("Wink Right") ? eyeVal : false);
-		ServerCommonData.getInstance().getMessage().setConcreteExpression(ConcreteExpression.lookingLeft.name(), eyeAttribute.equals("Look Left") ? eyeVal : false);
-		ServerCommonData.getInstance().getMessage().setConcreteExpression(ConcreteExpression.lookingRight.name(), eyeAttribute.equals("Look Right") ? eyeVal : false);
-}
+		ServerCommonData.getInstance().getMessage().setConcreteExpression(
+				ConcreteExpression.blink.name(), eyeAttribute.equals("Blink") ? eyeVal : false);
+		ServerCommonData.getInstance().getMessage().setConcreteExpression(
+				ConcreteExpression.leftWink.name(), 
+				eyeAttribute.equals("Wink Left") ? eyeVal : false);
+		ServerCommonData.getInstance().getMessage().setConcreteExpression(
+				ConcreteExpression.rightWink.name(), 
+				eyeAttribute.equals("Wink Right") ? eyeVal : false);
+		ServerCommonData.getInstance().getMessage().setConcreteExpression(
+				ConcreteExpression.lookingLeft.name(), 
+				eyeAttribute.equals("Look Left") ? eyeVal : false);
+		ServerCommonData.getInstance().getMessage().setConcreteExpression(
+				ConcreteExpression.lookingRight.name(), 
+				eyeAttribute.equals("Look Right") ? eyeVal : false);
+	}
 }

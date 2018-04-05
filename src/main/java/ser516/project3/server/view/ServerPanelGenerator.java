@@ -17,6 +17,14 @@ import ser516.project3.server.controller.ServerControllerImpl;
 import ser516.project3.utilities.InputVerifierNumericals;
 import ser516.project3.utilities.ServerCommonData;
 
+/**
+ * Class to create components in expressions panel and listeners for each
+ * component
+ * 
+ * @author Varun
+ *
+ */
+
 public class ServerPanelGenerator {
 
 	final static Logger logger = Logger.getLogger(ServerPanelGenerator.class);
@@ -24,7 +32,6 @@ public class ServerPanelGenerator {
 	private static ServerControllerImpl serverControllerImpl = new ServerControllerImpl();
 
 	private static final Font FONT = new Font("Courier New", Font.BOLD, 17);
-	//private static final Font SUBFONT = new Font("Courier New", Font.BOLD, 14);
 	private static final String INTERVAL_LABEL_NAME = "Interval (seconds):  ";
 	private static final String AUTO_REPEAT_CHECKBOX_NAME = "Auto Repeat";
 	private static final String TOGGLE_START_STOP = "Start / Stop";
@@ -95,9 +102,20 @@ public class ServerPanelGenerator {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				logger.info("Start button pressed");
+				logger.info("Start/Stop button pressed");
 				updateIntervalInputTextField(intervalInputTextField);
 				serverControllerImpl.startServer();
+				if (intervalInputTextField.isEditable()) {
+					intervalInputTextField.setEditable(false);}
+				else {
+					intervalInputTextField.setEditable(true);
+				}
+				if(autoRepeatCheckBox.isEnabled()) {
+					autoRepeatCheckBox.setEnabled(false);
+				}else {
+					autoRepeatCheckBox.setEnabled(true);
+				}
+					
 			}
 		});
 
@@ -119,11 +137,11 @@ public class ServerPanelGenerator {
 		gridBagConstraint.gridx = 2;
 		gridBagConstraint.gridy = 0;
 		gridBagConstraint.ipady = 40;
-		gridBagConstraint.insets = new Insets(0, 50, 0, 50); // left-right padding
+		gridBagConstraint.insets = new Insets(0, 50, 0, 50);
 		topPanel.add(buttonToggle, gridBagConstraint);
 
 		gridBagConstraint.ipady = 10;
-		gridBagConstraint.insets = new Insets(0, 0, 0, 0); // reset
+		gridBagConstraint.insets = new Insets(0, 0, 0, 0);
 		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraint.weightx = 0.5;
 		gridBagConstraint.gridx = 0;
@@ -145,7 +163,6 @@ public class ServerPanelGenerator {
 	 * This method will initialize the second sub panel of the Server window
 	 * 
 	 * @return the second sub-panel
-	 * @wbp.parser.entryPoint
 	 */
 	public static Component createConfigurationPanels() {
 		JPanel configPanel = new JPanel();
@@ -203,11 +220,10 @@ public class ServerPanelGenerator {
 		ExpressionsView expressionsView = new ExpressionsView();
 		return expressionsView.getExpressionsPanel();
 	}
-	
+
 	public static JPanel createEmotionsPanel() {
 		EmotionsView emotionsView = new EmotionsView();
 		return emotionsView.getEmotionsPanel();
-		
 	}
 
 	public static JPanel createConsolePanel() {

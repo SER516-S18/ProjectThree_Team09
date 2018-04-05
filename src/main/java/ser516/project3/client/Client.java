@@ -1,10 +1,11 @@
 package ser516.project3.client;
 
+import java.awt.EventQueue;
+
+import javax.swing.UIManager;
+
 import ser516.project3.client.controller.ClientControllerImpl;
 import ser516.project3.client.controller.ClientControllerInterface;
-
-import javax.swing.*;
-import java.awt.*;
 
 /**
  * Main class to initialize the client

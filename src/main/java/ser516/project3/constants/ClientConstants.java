@@ -66,4 +66,5 @@ public class ClientConstants {
 	public final static String NO_IP_ADDRESS_MESSAGE = "Please enter a valid IP Address";
 	public final static String NO_PORT_NO_MESSAGE = "Please enter a valid Port Number";
 	public final static String NO_CONNECTION_MESSAGE = "Could not connect to server.";
+	public final static String SERVER_STOPPED_MESSAGE = "Sever got disconnected";
 }
