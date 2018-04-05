@@ -217,9 +217,8 @@ public class ServerPanelGenerator {
 	}
 
 	public static JPanel createTimerPanel() {
-		JPanel timerPanel = new JPanel();
-		// Add Components to Timer panel here
-		return timerPanel;
+		TimerView timerView = new TimerView();
+		return timerView.getTimerPanel();
 	}
 
 	private static void updateIntervalInputTextField(JTextField intervalInputTextField) {
