@@ -25,7 +25,11 @@ public class HeaderController {
   class ConnectListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-      connectionPopUpController = new ConnectionPopUpController(connectionPopUpModel);
+      if (headerModel.isConnectionStatus()) {
+        ClientControllerImpl.getInstance().toggleConnectionToServer(null, 0);
+      } else {
+        connectionPopUpController = new ConnectionPopUpController(connectionPopUpModel);
+      }
     }
   }
 
