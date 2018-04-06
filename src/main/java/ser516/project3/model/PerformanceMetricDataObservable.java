@@ -17,17 +17,15 @@ import ser516.project3.client.view.PerformanceMetricView;
  *
  */
 public class PerformanceMetricDataObservable extends Observable {
-
-	private ArrayList<ArrayList<CoordinatesModel>> performanceMetricData;
-
-	public ArrayList<ArrayList<CoordinatesModel>> getPerformanceMetricData() {
-		return performanceMetricData;
-	}
-
 	private static PerformanceMetricDataObservable instance;
+	private ArrayList<ArrayList<CoordinatesModel>> performanceMetricData;
 
 	private PerformanceMetricDataObservable() {
 		performanceMetricData = new ArrayList<ArrayList<CoordinatesModel>>();
+	}
+
+	public ArrayList<ArrayList<CoordinatesModel>> getPerformanceMetricData() {
+		return performanceMetricData;
 	}
 
 	/**

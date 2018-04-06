@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.apache.log4j.Logger;
 
 import ser516.project3.client.controller.ClientControllerImpl;
+import ser516.project3.client.view.ExpressionsGraphObserver;
+import ser516.project3.model.ExpressionsDataObservable;
 import ser516.project3.model.PerformanceMetricDataObservable;
 import ser516.project3.client.view.PerformanceMetricGraphObserver;
 import ser516.project3.client.helper.ClientConnectionThread;
@@ -20,6 +22,9 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
 		// Registering the observers on client start
 		PerformanceMetricGraphObserver performanceMetricObserver = new PerformanceMetricGraphObserver();
 		PerformanceMetricDataObservable.getInstance().addObserver(performanceMetricObserver);
+
+		ExpressionsGraphObserver expressionsGraphObserver = new ExpressionsGraphObserver();
+		ExpressionsDataObservable.getInstance().addObserver(expressionsGraphObserver);
 		
 		threadInstance = new ClientConnectionThread(ipAddress, port, endpoint);
 		clientConnectionThread = new Thread(threadInstance);

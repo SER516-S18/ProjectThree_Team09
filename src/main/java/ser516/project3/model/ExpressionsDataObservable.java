@@ -12,13 +12,15 @@ import java.util.Observable;
  *
  */
 public class ExpressionsDataObservable extends Observable {
-
-	private ArrayList<ArrayList<CoordinatesModel>> expressionsData;
-
 	private static ExpressionsDataObservable instance;
+	private ArrayList<ArrayList<CoordinatesModel>> expressionsData;
 
 	private ExpressionsDataObservable() {
 		expressionsData = new ArrayList<ArrayList<CoordinatesModel>>();
+	}
+
+	public ArrayList<ArrayList<CoordinatesModel>> getExpressionsData() {
+		return expressionsData;
 	}
 
 	/**

@@ -31,20 +31,12 @@ public class PerformanceMetricGraphObserver implements Observer {
 	@Override
 	public void update(Observable observable, Object observerObj) {
 
-		PerformanceMetricDataObservable performanceMetricData = (PerformanceMetricDataObservable) observable;
-		ArrayList<ArrayList<CoordinatesModel>> pmd = performanceMetricData.getPerformanceMetricData();
-		logger.info("test data");
-/*
-		for (ArrayList<CoordinatesModel> each : pmd) {
-			for (CoordinatesModel cm : each) {
-				System.out.println(cm.getXCoordinate() + "," + cm.getYCoordinate());
-			}
-		}*/
+		PerformanceMetricDataObservable performanceMetricDataObservable = (PerformanceMetricDataObservable) observable;
 
 		GraphControllerInterface graphControllerInterface = ClientControllerImpl.getInstance()
 				.getPerformanceMetricController().getGraphController();
 
-		graphControllerInterface.setGraphData(performanceMetricData.getPerformanceMetricData());
+		graphControllerInterface.setGraphData(performanceMetricDataObservable.getPerformanceMetricData());
 		graphControllerInterface.updateGraphView();
 
 		ClientControllerImpl.getInstance().getPerformanceMetricController().getPerformanceMetricView().revalidate();

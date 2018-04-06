@@ -24,4 +24,8 @@ public class ExpressionsController {
   public ExpressionsView getExpressionsView() {
     return expressionsView;
   }
+
+  public GraphControllerInterface getGraphController() {
+    return graphController;
+  }
 }

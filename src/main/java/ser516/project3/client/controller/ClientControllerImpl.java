@@ -23,9 +23,6 @@ public class ClientControllerImpl implements ClientControllerInterface {
 	private HeaderController headerController;
 	private ExpressionsController expressionsController;
 	private PerformanceMetricController performanceMetricController;
-	public PerformanceMetricController getPerformanceMetricController() {
-		return performanceMetricController;
-	}
 
 	private static ClientControllerImpl instance;
 	public ClientControllerImpl() {
@@ -42,6 +39,13 @@ public class ClientControllerImpl implements ClientControllerInterface {
 		performanceMetricController = new PerformanceMetricController(performanceMetricModel, performanceMetricView);
 	}
 
+	public PerformanceMetricController getPerformanceMetricController() {
+		return performanceMetricController;
+	}
+
+	public ExpressionsController getExpressionsController() {
+		return expressionsController;
+	}
 	
 	/**
 	 * Creates a singleton instance . If exists, returns it, else creates it.
