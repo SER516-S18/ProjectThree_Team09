@@ -35,6 +35,8 @@ public class ServerPanelGenerator {
 	private static final String INTERVAL_LABEL_NAME = "Interval (seconds):  ";
 	private static final String AUTO_REPEAT_CHECKBOX_NAME = "Auto Repeat";
 	private static final String TOGGLE_START_STOP = "Start / Stop";
+	
+	private static StatusIndicator statusIndicator;
 
 	/**
 	 * This method will initialize the top JPanels of the server application
@@ -44,6 +46,13 @@ public class ServerPanelGenerator {
 	public static JPanel createTopPanels() {
 		JPanel topPanel = new JPanel();
 
+		/*
+		statusIndicator = new StatusIndicator();
+		statusIndicator.setBorder(BorderFactory.createEmptyBorder(30, 10, 10, 10));
+		statusIndicator.setBounds(100, 200, 50, 80);
+		topPanel.add(statusIndicator);
+		*/
+		
 		topPanel.setLayout(new GridBagLayout());
 		GridBagConstraints gridBagConstraint = new GridBagConstraints();
 
@@ -118,7 +127,7 @@ public class ServerPanelGenerator {
 					
 			}
 		});
-
+		
 		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraint.gridx = 0;
 		gridBagConstraint.gridy = 0;
@@ -158,7 +167,11 @@ public class ServerPanelGenerator {
 		return topPanel;
 
 	}
-
+	
+	public void setStatus(boolean status) {
+		statusIndicator.setBlinking(status);
+	}
+	
 	/**
 	 * This method will initialize the second sub panel of the Server window
 	 * 
