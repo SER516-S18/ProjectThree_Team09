@@ -23,9 +23,11 @@ public class ServerConnectionServiceImpl implements ServerConnectionServiceInter
 
 	@Override
 	public void stopServerEndpoint() {
-		threadInstance.getServer().stop();
-		ConsoleModel.getInstance().logMessage("Server Stopped");
-		serverContainerThread.interrupt();
+		if(threadInstance != null || serverContainerThread != null) {
+			threadInstance.getServer().stop();
+			ConsoleModel.getInstance().logMessage("Server Stopped");
+			serverContainerThread.interrupt();
+		}
 		ServerCommonData.getInstance().setServerStarted(false);
 		ServerPanelGenerator.setStatus(false);
 	}
