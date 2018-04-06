@@ -17,7 +17,7 @@ import ser516.project3.utilities.InputVerifierNumericals;
  *
  */
 public class TimerView {
-		JPanel timerPanel;
+		static JPanel timerPanel;
 		private static final String TIME_ELAPSED = "Time Elapsed(ms):  ";
 		
 		public TimerView() {
@@ -47,7 +47,7 @@ public class TimerView {
 			timerPanel.add(timeElapsedInputTextField, gridBagConstraint);
 				
 		}
-		public JPanel getTimerPanel() {
+		public static JPanel getTimerPanel() {
 	        return timerPanel;
 	    }
 }
