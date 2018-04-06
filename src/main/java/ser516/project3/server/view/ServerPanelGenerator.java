@@ -36,6 +36,8 @@ public class ServerPanelGenerator {
 	private static final String INTERVAL_LABEL_NAME = "Interval (seconds):  ";
 	private static final String AUTO_REPEAT_CHECKBOX_NAME = "Auto Repeat";
 	private static final String TOGGLE_START_STOP = "Start / Stop";
+	
+	private static StatusIndicator statusIndicator;
 
 	/**
 	 * This method will initialize the top JPanels of the server application
@@ -250,6 +252,10 @@ public class ServerPanelGenerator {
 		} catch (NumberFormatException e) {
 			JOptionPane.showMessageDialog(null, "You must input a valid number for this field!");
 		}
+	}
+	
+	public static void setStatus(boolean status) {
+		statusIndicator.setBlinking(status);
 	}
 
 	/**
