@@ -126,7 +126,8 @@ public class ClientController implements ClientControllerInterface{
 	 * Forces the client to stop
 	 */
 	public void stopClientConnector() {
-		clientConnectionService.stopClientConnection();
+		if(clientConnectionService != null)
+			clientConnectionService.stopClientConnection();
 		connected = false;
 	}
 
