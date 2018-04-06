@@ -85,14 +85,14 @@ public class Message {
 	}
 	
 	public enum Emotion{
-		interest, engagement, excitement, stress, relaxation, focus;
+		interest, engagement, stress, relaxation, excitement, focus
 	}
 
 	public enum AbstractExpression{
-		smile, clench, leftSmirk, rightSmirk, laugh, furrowBrow, raiseBrow;
+		smile, clench, leftSmirk, rightSmirk, laugh, furrowBrow, raiseBrow
 	}
 
 	public enum ConcreteExpression{
-		blink, rightWink, leftWink, lookingRight, lookingLeft;
+		blink, rightWink, leftWink, lookingRight, lookingLeft
 	}
 }
