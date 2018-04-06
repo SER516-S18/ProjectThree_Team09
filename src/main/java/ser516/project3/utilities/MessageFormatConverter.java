@@ -42,22 +42,23 @@ public class MessageFormatConverter {
 	 * Converts message bean into list of coordinate object with time stamp and
 	 * expressions
 	 * 
-	 * @param messageModelObject
+	 * @param messageModel
 	 * @return ArrayList of coordinates for populating expressions graph
 	 */
-	public static ArrayList<CoordinatesModel> convertMessageToExpressionsData(MessageModel messageModelObject) {
+	public static ArrayList<CoordinatesModel> convertMessageToExpressionsData(MessageModel messageModel) {
 		ArrayList<CoordinatesModel> resultExpressionsCoordinateModel = new ArrayList<CoordinatesModel>();
-		for(ConcreteExpression cex : ConcreteExpression.values()) {
-			CoordinatesModel currentCoordModel = new CoordinatesModel(messageModelObject.getTimeStamp(),
-					(messageModelObject.getConcreteExpression(cex.name()) ? 1 : 0));
-			resultExpressionsCoordinateModel.add(currentCoordModel);
-
+		int yAxis = 24;
+		for(ConcreteExpression concreteExpression : ConcreteExpression.values()) {
+			CoordinatesModel coordinatesModel = new CoordinatesModel(messageModel.getTimeStamp(),
+					(messageModel.getConcreteExpression(concreteExpression.name()) ? yAxis : yAxis - 1));
+			resultExpressionsCoordinateModel.add(coordinatesModel);
+			yAxis = yAxis - 2;
 		}
-		for(AbstractExpression aex : AbstractExpression.values()) {
-			CoordinatesModel currentCoordModel = new CoordinatesModel(messageModelObject.getTimeStamp(),
-					messageModelObject.getAbstractExpression(aex.name()));
-			resultExpressionsCoordinateModel.add(currentCoordModel);
-
+		for(AbstractExpression abstractExpression : AbstractExpression.values()) {
+			CoordinatesModel coordinatesModel = new CoordinatesModel(messageModel.getTimeStamp(),
+					messageModel.getAbstractExpression(abstractExpression.name()) + yAxis - 1);
+			resultExpressionsCoordinateModel.add(coordinatesModel);
+			yAxis = yAxis - 2;
 		}
 		return resultExpressionsCoordinateModel;
 	}

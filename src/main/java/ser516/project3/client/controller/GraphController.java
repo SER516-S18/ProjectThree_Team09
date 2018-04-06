@@ -107,6 +107,23 @@ public class GraphController implements ClientControllerInterface{
   }
 
   /**
+   * Sets the names of each legend in the graph.
+   *
+   * @param legendNames the names of each legend in the graph
+   */
+  public void setLegendNames(String[] legendNames) {
+    graphModel.setLegendNames(legendNames);
+  }
+
+  /**
+   * Gets the names of each legend in the graph.
+   * @return names of each legend in the graph.
+   */
+  public String[] getLegendNames() {
+    return graphModel.getLegendNames();
+  }
+
+  /**
    * Updates the GraphView using the new data from the <code>GraphModel</code>.
    */
   public void updateGraphView() {

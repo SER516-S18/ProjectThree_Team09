@@ -3,6 +3,7 @@ package ser516.project3.client.view;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.SymbolAxis;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
@@ -33,6 +34,7 @@ public class GraphView extends JPanel implements ClientViewInterface{
   private JFreeChart chart;
   private ChartPanel chartPanel;
   private GraphModel graphModel;
+  private boolean legendDisplay;
 
   private static final int TITLE_FONT_SIZE = 17;
   private static final int GRAPH_AXIS_FONT_SIZE = 14;
@@ -67,6 +69,10 @@ public class GraphView extends JPanel implements ClientViewInterface{
    */
   public void updateGraphView(GraphModel graphModel) {
     this.graphModel = graphModel;
+    legendDisplay = true;
+    if(graphModel.getNoOfChannels() == 6) {
+      legendDisplay = false;
+    }
     remove(chartPanel);
     XYDataset dataSet = createDataSet();
     chart = createChart(dataSet);
@@ -80,7 +86,10 @@ public class GraphView extends JPanel implements ClientViewInterface{
     XYSeriesCollection dataSet = new XYSeriesCollection();
 
     for (int i = 0; i < graphModel.getNoOfChannels(); i++) {
-      series[i] = new XYSeries(i);
+      if(legendDisplay)
+        series[i] = new XYSeries(graphModel.getLegendNames()[i]);
+      else
+        series[i] = new XYSeries(i);
     }
 
     if(graphModel.getGraphData() != null) {
@@ -102,14 +111,22 @@ public class GraphView extends JPanel implements ClientViewInterface{
 
   private JFreeChart createChart(final XYDataset dataSet) {
     JFreeChart chart = ChartFactory.createXYLineChart("", "",
-        "", dataSet, PlotOrientation.VERTICAL, false, true,
+        "", dataSet, PlotOrientation.VERTICAL, legendDisplay, true,
         false);
     chart.setBackgroundPaint(Color.decode(ClientConstants.PANEL_COLOR_HEX));
 
     XYPlot plot = chart.getXYPlot();
+
     ValueAxis range = plot.getRangeAxis();
-    range.setTickLabelPaint(Color.WHITE);
-    range.setTickLabelFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, GRAPH_AXIS_FONT_SIZE));
+    if(graphModel.getNoOfChannels() == 6) {
+      range.setTickLabelPaint(Color.WHITE);
+      range.setTickLabelFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, GRAPH_AXIS_FONT_SIZE));
+    } else {
+      range.setTickLabelsVisible(false);
+      range.setTickMarksVisible(false);
+      range.setAxisLineVisible(false);
+    }
+
     range = plot.getDomainAxis();
     range.setRange(0, graphModel.getXLength());
     range.setTickLabelPaint(Color.WHITE);
@@ -118,11 +135,10 @@ public class GraphView extends JPanel implements ClientViewInterface{
 
     XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
 
-    if(graphModel.getChannelColors() != null) {
-      for (int i = 0; i < graphModel.getNoOfChannels(); i++) {
+    for (int i = 0; i < graphModel.getNoOfChannels(); i++) {
+      if(graphModel.getChannelColors() != null)
         renderer.setSeriesPaint(i, graphModel.getChannelColors()[i]);
-        renderer.setSeriesShapesVisible(i, false);
-      }
+      renderer.setSeriesShapesVisible(i, false);
     }
 
     plot.setRenderer(renderer);

@@ -18,6 +18,9 @@ public class ExpressionsController implements ClientControllerInterface{
 
   @Override
   public void initializeView() {
+    String legendNames[] = {"blink", "rightWink", "leftWink", "lookingRight", "lookingLeft",
+        "smile", "clench", "leftSmirk", "rightSmirk", "laugh", "furrowBrow", "raiseBrow"};
+    graphController.setLegendNames(legendNames);
     graphController.setNoOfChannels(12);
     graphController.setXLength(100);
     graphController.updateGraphView();

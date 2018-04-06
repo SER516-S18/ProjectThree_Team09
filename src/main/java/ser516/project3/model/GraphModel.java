@@ -23,6 +23,7 @@ public class GraphModel implements ModelInterface{
   private int noOfChannels;
   private Color channelColors[];
   private ArrayList<ArrayList<CoordinatesModel>> graphData;
+  private String[] legendNames;
 
   public GraphModel() {
     XLength = 1;
@@ -99,5 +100,22 @@ public class GraphModel implements ModelInterface{
    */
   public ArrayList<ArrayList<CoordinatesModel>> getGraphData() {
     return graphData;
+  }
+
+  /**
+   * Sets the names of each legend in the graph.
+   *
+   * @param legendNames the names of each legend in the graph
+   */
+  public void setLegendNames(String[] legendNames) {
+    this.legendNames = legendNames;
+  }
+
+  /**
+   * Gets the names of each legend in the graph.
+   * @return names of each legend in the graph.
+   */
+  public String[] getLegendNames() {
+    return legendNames;
   }
 }
