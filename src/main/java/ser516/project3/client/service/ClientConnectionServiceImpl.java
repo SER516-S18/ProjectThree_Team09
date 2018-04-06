@@ -39,7 +39,8 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
 	@Override
 	public void stopClientConnection() {
 		try {
-			threadInstance.getClientSession().close();
+			if(threadInstance != null && threadInstance.getClientSession() != null)
+				threadInstance.getClientSession().close();
 			ClientController.getInstance().setConnectionStatus(false);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
