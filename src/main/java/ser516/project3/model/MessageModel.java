@@ -1,15 +1,18 @@
 package ser516.project3.model;
 
+import ser516.project3.utilities.MessageDecoder;
+import ser516.project3.utilities.MessageEncoder;
+
 import java.util.HashMap;
 
 /**
- * Message is a data model class that encapsulates the data messages sent
+ * MessageModel is a data model class that encapsulates the data messages sent
  * between the client and the server. The
- * {@link ser516.project3.model.MessageEncoder} and
- * {@link ser516.project3.model.MessageDecoder} marshal and unmarshal instances
+ * {@link MessageEncoder} and
+ * {@link MessageDecoder} marshal and unmarshal instances
  * of this class, respectively.
  */
-public class Message {
+public class MessageModel {
 
 	private double interval;
 	private double timeStamp;
@@ -70,7 +73,7 @@ public class Message {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Message [timeStamp=").append(timeStamp);
+		builder.append("MessageModel [timeStamp=").append(timeStamp);
 		builder.append(", interval=").append(interval);
 		for(Emotion em : Emotion.values()) {
 			builder.append(", "+ em.name()+"=").append(this.emotionMap.get(em.name()));

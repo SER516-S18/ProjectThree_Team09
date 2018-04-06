@@ -22,8 +22,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import ser516.project3.model.Message.AbstractExpression;
-import ser516.project3.model.Message.ConcreteExpression;
+import ser516.project3.model.MessageModel.AbstractExpression;
+import ser516.project3.model.MessageModel.ConcreteExpression;
 import ser516.project3.utilities.ServerCommonData;
 
 

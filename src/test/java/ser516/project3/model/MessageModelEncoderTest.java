@@ -4,16 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
+import ser516.project3.utilities.MessageEncoder;
 
-public class MessageEncoderTest {
+public class MessageModelEncoderTest {
 
     @Test
     public void testEncodeMessage() {
         try {
-            Message message = new Message();
+            MessageModel messageModel = new MessageModel();
             MessageEncoder encoder = new MessageEncoder();
 
-            String actual = encoder.encode(message);
+            String actual = encoder.encode(messageModel);
             String expected = IOUtils.toString(
                 this.getClass().getResourceAsStream("default.json"),
                 "UTF-8"

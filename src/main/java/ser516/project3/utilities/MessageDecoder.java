@@ -1,4 +1,4 @@
-package ser516.project3.model;
+package ser516.project3.utilities;
 
 import java.io.StringReader;
 
@@ -8,13 +8,14 @@ import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 
-import ser516.project3.model.Message.AbstractExpression;
-import ser516.project3.model.Message.ConcreteExpression;
-import ser516.project3.model.Message.Emotion;
+import ser516.project3.model.MessageModel;
+import ser516.project3.model.MessageModel.AbstractExpression;
+import ser516.project3.model.MessageModel.ConcreteExpression;
+import ser516.project3.model.MessageModel.Emotion;
 
 
 
-public class MessageDecoder implements Decoder.Text<Message> {
+public class MessageDecoder implements Decoder.Text<MessageModel> {
 
     @Override
     public void init(EndpointConfig config) {
@@ -27,9 +28,9 @@ public class MessageDecoder implements Decoder.Text<Message> {
     }
 
     @Override
-    public Message decode(String payload) throws DecodeException {
+    public MessageModel decode(String payload) throws DecodeException {
 
-        Message message = new Message();
+        MessageModel messageModel = new MessageModel();
 
         // Read the payload.
         JsonObject root = Json.createReader(new StringReader(payload)).readObject();
@@ -38,22 +39,22 @@ public class MessageDecoder implements Decoder.Text<Message> {
         JsonObject emotionAttributes = root.getJsonObject("Emotion");
         
         //Unmarshal the time attributes
-        message.setInterval(timeAttributes.getJsonNumber("Interval").doubleValue());
-        message.setTimeStamp(timeAttributes.getJsonNumber("TimeStamp").doubleValue());
+        messageModel.setInterval(timeAttributes.getJsonNumber("Interval").doubleValue());
+        messageModel.setTimeStamp(timeAttributes.getJsonNumber("TimeStamp").doubleValue());
 
         // Unmarshal the expression attributes.
         for(AbstractExpression aex : AbstractExpression.values()) {
-        	message.setAbstractExpression(aex.name(), expressionAttributes.getJsonNumber(aex.name()).doubleValue());
+        	messageModel.setAbstractExpression(aex.name(), expressionAttributes.getJsonNumber(aex.name()).doubleValue());
         }
         for(ConcreteExpression cex : ConcreteExpression.values()) {
-        	message.setConcreteExpression(cex.name(), expressionAttributes.getBoolean(cex.name()));
+        	messageModel.setConcreteExpression(cex.name(), expressionAttributes.getBoolean(cex.name()));
         }
         // Unmarshal the emotion attributes.
         for(Emotion em : Emotion.values()) {
-        	message.setEmotion(em.name(), emotionAttributes.getJsonNumber(em.name()).doubleValue());
+        	messageModel.setEmotion(em.name(), emotionAttributes.getJsonNumber(em.name()).doubleValue());
         }
 
-        return message;
+        return messageModel;
     }
 
     @Override

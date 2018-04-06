@@ -13,8 +13,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.apache.log4j.Logger;
 
-import ser516.project3.model.Message;
-import ser516.project3.model.MessageEncoder;
+import ser516.project3.utilities.MessageEncoder;
 import ser516.project3.utilities.ServerCommonData;
 
 /**

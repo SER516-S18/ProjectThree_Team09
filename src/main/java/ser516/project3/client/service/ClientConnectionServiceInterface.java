@@ -4,7 +4,7 @@ public interface ClientConnectionServiceInterface {
 
 	/**
 	 * This method will create a connection to the server's web socket end point,
-	 * read and decode the json into Message bean
+	 * read and decode the json into MessageModel bean
 	 * 
 	 * @param ipAddress
 	 * @param port

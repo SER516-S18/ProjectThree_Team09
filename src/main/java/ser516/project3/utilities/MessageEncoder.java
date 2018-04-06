@@ -1,4 +1,4 @@
-package ser516.project3.model;
+package ser516.project3.utilities;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,11 +11,12 @@ import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
 
-import ser516.project3.model.Message.AbstractExpression;
-import ser516.project3.model.Message.ConcreteExpression;
-import ser516.project3.model.Message.Emotion;
+import ser516.project3.model.MessageModel;
+import ser516.project3.model.MessageModel.AbstractExpression;
+import ser516.project3.model.MessageModel.ConcreteExpression;
+import ser516.project3.model.MessageModel.Emotion;
 
-public class MessageEncoder implements Encoder.Text<Message> {
+public class MessageEncoder implements Encoder.Text<MessageModel> {
 
     @Override
     public void init(EndpointConfig config) {
@@ -28,28 +29,28 @@ public class MessageEncoder implements Encoder.Text<Message> {
     }
 
     @Override
-    public String encode(Message message) throws EncodeException {
+    public String encode(MessageModel messageModel) throws EncodeException {
         Map<String, Object> config = new HashMap<String, Object>();
         JsonBuilderFactory factory = Json.createBuilderFactory(config);
         
         
         //Build Time attributes
         JsonObject timeAttributes=factory.createObjectBuilder()
-        								 .add("Interval", message.getInterval())
-        								 .add("TimeStamp", message.getTimeStamp()).build();
+        								 .add("Interval", messageModel.getInterval())
+        								 .add("TimeStamp", messageModel.getTimeStamp()).build();
         
         // Build "Expression" object.
         JsonObjectBuilder expressionBuilder = factory.createObjectBuilder();   	
         for(AbstractExpression aex : AbstractExpression.values()) {
-        	expressionBuilder.add(aex.name(), message.getAbstractExpression(aex.name()));
+        	expressionBuilder.add(aex.name(), messageModel.getAbstractExpression(aex.name()));
         }
         for(ConcreteExpression cex : ConcreteExpression.values()) {
-        	expressionBuilder.add(cex.name(), message.getConcreteExpression(cex.name()));
+        	expressionBuilder.add(cex.name(), messageModel.getConcreteExpression(cex.name()));
         }        
         // Build "Emotion" object.
         JsonObjectBuilder emotionBuilder = factory.createObjectBuilder();
         for(Emotion em : Emotion.values()) {
-        	emotionBuilder.add(em.name(), message.getEmotion(em.name()));
+        	emotionBuilder.add(em.name(), messageModel.getEmotion(em.name()));
         }
         return Json
             .createObjectBuilder()

@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import ser516.project3.client.controller.ClientControllerImpl;
 import ser516.project3.model.*;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.utilities.MessageDecoder;
 import ser516.project3.utilities.MessageFormatConverter;
 import ser516.project3.utilities.ServerCommonData;
 
@@ -38,11 +39,11 @@ public class ClientConnectionEndpoint {
 	}
 
 	@OnMessage
-	public void processMessage(Message messageBean, Session session) {
-		logger.info("Received data:::: " + messageBean);
-		PerformanceMetricDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToPeformanceMetrics(messageBean));
-		ExpressionsDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToExpressionsData(messageBean));
-		HeaderObservable.getInstance().setHeaderData(messageBean.getTimeStamp(), messageBean.getInterval());
+	public void processMessage(MessageModel messageModelBean, Session session) {
+		logger.info("Received data:::: " + messageModelBean);
+		PerformanceMetricDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToPeformanceMetrics(messageModelBean));
+		ExpressionsDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToExpressionsData(messageModelBean));
+		HeaderObservable.getInstance().setHeaderData(messageModelBean.getTimeStamp(), messageModelBean.getInterval());
 	}
 
 	@OnError
