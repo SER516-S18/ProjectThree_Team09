@@ -7,7 +7,7 @@ import javax.websocket.*;
 
 import org.apache.log4j.Logger;
 
-import ser516.project3.client.controller.ClientControllerImpl;
+import ser516.project3.client.controller.ClientController;
 import ser516.project3.model.*;
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.utilities.MessageDecoder;
@@ -59,7 +59,7 @@ public class ClientConnectionEndpoint {
 		final JDialog dialog = new JDialog();
 		dialog.setAlwaysOnTop(true);
 		JOptionPane.showMessageDialog(dialog, ClientConstants.SERVER_STOPPED_MESSAGE,ClientConstants.ERROR_STRING,JOptionPane.ERROR_MESSAGE);
-		ClientControllerImpl.getInstance().stopClientConnector();
+		ClientController.getInstance().stopClientConnector();
 	}
 	
 }

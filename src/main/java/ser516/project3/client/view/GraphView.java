@@ -29,7 +29,7 @@ import java.util.ArrayList;
  * @since 2018-03-30
  *
  */
-public class GraphView extends JPanel{
+public class GraphView extends JPanel implements ClientViewInterface{
   private JFreeChart chart;
   private ChartPanel chartPanel;
   private GraphModel graphModel;
@@ -42,11 +42,19 @@ public class GraphView extends JPanel{
    * graph.
    *
    */
-  public GraphView() {
-    graphModel = new GraphModel();
-    graphModel.setNoOfChannels(0);
-    graphModel.setXLength(1);
-    initializeGraph();
+  public GraphView(GraphModel graphModel) {
+    this.graphModel = graphModel;
+  }
+
+  @Override
+  public void initializeView(ClientViewInterface[] subViews) {
+    setLayout(new GridLayout(1, 1, 8, 8));
+    setBorder(new TitledBorder(null, ClientConstants.GRAPH,
+        TitledBorder.CENTER, TitledBorder.TOP, new Font(ClientConstants.FONT_NAME, Font.BOLD, TITLE_FONT_SIZE), null));
+    setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
+    XYSeriesCollection dataSet = new XYSeriesCollection();
+    chart = createChart(dataSet);
+    chartPanel = new ChartPanel(chart);
     add(chartPanel);
     setVisible(true);
   }
@@ -61,18 +69,6 @@ public class GraphView extends JPanel{
     this.graphModel = graphModel;
     remove(chartPanel);
     XYDataset dataSet = createDataSet();
-    chart = createChart(dataSet);
-    chartPanel = new ChartPanel(chart);
-    add(chartPanel);
-    setVisible(true);
-  }
-
-  private void initializeGraph() {
-    setLayout(new GridLayout(1, 1, 8, 8));
-    setBorder(new TitledBorder(null, ClientConstants.GRAPH,
-        TitledBorder.CENTER, TitledBorder.TOP, new Font(ClientConstants.FONT_NAME, Font.BOLD, TITLE_FONT_SIZE), null));
-    setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
-    XYSeriesCollection dataSet = new XYSeriesCollection();
     chart = createChart(dataSet);
     chartPanel = new ChartPanel(chart);
     add(chartPanel);

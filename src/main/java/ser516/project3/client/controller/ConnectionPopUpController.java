@@ -1,6 +1,5 @@
 package ser516.project3.client.controller;
 
-import ser516.project3.client.Client;
 import ser516.project3.client.view.ConnectionPopUpView;
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.ConnectionPopUpModel;
@@ -37,7 +36,7 @@ public class ConnectionPopUpController {
         dialog.setAlwaysOnTop(true);
         JOptionPane.showMessageDialog(dialog, ClientConstants.NO_PORT_NO_MESSAGE);
       } else {
-        ClientControllerImpl.getInstance().toggleConnectionToServer(connectionPopUpModel.getIpAddress(), connectionPopUpModel.getPortNumber());
+        ClientController.getInstance().toggleConnectionToServer(connectionPopUpModel.getIpAddress(), connectionPopUpModel.getPortNumber());
         connectionPopUpView.dispose();
       }
     }

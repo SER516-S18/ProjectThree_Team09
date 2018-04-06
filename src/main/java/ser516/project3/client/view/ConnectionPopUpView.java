@@ -2,8 +2,7 @@ package ser516.project3.client.view;
 
 import com.alee.laf.button.WebButton;
 import org.apache.log4j.Logger;
-import ser516.project3.client.controller.ClientControllerImpl;
-import ser516.project3.client.controller.ClientControllerInterface;
+import ser516.project3.client.controller.ClientController;
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.ConnectionPopUpModel;
 import ser516.project3.utilities.NumberTextField;
@@ -23,7 +22,7 @@ import java.awt.event.ActionListener;
  */
 public class ConnectionPopUpView extends JDialog {
 	final static Logger logger = Logger.getLogger(ConnectionPopUpView.class);
-	private ClientControllerInterface clientControllerImpl;
+	private ClientController clientController;
 	private ConnectionPopUpModel connectionPopUpModel;
 	private JPanel mainPanel;
 	private JLabel ipAddressLabel;
@@ -37,7 +36,7 @@ public class ConnectionPopUpView extends JDialog {
 	public ConnectionPopUpView(ConnectionPopUpModel connectionPopUpModel) {
 
 		this.connectionPopUpModel = connectionPopUpModel;
-		clientControllerImpl = new ClientControllerImpl();
+		clientController = new ClientController();
 
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(280, 200));

@@ -1,15 +1,13 @@
 package ser516.project3.client.view;
 
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import org.apache.log4j.Logger;
 
-import ser516.project3.client.controller.ClientControllerImpl;
-import ser516.project3.client.controller.GraphControllerInterface;
+import ser516.project3.client.controller.ClientController;
+import ser516.project3.client.controller.GraphController;
 import ser516.project3.model.PerformanceMetricDataObservable;
-import ser516.project3.model.CoordinatesModel;
 
 /**
  * 
@@ -33,14 +31,14 @@ public class PerformanceMetricGraphObserver implements Observer {
 
 		PerformanceMetricDataObservable performanceMetricDataObservable = (PerformanceMetricDataObservable) observable;
 
-		GraphControllerInterface graphControllerInterface = ClientControllerImpl.getInstance()
+		GraphController graphController = ClientController.getInstance()
 				.getPerformanceMetricController().getGraphController();
 
-		graphControllerInterface.setGraphData(performanceMetricDataObservable.getPerformanceMetricData());
-		graphControllerInterface.updateGraphView();
+		graphController.setGraphData(performanceMetricDataObservable.getPerformanceMetricData());
+		graphController.updateGraphView();
 
-		ClientControllerImpl.getInstance().getPerformanceMetricController().getPerformanceMetricView().revalidate();
-		ClientControllerImpl.getInstance().getPerformanceMetricController().getPerformanceMetricView().repaint();
+		ClientController.getInstance().getPerformanceMetricController().getPerformanceMetricView().revalidate();
+		ClientController.getInstance().getPerformanceMetricController().getPerformanceMetricView().repaint();
 	}
 
 }

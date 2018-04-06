@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
  * @author Vishakha Singal, Adhiraj Tikku
  * @version 1.0
  */
-public class HeaderView extends JPanel {
+public class HeaderView extends JPanel implements ClientViewInterface{
 
 	private JLabel connectionLabel;
 	private JLabel timeStampLabel;
@@ -32,6 +32,10 @@ public class HeaderView extends JPanel {
 
 	public HeaderView(HeaderModel headerModel) {
 		this.headerModel = headerModel;
+	}
+
+	@Override
+	public void initializeView(ClientViewInterface[] subViews) {
 		setBorder(null);
 		setLayout(new GridBagLayout());
 		setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));

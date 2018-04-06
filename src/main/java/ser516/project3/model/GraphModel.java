@@ -18,11 +18,16 @@ import java.util.ArrayList;
  * @since 2018-03-30
  *
  */
-public class GraphModel {
+public class GraphModel implements ModelInterface{
   private int XLength;
   private int noOfChannels;
   private Color channelColors[];
   private ArrayList<ArrayList<CoordinatesModel>> graphData;
+
+  public GraphModel() {
+    XLength = 1;
+    noOfChannels = 1;
+  }
 
   /**
    * Sets the X-axis display length.

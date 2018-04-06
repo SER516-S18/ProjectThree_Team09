@@ -1,40 +1,31 @@
 package ser516.project3.client.controller;
 
-
-import ser516.project3.client.view.GraphView;
+import ser516.project3.client.view.ClientViewInterface;
 import ser516.project3.client.view.PerformanceMetricView;
-import ser516.project3.model.GraphModel;
 import ser516.project3.model.PerformanceMetricModel;
 import ser516.project3.constants.ClientConstants;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.PlainDocument;
 import java.awt.*;
 import java.awt.event.*;
 
-public class PerformanceMetricController implements PerformanceMetricInterface{
+public class PerformanceMetricController implements ClientControllerInterface{
   private PerformanceMetricModel performanceMetricModel;
   private PerformanceMetricView performanceMetricView;
 
-  private GraphControllerInterface graphController;
+  private GraphController graphController;
 
-  public PerformanceMetricController(PerformanceMetricModel performanceMetricModel, PerformanceMetricView performanceMetricView) {
+  public PerformanceMetricController(PerformanceMetricModel performanceMetricModel, PerformanceMetricView performanceMetricView, GraphController graphController) {
     this.performanceMetricModel = performanceMetricModel;
     this.performanceMetricView = performanceMetricView;
-    initializeGraph();
-    performanceMetricView.initializePerformanceMetricUI(graphController.getGraphView());
-    this.performanceMetricView.addEmotionButtonsListener(new EmotionButtonsListener());
-    this.performanceMetricView.addDisplayLengthListener(new DisplayLengthKeyListener(), new DisplayLengthDocumentListener());
+    this.graphController = graphController;
   }
 
-  private void initializeGraph() {
-    GraphModel graphModel = new GraphModel();
-    GraphView graphView = new GraphView();
-    graphController = new GraphControllerImpl(graphModel, graphView);
+  @Override
+  public void initializeView() {
     graphController.setNoOfChannels(6);
     graphController.setXLength(performanceMetricModel.getDisplayLength());
     Color channelColors[] = {
@@ -43,19 +34,17 @@ public class PerformanceMetricController implements PerformanceMetricInterface{
         performanceMetricModel.getExcitementColor(), performanceMetricModel.getFocusColor()};
     graphController.setChannelColors(channelColors);
     graphController.updateGraphView();
+    ClientViewInterface clientViewInterface[] = {graphController.getGraphView()};
+    performanceMetricView.initializeView(clientViewInterface);
+    performanceMetricView.addEmotionButtonsListener(new EmotionButtonsListener());
+    performanceMetricView.addDisplayLengthListener(new DisplayLengthKeyListener(), new DisplayLengthDocumentListener());
   }
 
-  /**
-   * @inheritDoc
-   */
   public PerformanceMetricView getPerformanceMetricView() {
     return performanceMetricView;
   }
 
-  /**
-   * @inheritDoc
-   */
-  public GraphControllerInterface getGraphController() {
+  public GraphController getGraphController() {
     return graphController;
   }
 

@@ -18,7 +18,7 @@ import java.awt.event.KeyAdapter;
  * 
  * @author Mohan Vasantrao Yadav, Adhiraj Tikku
  */
-public class PerformanceMetricView extends JPanel{
+public class PerformanceMetricView extends JPanel implements ClientViewInterface{
 	private PerformanceMetricModel performanceMetricModel;
 
 	private JPanel mainPanel;
@@ -36,11 +36,14 @@ public class PerformanceMetricView extends JPanel{
 	
 	public PerformanceMetricView(PerformanceMetricModel performanceMetricModel){
 		this.performanceMetricModel = performanceMetricModel;
-		setLayout(new GridBagLayout());
-		setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
 	}
 
-	public void initializePerformanceMetricUI(GraphView graphView) {
+	@Override
+	public void initializeView(ClientViewInterface[] subViews) {
+		GraphView graphView = (GraphView) subViews[0];
+		setLayout(new GridBagLayout());
+		setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
+
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 0;
@@ -54,27 +57,27 @@ public class PerformanceMetricView extends JPanel{
 		gridBagConstraints.weightx = 0;
 		gridBagConstraints.weighty = 0;
 		gridBagConstraints.insets = new Insets(0, 0, 0, 10);
-		add(getEmotionPanel(), gridBagConstraints);
+
+		createEmotionPanel();
+		GridBagConstraints bagConstraints = new GridBagConstraints();
+		createEmotionButtons(bagConstraints);
+		createDisplayLengthLabel(bagConstraints);
+		createDisplayLengthField(bagConstraints);
+		createSecondsLabel(bagConstraints);
+
+		add(mainPanel, gridBagConstraints);
 		setVisible(true);
 	}
 	
 	/* This method returns a panel of 6 buttons,
 	 * 2 labels and 1 text field.
 	 */
-	private Component getEmotionPanel() {
+	private void createEmotionPanel() {
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new GridBagLayout());
 		mainPanel.setBorder(new TitledBorder(null, ClientConstants.EMOTIONS, TitledBorder.CENTER,
 				TitledBorder.TOP, new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE), null));
 		mainPanel.setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
-
-		GridBagConstraints gridBagConstraints = new GridBagConstraints();
-		createEmotionButtons(gridBagConstraints);
-		createDisplayLengthLabel(gridBagConstraints);
-		createDisplayLengthField(gridBagConstraints);
-		createSecondsLabel(gridBagConstraints);
-
-		return mainPanel;
 	}
 
 	private void createEmotionButtons(GridBagConstraints gridBagConstraints) {

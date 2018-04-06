@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.apache.log4j.Logger;
 
-import ser516.project3.client.controller.ClientControllerImpl;
+import ser516.project3.client.controller.ClientController;
 import ser516.project3.client.view.ExpressionsGraphObserver;
 import ser516.project3.client.view.HeaderObserver;
 import ser516.project3.model.ExpressionsDataObservable;
@@ -40,7 +40,7 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
 	public void stopClientConnection() {
 		try {
 			threadInstance.getClientSession().close();
-			ClientControllerImpl.getInstance().setConnectionStatus(false);
+			ClientController.getInstance().setConnectionStatus(false);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			logger.error("Error while stopping client end point::::" + e.getStackTrace().toString());

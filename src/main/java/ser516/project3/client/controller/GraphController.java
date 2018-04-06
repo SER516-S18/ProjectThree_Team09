@@ -8,7 +8,7 @@ import ser516.project3.model.CoordinatesModel;
 import ser516.project3.model.GraphModel;
 
 /**
- * GraphControllerImpl is a class to communicate between the GraphModel and
+ * GraphController is a class to communicate between the GraphModel and
  * the GraphView. The controller can receive and update data from the GraphModel, and
  * use this data to update the GraphView.
  *
@@ -17,7 +17,7 @@ import ser516.project3.model.GraphModel;
  * @since 2018-03-30
  *
  */
-public class GraphControllerImpl implements GraphControllerInterface {
+public class GraphController implements ClientControllerInterface{
   private GraphModel graphModel;
   private GraphView graphView;
 
@@ -29,85 +29,106 @@ public class GraphControllerImpl implements GraphControllerInterface {
    * @see GraphModel
    * @see GraphView
    */
-  public GraphControllerImpl(GraphModel graphModel, GraphView graphView) {
+  public GraphController(GraphModel graphModel, GraphView graphView) {
     this.graphModel = graphModel;
     this.graphView = graphView;
   }
 
   /**
-   * @inheritDoc
+   * Sets the X-axis display length in the <code>GraphModel</code>.
+   *
+   * @param XLength length of X-axis
    */
   public void setXLength(int XLength) {
     graphModel.setXLength(XLength);
   }
 
   /**
-   * @inheritDoc
+   * Gets the X-axis display length in the <code>GraphModel</code>.
+   *
+   * @return length of X-axis
    */
   public int getXLength() {
     return graphModel.getXLength();
   }
 
   /**
-   * @inheritDoc
+   * Sets the no of channels in the <code>GraphModel</code>.
+   *
+   * @param noOfChannels no of channels in the <code>GraphModel</code>
    */
   public void setNoOfChannels(int noOfChannels) {
     graphModel.setNoOfChannels(noOfChannels);
   }
 
   /**
-   * @inheritDoc
+   * Gets the no of channels in the <code>GraphModel</code>.
+   *
+   * @return no of channels in the <code>GraphModel</code>.
    */
   public int getNoOfChannels() {
     return graphModel.getNoOfChannels();
   }
 
   /**
-   * @inheritDoc
+   * Sets the list of colors for each channel in the <code>GraphModel</code>.
+   *
+   * @param channelColors list of colors for each channel in the <code>GraphModel</code>
    */
   public void setChannelColors(Color channelColors[]) {
     graphModel.setChannelColors(channelColors);
   }
 
   /**
-   * @inheritDoc
+   * Gets the list of colors for each channel in the <code>GraphModel</code>.
+   *
+   * @return list of colors for each channel in the <code>GraphModel</code>
    */
   public Color[] getChannelColors() {
     return graphModel.getChannelColors();
   }
 
   /**
-   * @inheritDoc
+   * Sets the coordinate values for each channel in the <code>GraphModel</code>.
+   *
+   * @param graphData list of coordinate values for each channel in the <code>GraphModel</code>
    */
   public void setGraphData(ArrayList<ArrayList<CoordinatesModel>> graphData) {
     graphModel.setGraphData(graphData);
   }
 
   /**
-   * @inheritDoc
+   * Gets the coordinate values for each channel in the <code>GraphModel</code>.
+   *
+   * @return list of coordinate values for each channel in the <code>GraphModel</code>
    */
   public ArrayList<ArrayList<CoordinatesModel>> getGraphData() {
     return graphModel.getGraphData();
   }
 
   /**
-   * @inheritDoc
+   * Updates the GraphView using the new data from the <code>GraphModel</code>.
    */
   public void updateGraphView() {
     graphView.updateGraphView(graphModel);
   }
 
   /**
-   * @inheritDoc
+   * Gets the Graph View
    */
   public GraphView getGraphView() {
     return graphView;
   }
 
   /**
-   * @inheritDoc
+   * Gets the Graph Model
    */
   public GraphModel getGraphModel() {
     return graphModel;
+  }
+
+  @Override
+  public void initializeView() {
+    graphView.initializeView(null);
   }
 }

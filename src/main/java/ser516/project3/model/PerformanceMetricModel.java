@@ -13,7 +13,7 @@ import java.awt.*;
  * @since 2018-04-01
  *
  */
-public class PerformanceMetricModel {
+public class PerformanceMetricModel implements ModelInterface{
   private Color interestColor;
   private Color engagementColor;
   private Color stressColor;

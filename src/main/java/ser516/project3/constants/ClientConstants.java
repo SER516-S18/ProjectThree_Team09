@@ -13,6 +13,7 @@ public class ClientConstants {
 	public final static String ENDPOINT = "server";
 
 	// Client View Constants
+	public final static String HEADER = "Header";
 	public final static String OPTIONS = "Options";
 	public final static String OPEN_SERVER = "Open Server";
 	public final static String FONT_NAME = "Courier New";

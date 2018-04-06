@@ -3,17 +3,12 @@ package ser516.project3.client.controller;
 import ser516.project3.client.view.HeaderView;
 import ser516.project3.model.ConnectionPopUpModel;
 import ser516.project3.model.HeaderModel;
-import ser516.project3.server.view.ServerPanelGenerator;
 import ser516.project3.server.view.ServerView;
-import ser516.project3.server.view.TimerView;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JTextField;
-
-public class HeaderController {
+public class HeaderController implements ClientControllerInterface{
 
   private HeaderView headerView;
   private HeaderModel headerModel;
@@ -26,9 +21,13 @@ public class HeaderController {
     connectionPopUpModel = new ConnectionPopUpModel();
     this.headerView = headerView;
     this.headerModel = headerModel;
+  }
 
-    this.headerView.addConnectButtonListener(new ConnectListener());
-    this.headerView.addServerOpenButtonListener(new ServerOpenListener());
+  @Override
+  public void initializeView() {
+    headerView.initializeView(null);
+    headerView.addConnectButtonListener(new ConnectListener());
+    headerView.addServerOpenButtonListener(new ServerOpenListener());
   }
   
   class ServerOpenListener implements ActionListener{
@@ -48,7 +47,7 @@ public class HeaderController {
     @Override
     public void actionPerformed(ActionEvent e) {
       if (headerModel.isConnectionStatus()) {
-        ClientControllerImpl.getInstance().toggleConnectionToServer(null, 0);
+        ClientController.getInstance().toggleConnectionToServer(null, 0);
       } else {
         connectionPopUpController = new ConnectionPopUpController(connectionPopUpModel);
       }

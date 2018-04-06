@@ -1,6 +1,6 @@
 package ser516.project3.client.view;
 
-import ser516.project3.client.controller.ClientControllerImpl;
+import ser516.project3.client.controller.ClientController;
 import ser516.project3.client.controller.HeaderController;
 import ser516.project3.model.HeaderObservable;
 
@@ -11,7 +11,7 @@ public class HeaderObserver implements Observer{
 
   public void update(Observable observable, Object observerObj) {
     HeaderObservable headerObservable = (HeaderObservable) observable;
-    HeaderController headerController = ClientControllerImpl.getInstance().getHeaderController();
+    HeaderController headerController = ClientController.getInstance().getHeaderController();
     headerController.setHeaderTimeStamp(headerObservable.getHeaderTimeStamp() - headerObservable.getInterval());
   }
 }
