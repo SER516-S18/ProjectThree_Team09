@@ -58,55 +58,14 @@ public class HeaderController {
   public HeaderView getHeaderView() {
     return headerView;
   }
-  
-  public static double getHeaderTimeStamp()
-  {
-	  
-	  double interval = 0,elapsedTime = 0;
-	  
-	  JTextField intervalTimeField;
-	  JTextField elapsedTimeField;
-	  
-	  if(ServerPanelGenerator.gettopPanel() == null)
-	  {
-		  return 0.0;
-	  }
-
-	  Component[] components = ServerPanelGenerator.gettopPanel().getComponents();
-	  if(components == null)
-	  {
-		  return 0.0;
-	  }
-
-	  for (Component component : components) {
-	      if (component.getClass().equals(JTextField.class)) {
-	    	  intervalTimeField=(JTextField)component;
-	    	  System.out.println(intervalTimeField.getText());
-	    	  interval=Double.parseDouble(intervalTimeField.getText());
-	      }
-	  }
-	  
-	  Component[] components_timer = TimerView.getTimerPanel().getComponents();
-	  if(components_timer == null)
-	  {
-		  return 0.0;
-	  }
-
-	  for (Component component : components_timer) {
-	      if (component.getClass().equals(JTextField.class)) {
-	    	  elapsedTimeField=(JTextField)component;
-	    	  System.out.println(elapsedTimeField.getText());
-	    	  elapsedTime=Double.parseDouble(elapsedTimeField.getText());
-	      }
-	  }
-	return (elapsedTime-interval);
-	
-	  
-  }
 
   public void setConnectionStatus(boolean connectionStatus) {
     headerModel.setConnectionStatus(connectionStatus);
     headerView.updateConnectionLabel();
-    headerView.updateHeaderTimeStamp();
+  }
+
+  public void setHeaderTimeStamp(double timeStamp) {
+  	headerModel.setTimeStamp(timeStamp);
+  	headerView.updateTimeStamp();
   }
 }

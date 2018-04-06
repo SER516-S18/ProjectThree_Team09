@@ -39,6 +39,10 @@ public class ClientControllerImpl implements ClientControllerInterface {
 		performanceMetricController = new PerformanceMetricController(performanceMetricModel, performanceMetricView);
 	}
 
+	public HeaderController getHeaderController() {
+		return headerController;
+	}
+
 	public PerformanceMetricController getPerformanceMetricController() {
 		return performanceMetricController;
 	}

@@ -137,12 +137,8 @@ public class HeaderView extends JPanel {
 		}
 	}
 	
-	public void updateHeaderTimeStamp()
+	public void updateTimeStamp()
 	{
-		
-		double timeStamp=HeaderController.getHeaderTimeStamp();
-		headerModel.setTimeStamp(timeStamp);
-		timeStampLabel.setText(String.valueOf(timeStamp));
-		updateUI();
+		timeStampLabel.setText(String.valueOf(headerModel.getTimeStamp()));
 	}
 }

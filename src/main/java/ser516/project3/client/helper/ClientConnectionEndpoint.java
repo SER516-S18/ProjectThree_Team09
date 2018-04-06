@@ -8,11 +8,8 @@ import javax.websocket.*;
 import org.apache.log4j.Logger;
 
 import ser516.project3.client.controller.ClientControllerImpl;
-import ser516.project3.model.ExpressionsDataObservable;
-import ser516.project3.model.PerformanceMetricDataObservable;
+import ser516.project3.model.*;
 import ser516.project3.constants.ClientConstants;
-import ser516.project3.model.Message;
-import ser516.project3.model.MessageDecoder;
 import ser516.project3.utilities.MessageFormatConverter;
 import ser516.project3.utilities.ServerCommonData;
 
@@ -45,7 +42,7 @@ public class ClientConnectionEndpoint {
 		logger.info("Received data:::: " + messageBean);
 		PerformanceMetricDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToPeformanceMetrics(messageBean));
 		ExpressionsDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToExpressionsData(messageBean));
-		
+		HeaderObservable.getInstance().setHeaderData(messageBean.getTimeStamp(), messageBean.getInterval());
 	}
 
 	@OnError

@@ -6,7 +6,9 @@ import org.apache.log4j.Logger;
 
 import ser516.project3.client.controller.ClientControllerImpl;
 import ser516.project3.client.view.ExpressionsGraphObserver;
+import ser516.project3.client.view.HeaderObserver;
 import ser516.project3.model.ExpressionsDataObservable;
+import ser516.project3.model.HeaderObservable;
 import ser516.project3.model.PerformanceMetricDataObservable;
 import ser516.project3.client.view.PerformanceMetricGraphObserver;
 import ser516.project3.client.helper.ClientConnectionThread;
@@ -20,6 +22,9 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
 	public void createClientConnection(final String ipAddress, final int port, final String endpoint) {
 
 		// Registering the observers on client start
+		HeaderObserver headerObserver = new HeaderObserver();
+		HeaderObservable.getInstance().addObserver(headerObserver);
+
 		PerformanceMetricGraphObserver performanceMetricObserver = new PerformanceMetricGraphObserver();
 		PerformanceMetricDataObservable.getInstance().addObserver(performanceMetricObserver);
 
