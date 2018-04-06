@@ -168,7 +168,7 @@ public class ServerPanelGenerator {
 
 	}
 	
-	public void setStatus(boolean status) {
+	public static void setStatus(boolean status) {
 		statusIndicator.setBlinking(status);
 	}
 	
