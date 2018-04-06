@@ -37,7 +37,7 @@ public class ServerPanelGenerator {
 	private static final String AUTO_REPEAT_CHECKBOX_NAME = "Auto Repeat";
 	private static final String TOGGLE_START_STOP = "Start / Stop";
 	
-	private static StatusIndicator statusIndicator;
+	private static StatusIndicator statusIndicator = new StatusIndicator();
 
 	/**
 	 * This method will initialize the top JPanels of the server application
