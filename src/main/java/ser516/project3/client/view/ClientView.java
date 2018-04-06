@@ -1,12 +1,11 @@
 package ser516.project3.client.view;
 
+import ser516.project3.client.controller.ClientController;
 import ser516.project3.constants.ClientConstants;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 public class ClientView extends JFrame {
 
@@ -48,6 +47,7 @@ public class ClientView extends JFrame {
 		setMinimumSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setVisible(true);
+
 	}
 
 	private void createMenuBar() {
@@ -89,5 +89,9 @@ public class ClientView extends JFrame {
 
 	public void addServerMenuItemListener(ActionListener actionListener) {
 		serverMenuItem.addActionListener(actionListener);
+	}
+
+	public void addWindowListener(java.awt.event.WindowAdapter windowAdapter) {
+		this.addWindowListener(windowAdapter);
 	}
 }

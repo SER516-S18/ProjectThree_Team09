@@ -54,12 +54,13 @@ public class ClientConnectionEndpoint {
 
 	@OnClose
 	public void processClose(Session userSession, CloseReason reason) {
-		logger.error("Error occurred in Client End Point");
-
-		final JDialog dialog = new JDialog();
-		dialog.setAlwaysOnTop(true);
-		JOptionPane.showMessageDialog(dialog, ClientConstants.SERVER_STOPPED_MESSAGE,ClientConstants.ERROR_STRING,JOptionPane.ERROR_MESSAGE);
-		ClientController.getInstance().stopClientConnector();
+		logger.error("On Close called");
+		if (reason.getReasonPhrase().length() > 0) {
+			final JDialog dialog = new JDialog();
+			dialog.setAlwaysOnTop(true);
+			JOptionPane.showMessageDialog(dialog, ClientConstants.SERVER_STOPPED_MESSAGE, ClientConstants.ERROR_STRING, JOptionPane.ERROR_MESSAGE);
+			ClientController.getInstance().stopClientConnector();
+		}
 	}
 	
 }

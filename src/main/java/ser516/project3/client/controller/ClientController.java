@@ -14,6 +14,8 @@ import ser516.project3.utilities.ViewFactory;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public class ClientController implements ClientControllerInterface{
 	private boolean connected = false;
@@ -42,6 +44,7 @@ public class ClientController implements ClientControllerInterface{
 				performanceMetricController.getPerformanceMetricView(),
 				expressionsController.getExpressionsView());
 		clientView.addServerMenuItemListener(new ServerMenuItemListener());
+		clientView.addWindowListener(new WindowClosingEventListener());
 	}
 
 	public void initializeHeader(ViewFactory viewFactory, ControllerFactory controllerFactory) {
@@ -138,5 +141,24 @@ public class ClientController implements ClientControllerInterface{
 				serverDialog.setVisible(true);
 			}
 		}
+	}
+
+	class WindowClosingEventListener implements WindowListener {
+		@Override
+		public void windowClosing(WindowEvent windowEvent) {
+			stopClientConnector();
+		}
+		@Override
+		public void windowOpened(WindowEvent arg0) {}
+		@Override
+		public void windowClosed(WindowEvent arg0) {}
+		@Override
+		public void windowIconified(WindowEvent arg0) {}
+		@Override
+		public void windowDeiconified(WindowEvent arg0) {}
+		@Override
+		public void windowActivated(WindowEvent arg0) {}
+		@Override
+		public void windowDeactivated(WindowEvent arg0) {}
 	}
 }
