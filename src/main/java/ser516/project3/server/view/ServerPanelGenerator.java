@@ -21,7 +21,7 @@ import ser516.project3.utilities.ServerCommonData;
  * Class to create components in expressions panel and listeners for each
  * component
  * 
- * @author Varun
+ * @author Varun, Janani, Sangeetha, Ganesh
  *
  */
 
@@ -43,6 +43,7 @@ public class ServerPanelGenerator {
 	 * This method will initialize the top JPanels of the server application
 	 * 
 	 * @return the top JPanel
+	 * @wbp.parser.entryPoint
 	 */
 	public static JPanel createTopPanels() {
 		
@@ -126,37 +127,55 @@ public class ServerPanelGenerator {
 		gridBagConstraint.gridx = 0;
 		gridBagConstraint.gridy = 0;
 		gridBagConstraint.ipady = 40;
+		gridBagConstraint.insets = new Insets(0, 20, 0, 0);
 		topPanel.add(intervalLabel, gridBagConstraint);
 
 		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraint.weightx = 0.5;
 		gridBagConstraint.gridx = 1;
 		gridBagConstraint.gridy = 0;
-		gridBagConstraint.ipady = 10;
+		gridBagConstraint.ipady = 20;	
+		gridBagConstraint.insets = new Insets(0, 20, 0, 20);
 		topPanel.add(intervalInputTextField, gridBagConstraint);
-
+		
 		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
-		gridBagConstraint.weighty = 2.0;
 		gridBagConstraint.gridx = 2;
 		gridBagConstraint.gridy = 0;
 		gridBagConstraint.ipady = 40;
-		gridBagConstraint.insets = new Insets(0, 50, 0, 50);
-		topPanel.add(buttonToggle, gridBagConstraint);
+		topPanel.add(autoRepeatCheckBox, gridBagConstraint);
 
-		gridBagConstraint.ipady = 10;
+		
+
 		gridBagConstraint.insets = new Insets(0, 0, 0, 0);
 		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraint.weightx = 0.5;
 		gridBagConstraint.gridx = 0;
-		gridBagConstraint.gridy = 1;
-
+		gridBagConstraint.gridy = 1;	
+		//gridBagConstraint.ipady = 40;
 		topPanel.add(Box.createGlue(), gridBagConstraint);
-
+		
 		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
-		gridBagConstraint.weightx = 0.5;
+		gridBagConstraint.weighty = 2.0;
 		gridBagConstraint.gridx = 1;
 		gridBagConstraint.gridy = 1;
-		topPanel.add(autoRepeatCheckBox, gridBagConstraint);
+		gridBagConstraint.ipady = 20;
+		gridBagConstraint.insets = new Insets(0, 30, 0, 30);
+		topPanel.add(buttonToggle, gridBagConstraint);
+
+		
+		
+		
+		statusIndicator.setBorder(BorderFactory.createEmptyBorder(30, 10, 10, 10));
+		statusIndicator.setBounds(100, 200, 50, 80);
+		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraint.weightx = 1;
+		gridBagConstraint.gridx = 2;
+		gridBagConstraint.gridy = 1;
+		gridBagConstraint.ipady = 10;
+		gridBagConstraint.insets = new Insets(0, 0, 0, 0);
+		
+		topPanel.add(statusIndicator,gridBagConstraint);
+
 
 		return topPanel;
 
@@ -180,9 +199,9 @@ public class ServerPanelGenerator {
 		JPanel expressionPanel = createExpressionPanel();
 		JPanel consolePanel = createConsolePanel();
 
-		JSplitPane splitPane1 = new JSplitPane();
-		JSplitPane splitPane2 = new JSplitPane();
-		JSplitPane splitPane3 = new JSplitPane();
+		JSplitPane splitTimerPanel = new JSplitPane();
+		JSplitPane splitEmotionsPanel = new JSplitPane();
+		JSplitPane splitExpressionPanel = new JSplitPane();
 
 		configPanel.setOpaque(false);
 
@@ -193,35 +212,35 @@ public class ServerPanelGenerator {
 
 		Border titledBorder = new TitledBorder(null, "Configuration", TitledBorder.LEADING, TitledBorder.TOP, FONT,
 				null);
-		Border marginBorder = BorderFactory.createEmptyBorder(30, 10, 30, 10);
+		Border marginBorder = BorderFactory.createEmptyBorder(10, 10, 30, 10);
 
 		Border compound = BorderFactory.createCompoundBorder(marginBorder, titledBorder);
 		configPanel.setBorder(compound);
 
 		configPanel.setLayout(new BorderLayout(0, 0));
 
-		splitPane3.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		splitPane3.setDividerLocation(150);
-		splitPane3.setTopComponent(expressionPanel);
-		splitPane3.setBottomComponent(consolePanel);
-		splitPane3.setDividerSize(0);
-		splitPane3.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
+		splitExpressionPanel.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitExpressionPanel.setDividerLocation(150);
+		splitExpressionPanel.setTopComponent(expressionPanel);
+		splitExpressionPanel.setBottomComponent(consolePanel);
+		splitExpressionPanel.setDividerSize(0);
+		splitExpressionPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
 
-		splitPane2.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		splitPane2.setDividerLocation(150);
-		splitPane2.setTopComponent(emotionsPanel);
-		splitPane2.setBottomComponent(splitPane3);
-		splitPane2.setDividerSize(0);
-		splitPane2.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
+		splitEmotionsPanel.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitEmotionsPanel.setDividerLocation(150);
+		splitEmotionsPanel.setTopComponent(emotionsPanel);
+		splitEmotionsPanel.setBottomComponent(splitExpressionPanel);
+		splitEmotionsPanel.setDividerSize(0);
+		splitEmotionsPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
 
-		splitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		splitPane1.setDividerLocation(50);
-		splitPane1.setTopComponent(timerPanel);
-		splitPane1.setBottomComponent(splitPane2);
-		splitPane1.setDividerSize(0);
-		splitPane1.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
+		splitTimerPanel.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitTimerPanel.setDividerLocation(50);
+		splitTimerPanel.setTopComponent(timerPanel);
+		splitTimerPanel.setBottomComponent(splitEmotionsPanel);
+		splitTimerPanel.setDividerSize(0);
+		splitTimerPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
 
-		configPanel.add(splitPane1);
+		configPanel.add(splitTimerPanel);
 		return configPanel;
 	}
 
