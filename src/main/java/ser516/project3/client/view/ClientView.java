@@ -1,13 +1,12 @@
 package ser516.project3.client.view;
 
-import ser516.project3.client.controller.ClientController;
 import ser516.project3.constants.ClientConstants;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class ClientView extends JFrame {
+public class ClientView extends JFrame implements ClientViewInterface{
 
 	private static ClientView clientViewInstance = null;
 
@@ -31,14 +30,12 @@ public class ClientView extends JFrame {
 		return clientViewInstance;
 	}
 
-	/**
-	 *
-	 */
-	public void initializeClientUI(HeaderView headerView, PerformanceMetricView performanceMetricView, ExpressionsView expressionsView) {
-		this.headerView = headerView;
-		this.performanceMetricView = performanceMetricView;
-		this.expressionsView = expressionsView;
-		
+	@Override
+	public void initializeView(ClientViewInterface subviews[]) {
+		this.headerView = (HeaderView)subviews[0];
+		this.performanceMetricView = (PerformanceMetricView) subviews[1];
+		this.expressionsView = (ExpressionsView) subviews[2];
+
 		createMenuBar();
 		createTabs();
 		createLayout();
@@ -47,7 +44,6 @@ public class ClientView extends JFrame {
 		setMinimumSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setVisible(true);
-
 	}
 
 	private void createMenuBar() {

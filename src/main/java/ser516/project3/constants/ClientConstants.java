@@ -7,10 +7,8 @@ package ser516.project3.constants;
  */
 public class ClientConstants {
 
-	/**
-	 * The end point of server Web socket
-	 */
 	public final static String ENDPOINT = "server";
+	public final static String CLIENT = "Client";
 
 	// Client View Constants
 	public final static String HEADER = "Header";

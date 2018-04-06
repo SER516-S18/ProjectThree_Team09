@@ -10,7 +10,9 @@ public class ControllerFactory {
     if(controllerType == null){
       return null;
     }
-    if(controllerType.equalsIgnoreCase(ClientConstants.HEADER)){
+    if(controllerType.equalsIgnoreCase(ClientConstants.CLIENT)){
+      return ClientController.getInstance();
+    } else if(controllerType.equalsIgnoreCase(ClientConstants.HEADER)){
       return new HeaderController((HeaderModel) model, (HeaderView) view);
     } else if(controllerType.equalsIgnoreCase(ClientConstants.PERFORMANCE_METRICS)){
       return new PerformanceMetricController((PerformanceMetricModel) model, (PerformanceMetricView) view, graphController);

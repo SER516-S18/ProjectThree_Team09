@@ -20,6 +20,7 @@ import java.awt.event.WindowListener;
 public class ClientController implements ClientControllerInterface{
 	private boolean connected = false;
 	private ClientConnectionServiceInterface clientConnectionService;
+	private ViewFactory viewFactory;
 	private ClientView clientView;
 	private ServerView serverDialog;
 	private HeaderController headerController;
@@ -30,31 +31,45 @@ public class ClientController implements ClientControllerInterface{
 
 	private static ClientController instance;
 	public ClientController() {
-		ViewFactory viewFactory = new ViewFactory();
+		viewFactory = new ViewFactory();
 		ControllerFactory controllerFactory = new ControllerFactory();
 		initializeHeader(viewFactory, controllerFactory);
 		initializePerformanceMetrics(viewFactory, controllerFactory);
 		initializeExpressions(viewFactory, controllerFactory);
 	}
 
+	/**
+	 * Creates a singleton instance . If exists, returns it, else creates it.
+	 *
+	 * @return instance of the ClientController
+	 */
+	public static ClientController getInstance() {
+		if (instance == null) {
+			instance = new ClientController();
+		}
+		return instance;
+	}
+
 	@Override
 	public void initializeView() {
-		clientView = ClientView.getClientView();
-		clientView.initializeClientUI(headerController.getHeaderView(),
+		clientView = (ClientView) viewFactory.getView(ClientConstants.CLIENT, null);
+		ClientViewInterface subViews[] = {
+				headerController.getHeaderView(),
 				performanceMetricController.getPerformanceMetricView(),
-				expressionsController.getExpressionsView());
+				expressionsController.getExpressionsView()};
+		clientView.initializeView(subViews);
 		clientView.addServerMenuItemListener(new ServerMenuItemListener());
 		clientView.addWindowListener(new WindowClosingEventListener());
 	}
 
-	public void initializeHeader(ViewFactory viewFactory, ControllerFactory controllerFactory) {
+	private void initializeHeader(ViewFactory viewFactory, ControllerFactory controllerFactory) {
 		HeaderModel headerModel = new HeaderModel();
 		HeaderView headerView = (HeaderView) viewFactory.getView(ClientConstants.HEADER, headerModel);
 		headerController = (HeaderController)controllerFactory.getController(ClientConstants.HEADER, headerModel, headerView, null);
 		headerController.initializeView();
 	}
 
-	public void initializePerformanceMetrics(ViewFactory viewFactory, ControllerFactory controllerFactory) {
+	private void initializePerformanceMetrics(ViewFactory viewFactory, ControllerFactory controllerFactory) {
 		GraphModel performanceMetricGraphModel = new GraphModel();
 		GraphView performanceMetricGraphView = (GraphView) viewFactory.getView(ClientConstants.GRAPH, performanceMetricGraphModel);
 		performanceMetricsGraphController = (GraphController) controllerFactory.getController(ClientConstants.GRAPH, performanceMetricGraphModel, performanceMetricGraphView, null);
@@ -66,7 +81,7 @@ public class ClientController implements ClientControllerInterface{
 		performanceMetricController.initializeView();
 	}
 
-	public void initializeExpressions(ViewFactory viewFactory, ControllerFactory controllerFactory) {
+	private void initializeExpressions(ViewFactory viewFactory, ControllerFactory controllerFactory) {
 		GraphModel expressionsGraphModel = new GraphModel();
 		GraphView expressionsGraphView = (GraphView) viewFactory.getView(ClientConstants.GRAPH, expressionsGraphModel);
 		expressionGraphController = (GraphController) controllerFactory.getController(ClientConstants.GRAPH, expressionsGraphModel, expressionsGraphView, null);
@@ -88,18 +103,6 @@ public class ClientController implements ClientControllerInterface{
 
 	public ExpressionsController getExpressionsController() {
 		return expressionsController;
-	}
-	
-	/**
-	 * Creates a singleton instance . If exists, returns it, else creates it.
-	 * 
-	 * @return instance of the ClientController
-	 */
-	public static ClientController getInstance() {
-		if (instance == null) {
-			instance = new ClientController();
-		}
-		return instance;
 	}
 
 	/**

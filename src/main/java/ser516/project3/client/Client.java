@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.UIManager;
 
 import ser516.project3.client.controller.ClientController;
+import ser516.project3.constants.ClientConstants;
+import ser516.project3.utilities.ControllerFactory;
 
 /**
  * Main class to initialize the client
@@ -43,7 +45,8 @@ public class Client
                         System.out.println("Look and Feel UI not found");
                     }
                 }
-                ClientController clientController = ClientController.getInstance();
+                ControllerFactory controllerFactory = new ControllerFactory();
+                ClientController clientController = (ClientController) controllerFactory.getController(ClientConstants.CLIENT, null, null, null);
                 clientController.initializeView();
             }
         } );

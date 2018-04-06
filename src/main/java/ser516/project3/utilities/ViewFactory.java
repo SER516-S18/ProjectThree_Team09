@@ -9,7 +9,9 @@ public class ViewFactory {
     if(viewType == null){
       return null;
     }
-    if(viewType.equalsIgnoreCase(ClientConstants.HEADER)){
+    if(viewType.equalsIgnoreCase(ClientConstants.CLIENT)){
+      return ClientView.getClientView();
+    } else if(viewType.equalsIgnoreCase(ClientConstants.HEADER)){
       return new HeaderView((HeaderModel) model);
     } else if(viewType.equalsIgnoreCase(ClientConstants.PERFORMANCE_METRICS)){
       return new PerformanceMetricView((PerformanceMetricModel) model);
