@@ -7,13 +7,13 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class FacePanel extends JPanel {
+public class FaceView extends JPanel {
 
 	private Color faceColor;
 	private int width;
 	private int height;
 
-	FacePanel(int width, int height, Color faceColor) {
+	FaceView(int width, int height, Color faceColor) {
 		this.width = width;
 		this.height = height;
 		this.faceColor = faceColor;

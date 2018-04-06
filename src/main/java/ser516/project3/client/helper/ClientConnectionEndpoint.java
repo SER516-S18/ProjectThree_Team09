@@ -8,8 +8,8 @@ import javax.websocket.*;
 import org.apache.log4j.Logger;
 
 import ser516.project3.client.controller.ClientControllerImpl;
-import ser516.project3.client.controller.ExpressionsDataObservable;
-import ser516.project3.client.controller.PerformanceMetricDataObservable;
+import ser516.project3.model.ExpressionsDataObservable;
+import ser516.project3.model.PerformanceMetricDataObservable;
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.Message;
 import ser516.project3.model.MessageDecoder;

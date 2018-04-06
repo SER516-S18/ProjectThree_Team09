@@ -1,12 +1,14 @@
-package ser516.project3.client.controller;
+package ser516.project3.client.view;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import org.apache.log4j.Logger;
 
+import ser516.project3.client.controller.ClientControllerImpl;
+import ser516.project3.client.controller.GraphControllerInterface;
+import ser516.project3.model.PerformanceMetricDataObservable;
 import ser516.project3.model.CoordinatesModel;
 
 /**

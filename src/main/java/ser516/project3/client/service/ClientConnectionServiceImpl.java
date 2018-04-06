@@ -5,8 +5,8 @@ import java.io.IOException;
 import org.apache.log4j.Logger;
 
 import ser516.project3.client.controller.ClientControllerImpl;
-import ser516.project3.client.controller.PerformanceMetricDataObservable;
-import ser516.project3.client.controller.PerformanceMetricGraphObserver;
+import ser516.project3.model.PerformanceMetricDataObservable;
+import ser516.project3.client.view.PerformanceMetricGraphObserver;
 import ser516.project3.client.helper.ClientConnectionThread;
 
 public class ClientConnectionServiceImpl implements ClientConnectionServiceInterface {

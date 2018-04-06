@@ -27,11 +27,6 @@ public class ClientControllerImpl implements ClientControllerInterface {
 		return performanceMetricController;
 	}
 
-
-	public void setPerformanceMetricController(PerformanceMetricController performanceMetricController) {
-		this.performanceMetricController = performanceMetricController;
-	}
-
 	private static ClientControllerImpl instance;
 	public ClientControllerImpl() {
 		HeaderModel headerModel = new HeaderModel();
@@ -58,21 +53,6 @@ public class ClientControllerImpl implements ClientControllerInterface {
 			instance = new ClientControllerImpl();
 		}
 		return instance;
-	}
-	@Override
-	public void startClient() {
-		// TODO: start data reception form server
-
-		// Registering the observers on client start
-		PerformanceMetricGraphObserver performanceMetricObserver = new PerformanceMetricGraphObserver();
-		PerformanceMetricDataObservable.getInstance().addObserver(performanceMetricObserver);
-
-		FaceViewObserver faceObserver = new FaceViewObserver();
-		ExpressionsDataObservable.getInstance().addObserver(faceObserver);
-
-		ExpressionsGraphObserver expGraphObserver = new ExpressionsGraphObserver();
-		ExpressionsDataObservable.getInstance().addObserver(expGraphObserver);
-
 	}
 
 	@Override

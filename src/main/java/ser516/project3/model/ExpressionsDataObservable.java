@@ -1,9 +1,7 @@
-package ser516.project3.client.controller;
+package ser516.project3.model;
 
 import java.util.ArrayList;
 import java.util.Observable;
-
-import ser516.project3.model.CoordinatesModel;
 
 /**
  * 

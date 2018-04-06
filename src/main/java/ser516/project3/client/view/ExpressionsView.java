@@ -16,7 +16,7 @@ public class ExpressionsView extends JPanel{
     }
 
     public void initializeExpressionsUI(GraphView graphView) {
-        add(new FacePanel(300, 300, new Color(255, 223, 135)), BorderLayout.LINE_START ); // Need to replace with a panel for displaying the face.
+        add(new FaceView(300, 300, new Color(255, 223, 135)), BorderLayout.LINE_START ); // Need to replace with a panel for displaying the face.
         add(graphView, BorderLayout.LINE_END );
         setVisible(true);
     }

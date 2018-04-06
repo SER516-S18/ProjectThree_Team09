@@ -1,7 +1,8 @@
-package ser516.project3.client.controller;
+package ser516.project3.client.view;
 
 import java.util.Observable;
 import java.util.Observer;
+
 /**
  * 
  * On receiving new data in ExpressionsDataObservable object update function of
@@ -10,11 +11,11 @@ import java.util.Observer;
  * @author Manish Tandon
  *
  */
-public class ExpressionsGraphObserver implements Observer{
+public class FaceViewObserver implements Observer {
 
 	@Override
-	public void update(Observable expressionsDataObject, Object observerObj) {
-		//TODO: update graph
+	public void update(Observable dataObject, Object observerObj) {
+		// TODO: update the face view here
 	}
 
 }
