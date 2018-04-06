@@ -1,6 +1,8 @@
 package ser516.project3.client.view;
 
 import com.alee.laf.button.WebButton;
+
+import ser516.project3.client.controller.HeaderController;
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.HeaderModel;
 
@@ -133,5 +135,14 @@ public class HeaderView extends JPanel {
 			connectButton.setText(ClientConstants.CONNECT);
 			connectionLabel.setText(ClientConstants.DISCONNECTED);
 		}
+	}
+	
+	public void updateHeaderTimeStamp()
+	{
+		
+		double timeStamp=HeaderController.getHeaderTimeStamp();
+		headerModel.setTimeStamp(timeStamp);
+		timeStampLabel.setText(String.valueOf(timeStamp));
+		updateUI();
 	}
 }
