@@ -1,5 +1,7 @@
 package ser516.project3.model;
 
+import ser516.project3.interfaces.ModelInterface;
+
 import java.util.ArrayList;
 
 /**
@@ -8,17 +10,10 @@ import java.util.ArrayList;
  * @author Zain, Vishakha
  *
  */
-public class ConsoleModel extends java.util.Observable {
+public class ConsoleModel extends java.util.Observable implements ModelInterface {
 
     private static ConsoleModel instance;
     private ArrayList<String> logArray;
-
-    public static ConsoleModel getInstance() {
-        if (instance == null) {
-            instance = new ConsoleModel();
-        }
-        return instance;
-    }
 
     public void logMessage(String message) {
         if (logArray == null) {

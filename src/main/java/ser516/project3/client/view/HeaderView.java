@@ -2,11 +2,10 @@ package ser516.project3.client.view;
 
 import com.alee.laf.button.WebButton;
 
-import ser516.project3.client.controller.HeaderController;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.HeaderModel;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -18,7 +17,7 @@ import java.awt.event.ActionListener;
  * @author Vishakha Singal, Adhiraj Tikku
  * @version 1.0
  */
-public class HeaderView extends JPanel implements ClientViewInterface{
+public class HeaderView extends JPanel implements ViewInterface {
 
 	private JLabel connectionLabel;
 	private JLabel timeStampLabel;
@@ -35,7 +34,7 @@ public class HeaderView extends JPanel implements ClientViewInterface{
 	}
 
 	@Override
-	public void initializeView(ClientViewInterface[] subViews) {
+	public void initializeView(ViewInterface[] subViews) {
 		setBorder(null);
 		setLayout(new GridBagLayout());
 		setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));

@@ -2,6 +2,7 @@ package ser516.project3.client.view;
 
 import com.alee.laf.button.WebButton;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.PerformanceMetricModel;
 import ser516.project3.utilities.NumberTextField;
 
@@ -18,7 +19,7 @@ import java.awt.event.KeyAdapter;
  * 
  * @author Mohan Vasantrao Yadav, Adhiraj Tikku
  */
-public class PerformanceMetricView extends JPanel implements ClientViewInterface{
+public class PerformanceMetricView extends JPanel implements ViewInterface {
 	private PerformanceMetricModel performanceMetricModel;
 
 	private JPanel mainPanel;
@@ -39,7 +40,7 @@ public class PerformanceMetricView extends JPanel implements ClientViewInterface
 	}
 
 	@Override
-	public void initializeView(ClientViewInterface[] subViews) {
+	public void initializeView(ViewInterface[] subViews) {
 		GraphView graphView = (GraphView) subViews[0];
 		setLayout(new GridBagLayout());
 		setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import ser516.project3.client.view.GraphView;
+import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.model.CoordinatesModel;
 import ser516.project3.model.GraphModel;
 
@@ -17,7 +18,7 @@ import ser516.project3.model.GraphModel;
  * @since 2018-03-30
  *
  */
-public class GraphController implements ClientControllerInterface{
+public class GraphController implements ControllerInterface {
   private GraphModel graphModel;
   private GraphView graphView;
 

@@ -3,7 +3,6 @@ package ser516.project3.client.view;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.SymbolAxis;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
@@ -12,6 +11,7 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.CoordinatesModel;
 import ser516.project3.model.GraphModel;
 
@@ -30,7 +30,7 @@ import java.util.ArrayList;
  * @since 2018-03-30
  *
  */
-public class GraphView extends JPanel implements ClientViewInterface{
+public class GraphView extends JPanel implements ViewInterface {
   private JFreeChart chart;
   private ChartPanel chartPanel;
   private GraphModel graphModel;
@@ -49,7 +49,7 @@ public class GraphView extends JPanel implements ClientViewInterface{
   }
 
   @Override
-  public void initializeView(ClientViewInterface[] subViews) {
+  public void initializeView(ViewInterface[] subViews) {
     setLayout(new GridLayout(1, 1, 8, 8));
     setBorder(new TitledBorder(null, ClientConstants.GRAPH,
         TitledBorder.CENTER, TitledBorder.TOP, new Font(ClientConstants.FONT_NAME, Font.BOLD, TITLE_FONT_SIZE), null));

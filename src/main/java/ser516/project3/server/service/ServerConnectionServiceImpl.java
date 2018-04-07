@@ -3,9 +3,8 @@ package ser516.project3.server.service;
 import org.apache.log4j.Logger;
 
 import ser516.project3.model.ConsoleModel;
+import ser516.project3.server.controller.ServerController;
 import ser516.project3.server.helper.ServerContainerThread;
-import ser516.project3.server.view.ServerPanelGenerator;
-import ser516.project3.utilities.ServerCommonData;
 
 public class ServerConnectionServiceImpl implements ServerConnectionServiceInterface {
 	final static Logger logger = Logger.getLogger(ServerConnectionServiceImpl.class);
@@ -17,19 +16,22 @@ public class ServerConnectionServiceImpl implements ServerConnectionServiceInter
 		threadInstance = new ServerContainerThread();
 		serverContainerThread = new Thread(threadInstance);
 		serverContainerThread.start();
-		ConsoleModel.getInstance().logMessage("Server Started");
-		ServerPanelGenerator.setStatus(true);
+		ServerController.getInstance().getConsoleController().getConsoleModel().logMessage("Server Started");
 	}
 
 	@Override
 	public void stopServerEndpoint() {
 		if(threadInstance != null || serverContainerThread != null) {
 			threadInstance.getServer().stop();
-			ConsoleModel.getInstance().logMessage("Server Stopped");
+			ServerController.getInstance().getConsoleController().getConsoleModel().logMessage("Server Stopped");
 			serverContainerThread.interrupt();
 		}
-		ServerCommonData.getInstance().setServerStarted(false);
-		ServerPanelGenerator.setStatus(false);
+		ServerController.getInstance().getTopController().getTopModel().setServerStarted(false);
+		ServerController.getInstance().getTopController().getTopModel().setSendButtonEnabled(false);
+		ServerController.getInstance().getTopController().getTopModel().setServerStartStopButtonText("Start Server");
+		ServerController.getInstance().getTopController().updateServerStartStopButtonText();
+		ServerController.getInstance().getTopController().updateEnableDisableSendButton();
+		ServerController.getInstance().getTopController().setBlinking(false);
 	}
 
 }

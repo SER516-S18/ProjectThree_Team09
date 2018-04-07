@@ -1,12 +1,13 @@
 package ser516.project3.client.view;
 
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ExpressionsModel;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ExpressionsView extends JPanel implements ClientViewInterface{
+public class ExpressionsView extends JPanel implements ViewInterface {
     private ExpressionsModel expressionsModel;
 
     public ExpressionsView(ExpressionsModel expressionsModel){
@@ -14,7 +15,7 @@ public class ExpressionsView extends JPanel implements ClientViewInterface{
     }
 
     @Override
-    public void initializeView(ClientViewInterface[] subViews) {
+    public void initializeView(ViewInterface[] subViews) {
         GraphView graphView = (GraphView) subViews[0];
 
         setLayout(new GridLayout(1, 2, 8, 8 ));

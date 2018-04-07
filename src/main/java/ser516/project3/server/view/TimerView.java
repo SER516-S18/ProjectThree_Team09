@@ -8,46 +8,61 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import ser516.project3.utilities.InputVerifierNumericals;
+
+import ser516.project3.interfaces.ViewInterface;
+import ser516.project3.model.TimerModel;
 
 /**
  * Class to create timer Panel on server
  * to set time elapsed.
- * @author ravi teja
+ * @author ravi teja, Adhiraj Tikku
  *
  */
-public class TimerView {
-		static JPanel timerPanel;
-		private static final String TIME_ELAPSED = "Time Elapsed(ms):  ";
-		
-		public TimerView() {
-			timerPanel = new JPanel();
-			timerPanel.setPreferredSize(new Dimension(100,100));
-			JLabel timeElapsedLabel = new JLabel(TIME_ELAPSED);
-			GridBagConstraints gridBagConstraint = new GridBagConstraints();
-			timeElapsedLabel.setOpaque(true);
-			
-			JTextField timeElapsedInputTextField = new JTextField("1");
-			timeElapsedInputTextField.setInputVerifier(new InputVerifierNumericals());
-			timeElapsedInputTextField.setBorder(BorderFactory.createLineBorder(Color.black));
-			timeElapsedInputTextField.setColumns(10);
-			timeElapsedInputTextField.setHorizontalAlignment(SwingConstants.CENTER);
+public class TimerView extends JPanel implements ViewInterface{
+	private JTextField timeElapsedInputTextField;
+	private TimerModel timerModel;
 
-			gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraint.gridx = 0;
-			gridBagConstraint.gridy = 0;
-			gridBagConstraint.ipady = 10;
-			timerPanel.add(timeElapsedLabel, gridBagConstraint);
+	private static final String TIME_ELAPSED = "Time Elapsed(ms):  ";
 
-			gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraint.weightx = 1;
-			gridBagConstraint.gridx = 1;
-			gridBagConstraint.gridy = 0;
-			gridBagConstraint.ipady = 10;
-			timerPanel.add(timeElapsedInputTextField, gridBagConstraint);
-				
-		}
-		public static JPanel getTimerPanel() {
-	        return timerPanel;
-	    }
+	public TimerView(TimerModel timerModel) {
+		this.timerModel = timerModel;
+	}
+
+	@Override
+	public void initializeView(ViewInterface[] subViews) {
+		setPreferredSize(new Dimension(100,100));
+
+		GridBagConstraints gridBagConstraints = new GridBagConstraints();
+		createTimeElapsedLabel(gridBagConstraints);
+		createTimeElapsedInputTextField(gridBagConstraints);
+	}
+
+	private void createTimeElapsedLabel(GridBagConstraints gridBagConstraints) {
+		JLabel timeElapsedLabel = new JLabel(TIME_ELAPSED);
+		timeElapsedLabel.setOpaque(true);
+
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 0;
+		gridBagConstraints.ipady = 10;
+		add(timeElapsedLabel, gridBagConstraints);
+	}
+
+	private void createTimeElapsedInputTextField(GridBagConstraints gridBagConstraints) {
+		timeElapsedInputTextField = new JTextField("1");
+		timeElapsedInputTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+		timeElapsedInputTextField.setColumns(10);
+		timeElapsedInputTextField.setHorizontalAlignment(SwingConstants.CENTER);
+
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.weightx = 1;
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridy = 0;
+		gridBagConstraints.ipady = 10;
+		add(timeElapsedInputTextField, gridBagConstraints);
+	}
+
+	public void updateTimeStamp() {
+		timeElapsedInputTextField.setText("" + timerModel.getTimeElapsed());
+	}
 }
