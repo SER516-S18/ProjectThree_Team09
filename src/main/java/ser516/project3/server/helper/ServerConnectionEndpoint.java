@@ -13,6 +13,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.apache.log4j.Logger;
 
+import ser516.project3.server.view.ServerPanelGenerator;
 import ser516.project3.utilities.MessageEncoder;
 import ser516.project3.utilities.ServerCommonData;
 
@@ -45,6 +46,7 @@ public class ServerConnectionEndpoint {
                         long timeElapsed = (long) ServerCommonData.getInstance().getMessage().getTimeStamp();
                         double dataInterval = ServerCommonData.getInstance().getMessage().getInterval();
                         ServerCommonData.getInstance().getMessage().setTimeStamp(timeElapsed + dataInterval);
+                        ServerPanelGenerator.getTimerController().updateTimeStamp(timeElapsed); //Temporary. Will implement MVC.
                     } else {
                         session.getBasicRemote().sendObject(serverCommonDataObject.getMessage());
                         serverCommonDataObject.setShouldSend(false);

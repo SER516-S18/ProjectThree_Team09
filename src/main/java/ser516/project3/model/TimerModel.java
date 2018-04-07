@@ -1,14 +1,14 @@
 package ser516.project3.model;
 
 public class TimerModel {
-  private int timeElapsed;
+  private double timeElapsed;
 
   /**
    * Gets the time elapsed since the server is running.
    *
    * @return the time elapsed since the server is running
    */
-  public int getTimeElapsed() {
+  public double getTimeElapsed() {
     return timeElapsed;
   }
 
@@ -17,7 +17,7 @@ public class TimerModel {
    *
    * @param timeElapsed the time elapsed since the server is running
    */
-  public void setTimeElapsed(int timeElapsed) {
+  public void setTimeElapsed(double timeElapsed) {
     this.timeElapsed = timeElapsed;
   }
 }

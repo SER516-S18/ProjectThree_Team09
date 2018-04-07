@@ -12,7 +12,8 @@ public class TimerController {
     this.timerView = timerView;
   }
 
-  public void updateTimeStamp() {
+  public void updateTimeStamp(double timeStamp) {
+    timerModel.setTimeElapsed(timeStamp);
     timerView.updateTimeStamp();
   }
 }

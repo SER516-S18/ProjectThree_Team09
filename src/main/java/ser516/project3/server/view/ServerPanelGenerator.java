@@ -13,7 +13,9 @@ import javax.swing.event.DocumentListener;
 import org.apache.log4j.Logger;
 
 import ser516.project3.model.ConsoleModel;
+import ser516.project3.model.TimerModel;
 import ser516.project3.server.controller.ServerControllerImpl;
+import ser516.project3.server.controller.TimerController;
 import ser516.project3.utilities.InputVerifierNumericals;
 import ser516.project3.utilities.ServerCommonData;
 
@@ -32,6 +34,7 @@ public class ServerPanelGenerator {
 	final static Logger logger = Logger.getLogger(ServerPanelGenerator.class);
 
 	private static ServerControllerImpl serverControllerImpl = new ServerControllerImpl();
+	private static TimerController timerController;
 
 	private static final Font FONT = new Font("Courier New", Font.BOLD, 17);
 	private static final String INTERVAL_LABEL_NAME = "Interval (seconds):  ";
@@ -306,7 +309,10 @@ public class ServerPanelGenerator {
 	}
 
 	public static JPanel createTimerPanel() {
-		TimerView timerView = new TimerView();
+		//Temporary. Will implement MVC and factory pattern.
+		TimerModel timerModel = new TimerModel();
+		TimerView timerView = new TimerView(timerModel);
+		timerController = new TimerController(timerModel, timerView);
 		return timerView.getTimerPanel();
 	}
 
@@ -327,5 +333,10 @@ public class ServerPanelGenerator {
 	 */
 	public static ServerControllerImpl getServerControllerImpl() {
 		return serverControllerImpl;
+	}
+
+	//Temporary. Will implement MVC and factory pattern.
+	public static TimerController getTimerController() {
+		return timerController;
 	}
 }
