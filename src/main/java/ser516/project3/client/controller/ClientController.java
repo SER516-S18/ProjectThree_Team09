@@ -10,6 +10,7 @@ import ser516.project3.model.ExpressionsModel;
 import ser516.project3.model.GraphModel;
 import ser516.project3.model.HeaderModel;
 import ser516.project3.model.PerformanceMetricModel;
+import ser516.project3.server.controller.ServerController;
 import ser516.project3.server.view.ServerView;
 import ser516.project3.utilities.ControllerFactory;
 import ser516.project3.utilities.ViewFactory;
@@ -24,7 +25,7 @@ public class ClientController implements ControllerInterface {
 	private ClientConnectionServiceInterface clientConnectionService;
 	private ViewFactory viewFactory;
 	private ClientView clientView;
-	private ServerView serverDialog;
+	private ServerController serverController;
 	private HeaderController headerController;
 	private PerformanceMetricController performanceMetricController;
 	private ExpressionsController expressionsController;
@@ -141,10 +142,12 @@ public class ClientController implements ControllerInterface {
 	class ServerMenuItemListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(serverDialog == null) {
-				serverDialog = new ServerView();
+			if(serverController == null) {
+				ControllerFactory controllerFactory = new ControllerFactory();
+				serverController = (ServerController) controllerFactory.getController("SERVER", null, null, null);
+				serverController.initializeView();
 			} else {
-				serverDialog.setVisible(true);
+				serverController.showServer();
 			}
 		}
 	}

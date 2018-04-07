@@ -45,7 +45,7 @@ public class ServerConnectionEndpoint {
                         session.getBasicRemote().sendObject(serverCommonDataObject.getMessage());
 
                         //increment the time elapsed
-                        long timeElapsed = (long) ServerCommonData.getInstance().getMessage().getTimeStamp();
+                        double timeElapsed = ServerCommonData.getInstance().getMessage().getTimeStamp();
                         double dataInterval = ServerCommonData.getInstance().getMessage().getInterval();
                         ServerCommonData.getInstance().getMessage().setTimeStamp(timeElapsed + dataInterval);
                         ServerController.getInstance().getTimerController().updateTimeStamp(timeElapsed);
