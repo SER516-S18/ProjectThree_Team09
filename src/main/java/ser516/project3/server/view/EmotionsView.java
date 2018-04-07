@@ -1,5 +1,8 @@
 package ser516.project3.server.view;
 
+import ser516.project3.interfaces.ViewInterface;
+import ser516.project3.model.EmotionsModel;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
