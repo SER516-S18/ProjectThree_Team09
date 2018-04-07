@@ -33,4 +33,12 @@ public class ServerControllerImpl implements ServerControllerInterface {
 		serverConnectionService.stopServerEndpoint();
 	}
 
+	public void sendValues() {
+		if (ServerCommonData.getInstance().isShouldSend()) {
+			ServerCommonData.getInstance().setShouldSend(false);
+		} else {
+			ServerCommonData.getInstance().setShouldSend(true);
+		}
+	}
+
 }
