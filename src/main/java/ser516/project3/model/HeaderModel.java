@@ -1,6 +1,6 @@
 package ser516.project3.model;
 
-public class HeaderModel {
+public class HeaderModel implements ModelInterface{
   private boolean connectionStatus;
   private double timeStamp;
 

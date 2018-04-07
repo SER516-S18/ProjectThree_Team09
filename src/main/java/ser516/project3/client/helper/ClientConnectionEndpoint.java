@@ -2,18 +2,15 @@ package ser516.project3.client.helper;
 
 import java.io.IOException;
 
-import javax.websocket.ClientEndpoint;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
+import javax.swing.*;
+import javax.websocket.*;
 
 import org.apache.log4j.Logger;
 
-import ser516.project3.client.controller.ExpressionsDataObservable;
-import ser516.project3.client.controller.PerformanceMetricDataObservable;
-import ser516.project3.model.Message;
-import ser516.project3.model.MessageDecoder;
+import ser516.project3.client.controller.ClientController;
+import ser516.project3.model.*;
+import ser516.project3.constants.ClientConstants;
+import ser516.project3.utilities.MessageDecoder;
 import ser516.project3.utilities.MessageFormatConverter;
 import ser516.project3.utilities.ServerCommonData;
 
@@ -42,17 +39,28 @@ public class ClientConnectionEndpoint {
 	}
 
 	@OnMessage
-	public void processMessage(Message messageBean, Session session) {
-		logger.info("Received data:::: " + messageBean);
-		PerformanceMetricDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToPeformanceMetrics(messageBean));
-		ExpressionsDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToExpressionsData(messageBean));
-		
+	public void processMessage(MessageModel messageModelBean, Session session) {
+		logger.info("Received data:::: " + messageModelBean);
+		PerformanceMetricDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToPeformanceMetrics(messageModelBean));
+		ExpressionsDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToExpressionsData(messageModelBean));
+		HeaderObservable.getInstance().setHeaderData(messageModelBean.getTimeStamp(), messageModelBean.getInterval());
 	}
 
 	@OnError
 	public void processError(Throwable t) {
+
 		logger.error("Error occurred in Client End Point");
 	}
 
+	@OnClose
+	public void processClose(Session userSession, CloseReason reason) {
+		logger.error("On Close called");
+		if (reason.getReasonPhrase().length() > 0) {
+			final JDialog dialog = new JDialog();
+			dialog.setAlwaysOnTop(true);
+			JOptionPane.showMessageDialog(dialog, ClientConstants.SERVER_STOPPED_MESSAGE, ClientConstants.ERROR_STRING, JOptionPane.ERROR_MESSAGE);
+			ClientController.getInstance().stopClientConnector();
+		}
+	}
 	
 }

@@ -7,14 +7,18 @@ package ser516.project3.constants;
  */
 public class ClientConstants {
 
-	/**
-	 * The end point of server Web socket
-	 */
 	public final static String ENDPOINT = "server";
+	public final static String CLIENT = "Client";
 
 	// Client View Constants
+	public final static String HEADER = "Header";
 	public final static String OPTIONS = "Options";
 	public final static String OPEN_SERVER = "Open Server";
+	public final static String FONT_NAME = "Courier New";
+	public final static String FRAME_COLOR_HEX = "#D1D1D1";
+	public final static String PANEL_COLOR_HEX = "#AFAFAF";
+	public final static String TEXT_FIELD_COLOR_HEX = "#565c61";
+	public final static String GRAPH_COLOR_HEX = "#676165";
 
 
 	// Performance Metrics Constants
@@ -26,8 +30,15 @@ public class ClientConstants {
 	public final static String RELAXATION = "Relaxation";
 	public final static String EXCITEMENT = "Excitement";
 	public final static String FOCUS = "Focus";
-	public final static String DISPLAY_LENGTH = "Length:";
+	public final static String DISPLAY_LENGTH = "Display Length:";
 	public final static String SECONDS = "Seconds";
+	public final static String INTEREST_DEFAULT_COLOR_HEX = "#F20090";
+	public final static String ENGAGEMENT_DEFAULT_COLOR_HEX = "#02AC9F";
+	public final static String STRESS_DEFAULT_COLOR_HEX = "#90C340";
+	public final static String RELAXATION_DEFAULT_COLOR_HEX = "#02ADFF";
+	public final static String EXCITEMENT_DEFAULT_COLOR_HEX = "#F86C1C";
+	public final static String FOCUS_DEFAULT_COLOR_HEX = "#ADAAFF";
+	public final static int DEFAULT_DISPLAY_LENGTH = 30;
 
 	// Expression Constants
 	public final static String EXPRESSIONS = "Expressions";
@@ -40,7 +51,6 @@ public class ClientConstants {
 
 	// Graph Constants
 	public final static String GRAPH = "Graph";
-	public final static String TIME_IN_SECONDS = "Time (seconds)";
 
 	// Client Header Constants
 	public final static String STATUS = "Status:";
@@ -55,4 +65,5 @@ public class ClientConstants {
 	public final static String NO_IP_ADDRESS_MESSAGE = "Please enter a valid IP Address";
 	public final static String NO_PORT_NO_MESSAGE = "Please enter a valid Port Number";
 	public final static String NO_CONNECTION_MESSAGE = "Could not connect to server.";
+	public final static String SERVER_STOPPED_MESSAGE = "Sever got disconnected";
 }

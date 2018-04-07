@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 
 import ser516.project3.model.ConsoleModel;
 import ser516.project3.server.helper.ServerContainerThread;
+import ser516.project3.server.view.ServerPanelGenerator;
 import ser516.project3.utilities.ServerCommonData;
 
 public class ServerConnectionServiceImpl implements ServerConnectionServiceInterface {
@@ -17,14 +18,18 @@ public class ServerConnectionServiceImpl implements ServerConnectionServiceInter
 		serverContainerThread = new Thread(threadInstance);
 		serverContainerThread.start();
 		ConsoleModel.getInstance().logMessage("Server Started");
+		ServerPanelGenerator.setStatus(true);
 	}
 
 	@Override
 	public void stopServerEndpoint() {
-		threadInstance.getServer().stop();
-		ConsoleModel.getInstance().logMessage("Server Stopped");
-		serverContainerThread.interrupt();
+		if(threadInstance != null || serverContainerThread != null) {
+			threadInstance.getServer().stop();
+			ConsoleModel.getInstance().logMessage("Server Stopped");
+			serverContainerThread.interrupt();
+		}
 		ServerCommonData.getInstance().setServerStarted(false);
+		ServerPanelGenerator.setStatus(false);
 	}
 
 }

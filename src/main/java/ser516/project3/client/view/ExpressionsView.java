@@ -4,27 +4,23 @@ import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.ExpressionsModel;
 
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 
-public class ExpressionsView extends JPanel{
+public class ExpressionsView extends JPanel implements ClientViewInterface{
     private ExpressionsModel expressionsModel;
-
-    private static final Color LIGHTGREY = new Color(245, 245, 245);
-    private static final Font FONT = new Font("Courier New", Font.BOLD, 16);
 
     public ExpressionsView(ExpressionsModel expressionsModel){
         this.expressionsModel = expressionsModel;
-        setLayout(new GridLayout(1, 2, 8, 8 ));
-        setBackground(LIGHTGREY);
     }
 
-    public void initializeExpressionsUI(GraphView graphView) {
-        graphView.setLayout(new GridLayout(1, 1, 8, 8));
-        graphView.setOpaque(false);
-        graphView.setBorder(new TitledBorder(null, ClientConstants.GRAPH,
-            TitledBorder.LEADING, TitledBorder.TOP, FONT, null));
-        add(new JPanel(), BorderLayout.LINE_START ); // Need to replace with a panel for displaying the face.
+    @Override
+    public void initializeView(ClientViewInterface[] subViews) {
+        GraphView graphView = (GraphView) subViews[0];
+
+        setLayout(new GridLayout(1, 2, 8, 8 ));
+        setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
+
+        add(new FaceView(300, 300, new Color(255, 223, 135)), BorderLayout.LINE_START ); // Need to replace with a panel for displaying the face.
         add(graphView, BorderLayout.LINE_END );
         setVisible(true);
     }

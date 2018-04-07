@@ -1,4 +1,4 @@
-package ser516.project3.client.controller;
+package ser516.project3.model;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 
 import ser516.project3.client.view.GraphView;
 import ser516.project3.client.view.PerformanceMetricView;
-import ser516.project3.model.CoordinatesModel;
 
 /**
  * 
@@ -18,43 +17,15 @@ import ser516.project3.model.CoordinatesModel;
  *
  */
 public class PerformanceMetricDataObservable extends Observable {
-
-	final static Logger logger = Logger.getLogger(PerformanceMetricDataObservable.class);
+	private static PerformanceMetricDataObservable instance;
 	private ArrayList<ArrayList<CoordinatesModel>> performanceMetricData;
 
-	private PerformanceMetricView performanceMetricView;
-
-	private GraphView graphView;
-
-	public GraphView getGraphView() {
-		return graphView;
-	}
-
-	public void setGraphView(GraphView graphView) {
-		this.graphView = graphView;
-	}
-
-	public PerformanceMetricView getPerformanceMetricView() {
-		return performanceMetricView;
-	}
-
-	public void setPerformanceMetricView(PerformanceMetricView performanceMetricView) {
-		this.performanceMetricView = performanceMetricView;
+	private PerformanceMetricDataObservable() {
+		performanceMetricData = new ArrayList<ArrayList<CoordinatesModel>>();
 	}
 
 	public ArrayList<ArrayList<CoordinatesModel>> getPerformanceMetricData() {
 		return performanceMetricData;
-	}
-
-	public void setPerformanceMetricData(ArrayList<ArrayList<CoordinatesModel>> performanceMetricData) {
-		this.performanceMetricData = performanceMetricData;
-
-	}
-
-	private static PerformanceMetricDataObservable instance;
-
-	private PerformanceMetricDataObservable() {
-		performanceMetricData = new ArrayList<ArrayList<CoordinatesModel>>();
 	}
 
 	/**

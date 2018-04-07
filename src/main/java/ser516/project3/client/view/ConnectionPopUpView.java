@@ -1,33 +1,17 @@
 package ser516.project3.client.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.DocumentListener;
-
+import com.alee.laf.button.WebButton;
 import org.apache.log4j.Logger;
-
-import ser516.project3.client.controller.ClientControllerImpl;
-import ser516.project3.client.controller.ClientControllerInterface;
+import ser516.project3.client.controller.ClientController;
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.model.ConnectionPopUpModel;
 import ser516.project3.utilities.NumberTextField;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentListener;
+import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * ConnectioonPopUp class to show the pop up dialog in which user can enter the
@@ -38,19 +22,21 @@ import ser516.project3.utilities.NumberTextField;
  */
 public class ConnectionPopUpView extends JDialog {
 	final static Logger logger = Logger.getLogger(ConnectionPopUpView.class);
-	private ClientControllerInterface clientControllerImpl;
+	private ClientController clientController;
 	private ConnectionPopUpModel connectionPopUpModel;
 	private JPanel mainPanel;
 	private JLabel ipAddressLabel;
 	private JLabel portNumberLabel;
 	private JTextField ipAddressTextField;
 	private NumberTextField portNumberTextField;
-	private JButton connectButton;
+	private WebButton okButton;
+
+	private final static int FONT_SIZE = 15;
 
 	public ConnectionPopUpView(ConnectionPopUpModel connectionPopUpModel) {
 
 		this.connectionPopUpModel = connectionPopUpModel;
-		clientControllerImpl = new ClientControllerImpl();
+		clientController = new ClientController();
 
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(280, 200));
@@ -70,7 +56,7 @@ public class ConnectionPopUpView extends JDialog {
 
 		createLabels(bagConstraints);
 		createTextFields(bagConstraints);
-		createConnectButton(bagConstraints);
+		createOkButton(bagConstraints);
 
 		add(mainPanel);
 		setVisible(true);
@@ -79,7 +65,6 @@ public class ConnectionPopUpView extends JDialog {
 	private void createMainPanel() {
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
-		mainPanel.setOpaque(false);
 		mainPanel.setBorder(new EmptyBorder(8, 8, 8, 8));
 		mainPanel.setLayout(new GridBagLayout());
 		mainPanel.setBackground(Color.WHITE);
@@ -89,6 +74,7 @@ public class ConnectionPopUpView extends JDialog {
 		ipAddressLabel = new JLabel(ClientConstants.IP_ADDRESS);
 		ipAddressLabel.setHorizontalAlignment(JLabel.RIGHT);
 		ipAddressLabel.setVerticalTextPosition(JLabel.CENTER);
+		ipAddressLabel.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE));
 		bagConstraints.gridx = 0;
 		bagConstraints.gridy = 0;
 		bagConstraints.insets = new Insets(0, 0, 10, 10);
@@ -97,6 +83,7 @@ public class ConnectionPopUpView extends JDialog {
 		portNumberLabel = new JLabel(ClientConstants.PORT_NUMBER);
 		portNumberLabel.setHorizontalAlignment(JLabel.RIGHT);
 		portNumberLabel.setVerticalTextPosition(JLabel.CENTER);
+		portNumberLabel.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE));
 		bagConstraints.gridx = 0;
 		bagConstraints.gridy = 1;
 		bagConstraints.insets = new Insets(0, 0, 0, 10);
@@ -119,19 +106,26 @@ public class ConnectionPopUpView extends JDialog {
 		mainPanel.add(portNumberTextField, bagConstraints);
 	}
 
-	private void createConnectButton(GridBagConstraints bagConstraints) {
-		connectButton = new JButton(ClientConstants.OK);
-		connectButton.setBackground(Color.RED);
-		connectButton.setPreferredSize(new Dimension(120, 35));
+	private void createOkButton(GridBagConstraints bagConstraints) {
+		okButton = new WebButton(ClientConstants.OK);
+		okButton.setPreferredSize(new Dimension(120, 35));
+		okButton.setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
+		okButton.setBottomBgColor(Color.BLACK);
+		okButton.setTopBgColor(Color.BLACK);
+		okButton.setBottomSelectedBgColor(Color.WHITE);
+		okButton.setTopSelectedBgColor(Color.WHITE);
+		okButton.setForeground(Color.WHITE);
+		okButton.setDrawShade(false);
+		okButton.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE));
 		bagConstraints.gridx = 0;
 		bagConstraints.gridy = 2;
 		bagConstraints.gridwidth = 2;
 		bagConstraints.insets = new Insets(20, 20, 0, 20);
-		mainPanel.add(connectButton, bagConstraints);
+		mainPanel.add(okButton, bagConstraints);
 	}
 
 	public void addConnectButtonListener(ActionListener actionListener) {
-		connectButton.addActionListener(actionListener);
+		okButton.addActionListener(actionListener);
 	}
 
 	public void addIPDocumentListener(DocumentListener documentListener) {

@@ -1,13 +1,12 @@
-package ser516.project3.client.controller;
+package ser516.project3.client.view;
 
-import java.awt.Color;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import org.apache.log4j.Logger;
 
-import ser516.project3.model.CoordinatesModel;
+import ser516.project3.client.controller.ClientController;
+import ser516.project3.client.controller.GraphController;
 import ser516.project3.model.PerformanceMetricDataObservable;
 
 /**
@@ -30,15 +29,12 @@ public class PerformanceMetricGraphObserver implements Observer {
 	@Override
 	public void update(Observable observable, Object observerObj) {
 
-		PerformanceMetricDataObservable performanceMetricData = (PerformanceMetricDataObservable) observable;
-		ArrayList<ArrayList<CoordinatesModel>> pmd = performanceMetricData.getPerformanceMetricData();
-		logger.info("test data");
-
+		PerformanceMetricDataObservable performanceMetricDataObservable = (PerformanceMetricDataObservable) observable;
 
 		GraphController graphController = ClientController.getInstance()
 				.getPerformanceMetricController().getGraphController();
 
-		graphController.setGraphData(performanceMetricData.getPerformanceMetricData());
+		graphController.setGraphData(performanceMetricDataObservable.getPerformanceMetricData());
 		graphController.updateGraphView();
 
 		ClientController.getInstance().getPerformanceMetricController().getPerformanceMetricView().revalidate();

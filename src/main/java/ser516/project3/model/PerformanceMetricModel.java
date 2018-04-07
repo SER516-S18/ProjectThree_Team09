@@ -1,16 +1,19 @@
 package ser516.project3.model;
 
+import ser516.project3.constants.ClientConstants;
+
 import java.awt.*;
 
 /**
- * PerformanceMetricModel is a class to represent the color for each emotion.
+ * PerformanceMetricModel is a class to represent the data associated with emotions
+ * and the display length of the x-axis depicting these emotions.
  *
  * @author Adhiraj Tikku
  * @version 1.0
  * @since 2018-04-01
  *
  */
-public class PerformanceMetricModel {
+public class PerformanceMetricModel implements ModelInterface{
   private Color interestColor;
   private Color engagementColor;
   private Color stressColor;
@@ -21,13 +24,13 @@ public class PerformanceMetricModel {
   private int displayLength;
 
   public PerformanceMetricModel() {
-    interestColor = Color.RED;
-    engagementColor = Color.GREEN;
-    stressColor = Color.BLUE;
-    relaxationColor = Color.YELLOW;
-    excitementColor = Color.ORANGE;
-    focusColor = Color.MAGENTA;
-    displayLength = 30;
+    interestColor = Color.decode(ClientConstants.INTEREST_DEFAULT_COLOR_HEX);
+    engagementColor = Color.decode(ClientConstants.ENGAGEMENT_DEFAULT_COLOR_HEX);
+    stressColor = Color.decode(ClientConstants.STRESS_DEFAULT_COLOR_HEX);
+    relaxationColor = Color.decode(ClientConstants.RELAXATION_DEFAULT_COLOR_HEX);
+    excitementColor = Color.decode(ClientConstants.EXCITEMENT_DEFAULT_COLOR_HEX);
+    focusColor = Color.decode(ClientConstants.FOCUS_DEFAULT_COLOR_HEX);
+    displayLength = ClientConstants.DEFAULT_DISPLAY_LENGTH;
   }
 
   /**

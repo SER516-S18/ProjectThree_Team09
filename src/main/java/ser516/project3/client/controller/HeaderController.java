@@ -3,6 +3,7 @@ package ser516.project3.client.controller;
 import ser516.project3.client.view.HeaderView;
 import ser516.project3.model.ConnectionPopUpModel;
 import ser516.project3.model.HeaderModel;
+import ser516.project3.server.view.ServerView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,12 +16,15 @@ import java.awt.event.ActionListener;
  * @author Adhiraj Tikku, Vishakha Singal
  *
  */
-public class HeaderController {
+
+public class HeaderController implements ClientControllerInterface{
 
   private HeaderView headerView;
   private HeaderModel headerModel;
+  private ServerView serverDialog;
   private ConnectionPopUpController connectionPopUpController;
   private ConnectionPopUpModel connectionPopUpModel;
+  
 
   /**
    * Constructor overloaded to initiate the model and view as well
@@ -32,14 +36,36 @@ public class HeaderController {
     connectionPopUpModel = new ConnectionPopUpModel();
     this.headerView = headerView;
     this.headerModel = headerModel;
+  }
 
-    this.headerView.addConnectButtonListener(new ConnectListener());
+  @Override
+  public void initializeView() {
+    headerView.initializeView(null);
+    headerView.addConnectButtonListener(new ConnectListener());
+    headerView.addServerOpenButtonListener(new ServerOpenListener());
+  }
+  
+  class ServerOpenListener implements ActionListener{
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(serverDialog == null) {
+			serverDialog = new ServerView();
+		} else {
+			serverDialog.setVisible(true);
+		}
+	}
+	  
   }
 
   class ConnectListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-      connectionPopUpController = new ConnectionPopUpController(connectionPopUpModel);
+      if (headerModel.isConnectionStatus()) {
+        ClientController.getInstance().toggleConnectionToServer(null, 0);
+      } else {
+        connectionPopUpController = new ConnectionPopUpController(connectionPopUpModel);
+      }
     }
   }
 
@@ -50,5 +76,10 @@ public class HeaderController {
   public void setConnectionStatus(boolean connectionStatus) {
     headerModel.setConnectionStatus(connectionStatus);
     headerView.updateConnectionLabel();
+  }
+
+  public void setHeaderTimeStamp(double timeStamp) {
+  	headerModel.setTimeStamp(timeStamp);
+  	headerView.updateTimeStamp();
   }
 }

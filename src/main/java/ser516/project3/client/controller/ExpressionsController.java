@@ -1,31 +1,38 @@
 package ser516.project3.client.controller;
 
+import ser516.project3.client.view.ClientViewInterface;
 import ser516.project3.client.view.ExpressionsView;
-import ser516.project3.client.view.GraphView;
 import ser516.project3.model.ExpressionsModel;
-import ser516.project3.model.GraphModel;
 
-/**
- *
- * @author Adhiraj Tikku
- */
-public class ExpressionsController {
+public class ExpressionsController implements ClientControllerInterface{
   private ExpressionsModel expressionsModel;
   private ExpressionsView expressionsView;
 
-  private GraphControllerInterface graphController;
+  private GraphController graphController;
 
-  public ExpressionsController(ExpressionsModel expressionsModel, ExpressionsView expressionsView) {
+  public ExpressionsController(ExpressionsModel expressionsModel, ExpressionsView expressionsView, GraphController graphController) {
     this.expressionsModel = expressionsModel;
     this.expressionsView = expressionsView;
+    this.graphController = graphController;
+  }
 
-    GraphModel graphModel = new GraphModel();
-    GraphView graphView = new GraphView();
-    graphController = new GraphControllerImpl(graphModel, graphView);
-    expressionsView.initializeExpressionsUI(graphController.getGraphView());
+  @Override
+  public void initializeView() {
+    String legendNames[] = {"blink", "rightWink", "leftWink", "lookingRight", "lookingLeft",
+        "smile", "clench", "leftSmirk", "rightSmirk", "laugh", "furrowBrow", "raiseBrow"};
+    graphController.setLegendNames(legendNames);
+    graphController.setNoOfChannels(12);
+    graphController.setXLength(100);
+    graphController.updateGraphView();
+    ClientViewInterface clientViewInterface[] = {graphController.getGraphView()};
+    expressionsView.initializeView(clientViewInterface);
   }
 
   public ExpressionsView getExpressionsView() {
     return expressionsView;
+  }
+
+  public GraphController getGraphController() {
+    return graphController;
   }
 }

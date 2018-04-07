@@ -49,7 +49,7 @@ public class ConnectionPopUpController {
         dialog.setAlwaysOnTop(true);
         JOptionPane.showMessageDialog(dialog, ClientConstants.NO_PORT_NO_MESSAGE);
       } else {
-        ClientControllerImpl.getInstance().toggleConnectionToServer(connectionPopUpModel.getIpAddress(), connectionPopUpModel.getPortNumber());
+        ClientController.getInstance().toggleConnectionToServer(connectionPopUpModel.getIpAddress(), connectionPopUpModel.getPortNumber());
         connectionPopUpView.dispose();
       }
     }

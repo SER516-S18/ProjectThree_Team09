@@ -1,7 +1,5 @@
 package ser516.project3.model;
 
-import ser516.project3.client.view.GraphView;
-
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -20,11 +18,17 @@ import java.util.ArrayList;
  * @since 2018-03-30
  *
  */
-public class GraphModel {
+public class GraphModel implements ModelInterface{
   private int XLength;
   private int noOfChannels;
   private Color channelColors[];
   private ArrayList<ArrayList<CoordinatesModel>> graphData;
+  private String[] legendNames;
+
+  public GraphModel() {
+    XLength = 1;
+    noOfChannels = 1;
+  }
 
   /**
    * Sets the X-axis display length.
@@ -96,5 +100,22 @@ public class GraphModel {
    */
   public ArrayList<ArrayList<CoordinatesModel>> getGraphData() {
     return graphData;
+  }
+
+  /**
+   * Sets the names of each legend in the graph.
+   *
+   * @param legendNames the names of each legend in the graph
+   */
+  public void setLegendNames(String[] legendNames) {
+    this.legendNames = legendNames;
+  }
+
+  /**
+   * Gets the names of each legend in the graph.
+   * @return names of each legend in the graph.
+   */
+  public String[] getLegendNames() {
+    return legendNames;
   }
 }
