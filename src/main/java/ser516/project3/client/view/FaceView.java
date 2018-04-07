@@ -1,8 +1,8 @@
 package ser516.project3.client.view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
+import ser516.project3.client.view.MouthExpressions.Mouth;
+
+import java.awt.*;
 
 import javax.swing.JPanel;
 
@@ -39,9 +39,14 @@ public class FaceView extends JPanel {
 		graphics.fillOval(210, 150, 30, 50);
 		graphics.drawArc(210, 130, 30, 30, 0, 180);
 
-		graphics.setColor(new Color(249, 47, 84));
+//		graphics.setColor(new Color(249, 47, 84));
 //		graphics.fillArc(150, 200, 100, 70, 0, 180);
-		graphics.drawArc(150, 200, 100, 70, 180, 180);
+        Mouth mouth = new Mouth();
+        Graphics2D g2 = (Graphics2D)graphics;
+        g2.setColor(new Color(249, 47, 84) );
+        mouth.setMouthExpression(Mouth.MouthExpression.laugh);
+        g2.draw(mouth);
+		//graphics.drawArc(150, 200, 100, 70, 180, 180);
 
 	}
 
