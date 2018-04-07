@@ -1,5 +1,7 @@
 package ser516.project3.model;
 
+import ser516.project3.interfaces.ModelInterface;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -18,7 +20,7 @@ import java.util.ArrayList;
  * @since 2018-03-30
  *
  */
-public class GraphModel implements ModelInterface{
+public class GraphModel implements ModelInterface {
   private int XLength;
   private int noOfChannels;
   private Color channelColors[];

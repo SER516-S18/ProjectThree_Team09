@@ -1,7 +1,8 @@
 package ser516.project3.client.controller;
 
-import ser516.project3.client.view.ClientViewInterface;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.client.view.PerformanceMetricView;
+import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.model.PerformanceMetricModel;
 import ser516.project3.constants.ClientConstants;
 
@@ -12,7 +13,7 @@ import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.*;
 
-public class PerformanceMetricController implements ClientControllerInterface{
+public class PerformanceMetricController implements ControllerInterface {
   private PerformanceMetricModel performanceMetricModel;
   private PerformanceMetricView performanceMetricView;
 
@@ -34,7 +35,7 @@ public class PerformanceMetricController implements ClientControllerInterface{
         performanceMetricModel.getExcitementColor(), performanceMetricModel.getFocusColor()};
     graphController.setChannelColors(channelColors);
     graphController.updateGraphView();
-    ClientViewInterface clientViewInterface[] = {graphController.getGraphView()};
+    ViewInterface clientViewInterface[] = {graphController.getGraphView()};
     performanceMetricView.initializeView(clientViewInterface);
     performanceMetricView.addEmotionButtonsListener(new EmotionButtonsListener());
     performanceMetricView.addDisplayLengthListener(new DisplayLengthKeyListener(), new DisplayLengthDocumentListener());

@@ -4,6 +4,8 @@ import ser516.project3.client.service.ClientConnectionServiceImpl;
 import ser516.project3.client.service.ClientConnectionServiceInterface;
 import ser516.project3.client.view.*;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.ControllerInterface;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ExpressionsModel;
 import ser516.project3.model.GraphModel;
 import ser516.project3.model.HeaderModel;
@@ -17,7 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-public class ClientController implements ClientControllerInterface{
+public class ClientController implements ControllerInterface {
 	private boolean connected = false;
 	private ClientConnectionServiceInterface clientConnectionService;
 	private ViewFactory viewFactory;
@@ -53,13 +55,13 @@ public class ClientController implements ClientControllerInterface{
 	@Override
 	public void initializeView() {
 		clientView = (ClientView) viewFactory.getView(ClientConstants.CLIENT, null);
-		ClientViewInterface subViews[] = {
+		ViewInterface subViews[] = {
 				headerController.getHeaderView(),
 				performanceMetricController.getPerformanceMetricView(),
 				expressionsController.getExpressionsView()};
 		clientView.initializeView(subViews);
 		clientView.addServerMenuItemListener(new ServerMenuItemListener());
-		clientView.addWindowListener(new WindowClosingEventListener());
+		clientView.addClientWindowListener(new WindowClosingEventListener());
 	}
 
 	private void initializeHeader(ViewFactory viewFactory, ControllerFactory controllerFactory) {

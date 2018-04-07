@@ -7,11 +7,7 @@ public class ServerCommonData {
 	private static ServerCommonData instance = null;
 	private static MessageModel messageModel;
 
-
 	private int interval;
-	private boolean autoRepeat;
-	private boolean serverStarted = false;
-	private boolean shouldSend = false;
 
 	protected ServerCommonData() {
 
@@ -32,58 +28,5 @@ public class ServerCommonData {
 	
 	public MessageModel getMessage() {
 		return messageModel;
-	}
-
-	/**
-	 * @return the interval
-	 */
-	public int getInterval() {
-		return interval;
-	}
-
-	/**
-	 * @param interval
-	 *            the interval to set
-	 */
-	public void setInterval(int interval) {
-		this.interval = interval;
-	}
-
-	/**
-	 * @return the autoRepeat
-	 */
-	public boolean isAutoRepeat() {
-		return autoRepeat;
-	}
-
-	/**
-	 * @param autoRepeat
-	 *            the autoRepeat to set
-	 */
-	public void setAutoRepeat(boolean autoRepeat) {
-		this.autoRepeat = autoRepeat;
-	}
-
-	/**
-	 * @return the serverStarted
-	 */
-	public boolean isServerStarted() {
-		return serverStarted;
-	}
-
-	/**
-	 * @param serverStarted
-	 *            the serverStarted to set
-	 */
-	public void setServerStarted(boolean serverStarted) {
-		this.serverStarted = serverStarted;
-	}
-
-	public boolean isShouldSend() {
-		return shouldSend;
-	}
-
-	public void setShouldSend(boolean shouldSend) {
-		this.shouldSend = shouldSend;
 	}
 }

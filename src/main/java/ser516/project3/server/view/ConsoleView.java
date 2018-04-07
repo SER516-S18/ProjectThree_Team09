@@ -1,5 +1,6 @@
 package ser516.project3.server.view;
 
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ConsoleModel;
 
 import javax.swing.*;
@@ -20,21 +21,23 @@ import java.util.Observer;
  *
  */
 
-public class ConsoleView implements Observer {
+public class ConsoleView extends JPanel implements Observer, ViewInterface {
+    private JTextArea consoleOutput;
+    private JButton clearConsole;
+    private ConsoleModel consoleModel;
 
     private static final Font SUBFONT = new Font("Courier New", Font.BOLD, 14);
     private static final Color LIGHTGREY = new Color(245, 245, 245);
 
-    private JTextArea consoleOutput;
-    private JPanel consolePanel;
-    private JButton clearConsole;
+    public ConsoleView(ConsoleModel consoleModel) {
+        this.consoleModel = consoleModel;
+    }
 
-    // Constructor to initialize console.
-    public ConsoleView() {
-        consolePanel = new JPanel();
-        consolePanel.setBorder(new TitledBorder(null, "Console", TitledBorder.LEADING,
-                TitledBorder.TOP, SUBFONT, null));
-        consolePanel.setLayout(new FlowLayout());
+    @Override
+    public void initializeView(ViewInterface[] subViews) {
+        setBorder(new TitledBorder(null, "Console", TitledBorder.LEADING,
+            TitledBorder.TOP, SUBFONT, null));
+        setLayout(new FlowLayout());
 
         consoleOutput = new JTextArea();
         consoleOutput.setPreferredSize(new Dimension(400,100));
@@ -44,30 +47,16 @@ public class ConsoleView implements Observer {
 
         Border border = BorderFactory.createLineBorder(Color.BLACK);
         consoleOutput.setBorder(BorderFactory.createCompoundBorder(border,
-                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+            BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
         clearConsole = new JButton();
         clearConsole.setText("Clear");
-        consolePanel.add(consoleOutput);
-        consolePanel.add(clearConsole);
-        clearConsole.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                clear();
-            }
-        });
-
-    }
-
-    public JPanel getConsolePanel() {
-        return consolePanel;
+        add(consoleOutput);
+        add(clearConsole);
     }
 
     @Override
     public void update(Observable messageArrayObject, Object observerObj) {
-        //messageArrayObject is ConsoleModel object
         ConsoleModel model = (ConsoleModel) messageArrayObject;
         String message = model.getLogArray().get(model.getLogArray().size() - 1);
         DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
@@ -77,7 +66,11 @@ public class ConsoleView implements Observer {
         consoleOutput.append("\n");
     }
 
-    public void clear(){
+    public void addClearConsoleListener(ActionListener actionListener) {
+        clearConsole.addActionListener(actionListener);
+    }
+
+    public void clearConsole(){
         consoleOutput.setText(null);
     }
 }

@@ -13,7 +13,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.apache.log4j.Logger;
 
-import ser516.project3.server.view.ServerPanelGenerator;
+import ser516.project3.server.controller.ServerController;
 import ser516.project3.utilities.MessageEncoder;
 import ser516.project3.utilities.ServerCommonData;
 
@@ -37,8 +37,10 @@ public class ServerConnectionEndpoint {
             logger.info("New Client connected :::: " + session.getBasicRemote());
             ServerCommonData serverCommonDataObject = ServerCommonData.getInstance();
             while (true) {
-                if (serverCommonDataObject.isShouldSend()) {
-                    if (serverCommonDataObject.isAutoRepeat()) {
+                boolean isShouldSend = ServerController.getInstance().getTopController().getTopModel().isShouldSendData();
+                boolean isAutoRepeat = ServerController.getInstance().getTopController().getTopModel().isAutoRepeatCheckBoxChecked();
+                if (isShouldSend) {
+                    if (isAutoRepeat) {
                         //send the message object
                         session.getBasicRemote().sendObject(serverCommonDataObject.getMessage());
 
@@ -46,10 +48,13 @@ public class ServerConnectionEndpoint {
                         long timeElapsed = (long) ServerCommonData.getInstance().getMessage().getTimeStamp();
                         double dataInterval = ServerCommonData.getInstance().getMessage().getInterval();
                         ServerCommonData.getInstance().getMessage().setTimeStamp(timeElapsed + dataInterval);
-                        ServerPanelGenerator.getTimerController().updateTimeStamp(timeElapsed); //Temporary. Will implement MVC.
+                        ServerController.getInstance().getTimerController().updateTimeStamp(timeElapsed);
                     } else {
                         session.getBasicRemote().sendObject(serverCommonDataObject.getMessage());
-                        serverCommonDataObject.setShouldSend(false);
+                        long timeElapsed = (long) ServerCommonData.getInstance().getMessage().getTimeStamp();
+                        double dataInterval = ServerCommonData.getInstance().getMessage().getInterval();
+                        ServerCommonData.getInstance().getMessage().setTimeStamp(timeElapsed + dataInterval);
+                        ServerController.getInstance().getTopController().getTopModel().setShouldSendData(false);
                     }
                 }
                 Thread.sleep((long) (serverCommonDataObject.getMessage().getInterval() * 1000));

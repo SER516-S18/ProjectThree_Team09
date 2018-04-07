@@ -1,10 +1,11 @@
 package ser516.project3.client.controller;
 
-import ser516.project3.client.view.ClientViewInterface;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.client.view.ExpressionsView;
+import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.model.ExpressionsModel;
 
-public class ExpressionsController implements ClientControllerInterface{
+public class ExpressionsController implements ControllerInterface {
   private ExpressionsModel expressionsModel;
   private ExpressionsView expressionsView;
 
@@ -24,7 +25,7 @@ public class ExpressionsController implements ClientControllerInterface{
     graphController.setNoOfChannels(12);
     graphController.setXLength(100);
     graphController.updateGraphView();
-    ClientViewInterface clientViewInterface[] = {graphController.getGraphView()};
+    ViewInterface clientViewInterface[] = {graphController.getGraphView()};
     expressionsView.initializeView(clientViewInterface);
   }
 

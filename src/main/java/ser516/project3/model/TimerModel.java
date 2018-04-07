@@ -1,6 +1,8 @@
 package ser516.project3.model;
 
-public class TimerModel {
+import ser516.project3.interfaces.ModelInterface;
+
+public class TimerModel implements ModelInterface{
   private double timeElapsed;
 
   /**

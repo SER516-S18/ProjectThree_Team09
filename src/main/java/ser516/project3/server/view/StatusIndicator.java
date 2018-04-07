@@ -19,8 +19,7 @@ public class StatusIndicator extends JPanel{
 
 	/**
 	 * Toggles the visibility of the circle every 500ms
-	 * 
-	 * @param none
+	 *
 	 */
 	public StatusIndicator() {
 		this.blinkAnimation = new Timer(BLINK_INTERVAL, event -> {

@@ -1,9 +1,11 @@
 package ser516.project3.client.controller;
 
 import ser516.project3.client.view.HeaderView;
+import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.model.ConnectionPopUpModel;
 import ser516.project3.model.HeaderModel;
-import ser516.project3.server.view.ServerView;
+import ser516.project3.server.controller.ServerController;
+import ser516.project3.utilities.ControllerFactory;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,11 +19,11 @@ import java.awt.event.ActionListener;
  *
  */
 
-public class HeaderController implements ClientControllerInterface{
+public class HeaderController implements ControllerInterface {
 
   private HeaderView headerView;
   private HeaderModel headerModel;
-  private ServerView serverDialog;
+  private ServerController serverController;
   private ConnectionPopUpController connectionPopUpController;
   private ConnectionPopUpModel connectionPopUpModel;
   
@@ -49,10 +51,12 @@ public class HeaderController implements ClientControllerInterface{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(serverDialog == null) {
-			serverDialog = new ServerView();
+		if(serverController == null) {
+		  ControllerFactory controllerFactory = new ControllerFactory();
+          serverController = (ServerController) controllerFactory.getController("SERVER", null, null, null);
+          serverController.initializeView();
 		} else {
-			serverDialog.setVisible(true);
+		  serverController.showServer();
 		}
 	}
 	  

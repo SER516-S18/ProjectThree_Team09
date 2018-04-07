@@ -1,12 +1,13 @@
 package ser516.project3.client.view;
 
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.ViewInterface;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class ClientView extends JFrame implements ClientViewInterface{
+public class ClientView extends JFrame implements ViewInterface {
 
 	private static ClientView clientViewInstance = null;
 
@@ -31,10 +32,10 @@ public class ClientView extends JFrame implements ClientViewInterface{
 	}
 
 	@Override
-	public void initializeView(ClientViewInterface subviews[]) {
-		this.headerView = (HeaderView)subviews[0];
-		this.performanceMetricView = (PerformanceMetricView) subviews[1];
-		this.expressionsView = (ExpressionsView) subviews[2];
+	public void initializeView(ViewInterface subviews[]) {
+		headerView = (HeaderView)subviews[0];
+		performanceMetricView = (PerformanceMetricView) subviews[1];
+		expressionsView = (ExpressionsView) subviews[2];
 
 		createMenuBar();
 		createTabs();
@@ -87,7 +88,7 @@ public class ClientView extends JFrame implements ClientViewInterface{
 		serverMenuItem.addActionListener(actionListener);
 	}
 
-	public void addWindowListener(java.awt.event.WindowAdapter windowAdapter) {
-		this.addWindowListener(windowAdapter);
+	public void addClientWindowListener(WindowListener windowListener) {
+		addWindowListener(windowListener);
 	}
 }

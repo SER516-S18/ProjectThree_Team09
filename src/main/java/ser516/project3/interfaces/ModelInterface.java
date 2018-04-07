@@ -1,4 +1,4 @@
-package ser516.project3.model;
+package ser516.project3.interfaces;
 
 public interface ModelInterface {
 }
