@@ -5,8 +5,7 @@ import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.JDialog;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 import org.apache.log4j.Logger;
 
@@ -17,7 +16,7 @@ import org.apache.log4j.Logger;
  *
  */
 @SuppressWarnings("serial")
-public class ServerView extends JDialog {
+public class ServerView extends JFrame {
 	final static Logger logger = Logger.getLogger(ServerView.class);
 
 	/**
