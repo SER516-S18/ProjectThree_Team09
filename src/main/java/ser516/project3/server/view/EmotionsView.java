@@ -30,9 +30,11 @@ public class EmotionsView {
 	public EmotionsView(){
 		emotionsPanel = new JPanel();;
 		
+		GridBagLayout gbl_emotionPanel = new GridBagLayout();
+		emotionsPanel.setLayout(gbl_emotionPanel);
 		emotionsPanel.setBorder(new TitledBorder(null, "Emotions", TitledBorder.LEADING, 
 				TitledBorder.TOP, SUBFONT, null));
-		Dimension spinnerDimension = new Dimension(65, 30);
+		Dimension spinnerDimension = new Dimension(80, 30);
 		Double current = new Double(0.00);
 		Double min = new Double(0.00);
 		Double max = new Double(1.00);
@@ -61,8 +63,9 @@ public class EmotionsView {
 	}
 	
 	public enum EmotionPanel{
-		Interest(1, 1, 3, 1), Engagement(1, 2, 3, 2), Excitement(1, 3, 3, 3), Stress(2, 2, 3, 4), 
-														Relaxation(1, 5, 3, 5), Focus(1, 6, 3, 6);
+		Interest(1,0,2,0), Engagement(3,0,4,0),
+		Excitement(1,1,2,1), Stress(3, 1,4,1), 
+		Relaxation(1,2,2,2), Focus(3,2,4,2);
 		int gbc_x, gbc_y, spinner_x, spinner_y;
 		private EmotionPanel(int gbc_x, int gbc_y, int spinner_x, int spinner_y){
 			this.gbc_x = gbc_x;
