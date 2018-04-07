@@ -13,7 +13,9 @@ import javax.swing.event.DocumentListener;
 import org.apache.log4j.Logger;
 
 import ser516.project3.model.ConsoleModel;
+import ser516.project3.model.TimerModel;
 import ser516.project3.server.controller.ServerControllerImpl;
+import ser516.project3.server.controller.TimerController;
 import ser516.project3.utilities.InputVerifierNumericals;
 import ser516.project3.utilities.ServerCommonData;
 
@@ -28,15 +30,21 @@ import ser516.project3.utilities.ServerCommonData;
 public class ServerPanelGenerator {
 	
 	static JPanel topPanel;
+
 	final static Logger logger = Logger.getLogger(ServerPanelGenerator.class);
 
 	private static ServerControllerImpl serverControllerImpl = new ServerControllerImpl();
+	private static TimerController timerController;
 
 	private static final Font FONT = new Font("Courier New", Font.BOLD, 17);
 	private static final String INTERVAL_LABEL_NAME = "Interval (seconds):  ";
 	private static final String AUTO_REPEAT_CHECKBOX_NAME = "Auto Repeat";
-	private static final String TOGGLE_START_STOP = "Start / Stop";
-	
+	private static final String TOGGLE_START = "Start Server";
+    private static final String TOGGLE_STOP = "Stop Server";
+	private static final String SEND_BUTTON = "Send";
+    private static final String START = "Start";
+    private static final String STOP = "Stop";
+
 	private static StatusIndicator statusIndicator = new StatusIndicator();
 
 	/**
@@ -58,6 +66,8 @@ public class ServerPanelGenerator {
 
 		Border compoundBorder = BorderFactory.createCompoundBorder(marginBorder, titledBorder);
 		topPanel.setBorder(compoundBorder);
+
+        JCheckBox autoRepeatCheckBox= new JCheckBox(AUTO_REPEAT_CHECKBOX_NAME, false);;
 
 		JLabel intervalLabel = new JLabel(INTERVAL_LABEL_NAME);
 		intervalLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -88,19 +98,54 @@ public class ServerPanelGenerator {
 
 		});
 
-		JCheckBox autoRepeatCheckBox = new JCheckBox(AUTO_REPEAT_CHECKBOX_NAME, false);
-		autoRepeatCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
-		autoRepeatCheckBox.addActionListener(new ActionListener() {
+		JButton sendButton = new JButton(SEND_BUTTON);
+		sendButton.setHorizontalAlignment(SwingConstants.CENTER);
+		sendButton.setEnabled(false);
+		sendButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				logger.info("Value of auto Repeat toggle changed: " + autoRepeatCheckBox.isSelected());
-				ServerCommonData.getInstance().setAutoRepeat(autoRepeatCheckBox.isSelected());
-			}
+				logger.info("Send button pressed");
+				updateIntervalInputTextField(intervalInputTextField);
+				serverControllerImpl.sendValues();
+				if (ServerCommonData.getInstance().isAutoRepeat()) {
+					if (intervalInputTextField.isEditable()) {
+						intervalInputTextField.setEditable(false);
+					} else {
+						intervalInputTextField.setEditable(true);
+					}
+					if (autoRepeatCheckBox.isEnabled()) {
+						autoRepeatCheckBox.setEnabled(false);
+					} else {
+						autoRepeatCheckBox.setEnabled(true);
+					}
+					if (ServerCommonData.getInstance().isShouldSend()) {
+					    sendButton.setText(STOP);
+                    } else {
+					    sendButton.setText(START);
+                    }
+				}
 
+			}
 		});
 
-		JButton buttonToggle = new JButton(TOGGLE_START_STOP);
+        autoRepeatCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
+        autoRepeatCheckBox.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                logger.info("Value of auto Repeat toggle changed: " + autoRepeatCheckBox.isSelected());
+                ServerCommonData.getInstance().setAutoRepeat(autoRepeatCheckBox.isSelected());
+                if (autoRepeatCheckBox.isSelected()) {
+                    sendButton.setText(START);
+                } else {
+                    sendButton.setText(SEND_BUTTON);
+                }
+            }
+
+        });
+
+		JButton buttonToggle = new JButton(TOGGLE_START);
 		buttonToggle.setHorizontalAlignment(SwingConstants.CENTER);
 		buttonToggle.addActionListener(new ActionListener() {
 
@@ -109,19 +154,16 @@ public class ServerPanelGenerator {
 				logger.info("Start/Stop button pressed");
 				updateIntervalInputTextField(intervalInputTextField);
 				serverControllerImpl.startServer();
-				if (intervalInputTextField.isEditable()) {
-					intervalInputTextField.setEditable(false);}
-				else {
-					intervalInputTextField.setEditable(true);
-				}
-				if(autoRepeatCheckBox.isEnabled()) {
-					autoRepeatCheckBox.setEnabled(false);
+				
+				if(sendButton.isEnabled()) {
+					sendButton.setEnabled(false);
 				}else {
-					autoRepeatCheckBox.setEnabled(true);
+					sendButton.setEnabled(true);
 				}
 					
 			}
 		});
+
 
 		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraint.gridx = 0;
@@ -145,7 +187,7 @@ public class ServerPanelGenerator {
 		topPanel.add(autoRepeatCheckBox, gridBagConstraint);
 
 		
-
+/*
 		gridBagConstraint.insets = new Insets(0, 0, 0, 0);
 		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraint.weightx = 0.5;
@@ -153,16 +195,22 @@ public class ServerPanelGenerator {
 		gridBagConstraint.gridy = 1;	
 		//gridBagConstraint.ipady = 40;
 		topPanel.add(Box.createGlue(), gridBagConstraint);
-		
+	*/
+		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraint.weighty = 2.0;
+		gridBagConstraint.gridx = 0;
+		gridBagConstraint.gridy = 1;
+		gridBagConstraint.ipady = 20;
+		gridBagConstraint.insets = new Insets(0, 30, 0, 30);
+		topPanel.add(buttonToggle, gridBagConstraint);
+
 		gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraint.weighty = 2.0;
 		gridBagConstraint.gridx = 1;
 		gridBagConstraint.gridy = 1;
 		gridBagConstraint.ipady = 20;
 		gridBagConstraint.insets = new Insets(0, 30, 0, 30);
-		topPanel.add(buttonToggle, gridBagConstraint);
-
-		
+		topPanel.add(sendButton, gridBagConstraint);
 		
 		
 		statusIndicator.setBorder(BorderFactory.createEmptyBorder(30, 10, 10, 10));
@@ -261,7 +309,10 @@ public class ServerPanelGenerator {
 	}
 
 	public static JPanel createTimerPanel() {
-		TimerView timerView = new TimerView();
+		//Temporary. Will implement MVC and factory pattern.
+		TimerModel timerModel = new TimerModel();
+		TimerView timerView = new TimerView(timerModel);
+		timerController = new TimerController(timerModel, timerView);
 		return timerView.getTimerPanel();
 	}
 
@@ -282,5 +333,10 @@ public class ServerPanelGenerator {
 	 */
 	public static ServerControllerImpl getServerControllerImpl() {
 		return serverControllerImpl;
+	}
+
+	//Temporary. Will implement MVC and factory pattern.
+	public static TimerController getTimerController() {
+		return timerController;
 	}
 }

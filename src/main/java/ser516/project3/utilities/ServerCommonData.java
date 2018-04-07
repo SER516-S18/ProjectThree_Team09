@@ -11,6 +11,7 @@ public class ServerCommonData {
 	private int interval;
 	private boolean autoRepeat;
 	private boolean serverStarted = false;
+	private boolean shouldSend = false;
 
 	protected ServerCommonData() {
 
@@ -78,4 +79,11 @@ public class ServerCommonData {
 		this.serverStarted = serverStarted;
 	}
 
+	public boolean isShouldSend() {
+		return shouldSend;
+	}
+
+	public void setShouldSend(boolean shouldSend) {
+		this.shouldSend = shouldSend;
+	}
 }
