@@ -24,7 +24,7 @@ public class ServerCommonData {
 		return instance;
 	}
 
-	
+
 	public static void setMessageModel(MessageModel messageModel) {
 		ServerCommonData.messageModel = messageModel;
 	}

@@ -8,6 +8,15 @@ import ser516.project3.server.view.ServerView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * This class controls the UI for the header view on
+ * client which helps in connection and shows the
+ * connection status.
+ *
+ * @author Adhiraj Tikku, Vishakha Singal
+ *
+ */
+
 public class HeaderController implements ClientControllerInterface{
 
   private HeaderView headerView;
@@ -17,6 +26,12 @@ public class HeaderController implements ClientControllerInterface{
   private ConnectionPopUpModel connectionPopUpModel;
   
 
+  /**
+   * Constructor overloaded to initiate the model and view as well
+   *
+   * @param headerModel
+   * @param headerView
+   */
   public HeaderController(HeaderModel headerModel, HeaderView headerView) {
     connectionPopUpModel = new ConnectionPopUpModel();
     this.headerView = headerView;

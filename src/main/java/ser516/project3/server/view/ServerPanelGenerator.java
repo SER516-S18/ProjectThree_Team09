@@ -212,7 +212,7 @@ public class ServerPanelGenerator {
 
 		Border titledBorder = new TitledBorder(null, "Configuration", TitledBorder.LEADING, TitledBorder.TOP, FONT,
 				null);
-		Border marginBorder = BorderFactory.createEmptyBorder(10, 10, 30, 10);
+		Border marginBorder = BorderFactory.createEmptyBorder(30, 10, 30, 10);
 
 		Border compound = BorderFactory.createCompoundBorder(marginBorder, titledBorder);
 		configPanel.setBorder(compound);
