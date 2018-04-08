@@ -35,6 +35,7 @@ public class ServerConnectionEndpoint {
             //  If the flag is false, just send the json once, else keep sending based
             // on the interval
             logger.info("New Client connected :::: " + session.getBasicRemote());
+            ServerController.getInstance().getConsoleController().getConsoleModel().logMessage("Client Connected");
             ServerCommonData serverCommonDataObject = ServerCommonData.getInstance();
             while (true) {
                 boolean isShouldSend = ServerController.getInstance().getTopController().getTopModel().isShouldSendData();
@@ -63,6 +64,7 @@ public class ServerConnectionEndpoint {
         } catch (IOException | EncodeException | InterruptedException e) {
             // TODO Auto-generated catch block
             logger.error("Error occurred in onOpen method :::: " + e.getStackTrace());
+            ServerController.getInstance().getConsoleController().getConsoleModel().logMessage("Error occurred while connecting to client");
         }
     }
 

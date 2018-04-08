@@ -23,6 +23,7 @@ public class ServerContainerThread implements Runnable {
 			reader.readLine();
 		} catch (Exception e) {
 			logger.error("Error occurred while trying to start the server websocket::::" + e.getStackTrace());
+			ServerController.getInstance().getConsoleController().getConsoleModel().logMessage("Error occurred while trying to start the server");
 		} finally {
 			server.stop();
 			ServerController.getInstance().getTopController().getTopModel().setServerStarted(false);
