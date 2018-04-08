@@ -1,6 +1,9 @@
 package ser516.project3.client.view;
 
-public interface FaceElementsInterface {
+import java.awt.Shape;
+
+public interface FaceElementsInterface extends Shape {
 	void resetPositionToDefault();
 	void moveToDifferentPosition();
+	void moveToGivenPostions(int x,int y);
 }
