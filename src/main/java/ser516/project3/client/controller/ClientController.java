@@ -6,12 +6,8 @@ import ser516.project3.client.view.*;
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.interfaces.ViewInterface;
-import ser516.project3.model.ExpressionsModel;
-import ser516.project3.model.GraphModel;
-import ser516.project3.model.HeaderModel;
-import ser516.project3.model.PerformanceMetricModel;
+import ser516.project3.model.*;
 import ser516.project3.server.controller.ServerController;
-import ser516.project3.server.view.ServerView;
 import ser516.project3.utilities.ControllerFactory;
 import ser516.project3.utilities.ViewFactory;
 
@@ -31,6 +27,7 @@ public class ClientController implements ControllerInterface {
 	private ExpressionsController expressionsController;
 	private GraphController performanceMetricsGraphController;
 	private GraphController expressionGraphController;
+	private ConnectionPopUpController connectionPopUpController;
 
 	private static ClientController instance;
 	public ClientController() {
@@ -66,9 +63,13 @@ public class ClientController implements ControllerInterface {
 	}
 
 	private void initializeHeader(ViewFactory viewFactory, ControllerFactory controllerFactory) {
+		ConnectionPopUpModel connectionPopUpModel = new ConnectionPopUpModel();
+		ConnectionPopUpView connectionPopUpView = (ConnectionPopUpView) viewFactory.getView("CONNECTION_POP_UP", connectionPopUpModel);
+		connectionPopUpController = (ConnectionPopUpController) controllerFactory.getController("CONNECTION_POP_UP", connectionPopUpModel, connectionPopUpView, null);
+
 		HeaderModel headerModel = new HeaderModel();
 		HeaderView headerView = (HeaderView) viewFactory.getView(ClientConstants.HEADER, headerModel);
-		headerController = (HeaderController)controllerFactory.getController(ClientConstants.HEADER, headerModel, headerView, null);
+		headerController = (HeaderController)controllerFactory.getController(ClientConstants.HEADER, headerModel, headerView, connectionPopUpController);
 		headerController.initializeView();
 	}
 

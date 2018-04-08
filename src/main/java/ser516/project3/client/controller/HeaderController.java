@@ -25,7 +25,6 @@ public class HeaderController implements ControllerInterface {
   private HeaderModel headerModel;
   private ServerController serverController;
   private ConnectionPopUpController connectionPopUpController;
-  private ConnectionPopUpModel connectionPopUpModel;
   
 
   /**
@@ -34,10 +33,10 @@ public class HeaderController implements ControllerInterface {
    * @param headerModel
    * @param headerView
    */
-  public HeaderController(HeaderModel headerModel, HeaderView headerView) {
-    connectionPopUpModel = new ConnectionPopUpModel();
+  public HeaderController(HeaderModel headerModel, HeaderView headerView, ConnectionPopUpController connectionPopUpController) {
     this.headerView = headerView;
     this.headerModel = headerModel;
+    this.connectionPopUpController = connectionPopUpController;
   }
 
   @Override
@@ -68,7 +67,7 @@ public class HeaderController implements ControllerInterface {
       if (headerModel.isConnectionStatus()) {
         ClientController.getInstance().toggleConnectionToServer(null, 0);
       } else {
-        connectionPopUpController = new ConnectionPopUpController(connectionPopUpModel);
+        connectionPopUpController.initializeView();
       }
     }
   }

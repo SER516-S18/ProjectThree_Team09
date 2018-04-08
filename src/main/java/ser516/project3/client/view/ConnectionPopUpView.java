@@ -1,9 +1,8 @@
 package ser516.project3.client.view;
 
 import com.alee.laf.button.WebButton;
-import org.apache.log4j.Logger;
-import ser516.project3.client.controller.ClientController;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ConnectionPopUpModel;
 import ser516.project3.utilities.NumberTextField;
 
@@ -20,9 +19,7 @@ import java.awt.event.ActionListener;
  * @author Vishakha Singal, Adhiraj Tikku
  * @version 1.0
  */
-public class ConnectionPopUpView extends JDialog {
-	final static Logger logger = Logger.getLogger(ConnectionPopUpView.class);
-	private ClientController clientController;
+public class ConnectionPopUpView extends JDialog implements ViewInterface{
 	private ConnectionPopUpModel connectionPopUpModel;
 	private JPanel mainPanel;
 	private JLabel ipAddressLabel;
@@ -34,10 +31,11 @@ public class ConnectionPopUpView extends JDialog {
 	private final static int FONT_SIZE = 15;
 
 	public ConnectionPopUpView(ConnectionPopUpModel connectionPopUpModel) {
-
 		this.connectionPopUpModel = connectionPopUpModel;
-		clientController = new ClientController();
+	}
 
+	@Override
+	public void initializeView(ViewInterface[] subViews) {
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(280, 200));
 		setResizable(false);
@@ -45,15 +43,10 @@ public class ConnectionPopUpView extends JDialog {
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
-		initializeConnectionPopUpView();
-	}
-
-	private void initializeConnectionPopUpView() {
-		createMainPanel();
-
 		GridBagConstraints bagConstraints = new GridBagConstraints();
 		bagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
+		createMainPanel();
 		createLabels(bagConstraints);
 		createTextFields(bagConstraints);
 		createOkButton(bagConstraints);

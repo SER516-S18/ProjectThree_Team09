@@ -25,6 +25,8 @@ public class ViewFactory {
       return new ExpressionsView((ExpressionsModel) model);
     } else if(viewType.equalsIgnoreCase(ClientConstants.GRAPH)){
       return new GraphView((GraphModel) model);
+    } else if(viewType.equalsIgnoreCase("CONNECTION_POP_UP")){
+      return new ConnectionPopUpView((ConnectionPopUpModel) model);
     } else if(viewType.equalsIgnoreCase("TOP")){
       return new TopView((TopModel) model);
     } else if(viewType.equalsIgnoreCase("TIMER")){

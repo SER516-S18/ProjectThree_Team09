@@ -1,6 +1,8 @@
 package ser516.project3.model;
 
-public class ConnectionPopUpModel {
+import ser516.project3.interfaces.ModelInterface;
+
+public class ConnectionPopUpModel implements ModelInterface{
   private String ipAddress;
   private int portNumber;
 

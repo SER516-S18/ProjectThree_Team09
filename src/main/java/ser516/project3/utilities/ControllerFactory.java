@@ -2,10 +2,7 @@ package ser516.project3.utilities;
 
 import ser516.project3.client.controller.*;
 import ser516.project3.client.controller.ExpressionsController;
-import ser516.project3.client.view.ExpressionsView;
-import ser516.project3.client.view.GraphView;
-import ser516.project3.client.view.HeaderView;
-import ser516.project3.client.view.PerformanceMetricView;
+import ser516.project3.client.view.*;
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.interfaces.ModelInterface;
@@ -19,7 +16,7 @@ import ser516.project3.server.view.TimerView;
 import ser516.project3.server.view.TopView;
 
 public class ControllerFactory {
-  public ControllerInterface getController(String controllerType, ModelInterface model, ViewInterface view, GraphController graphController){
+  public ControllerInterface getController(String controllerType, ModelInterface model, ViewInterface view, ControllerInterface subController){
     if(controllerType == null){
       return null;
     }
@@ -28,13 +25,15 @@ public class ControllerFactory {
     } else if(controllerType.equalsIgnoreCase("SERVER")){
       return ServerController.getInstance();
     } else if(controllerType.equalsIgnoreCase(ClientConstants.HEADER)){
-      return new HeaderController((HeaderModel) model, (HeaderView) view);
+      return new HeaderController((HeaderModel) model, (HeaderView) view, (ConnectionPopUpController) subController);
     } else if(controllerType.equalsIgnoreCase(ClientConstants.PERFORMANCE_METRICS)){
-      return new PerformanceMetricController((PerformanceMetricModel) model, (PerformanceMetricView) view, graphController);
+      return new PerformanceMetricController((PerformanceMetricModel) model, (PerformanceMetricView) view, (GraphController) subController);
     } else if(controllerType.equalsIgnoreCase(ClientConstants.EXPRESSIONS)){
-      return new ExpressionsController((ExpressionsModel) model, (ExpressionsView) view, graphController);
+      return new ExpressionsController((ExpressionsModel) model, (ExpressionsView) view, (GraphController) subController);
     } else if(controllerType.equalsIgnoreCase(ClientConstants.GRAPH)){
       return new GraphController((GraphModel) model, (GraphView) view);
+    } else if(controllerType.equalsIgnoreCase("CONNECTION_POP_UP")){
+      return new ConnectionPopUpController((ConnectionPopUpModel) model, (ConnectionPopUpView) view);
     } else if(controllerType.equalsIgnoreCase("TOP")){
       return new TopController((TopModel) model, (TopView) view);
     } else if(controllerType.equalsIgnoreCase("TIMER")){

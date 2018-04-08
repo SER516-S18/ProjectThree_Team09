@@ -2,6 +2,7 @@ package ser516.project3.client.controller;
 
 import ser516.project3.client.view.ConnectionPopUpView;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.model.ConnectionPopUpModel;
 
 import javax.swing.*;
@@ -19,14 +20,18 @@ import java.awt.event.ActionListener;
  * @author vishakhasingal, Adhiraj Tikku
  */
 
-public class ConnectionPopUpController {
+public class ConnectionPopUpController implements ControllerInterface{
   private ConnectionPopUpView connectionPopUpView;
   private ConnectionPopUpModel connectionPopUpModel;
 
-  public ConnectionPopUpController(ConnectionPopUpModel connectionPopUpModel) {
+  public ConnectionPopUpController(ConnectionPopUpModel connectionPopUpModel, ConnectionPopUpView connectionPopUpView) {
     this.connectionPopUpModel = connectionPopUpModel;
-    connectionPopUpView = new ConnectionPopUpView(connectionPopUpModel);
+    this.connectionPopUpView = connectionPopUpView;
+  }
 
+  @Override
+  public void initializeView() {
+    connectionPopUpView.initializeView(null);
     connectionPopUpView.addConnectButtonListener(new ConnectListener());
     connectionPopUpView.addIPDocumentListener(new IPDocumentListener());
     connectionPopUpView.addPortDocumentListener(new PortDocumentListener());
