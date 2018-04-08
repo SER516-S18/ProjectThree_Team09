@@ -10,7 +10,6 @@ import java.awt.GridBagConstraints;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeListener;
-import java.awt.*;
 
 /**
  * Class to create components in emotions panel 
@@ -24,11 +23,20 @@ public class EmotionsView extends JPanel implements ViewInterface {
 	private EmotionsModel emotionsModel;
 	private static final Font SUBFONT = new Font("Courier New", Font.BOLD, 14);
 	
-    // Constructor to initialize emotions panel.
+	/** 
+     * Method to set emotion model
+	 * @param emotionsModel-model object containing required emotions data.
+	 * 
+	 */
 	public EmotionsView(EmotionsModel emotionsModel){
 		this.emotionsModel = emotionsModel;
 	}
 
+	/** 
+     * Method to initialize the emotions view panel
+	 * @param subViews-object of type ViewInterface
+	 * 
+	 */
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
 		setBorder(new TitledBorder(null, "Emotions", TitledBorder.LEADING,
@@ -56,10 +64,15 @@ public class EmotionsView extends JPanel implements ViewInterface {
 			add(jspinner[em.id], spinnerGbc);
 		}
 	}
-
+	
+	/** 
+     * Enumeration for setting constants for all the emotion options
+     * 
+	 */
 	public enum EmotionPanel{
-		Interest(0, 1, 0, 2, 0, "Interest"), Engagement(1, 3, 0, 4, 0, "Engagement"), Stress(2, 1, 1, 2, 1, "Stress"), Relaxation(3, 3, 1, 4, 1, "Relaxation"),
-														Excitement(4, 1, 2, 2, 2, "Excitement"), Focus(5, 3, 2, 4, 2, "Focus");
+		Interest(0, 1, 0, 2, 0, "Interest"), Engagement(1, 3, 0, 4, 0, "Engagement"), 
+		Stress(2, 1, 1, 2, 1, "Stress"), Relaxation(3, 3, 1, 4, 1, "Relaxation"),
+		Excitement(4, 1, 2, 2, 2, "Excitement"), Focus(5, 3, 2, 4, 2, "Focus");
 		int id, gbc_x, gbc_y, spinner_x, spinner_y;
 		String name;
 		EmotionPanel(int id, int gbc_x, int gbc_y, int spinner_x, int spinner_y, String name){
@@ -71,7 +84,11 @@ public class EmotionsView extends JPanel implements ViewInterface {
 			this.name = name;
 		}
 	}
-
+	
+	/** 
+     * Method to listener to every spinner in the emotions panel
+     * @param changeListener-object of ChangeListener 
+	 */
 	public void addSpinnerListener(ChangeListener changeListener) {
 		for(EmotionPanel em : EmotionPanel.values()) {
 			jspinner[em.id].addChangeListener(changeListener);

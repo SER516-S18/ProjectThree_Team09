@@ -7,7 +7,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,10 +29,21 @@ public class ConsoleView extends JPanel implements Observer, ViewInterface {
     private static final Font SUBFONT = new Font("Courier New", Font.BOLD, 14);
     private static final Color LIGHTGREY = new Color(245, 245, 245);
 
+
+	/** 
+     * Method to set console model
+	 * @param consoleModel-model object containing required console data.
+	 * 
+	 */
     public ConsoleView(ConsoleModel consoleModel) {
         this.consoleModel = consoleModel;
     }
 
+	/** 
+     * Method to initialize the expressions view panel
+	 * @param subViews-object of type ViewInterface
+	 * 
+	 */
     @Override
     public void initializeView(ViewInterface[] subViews) {
         setBorder(new TitledBorder(null, "Console", TitledBorder.LEADING,
@@ -41,12 +51,12 @@ public class ConsoleView extends JPanel implements Observer, ViewInterface {
         setLayout(new FlowLayout());
 
         consoleOutput = new JTextArea();
-
         consoleOutput.setEditable(false);
         consoleOutput.setBackground(LIGHTGREY);
         consoleOutput.setFont(new Font("Courier New", Font.PLAIN, 12));
 
-        consoleScroll = new JScrollPane(consoleOutput, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        consoleScroll = new JScrollPane(consoleOutput, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+        										JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         consoleScroll.setPreferredSize(new Dimension(400,90));
         Border border = BorderFactory.createLineBorder(Color.BLACK);
         consoleScroll.setBorder(BorderFactory.createCompoundBorder(border,
@@ -58,7 +68,10 @@ public class ConsoleView extends JPanel implements Observer, ViewInterface {
         //add(consoleOutput);
         add(clearConsole);
     }
-
+    
+	/** 
+     * Method to append the new messages to console 
+     */
     @Override
     public void update(Observable messageArrayObject, Object observerObj) {
         ConsoleModel model = (ConsoleModel) messageArrayObject;
@@ -70,10 +83,16 @@ public class ConsoleView extends JPanel implements Observer, ViewInterface {
         consoleOutput.append("\n");
     }
 
+	/** 
+     * Method to add listener to the clear console button
+     */
     public void addClearConsoleListener(ActionListener actionListener) {
         clearConsole.addActionListener(actionListener);
     }
 
+	/** 
+     * Method to clear the console
+     */
     public void clearConsole(){
         consoleOutput.setText(null);
     }

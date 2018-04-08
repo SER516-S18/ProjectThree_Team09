@@ -21,13 +21,24 @@ import ser516.project3.model.TimerModel;
 public class TimerView extends JPanel implements ViewInterface{
 	private JTextField timeElapsedInputTextField;
 	private TimerModel timerModel;
+	private JLabel timeElapsedLabel;
 
 	private static final String TIME_ELAPSED = "Time Elapsed(ms):  ";
 
+	/** 
+     * Method to set timer model
+	 * @param timerModel-model object containing required timer data.
+	 * 
+	 */
 	public TimerView(TimerModel timerModel) {
 		this.timerModel = timerModel;
 	}
 
+	/** 
+     * Method to initialize the timer view panel
+	 * @param subViews-object of type ViewInterface
+	 * 
+	 */
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
 		setPreferredSize(new Dimension(100,100));
@@ -37,8 +48,14 @@ public class TimerView extends JPanel implements ViewInterface{
 		createTimeElapsedInputTextField(gridBagConstraints);
 	}
 
+	/** 
+     * Method to create labels in timer panel
+	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * 		  for each label
+	 * 
+	 */
 	private void createTimeElapsedLabel(GridBagConstraints gridBagConstraints) {
-		JLabel timeElapsedLabel = new JLabel(TIME_ELAPSED);
+		timeElapsedLabel = new JLabel(TIME_ELAPSED);
 		timeElapsedLabel.setOpaque(true);
 
 		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
@@ -47,7 +64,13 @@ public class TimerView extends JPanel implements ViewInterface{
 		gridBagConstraints.ipady = 10;
 		add(timeElapsedLabel, gridBagConstraints);
 	}
-
+	
+	/** 
+     * Method to create text fields in timer panel
+	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * 		  for each text field
+	 * 
+	 */
 	private void createTimeElapsedInputTextField(GridBagConstraints gridBagConstraints) {
 		timeElapsedInputTextField = new JTextField("1");
 		timeElapsedInputTextField.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -61,7 +84,11 @@ public class TimerView extends JPanel implements ViewInterface{
 		gridBagConstraints.ipady = 10;
 		add(timeElapsedInputTextField, gridBagConstraints);
 	}
-
+	
+	/** 
+     * Method to update the time stamp in the timer panel
+	 * 
+	 */
 	public void updateTimeStamp() {
 		timeElapsedInputTextField.setText("" + timerModel.getTimeElapsed());
 	}
