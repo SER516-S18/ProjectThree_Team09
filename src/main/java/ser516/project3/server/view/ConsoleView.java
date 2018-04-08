@@ -24,6 +24,7 @@ import java.util.Observer;
 public class ConsoleView extends JPanel implements Observer, ViewInterface {
     private JTextArea consoleOutput;
     private JButton clearConsole;
+    private JScrollPane consoleScroll;
     private ConsoleModel consoleModel;
 
     private static final Font SUBFONT = new Font("Courier New", Font.BOLD, 14);
@@ -40,18 +41,21 @@ public class ConsoleView extends JPanel implements Observer, ViewInterface {
         setLayout(new FlowLayout());
 
         consoleOutput = new JTextArea();
-        consoleOutput.setPreferredSize(new Dimension(400,100));
+
         consoleOutput.setEditable(false);
         consoleOutput.setBackground(LIGHTGREY);
-        consoleOutput.setFont(new Font("Courier New", Font.PLAIN, 15));
+        consoleOutput.setFont(new Font("Courier New", Font.PLAIN, 12));
 
+        consoleScroll = new JScrollPane(consoleOutput, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        consoleScroll.setPreferredSize(new Dimension(400,90));
         Border border = BorderFactory.createLineBorder(Color.BLACK);
-        consoleOutput.setBorder(BorderFactory.createCompoundBorder(border,
-            BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        consoleScroll.setBorder(BorderFactory.createCompoundBorder(border,
+            BorderFactory.createEmptyBorder(1, 1, 1, 1)));
 
         clearConsole = new JButton();
         clearConsole.setText("Clear");
-        add(consoleOutput);
+        add(consoleScroll);
+        //add(consoleOutput);
         add(clearConsole);
     }
 

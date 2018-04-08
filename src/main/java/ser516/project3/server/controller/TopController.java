@@ -114,6 +114,7 @@ public class TopController implements ControllerInterface{
     @Override
     public void actionPerformed(ActionEvent e) {
       logger.info("Send button pressed");
+      ServerController.getInstance().getConsoleController().getConsoleModel().logMessage("Sending Data to Client.");
       if(topModel.isAutoRepeatCheckBoxChecked()) {
         if(topModel.getSendButtonText().equals(START))
           topModel.setSendButtonText(STOP);
