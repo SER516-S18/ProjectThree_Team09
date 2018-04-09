@@ -12,6 +12,7 @@ import ser516.project3.model.MessageModel;
 import ser516.project3.model.MessageModel.AbstractExpression;
 import ser516.project3.model.MessageModel.ConcreteExpression;
 import ser516.project3.model.MessageModel.Emotion;
+import ser516.project3.model.MessageModel.SelectedCriteria;
 
 
 
@@ -35,12 +36,18 @@ public class MessageDecoder implements Decoder.Text<MessageModel> {
         // Read the payload.
         JsonObject root = Json.createReader(new StringReader(payload)).readObject();
         JsonObject timeAttributes= root.getJsonObject("Time-Attributes");
+        JsonObject selectionAttributes= root.getJsonObject("Selection-Flags");
         JsonObject expressionAttributes = root.getJsonObject("Expression");
         JsonObject emotionAttributes = root.getJsonObject("Emotion");
         
         //Unmarshal the time attributes
         messageModel.setInterval(timeAttributes.getJsonNumber("Interval").doubleValue());
         messageModel.setTimeStamp(timeAttributes.getJsonNumber("TimeStamp").doubleValue());
+        
+     // Unmarshal the selection flag attributes.
+        for(SelectedCriteria selectionFlag : SelectedCriteria.values()) {
+        	messageModel.setSelectionFlag(selectionFlag.name(), selectionAttributes.getJsonString(selectionFlag.name()).toString());
+        }
 
         // Unmarshal the expression attributes.
         for(AbstractExpression aex : AbstractExpression.values()) {
