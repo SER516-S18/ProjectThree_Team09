@@ -79,6 +79,7 @@ public class MessageModel {
 	}
 
 	public void setSelectionFlag(String selectionKey, String selectionValue) {
+		selectionValue = selectionValue.replaceAll("\"", "");
 		this.selectionFlagMap.put(selectionKey, selectionValue);
 	}
 

@@ -99,7 +99,6 @@ public class ExpressionsController implements ControllerInterface{
   }
 
   private static void updateLowerFace(String lowerFaceAttribute, Double lowerFaceVal) {
-	  ServerCommonData.getInstance().getMessage().setSelectionFlag("lowerFace", lowerFaceAttribute);
 	  
     ServerCommonData.getInstance().getMessage().setAbstractExpression(
         MessageModel.AbstractExpression.smile.name() ,
@@ -116,6 +115,24 @@ public class ExpressionsController implements ControllerInterface{
     ServerCommonData.getInstance().getMessage().setAbstractExpression(
         MessageModel.AbstractExpression.laugh.name(),
         lowerFaceAttribute.equals("Laugh") ? lowerFaceVal : 0.0);
+
+    if (lowerFaceAttribute.equals("Laugh")) {
+        ServerCommonData.getInstance().getMessage().setSelectionFlag(
+                "lowerFace", MessageModel.AbstractExpression.laugh.name());
+    } else if (lowerFaceAttribute.equals("Clench")) {
+        ServerCommonData.getInstance().getMessage().setSelectionFlag
+                ("lowerFace", MessageModel.AbstractExpression.clench.name());
+    } else if (lowerFaceAttribute.equals("Smirk Left")) {
+        ServerCommonData.getInstance().getMessage().setSelectionFlag
+                ("lowerFace", MessageModel.AbstractExpression.leftSmirk.name());
+    } else if (lowerFaceAttribute.equals("Smirk Right")) {
+        ServerCommonData.getInstance().getMessage().setSelectionFlag
+                ("lowerFace", MessageModel.AbstractExpression.rightSmirk.name());
+    } else {
+        ServerCommonData.getInstance().getMessage().setSelectionFlag
+                ("lowerFace", MessageModel.AbstractExpression.smile.name());
+    }
+
   }
 
   private static void updateUpperFace(String upperFaceAttribute, Double upperFaceVal) {
