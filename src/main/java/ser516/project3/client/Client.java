@@ -1,6 +1,6 @@
 package ser516.project3.client;
 
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.UIManager;
 
