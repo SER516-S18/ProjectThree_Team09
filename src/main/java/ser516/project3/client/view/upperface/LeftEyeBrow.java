@@ -57,7 +57,7 @@ public class LeftEyeBrow extends Arc2D.Double implements FaceElementsInterface {
 		}
 		if (instruction.equals("furrowBrow")) {
 			double newStartAngle = startAngle - (changeValue * 15);
-			double newExtentAngle = extentAngle - (changeValue * 15);
+			double newExtentAngle = extentAngle - (changeValue * 6.5);
 			setArc(getX(), getY(), getWidth(), getHeight(), newStartAngle, newExtentAngle, OPEN);
 		}
 
