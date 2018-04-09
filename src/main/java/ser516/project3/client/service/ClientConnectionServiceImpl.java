@@ -6,8 +6,10 @@ import org.apache.log4j.Logger;
 
 import ser516.project3.client.controller.ClientController;
 import ser516.project3.client.view.ExpressionsGraphObserver;
+import ser516.project3.client.view.FaceViewObserver;
 import ser516.project3.client.view.HeaderObserver;
 import ser516.project3.model.ExpressionsDataObservable;
+import ser516.project3.model.FaceExpressionsObservable;
 import ser516.project3.model.HeaderObservable;
 import ser516.project3.model.PerformanceMetricDataObservable;
 import ser516.project3.client.view.PerformanceMetricGraphObserver;
@@ -30,6 +32,9 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
 
 		ExpressionsGraphObserver expressionsGraphObserver = new ExpressionsGraphObserver();
 		ExpressionsDataObservable.getInstance().addObserver(expressionsGraphObserver);
+		
+		FaceViewObserver faceViewObserver=new FaceViewObserver();
+		FaceExpressionsObservable.getInstance().addObserver(faceViewObserver);
 		
 		threadInstance = new ClientConnectionThread(ipAddress, port, endpoint);
 		clientConnectionThread = new Thread(threadInstance);

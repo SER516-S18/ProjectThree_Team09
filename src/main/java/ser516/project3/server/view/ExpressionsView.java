@@ -33,10 +33,20 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 	Dimension spinnerDimension = new Dimension(80,30);
 	private static final Font SUBFONT = new Font("Courier New", Font.BOLD, 14);
 
+	/** 
+     * Method to set expressions model
+	 * @param expressionsModel-model object containing required expressions data.
+	 * 
+	 */
 	public ExpressionsView(ExpressionsModel expressionsModel) {
 		this.expressionsModel = expressionsModel;
 	}
 
+	/** 
+     * Method to initialize the expressions view panel
+	 * @param subViews-object of type ViewInterface
+	 * 
+	 */
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
 
@@ -53,7 +63,13 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 		createActivateToggleButton(gridBagConstraints);
 		createEyeCheckBox(gridBagConstraints);
 	}
-
+	
+	/** 
+     * Method to create labels in expressions panel
+	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * 		  for each label
+	 * 
+	 */
 	public void createLabels(GridBagConstraints gridBagConstraints) {
 		JLabel lowerFaceLbl = new JLabel("Lower Face");
 		gridBagConstraints.gridx = 1;
@@ -71,6 +87,12 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 		add(eyeLabel, gridBagConstraints);
 	}
 
+	/** 
+     * Method to create ComboBoxes in expressions panel
+	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * 		  for each combo box
+	 * 
+	 */
 	public void createComboBoxes(GridBagConstraints gridBagConstraints) {
 		lowerFaceCombo = new JComboBox<Object>();
 		lowerFaceCombo.setModel(new DefaultComboBoxModel<Object>(lowerFaceList));
@@ -93,7 +115,13 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 		gridBagConstraints.gridy = 2;
 		add(eyeCombo, gridBagConstraints);
 	}
-
+	
+	/** 
+     * Method to create spinners in expressions panel
+	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * 		  for each spinners
+	 * 
+	 */
 	public void createSpinners(GridBagConstraints gridBagConstraints) {
 		SpinnerModel lowerFaceModel = new SpinnerNumberModel(0.0, 0.0, 1.0, 0.1);
 		lowerFaceSpinner = new JSpinner(lowerFaceModel);
@@ -110,6 +138,12 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 		add(upperFaceSpinner, gridBagConstraints);
 	}
 
+	/** 
+     * Method to create toggleButton in expressions panel
+	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * 		  for toggleButton
+	 * 
+	 */
 	public void createActivateToggleButton(GridBagConstraints gridBagConstraints) {
 		eyeAction = new JToggleButton("Activate");
 		eyeAction.setPreferredSize(new Dimension(90, 30));
@@ -117,38 +151,65 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 		gridBagConstraints.gridy = 2;
 		add(eyeAction, gridBagConstraints);
 	}
-
+	
+	/** 
+     * Method to create CheckBox in expressions panel
+	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * 		  for CheckBox
+	 * 
+	 */	
 	public void createEyeCheckBox(GridBagConstraints gridBagConstraints) {
 		eyeCheckBox = new JCheckBox("Auto Reset");
 		gridBagConstraints.gridx = 4;
 		gridBagConstraints.gridy = 2;
 		add(eyeCheckBox, gridBagConstraints);
 	}
-
+	
+	/** 
+     * Method to add ActionListener to LowerFace ComboBox
+	 */
 	public void addLowerFaceComboListener(ActionListener actionListener) {
 		lowerFaceCombo.addActionListener(actionListener);
 	}
-
+	
+	/** 
+     * Method to add ActionListener to UpperFace ComboBox
+	 */
 	public void addUpperFaceComboListener(ActionListener actionListener) {
 		upperFaceCombo.addActionListener(actionListener);
 	}
-
+	
+	/** 
+     * Method to add ActionListener to Eye ComboBox
+	 */
 	public void addEyeComboListener(ActionListener actionListener) {
 		eyeCombo.addActionListener(actionListener);
 	}
-
+	
+	/** 
+     * Method to add ChangeListener to LowerFace Spinner
+	 */
 	public void addLowerFaceSpinnerChangeListener(ChangeListener changeListener) {
 		lowerFaceSpinner.addChangeListener(changeListener);
 	}
 
+	/** 
+     * Method to add ChangeListener to UpperFace Spinner
+	 */
 	public void addUpperFaceSpinnerChangeListener(ChangeListener changeListener) {
 		upperFaceSpinner.addChangeListener(changeListener);
 	}
-
+	
+	/** 
+     * Method to add ItemListener to the activate toggle button
+	 */
 	public void addActivateToggleButtonItemListener(ItemListener itemListener) {
 		eyeAction.addItemListener(itemListener);
 	}
 
+	/** 
+     * Method to add ActionListener to CheckBox to Auto-Reset Eye action
+	 */
 	public void addEyeCheckBoxListener(ActionListener actionListener) {
 		eyeCheckBox.addActionListener(actionListener);
 	}

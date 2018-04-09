@@ -5,5 +5,5 @@ import java.awt.Shape;
 public interface FaceElementsInterface extends Shape {
 	void resetPositionToDefault();
 	void moveToDifferentPosition();
-	void moveToGivenPostions(int x,int y);
+	void moveElement(String instruction,double value);
 }

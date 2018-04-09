@@ -99,6 +99,8 @@ public class ExpressionsController implements ControllerInterface{
   }
 
   private static void updateLowerFace(String lowerFaceAttribute, Double lowerFaceVal) {
+	  ServerCommonData.getInstance().getMessage().setSelectionFlag("lowerFace", lowerFaceAttribute);
+	  
     ServerCommonData.getInstance().getMessage().setAbstractExpression(
         MessageModel.AbstractExpression.smile.name() ,
         lowerFaceAttribute.equals("Smile") ? lowerFaceVal : 0.0);
@@ -117,6 +119,7 @@ public class ExpressionsController implements ControllerInterface{
   }
 
   private static void updateUpperFace(String upperFaceAttribute, Double upperFaceVal) {
+	  ServerCommonData.getInstance().getMessage().setSelectionFlag("upperFace", upperFaceAttribute);
     ServerCommonData.getInstance().getMessage().setAbstractExpression(
         MessageModel.AbstractExpression.raiseBrow.name(),
         upperFaceAttribute.equals("Raise Brow") ? upperFaceVal : 0.0);
@@ -126,6 +129,7 @@ public class ExpressionsController implements ControllerInterface{
   }
 
   private static void updateEye(String eyeAttribute, Boolean eyeVal) {
+	  ServerCommonData.getInstance().getMessage().setSelectionFlag("eye", eyeAttribute);
     ServerCommonData.getInstance().getMessage().setConcreteExpression(
         MessageModel.ConcreteExpression.blink.name(), eyeAttribute.equals("Blink") ? eyeVal : false);
     ServerCommonData.getInstance().getMessage().setConcreteExpression(

@@ -1,5 +1,6 @@
 package ser516.project3.utilities;
 
+import java.nio.channels.SelectionKey;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import ser516.project3.model.MessageModel;
 import ser516.project3.model.MessageModel.AbstractExpression;
 import ser516.project3.model.MessageModel.ConcreteExpression;
 import ser516.project3.model.MessageModel.Emotion;
+import ser516.project3.model.MessageModel.SelectedCriteria;
 
 public class MessageEncoder implements Encoder.Text<MessageModel> {
 
@@ -39,6 +41,12 @@ public class MessageEncoder implements Encoder.Text<MessageModel> {
         								 .add("Interval", messageModel.getInterval())
         								 .add("TimeStamp", messageModel.getTimeStamp()).build();
         
+        //Build selection flag attributes
+        JsonObjectBuilder selectionFlagBuilder = factory.createObjectBuilder();   	
+        for(SelectedCriteria  selectionFlag : SelectedCriteria.values()) {
+        	selectionFlagBuilder.add(selectionFlag.name(), messageModel.getSelectionFlag(selectionFlag.name()));
+        }
+        
         // Build "Expression" object.
         JsonObjectBuilder expressionBuilder = factory.createObjectBuilder();   	
         for(AbstractExpression aex : AbstractExpression.values()) {
@@ -55,6 +63,7 @@ public class MessageEncoder implements Encoder.Text<MessageModel> {
         return Json
             .createObjectBuilder()
             .add("Time-Attributes", timeAttributes)
+            .add("Selection-Flags", selectionFlagBuilder.build())
             .add("Expression", expressionBuilder.build())
             .add("Emotion", emotionBuilder.build())
             .build()

@@ -29,13 +29,22 @@ public class ServerView extends JFrame implements ViewInterface {
 
 	private static final Font FONT = new Font("Courier New", Font.BOLD, 17);
 
+	/** 
+     * Method to return the ServerView instance
+	 * 
+	 */
 	public static ServerView getServerView() {
 		if (serverViewInstance == null) {
 			serverViewInstance = new ServerView();
 		}
 		return serverViewInstance;
 	}
-
+	
+	/** 
+     * Method to initialize the expressions view panel
+	 * @param subViews-object of type ViewInterface
+	 * 
+	 */
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
 		topView = (TopView) subViews[0];
@@ -114,6 +123,11 @@ public class ServerView extends JFrame implements ViewInterface {
 		return configPanel;
 	}
 
+	/** 
+     * Method to WindowListener to the Server window
+	 * @param windowAdapter- WindowAdapter object
+	 * 
+	 */
 	public void addServerWindowListener(WindowAdapter windowAdapter) {
 		addWindowListener(windowAdapter);
 	}
