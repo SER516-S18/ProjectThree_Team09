@@ -97,7 +97,10 @@ public class GraphView extends JPanel implements ViewInterface {
         for(int i = 0; i < graphModel.getNoOfChannels(); i++) {
           double xCoordinate = data.get(i).getXCoordinate();
           double yCoordinate = data.get(i).getYCoordinate();
-          series[i].add(xCoordinate, yCoordinate);
+          if(graphModel.getNoOfChannels() == 6)
+            series[i].add(graphModel.getXLength() - xCoordinate, yCoordinate);
+          else
+            series[i].add(xCoordinate, yCoordinate);
         }
       }
     }
