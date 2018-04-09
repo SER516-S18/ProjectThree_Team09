@@ -2,10 +2,13 @@ package ser516.project3.server.service;
 
 import org.apache.log4j.Logger;
 
-import ser516.project3.model.ConsoleModel;
 import ser516.project3.server.controller.ServerController;
 import ser516.project3.server.helper.ServerContainerThread;
-
+/**
+ * This is the Service class responsible for creating threads for web socket and closing of these threads
+ * @author vsriva12
+ *
+ */
 public class ServerConnectionServiceImpl implements ServerConnectionServiceInterface {
 	final static Logger logger = Logger.getLogger(ServerConnectionServiceImpl.class);
 	Thread serverContainerThread;
