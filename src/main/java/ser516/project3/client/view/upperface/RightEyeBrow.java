@@ -63,6 +63,11 @@ public class RightEyeBrow extends Arc2D.Double implements FaceElementsInterface 
 
 	}
 
+	@Override
+	public void moveElement(String instruction, boolean changeValue) {
+
+	}
+
 	public static int getxPosition() {
 		return xPosition;
 	}

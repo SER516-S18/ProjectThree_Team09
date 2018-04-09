@@ -12,6 +12,13 @@ public class HeaderObserver implements Observer{
   public void update(Observable observable, Object observerObj) {
     HeaderObservable headerObservable = (HeaderObservable) observable;
     HeaderController headerController = ClientController.getInstance().getHeaderController();
-    headerController.setHeaderTimeStamp(headerObservable.getHeaderTimeStamp() - headerObservable.getInterval());
+    double currentTimeStampFromServer=headerObservable.getHeaderTimeStamp();
+    if(currentTimeStampFromServer==0) {
+    	 headerController.setHeaderTimeStamp(currentTimeStampFromServer);
+    }
+    else {
+    	headerController.setHeaderTimeStamp(currentTimeStampFromServer - headerObservable.getInterval());
+    }
+    
   }
 }

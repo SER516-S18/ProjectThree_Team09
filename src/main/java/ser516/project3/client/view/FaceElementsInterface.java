@@ -6,4 +6,5 @@ public interface FaceElementsInterface extends Shape {
 	void resetPositionToDefault();
 	void moveToDifferentPosition();
 	void moveElement(String instruction,double value);
+	void moveElement(String instruction,boolean value);
 }

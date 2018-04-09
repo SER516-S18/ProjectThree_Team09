@@ -140,16 +140,20 @@ public class ClientController implements ControllerInterface {
 		headerController.setConnectionStatus(connectionStatus);
 	}
 
+	public void openServer() {
+        if(serverController == null) {
+            ControllerFactory controllerFactory = new ControllerFactory();
+            serverController = (ServerController) controllerFactory.getController("SERVER", null, null, null);
+            serverController.initializeView();
+        } else {
+            serverController.showServer();
+        }
+    }
+
 	class ServerMenuItemListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(serverController == null) {
-				ControllerFactory controllerFactory = new ControllerFactory();
-				serverController = (ServerController) controllerFactory.getController("SERVER", null, null, null);
-				serverController.initializeView();
-			} else {
-				serverController.showServer();
-			}
+			openServer();
 		}
 	}
 

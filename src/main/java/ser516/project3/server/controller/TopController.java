@@ -3,7 +3,6 @@ package ser516.project3.server.controller;
 import org.apache.log4j.Logger;
 import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.model.TopModel;
-import ser516.project3.server.service.ServerConnectionServiceImpl;
 import ser516.project3.server.service.ServerConnectionServiceInterface;
 import ser516.project3.server.view.TopView;
 import ser516.project3.utilities.ServerCommonData;
@@ -14,6 +13,13 @@ import javax.swing.text.BadLocationException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Class that helps communicate between TopView and TopModel.
+ * The controller can receive and update data from the TopView, 
+ * and use this data to update the TopModel.
+ * 
+ * @author Ser516-Team09
+ */
 public class TopController implements ControllerInterface{
   final static Logger logger = Logger.getLogger(TopController.class);
 
@@ -25,11 +31,20 @@ public class TopController implements ControllerInterface{
   private static final String STOP = "Stop";
   private static final String SEND = "Send";
 
+  /**
+   * Constructor to set the top view and model object
+   * @param topModel - TopModel object
+   * @param topView - TopView object 
+   */
   public TopController(TopModel topModel, TopView topView) {
     this.topModel = topModel;
     this.topView = topView;
   }
-
+  
+  /**
+   * Method to initialize the top view and to add listeners 
+   * to all the components in the panel
+   */
   @Override
   public void initializeView() {
     topView.initializeView(null);
@@ -40,14 +55,23 @@ public class TopController implements ControllerInterface{
     ServerCommonData.getInstance().getMessage().setInterval(topModel.getInterval());
   }
 
+  /**
+   * Inner class to add document listener to timer interval 
+   * component in the top panel 
+   */
   class IntervalDocumentListener implements DocumentListener {
-    @Override
+   
+	  /**
+	   * Method to remove update of time interval 
+       */
+	@Override
     public void removeUpdate(DocumentEvent e) {
       try {
         if(e.getDocument().getLength() == 0) {
           topModel.setInterval(1);
         } else {
-          topModel.setInterval(Double.parseDouble(e.getDocument().getText(0, e.getDocument().getLength())));
+          topModel.setInterval(Double.parseDouble(e.getDocument().getText(0, 
+        		  									e.getDocument().getLength())));
         }
         ServerCommonData.getInstance().getMessage().setInterval(topModel.getInterval());
         logger.info("Removed value of interval");
@@ -55,11 +79,14 @@ public class TopController implements ControllerInterface{
         ex.printStackTrace();
       }
     }
-
+	/**
+	 * Method to update the time interval 
+     */
     @Override
     public void insertUpdate(DocumentEvent e) {
       try {
-        topModel.setInterval(Double.parseDouble(e.getDocument().getText(0, e.getDocument().getLength())));
+        topModel.setInterval(Double.parseDouble(e.getDocument().getText(0, 
+        											e.getDocument().getLength())));
         ServerCommonData.getInstance().getMessage().setInterval(topModel.getInterval());
         logger.info("Inserted value of interval");
       } catch(BadLocationException ex) {
@@ -71,7 +98,11 @@ public class TopController implements ControllerInterface{
     public void changedUpdate(DocumentEvent e) {
     }
   }
-
+  
+  /**
+   * Inner class to add action listener to auto repeat check box
+   * component in the top panel 
+   */
   class AutoRepeatCheckBoxListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -86,7 +117,11 @@ public class TopController implements ControllerInterface{
       logger.info("Value of auto Repeat toggle changed: " + isChecked);
     }
   }
-
+  
+  /**
+   * Inner class to add action listener to server start/stop button
+   * in the top panel 
+   */
   class ServerStartStopButtonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -109,12 +144,17 @@ public class TopController implements ControllerInterface{
       topView.updateServerStartStopButtonText();
     }
   }
-
+  
+  /**
+   * Inner class to add action listener to server data send button
+   * in the top panel 
+   */
   class SendButtonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
       logger.info("Send button pressed");
-      ServerController.getInstance().getConsoleController().getConsoleModel().logMessage("Sending Data to Client.");
+      ServerController.getInstance().getConsoleController().getConsoleModel().
+      											logMessage("Sending Data to Client.");
       if(topModel.isAutoRepeatCheckBoxChecked()) {
         if(topModel.getSendButtonText().equals(START))
           topModel.setSendButtonText(STOP);
@@ -133,27 +173,49 @@ public class TopController implements ControllerInterface{
       }
     }
   }
-
-  public void setServerConnectionService(ServerConnectionServiceInterface serverConnectionService) {
+  
+  /**
+   * Method to set the server connection service interface 
+   * @param serverConnectionService - ServerConnectionServiceInterface object
+   */
+  public void setServerConnectionService(ServerConnectionServiceInterface serverConnectionService){
     this.serverConnectionService = serverConnectionService;
   }
 
+  /**
+   * Method to set the server status indicator
+   * @param status - Status of the server
+   */
   public void setBlinking(boolean status) {
     topView.setBlinking(status);
   }
-
+  
+  /**
+   * Method to update the text in start/stop button
+   */
   public void updateServerStartStopButtonText() {
     topView.updateServerStartStopButtonText();
   }
 
+  /**
+   * Method to enable/disable the send button
+   */
   public void updateEnableDisableSendButton() {
     topView.enableDisableSendButton();
   }
-
+  
+  /**
+   * Method to get the TopModel object
+   * @return TopModel object 
+   */
   public TopModel getTopModel() {
     return topModel;
   }
-
+  
+  /**
+   * Method to get the TopView object
+   * @return TopView object 
+   */
   public TopView getTopView() {
     return topView;
   }

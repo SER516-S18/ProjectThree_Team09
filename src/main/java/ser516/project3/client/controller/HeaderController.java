@@ -23,7 +23,6 @@ public class HeaderController implements ControllerInterface {
 
   private HeaderView headerView;
   private HeaderModel headerModel;
-  private ServerController serverController;
   private ConnectionPopUpController connectionPopUpController;
   
 
@@ -50,13 +49,7 @@ public class HeaderController implements ControllerInterface {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(serverController == null) {
-		  ControllerFactory controllerFactory = new ControllerFactory();
-          serverController = (ServerController) controllerFactory.getController("SERVER", null, null, null);
-          serverController.initializeView();
-		} else {
-		  serverController.showServer();
-		}
+		ClientController.getInstance().openServer();
 	}
 	  
   }

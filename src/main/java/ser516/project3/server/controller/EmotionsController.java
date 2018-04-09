@@ -9,15 +9,31 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+/**
+ * Class that helps communicate between EmotionsView and EmotionsModel.
+ * The controller can receive and update data from the EmotionsView, 
+ * and use this data to update the EmotionsModel.
+ *   
+ * @author Ser516-Team09
+ */
 public class EmotionsController implements ControllerInterface{
   private EmotionsModel emotionsModel;
   private EmotionsView emotionsView;
 
+  /**
+   * Constructor to set the emotions view and model object
+   * @param emotionsModel - EmotionsModel object
+   * @param emotionsView - EmotionsView object 
+   */
   public EmotionsController(EmotionsModel emotionsModel, EmotionsView emotionsView) {
     this.emotionsModel = emotionsModel;
     this.emotionsView = emotionsView;
   }
-
+  
+  /**
+   * Method to initialize the emotions view and to add listeners 
+   * to the component  in the panel
+   */
   @Override
   public void initializeView() {
     emotionsView.initializeView(null);
@@ -26,6 +42,10 @@ public class EmotionsController implements ControllerInterface{
     }
   }
 
+  /**
+   * Inner class to add change listeners to spinner components 
+   * in the emotions panel 
+   */
   class SpinnerChangeListener implements ChangeListener {
     @Override
     public void stateChanged(ChangeEvent e) {
@@ -50,10 +70,15 @@ public class EmotionsController implements ControllerInterface{
           emotionsModel.setFocus((double)source.getValue());
           break;
       }
-      ServerCommonData.getInstance().getMessage().setEmotion(source.getName(), (Double)source.getValue());
+      ServerCommonData.getInstance().getMessage().setEmotion(source.getName(),
+    		  											(Double)source.getValue());
     }
   }
-
+  
+  /**
+   * Method to get the EmotionsView object
+   * @return EmotionsView object 
+   */
   public EmotionsView getEmotionsView() {
     return emotionsView;
   }
