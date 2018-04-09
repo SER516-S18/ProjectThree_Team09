@@ -43,6 +43,7 @@ public class ClientConnectionEndpoint {
 		logger.info("Received data:::: " + messageModelBean);
 		PerformanceMetricDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToPeformanceMetrics(messageModelBean));
 		ExpressionsDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToExpressionsData(messageModelBean));
+		FaceExpressionsObservable.getInstance().setMessageBean(messageModelBean);
 		HeaderObservable.getInstance().setHeaderData(messageModelBean.getTimeStamp(), messageModelBean.getInterval());
 	}
 
@@ -50,6 +51,7 @@ public class ClientConnectionEndpoint {
 	public void processError(Throwable t) {
 
 		logger.error("Error occurred in Client End Point");
+		t.printStackTrace();
 	}
 
 	@OnClose
