@@ -26,9 +26,32 @@ public class RightEyeBall extends Arc2D.Double implements FaceElementsInterface 
 
     @Override
     public void moveToDifferentPosition() {
-
+        switch (eyeExpression) {
+            case blink:
+            case rightWink:
+                setArc(xPosition, yPosition, 0, 0, 180, 180, OPEN);
+                break;
+            case leftWink:
+                this.resetPositionToDefault();
+                break;
+            case lookingLeft:
+                setArc(225, yPosition, width, height, 0, 360, CHORD);
+                break;
+            case lookingRight:
+                setArc(240, yPosition, width, height, 0, 360, CHORD);
+                break;
+        }
     }
 
+    @Override
+    public void moveElement(String instruction, boolean changeValue) {
+        if (changeValue) {
+            eyeExpression = MessageModel.ConcreteExpression.valueOf(instruction);
+            moveToDifferentPosition();
+        } else {
+            this.resetPositionToDefault();
+        }
+    }
 
     @Override
     public void moveElement(String instruction, double changeValue) {

@@ -88,4 +88,9 @@ public class Mouth extends Arc2D.Double implements FaceElementsInterface {
             }
         }
     }
+
+    @Override
+    public void moveElement(String instruction, boolean changeValue) {
+
+    }
 }

@@ -26,9 +26,28 @@ public class LeftEye extends Arc2D.Double implements FaceElementsInterface {
 
     @Override
     public void moveToDifferentPosition() {
-
+        switch (eyeExpression) {
+            case blink:
+            case leftWink:
+                setArc(xPosition, 180, 30, 30, 180, 180, OPEN);
+                break;
+            case rightWink:
+            case lookingLeft:
+            case lookingRight:
+                this.resetPositionToDefault();
+                break;
+        }
     }
 
+    @Override
+    public void moveElement(String instruction, boolean changeValue) {
+        if (changeValue) {
+            eyeExpression = MessageModel.ConcreteExpression.valueOf(instruction);
+            moveToDifferentPosition();
+        } else {
+            this.resetPositionToDefault();
+        }
+    }
 
     @Override
     public void moveElement(String instruction, double changeValue) {

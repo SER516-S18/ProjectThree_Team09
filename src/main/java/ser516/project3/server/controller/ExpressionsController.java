@@ -161,6 +161,23 @@ public class ExpressionsController implements ControllerInterface{
     ServerCommonData.getInstance().getMessage().setConcreteExpression(
         MessageModel.ConcreteExpression.lookingRight.name(),
         eyeAttribute.equals("Look Right") ? eyeVal : false);
+
+      if (eyeAttribute.equals("Blink")) {
+          ServerCommonData.getInstance().getMessage().setSelectionFlag(
+                  "eye", MessageModel.ConcreteExpression.blink.name());
+      } else if (eyeAttribute.equals("Wink Left")) {
+          ServerCommonData.getInstance().getMessage().setSelectionFlag
+                  ("eye", MessageModel.ConcreteExpression.leftWink.name());
+      } else if (eyeAttribute.equals("Wink Right")) {
+          ServerCommonData.getInstance().getMessage().setSelectionFlag
+                  ("eye", MessageModel.ConcreteExpression.rightWink.name());
+      } else if (eyeAttribute.equals("Look Left")) {
+          ServerCommonData.getInstance().getMessage().setSelectionFlag
+                  ("eye", MessageModel.ConcreteExpression.lookingLeft.name());
+      } else if (eyeAttribute.equals("Look Right")){
+          ServerCommonData.getInstance().getMessage().setSelectionFlag
+                  ("eye", MessageModel.ConcreteExpression.lookingRight.name());
+      }
   }
 
   public ExpressionsView getExpressionsView() {
