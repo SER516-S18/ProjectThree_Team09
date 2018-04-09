@@ -71,6 +71,7 @@ public class FaceView extends JPanel implements ViewInterface {
 		 * 70, 0, 180); graphics.drawArc(150, 200, 100, 70, 180, 180);
 		 */
 		Graphics2D graphics2D = (Graphics2D) graphics;
+		graphics2D.setStroke(new BasicStroke(4));
 		// graphics2D.drawArc(50, 200, 100, 70, 180, 180);
 		// graphics2D.draw(new Arc2D.Double(175, 163, 50, 60, 110, -50,Arc2D.OPEN));
 		// Shape sp=new LeftEyeBrow(175, 163, 50, 60, 110, -50);
@@ -86,6 +87,8 @@ public class FaceView extends JPanel implements ViewInterface {
 	public void updateFaceElements(MessageModel messageBean) {
 		LeftEyeBrow.getInstance().moveElement("raiseBrow",messageBean.getAbstractExpression("raiseBrow"));
 		RightEyeBrow.getInstance().moveElement("raiseBrow",messageBean.getAbstractExpression("raiseBrow"));
+		LeftEyeBrow.getInstance().moveElement("furrowBrow",messageBean.getAbstractExpression("furrowBrow"));
+		RightEyeBrow.getInstance().moveElement("furrowBrow",messageBean.getAbstractExpression("furrowBrow"));
 		Graphics2D graphics2d = (Graphics2D) getGraphics();
 		paintComponent(graphics2d);
 	}

@@ -50,12 +50,16 @@ public class LeftEyeBrow extends Arc2D.Double implements FaceElementsInterface {
 	}
 
 	@Override
-	public void moveElement(String instruction,double changeValue) {
-		if(instruction.equals("raiseBrow")) {
-			double newYPosition = yPosition - (changeValue*10 );
+	public void moveElement(String instruction, double changeValue) {
+		if (instruction.equals("raiseBrow")) {
+			double newYPosition = yPosition - (changeValue * 10);
 			setArc(getX(), newYPosition, width, height, startAngle, extentAngle, OPEN);
 		}
-		
+		if (instruction.equals("furrowBrow")) {
+			double newStartAngle = startAngle - (changeValue * 15);
+			double newExtentAngle = extentAngle - (changeValue * 15);
+			setArc(getX(), getY(), getWidth(), getHeight(), newStartAngle, newExtentAngle, OPEN);
+		}
 
 	}
 

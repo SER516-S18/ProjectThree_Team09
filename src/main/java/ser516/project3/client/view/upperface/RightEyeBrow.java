@@ -53,7 +53,11 @@ public class RightEyeBrow extends Arc2D.Double implements FaceElementsInterface 
 	public void moveElement(String instruction,double changeValue) {
 		if(instruction.equals("raiseBrow")) {
 			double newYPosition = yPosition - (changeValue*10 );
-			setArc(getX(), newYPosition, width, height, startAngle, extentAngle, OPEN);
+			setArc(getX(), newYPosition, getWidth(),getHeight(), getAngleStart(), getAngleExtent(), OPEN);
+		}
+		if(instruction.equals("furrowBrow")) {
+			double newStartAngle =startAngle+(changeValue*15);
+			setArc(getX(),getY(),getWidth(),getHeight(),newStartAngle,getAngleExtent(),OPEN);
 		}
 		
 
