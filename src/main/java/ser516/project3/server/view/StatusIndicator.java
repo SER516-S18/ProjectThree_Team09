@@ -64,7 +64,7 @@ public class StatusIndicator extends JPanel{
 		super.paint(graphics);
 		graphics.setColor(circleColor);
 		if (isVisible) {
-			graphics.fillOval(10, 20, 20, 20);
+			graphics.fillOval(10, 20, 15, 15);
 		}
 	}
 
