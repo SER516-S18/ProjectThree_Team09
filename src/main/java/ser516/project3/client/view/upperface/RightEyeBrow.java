@@ -2,17 +2,27 @@ package ser516.project3.client.view.upperface;
 
 import java.awt.geom.Arc2D;
 
-import ser516.project3.client.view.FaceElementsInterface;
+import ser516.project3.interfaces.FaceElementsInterface;
 
+/**
+ * This class contains the properties of left eye brow returns it's instance.
+ * Eye brow will be an open arc in all cases.
+ * 
+ * @author Manish Tandon
+ *
+ */
+@SuppressWarnings("serial")
 public class RightEyeBrow extends Arc2D.Double implements FaceElementsInterface {
 
 	// initial positions
-	private static int xPosition = 330;
-	private static int yPosition = 163;
-	private static int width = 50;
-	private static int height = 60;
-	private static int startAngle = 120;
-	private static int extentAngle = -60;
+	private static final int X_POSITION = 330;
+	private static final int Y_POSITION = 163;
+	private static final int WIDTH = 50;
+	private static final int HEIGHT = 60;
+	private static final int START_ANGLE = 120;
+	private static final int EXTENT_ANGLE = -60;
+	private static final String RAISE_BROW="raiseBrow";
+	private static final String FURROW_BROW="furrowBrow";
 	private static RightEyeBrow instance;
 
 	/**
@@ -24,7 +34,7 @@ public class RightEyeBrow extends Arc2D.Double implements FaceElementsInterface 
 
 		try {
 			if (instance == null) {
-				instance = new RightEyeBrow(xPosition, yPosition, width, height, startAngle, extentAngle);
+				instance = new RightEyeBrow(X_POSITION, Y_POSITION, WIDTH, HEIGHT, START_ANGLE, EXTENT_ANGLE);
 			}
 		} catch (Exception e) {
 
@@ -33,87 +43,55 @@ public class RightEyeBrow extends Arc2D.Double implements FaceElementsInterface 
 
 	}
 
+	/**
+	 * Initializes right eye brow.
+	 */
 	public RightEyeBrow(int xPosition, int yPosition, int width, int height, int startAngle, int extentAngle) {
 		super(xPosition, yPosition, width, height, startAngle, extentAngle, OPEN);
 	}
 
+	/**
+	 * Resets the position of right eye brow to default.
+	 */
 	@Override
 	public void resetPositionToDefault() {
-		// TODO Auto-generated method stub
+		// Intentionally blank, not used for Brows scenario
 
 	}
 
+	/**
+	 * Move the eye brow to a different position.
+	 */
 	@Override
 	public void moveToDifferentPosition() {
 		// Intentionally blank, not used for Brows scenario
 
 	}
 
+	/**
+	 * Moves the right eye brow based on the double attributes set on the server.Two
+	 * scenarios are provided in instruction: raise brow and furrow brow.
+	 */
 	@Override
-	public void moveElement(String instruction,double changeValue) {
-		if(instruction.equals("raiseBrow")) {
-			double newYPosition = yPosition - (changeValue*10 );
-			setArc(getX(), newYPosition, getWidth(),getHeight(), getAngleStart(), getAngleExtent(), OPEN);
+	public void moveElement(String instruction, double changeValue) {
+		if (instruction.equals(RAISE_BROW)) {
+			double newYPosition = Y_POSITION - (changeValue * 10);
+			setArc(getX(), newYPosition, getWidth(), getHeight(), getAngleStart(), getAngleExtent(), OPEN);
 		}
-		if(instruction.equals("furrowBrow")) {
-			double newStartAngle =startAngle+(changeValue*15);
-			setArc(getX(),getY(),getWidth(),getHeight(),newStartAngle,getAngleExtent(),OPEN);
+		if (instruction.equals(FURROW_BROW)) {
+			double newStartAngle = START_ANGLE + (changeValue * 15);
+			setArc(getX(), getY(), getWidth(), getHeight(), newStartAngle, getAngleExtent(), OPEN);
 		}
-		
 
 	}
 
+	/**
+	 * Moves the right eye brow based on the boolean value set on the server.
+	 */
 	@Override
 	public void moveElement(String instruction, boolean changeValue) {
-
-	}
-
-	public static int getxPosition() {
-		return xPosition;
-	}
-
-	public static void setxPosition(int xPosition) {
-		RightEyeBrow.xPosition = xPosition;
-	}
-
-	public static int getyPosition() {
-		return yPosition;
-	}
-
-	public static void setyPosition(int yPosition) {
-		RightEyeBrow.yPosition = yPosition;
-	}
-
-	public double getWidth() {
-		return width;
-	}
-
-	public static void setWidth(int width) {
-		RightEyeBrow.width = width;
-	}
-
-	public double getHeight() {
-		return height;
-	}
-
-	public static void setHeight(int height) {
-		RightEyeBrow.height = height;
-	}
-
-	public static int getStartAngle() {
-		return startAngle;
-	}
-
-	public static void setStartAngle(int startAngle) {
-		RightEyeBrow.startAngle = startAngle;
-	}
-
-	public static int getExtentAngle() {
-		return extentAngle;
-	}
-
-	public static void setExtentAngle(int extentAngle) {
-		RightEyeBrow.extentAngle = extentAngle;
+		// intentionally blank, no use currently for this, since eye brow has double
+		// attributes on server.
 	}
 
 }

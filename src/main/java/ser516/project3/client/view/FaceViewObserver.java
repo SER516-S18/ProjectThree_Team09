@@ -14,11 +14,13 @@ import ser516.project3.model.FaceExpressionsObservable;
  *
  */
 public class FaceViewObserver implements Observer {
-
+	/**
+	 * Overridden method that updates the face elements.
+	 */
 	@Override
 	public void update(Observable dataObject, Object observerObj) {
-		
-		FaceExpressionsObservable faceExpressionObject=(FaceExpressionsObservable) dataObject;
+
+		FaceExpressionsObservable faceExpressionObject = (FaceExpressionsObservable) dataObject;
 		FaceView.getInstance().updateFaceElements(faceExpressionObject.getMessageBean());
 	}
 
