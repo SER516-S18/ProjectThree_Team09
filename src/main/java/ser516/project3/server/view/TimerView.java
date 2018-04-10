@@ -72,7 +72,7 @@ public class TimerView extends JPanel implements ViewInterface{
 	 * 
 	 */
 	private void createTimeElapsedInputTextField(GridBagConstraints gridBagConstraints) {
-		timeElapsedInputTextField = new JTextField("1");
+		timeElapsedInputTextField = new JTextField("0");
 		timeElapsedInputTextField.setBorder(BorderFactory.createLineBorder(Color.black));
 		timeElapsedInputTextField.setColumns(10);
 		timeElapsedInputTextField.setHorizontalAlignment(SwingConstants.CENTER);
