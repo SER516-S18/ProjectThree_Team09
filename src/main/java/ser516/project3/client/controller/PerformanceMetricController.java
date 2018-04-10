@@ -122,8 +122,6 @@ public class PerformanceMetricController implements ControllerInterface {
 			graphController.updateGraphView();
 
 			performanceMetricView.updatePerformanceMetricView(performanceMetricModel);
-			performanceMetricView.revalidate();
-			performanceMetricView.repaint();
 		}
 	}
 
@@ -133,8 +131,6 @@ public class PerformanceMetricController implements ControllerInterface {
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 				graphController.updateGraphView();
 				performanceMetricView.updatePerformanceMetricView(performanceMetricModel);
-				performanceMetricView.revalidate();
-				performanceMetricView.repaint();
 			}
 		}
 	}

@@ -31,14 +31,11 @@ public class PerformanceMetricGraphObserver implements Observer {
 
 		PerformanceMetricDataObservable performanceMetricDataObservable = (PerformanceMetricDataObservable) observable;
 
-		GraphController graphController = ClientController.getInstance()
-				.getPerformanceMetricController().getGraphController();
+		GraphController graphController = ClientController.getInstance().getPerformanceMetricController()
+				.getGraphController();
 
 		graphController.setGraphData(performanceMetricDataObservable.getPerformanceMetricData());
 		graphController.updateGraphView();
-
-		ClientController.getInstance().getPerformanceMetricController().getPerformanceMetricView().revalidate();
-		ClientController.getInstance().getPerformanceMetricController().getPerformanceMetricView().repaint();
 	}
 
 }
