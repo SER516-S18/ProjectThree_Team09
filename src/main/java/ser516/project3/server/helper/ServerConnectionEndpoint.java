@@ -70,7 +70,7 @@ public class ServerConnectionEndpoint {
             }
 
         } catch (IOException | EncodeException | InterruptedException e) {
-            logger.error("Error occurred in onOpen method :::: " + e.getStackTrace());
+            logger.error("Error occurred in onOpen method :::: " + e.getMessage());
             ServerController.getInstance().getConsoleController().getConsoleModel().
             	logMessage("Error occurred while connecting to client");
         }
@@ -98,7 +98,7 @@ public class ServerConnectionEndpoint {
         try {
             session.getBasicRemote().sendText("Connection closed");
         } catch (IOException e) {
-            logger.error("Error occurred while sending text::::" + e.getStackTrace());
+            logger.error("Error occurred while sending text::::" + e.getMessage());
         }
     }
 

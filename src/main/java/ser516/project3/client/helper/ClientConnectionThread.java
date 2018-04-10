@@ -59,7 +59,7 @@ public class ClientConnectionThread implements Runnable {
 			messageLatch.await(0, TimeUnit.SECONDS);
 			ClientController.getInstance().setConnectionStatus(true);
 		} catch (DeploymentException | IOException | InterruptedException e) {
-			logger.error("Exception occurred in createClientConnection method::::" + e.getStackTrace().toString());
+			logger.error("Exception occurred in createClientConnection method::::" + e.getMessage().toString());
 			ClientController.getInstance().setConnectionStatus(false);
 			final JDialog dialog = new JDialog();
 			dialog.setAlwaysOnTop(true);

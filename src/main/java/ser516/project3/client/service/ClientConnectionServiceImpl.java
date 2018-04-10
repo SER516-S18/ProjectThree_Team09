@@ -49,7 +49,7 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
 			ClientController.getInstance().setConnectionStatus(false);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			logger.error("Error while stopping client end point::::" + e.getStackTrace().toString());
+			logger.error("Error while stopping client end point::::" + e.getMessage().toString());
 		}
 		clientConnectionThread.interrupt();
 	}
