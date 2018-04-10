@@ -1,5 +1,6 @@
 package ser516.project3.client.controller;
 
+import ser516.project3.client.view.FaceView;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.client.view.ExpressionsView;
 import ser516.project3.interfaces.ControllerInterface;
@@ -39,5 +40,10 @@ public class ExpressionsController implements ControllerInterface {
 
   public GraphController getGraphController() {
     return graphController;
+  }
+
+  public void setSelected(boolean selected) {
+    expressionsModel.setTabSelected(selected);
+      FaceView.getInstance().setSelected(selected);
   }
 }

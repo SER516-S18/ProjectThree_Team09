@@ -10,6 +10,7 @@ public class ExpressionsModel implements ModelInterface {
   private double lowerFaceValue;
   private boolean eyeValue;
   private boolean eyeCheckBoxChecked;
+  private boolean isTabSelected;
 
   public ExpressionsModel() {
     lowerFaceItem = "Smile";
@@ -76,4 +77,12 @@ public class ExpressionsModel implements ModelInterface {
   public void setEyeCheckBoxChecked(boolean eyeCheckBoxChecked) {
     this.eyeCheckBoxChecked = eyeCheckBoxChecked;
   }
+
+    public boolean isTabSelected() {
+        return isTabSelected;
+    }
+
+    public void setTabSelected(boolean tabSelected) {
+        isTabSelected = tabSelected;
+    }
 }

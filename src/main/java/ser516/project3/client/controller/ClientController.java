@@ -11,6 +11,9 @@ import ser516.project3.server.controller.ServerController;
 import ser516.project3.utilities.ControllerFactory;
 import ser516.project3.utilities.ViewFactory;
 
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -64,6 +67,7 @@ public class ClientController implements ControllerInterface {
 		clientView.initializeView(subViews);
 		clientView.addServerMenuItemListener(new ServerMenuItemListener());
 		clientView.addClientWindowListener(new WindowClosingEventListener());
+		clientView.addTabbedPaneSelectionListener(new TabSelectionListener());
 	}
 
 	private void initializeHeader(ViewFactory viewFactory, ControllerFactory controllerFactory) {
@@ -178,5 +182,18 @@ public class ClientController implements ControllerInterface {
 		public void windowActivated(WindowEvent arg0) {}
 		@Override
 		public void windowDeactivated(WindowEvent arg0) {}
+	}
+
+	class TabSelectionListener implements ChangeListener {
+		@Override
+		public void stateChanged(ChangeEvent e) {
+			if (e.getSource() instanceof JTabbedPane) {
+				JTabbedPane pane = (JTabbedPane) e.getSource();
+				int selectedIndex = pane.getSelectedIndex();
+				if (selectedIndex == 1) {
+					expressionsController.setSelected(true);
+				}
+			}
+		}
 	}
 }

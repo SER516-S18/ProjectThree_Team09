@@ -31,9 +31,11 @@ public class FaceView extends JPanel implements ViewInterface {
 	private static int width = 300;
 	private static int height = 300;
 	private static final String faceLayoutPath = "images/FaceImage.png";
-	BufferedImage faceBufferedImage = null;
     private static final String nosePath = "images/nose.png";
+
+    BufferedImage faceBufferedImage = null;
     BufferedImage noseBufferedImage = null;
+    private boolean isSelected;
 
 	public FaceView(int width, int height, Color faceColor) {
 		this.width = width;
@@ -85,8 +87,8 @@ public class FaceView extends JPanel implements ViewInterface {
 		graphics.setColor(new Color(96, 85, 46));
 
 		Graphics2D graphics2D = (Graphics2D) graphics;
-        graphics2D.drawImage(this.faceBufferedImage, 45,40,null);
-        graphics2D.drawImage(this.noseBufferedImage, 190, 210, null);
+        graphics2D.drawImage(this.faceBufferedImage, 160,40,null);
+        graphics2D.drawImage(this.noseBufferedImage, 305, 210, null);
 
 		graphics2D.setStroke(new BasicStroke(4));
 
@@ -105,21 +107,23 @@ public class FaceView extends JPanel implements ViewInterface {
 	}
 
 	public void updateFaceElements(MessageModel messageBean) {
-		LeftEyeBrow.getInstance().moveElement("raiseBrow", messageBean.getAbstractExpression("raiseBrow"));
-		RightEyeBrow.getInstance().moveElement("raiseBrow", messageBean.getAbstractExpression("raiseBrow"));
-		LeftEyeBrow.getInstance().moveElement("furrowBrow", messageBean.getAbstractExpression("furrowBrow"));
-		RightEyeBrow.getInstance().moveElement("furrowBrow", messageBean.getAbstractExpression("furrowBrow"));
-		String lowerFaceExpression = messageBean.getSelectionFlag("lowerFace");
-		mouthView.moveElement(lowerFaceExpression, messageBean.getAbstractExpression(lowerFaceExpression));
+	    if (isSelected) {
+            LeftEyeBrow.getInstance().moveElement("raiseBrow", messageBean.getAbstractExpression("raiseBrow"));
+            RightEyeBrow.getInstance().moveElement("raiseBrow", messageBean.getAbstractExpression("raiseBrow"));
+            LeftEyeBrow.getInstance().moveElement("furrowBrow", messageBean.getAbstractExpression("furrowBrow"));
+            RightEyeBrow.getInstance().moveElement("furrowBrow", messageBean.getAbstractExpression("furrowBrow"));
+            String lowerFaceExpression = messageBean.getSelectionFlag("lowerFace");
+            mouthView.moveElement(lowerFaceExpression, messageBean.getAbstractExpression(lowerFaceExpression));
 
-		String eyeExpression = messageBean.getSelectionFlag("eye");
-		leftEye.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
-		rightEye.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
-		leftEyeBall.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
-		rightEyeBall.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
+            String eyeExpression = messageBean.getSelectionFlag("eye");
+            leftEye.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
+            rightEye.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
+            leftEyeBall.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
+            rightEyeBall.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
 
-		Graphics2D graphics2d = (Graphics2D) getGraphics();
-		paintComponent(graphics2d);
+            Graphics2D graphics2d = (Graphics2D) getGraphics();
+            paintComponent(graphics2d);
+        }
 	}
 
 	public void setColor(Color newColor) {
@@ -131,5 +135,13 @@ public class FaceView extends JPanel implements ViewInterface {
 	public void initializeView(ViewInterface[] subViews) {
 
 	}
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
 }

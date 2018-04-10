@@ -4,6 +4,7 @@ import ser516.project3.constants.ClientConstants;
 import ser516.project3.interfaces.ViewInterface;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -98,5 +99,9 @@ public class ClientView extends JFrame implements ViewInterface {
 
 	public void addClientWindowListener(WindowListener windowListener) {
 		addWindowListener(windowListener);
+	}
+
+	public void addTabbedPaneSelectionListener(ChangeListener changeListener) {
+		expressionsEmotionsCombinedTab.addChangeListener(changeListener);
 	}
 }
