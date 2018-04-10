@@ -24,11 +24,12 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
 		GraphView graphView = (GraphView) subViews[0];
+		FaceView faceView = (FaceView) subViews[1];
 
 		setLayout(new GridLayout(1, 2, 8, 8));
 		setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
 
-		add(FaceView.getInstance(), BorderLayout.LINE_START); // Need to replace with a panel for displaying the face.
+		add(faceView, BorderLayout.LINE_START);
 		add(graphView, BorderLayout.LINE_END);
 		setVisible(true);
 	}

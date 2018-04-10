@@ -120,10 +120,9 @@ public class PerformanceMetricController implements ControllerInterface {
 					performanceMetricModel.getFocusColor() };
 			graphController.setChannelColors(channelColors);
 			graphController.updateGraphView();
-
-			performanceMetricView.updatePerformanceMetricView(performanceMetricModel);
 			performanceMetricView.revalidate();
 			performanceMetricView.repaint();
+			performanceMetricView.updatePerformanceMetricView(performanceMetricModel);
 		}
 	}
 

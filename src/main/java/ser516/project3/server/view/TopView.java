@@ -1,16 +1,29 @@
 package ser516.project3.server.view;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentListener;
+
+import com.alee.laf.button.WebButton;
+
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.TopModel;
 import ser516.project3.utilities.NumberTextField;
-
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-import javax.swing.event.DocumentListener;
-import java.awt.*;
-import java.awt.event.ActionListener;
 
 /**
  * Class to create components in server settings panel in the server  
@@ -23,8 +36,8 @@ public class TopView extends JPanel implements ViewInterface{
   private JLabel intervalLabel;
   private JTextField intervalInputTextField;
   private JCheckBox autoRepeatCheckBox;
-  private JButton serverStartStopButton;
-  private JButton sendButton;
+  private WebButton serverStartStopButton;
+  private WebButton sendButton;
   private TopModel topModel;
 
   private static StatusIndicator statusIndicator = new StatusIndicator();
@@ -32,6 +45,7 @@ public class TopView extends JPanel implements ViewInterface{
   private static final String INTERVAL_LABEL_NAME = "Interval (seconds):  ";
   private static final String AUTO_REPEAT_CHECKBOX_NAME = "Auto Repeat";
   private static final Font FONT = new Font("Courier New", Font.BOLD, 17);
+  private static final int FONT_SIZE = 15;
 
   /** 
    * Method to set top model
@@ -51,15 +65,11 @@ public class TopView extends JPanel implements ViewInterface{
   @Override
   public void initializeView(ViewInterface[] subViews) {
 	    setLayout(new GridBagLayout());
-	    setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
+	    setBackground(Color.decode("#747b83"));
 	    GridBagConstraints gridBagConstraints = new GridBagConstraints();
-	    setOpaque(false);
 	
 	    Border titledBorder = new TitledBorder(null, "Server Settings", TitledBorder.LEADING, 
 	    														TitledBorder.TOP, FONT, null);
-	    Border marginBorder = BorderFactory.createEmptyBorder(30, 10, 10, 10);
-	    Border compoundBorder = BorderFactory.createCompoundBorder(marginBorder, titledBorder);
-	    setBorder(compoundBorder);
 	
 	    createIntervalLabel(gridBagConstraints);
 	    createIntervalInputTextField(gridBagConstraints);
@@ -78,7 +88,7 @@ public class TopView extends JPanel implements ViewInterface{
   private void createIntervalLabel(GridBagConstraints gridBagConstraint) {
 	    intervalLabel = new JLabel(INTERVAL_LABEL_NAME);
 	    intervalLabel.setHorizontalAlignment(SwingConstants.CENTER);
-	    intervalLabel.setOpaque(true);
+	    intervalLabel.setBackground(Color.decode("#747b83"));
 	    gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
 	    gridBagConstraint.gridx = 0;
 	    gridBagConstraint.gridy = 0;
@@ -95,7 +105,8 @@ public class TopView extends JPanel implements ViewInterface{
    */
   private void createIntervalInputTextField(GridBagConstraints gridBagConstraint) {
 	    intervalInputTextField = new NumberTextField("" + topModel.getInterval(), true);
-	    intervalInputTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+	    intervalInputTextField.setBackground(Color.decode("#616266"));
+	    intervalInputTextField.setBorder(null);
 	    intervalInputTextField.setColumns(3);
 	    intervalInputTextField.setHorizontalAlignment(SwingConstants.CENTER);
 	    gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
@@ -131,7 +142,15 @@ public class TopView extends JPanel implements ViewInterface{
    * 
    */
   private void createServerStartStopButton(GridBagConstraints gridBagConstraint) {
-	    serverStartStopButton = new JButton(topModel.getServerStartStopButtonText());
+	    serverStartStopButton = new WebButton(topModel.getServerStartStopButtonText());
+	    serverStartStopButton.setPreferredSize(new Dimension(120, 35));
+	    serverStartStopButton.setBottomBgColor(Color.BLACK);
+	    serverStartStopButton.setTopBgColor(Color.BLACK);
+	    serverStartStopButton.setBottomSelectedBgColor(Color.WHITE);
+	    serverStartStopButton.setTopSelectedBgColor(Color.WHITE);
+	    serverStartStopButton.setForeground(Color.WHITE);
+	    serverStartStopButton.setDrawShade(false);
+	    serverStartStopButton.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE));
 	    serverStartStopButton.setHorizontalAlignment(SwingConstants.CENTER);
 	    gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
 	    gridBagConstraint.weighty = 2.0;
@@ -149,7 +168,15 @@ public class TopView extends JPanel implements ViewInterface{
    * 
    */
   private void createSendButton(GridBagConstraints gridBagConstraint) {
-	    sendButton = new JButton(topModel.getSendButtonText());
+	    sendButton = new WebButton(topModel.getSendButtonText());
+	    sendButton.setPreferredSize(new Dimension(120, 35));
+	    sendButton.setBottomBgColor(Color.BLACK);
+	    sendButton.setTopBgColor(Color.BLACK);
+	    sendButton.setBottomSelectedBgColor(Color.WHITE);
+	    sendButton.setTopSelectedBgColor(Color.WHITE);
+	    sendButton.setForeground(Color.WHITE);
+	    sendButton.setDrawShade(false);
+	    sendButton.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE));
 	    sendButton.setHorizontalAlignment(SwingConstants.CENTER);
 	    sendButton.setEnabled(false);
 	    gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
@@ -170,6 +197,7 @@ public class TopView extends JPanel implements ViewInterface{
   private void createStatusIndicator(GridBagConstraints gridBagConstraint) {
 	    statusIndicator.setBorder(BorderFactory.createEmptyBorder(30, 10, 10, 10));
 	    statusIndicator.setBounds(100, 200, 50, 80);
+	    statusIndicator.setBackground(Color.decode("#747b83"));
 	    gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
 	    gridBagConstraint.weightx = 1;
 	    gridBagConstraint.gridx = 1;

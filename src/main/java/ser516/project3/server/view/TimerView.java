@@ -42,6 +42,7 @@ public class TimerView extends JPanel implements ViewInterface{
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
 		setPreferredSize(new Dimension(100,100));
+		setBackground(Color.decode("#747b83"));
 
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
 		createTimeElapsedLabel(gridBagConstraints);
@@ -56,7 +57,7 @@ public class TimerView extends JPanel implements ViewInterface{
 	 */
 	private void createTimeElapsedLabel(GridBagConstraints gridBagConstraints) {
 		timeElapsedLabel = new JLabel(TIME_ELAPSED);
-		timeElapsedLabel.setOpaque(true);
+		timeElapsedLabel.setBackground(Color.decode("#747b83"));
 
 		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.gridx = 0;
@@ -73,7 +74,8 @@ public class TimerView extends JPanel implements ViewInterface{
 	 */
 	private void createTimeElapsedInputTextField(GridBagConstraints gridBagConstraints) {
 		timeElapsedInputTextField = new JTextField("0");
-		timeElapsedInputTextField.setBorder(BorderFactory.createLineBorder(Color.black));
+		timeElapsedInputTextField.setBackground(Color.decode("#616266"));
+		timeElapsedInputTextField.setBorder(null);
 		timeElapsedInputTextField.setColumns(10);
 		timeElapsedInputTextField.setHorizontalAlignment(SwingConstants.CENTER);
 
