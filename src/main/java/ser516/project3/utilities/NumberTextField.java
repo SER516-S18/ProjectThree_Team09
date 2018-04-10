@@ -22,8 +22,8 @@ public class NumberTextField extends JTextField {
 	@Override
 	public void processKeyEvent(KeyEvent keyEvent) {
 		if ((keyEvent.getKeyChar() == VK_BACK_SPACE || keyEvent.getKeyChar() == VK_DELETE
-				|| keyEvent.getKeyChar() == VK_ENTER || keyEvent.getKeyChar() == VK_LEFT
-				|| keyEvent.getKeyChar() == VK_RIGHT)
+				|| keyEvent.getKeyChar() == VK_ENTER || keyEvent.getKeyCode() == VK_LEFT
+				|| keyEvent.getKeyCode() == VK_RIGHT)
 				|| (getText().length() < 4 && (Character.isDigit(keyEvent.getKeyChar())))) {
 			super.processKeyEvent(keyEvent);
 		}

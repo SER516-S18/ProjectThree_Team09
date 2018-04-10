@@ -35,6 +35,7 @@ public class GraphView extends JPanel implements ViewInterface {
   private ChartPanel chartPanel;
   private GraphModel graphModel;
   private boolean legendDisplay;
+  private double currentXCoordinate;
 
   private static final int TITLE_FONT_SIZE = 17;
   private static final int GRAPH_AXIS_FONT_SIZE = 14;
@@ -46,6 +47,7 @@ public class GraphView extends JPanel implements ViewInterface {
    */
   public GraphView(GraphModel graphModel) {
     this.graphModel = graphModel;
+    currentXCoordinate = 0;
   }
 
   @Override
@@ -70,9 +72,8 @@ public class GraphView extends JPanel implements ViewInterface {
   public void updateGraphView(GraphModel graphModel) {
     this.graphModel = graphModel;
     legendDisplay = true;
-    if(graphModel.getNoOfChannels() == 6) {
+    if(graphModel.getNoOfChannels() == 6)
       legendDisplay = false;
-    }
     remove(chartPanel);
     XYDataset dataSet = createDataSet();
     chart = createChart(dataSet);
@@ -101,6 +102,7 @@ public class GraphView extends JPanel implements ViewInterface {
             series[i].add(graphModel.getXLength() - xCoordinate, yCoordinate);
           else
             series[i].add(xCoordinate, yCoordinate);
+          currentXCoordinate = xCoordinate;
         }
       }
     }
@@ -131,7 +133,14 @@ public class GraphView extends JPanel implements ViewInterface {
     }
 
     range = plot.getDomainAxis();
-    range.setRange(0, graphModel.getXLength());
+    if(graphModel.getNoOfChannels() == 12 && currentXCoordinate > graphModel.getXLength()) {
+      int diff = (int)currentXCoordinate - graphModel.getXLength();
+      graphModel.setXStartPoint(graphModel.getXStartPoint() + diff);
+      graphModel.setXLength(graphModel.getXLength() + diff);
+      range.setRange(graphModel.getXStartPoint(), graphModel.getXLength());
+    } else {
+      range.setRange(0, graphModel.getXLength());
+    }
     range.setTickLabelPaint(Color.WHITE);
     range.setTickLabelFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, GRAPH_AXIS_FONT_SIZE));
 

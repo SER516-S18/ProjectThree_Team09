@@ -26,7 +26,6 @@ public class ExpressionsGraphObserver implements Observer{
 
 		graphController.setGraphData(expressionsDataObservable.getExpressionsData());
 		graphController.setNoOfChannels(12);
-		graphController.setXLength(ClientConstants.DEFAULT_DISPLAY_LENGTH);
 		graphController.updateGraphView();
 
 		ClientController.getInstance().getExpressionsController().getExpressionsView().revalidate();
