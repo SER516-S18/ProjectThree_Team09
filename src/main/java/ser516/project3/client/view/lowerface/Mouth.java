@@ -1,8 +1,8 @@
 package ser516.project3.client.view.lowerface;
 
-import ser516.project3.client.view.FaceElementsInterface;
-
 import java.awt.geom.Arc2D;
+
+import ser516.project3.interfaces.FaceElementsInterface;
 /**
  * This class returns an arc based on the input values and state.
  * Mouth can have states like Smile,clench,smirk and laugh.

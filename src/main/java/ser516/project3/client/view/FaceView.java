@@ -1,7 +1,10 @@
 package ser516.project3.client.view;
 
-import java.awt.*;
-import java.awt.geom.Arc2D;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +26,7 @@ import ser516.project3.model.MessageModel;
 /**
  * The FaceView class creates the face panel on the client UI
  * 
- * @author vsriva12
+ * @author Varun Srivastava , Manish Tandon , Vishakha Singal, Adhiraj Tikku
  *
  */
 @SuppressWarnings("serial")
@@ -49,6 +52,9 @@ public class FaceView extends JPanel implements ViewInterface {
 		this.faceModel = faceModel;
 	}
 
+	/**
+	 * Overridden method , that is used for painting graphic on the Jpanel.
+	 */
 	@Override
 	public void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
@@ -74,6 +80,12 @@ public class FaceView extends JPanel implements ViewInterface {
 
 	}
 
+	/**
+	 * This method is called by FaceObserver, to update elements as per the current
+	 * data packet sent from server.
+	 *
+	 * @param messageBean
+	 */
 	public void updateFaceElements(MessageModel messageBean) {
 	    if (isSelected) {
             LeftEyeBrow.getInstance().moveElement("raiseBrow", messageBean.getAbstractExpression("raiseBrow"));

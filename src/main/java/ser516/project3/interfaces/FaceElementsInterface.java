@@ -1,4 +1,4 @@
-package ser516.project3.client.view;
+package ser516.project3.interfaces;
 
 import java.awt.Shape;
 
