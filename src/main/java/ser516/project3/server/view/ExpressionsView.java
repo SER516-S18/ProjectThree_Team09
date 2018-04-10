@@ -24,7 +24,8 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 	private JComboBox<Object> eyeCombo;
 	private JSpinner lowerFaceSpinner;
 	private JSpinner upperFaceSpinner;
-	private JToggleButton eyeAction;
+	private JToggleButton eyeActionToggle;
+	private JButton eyeActionButton;
 	private JCheckBox eyeCheckBox;
 	private ExpressionsModel expressionsModel;
 	String[] lowerFaceList = { "Smile", "Clench", "Smirk Left", "Smirk Right", "Laugh" };
@@ -61,6 +62,7 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 		createComboBoxes(gridBagConstraints);
 		createSpinners(gridBagConstraints);
 		createActivateToggleButton(gridBagConstraints);
+		createActivateButton(gridBagConstraints);
 		createEyeCheckBox(gridBagConstraints);
 	}
 	
@@ -145,11 +147,26 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 	 * 
 	 */
 	public void createActivateToggleButton(GridBagConstraints gridBagConstraints) {
-		eyeAction = new JToggleButton("Activate");
-		eyeAction.setPreferredSize(new Dimension(90, 30));
+		eyeActionToggle = new JToggleButton("Activate");
+		eyeActionToggle.setPreferredSize(new Dimension(90, 30));
 		gridBagConstraints.gridx = 3;
 		gridBagConstraints.gridy = 2;
-		add(eyeAction, gridBagConstraints);
+		add(eyeActionToggle, gridBagConstraints);
+	}
+
+	/**
+	 * Method to create toggleButton in expressions panel
+	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * 		  for toggleButton
+	 *
+	 */
+	public void createActivateButton(GridBagConstraints gridBagConstraints) {
+		eyeActionButton = new JButton("Activate");
+		eyeActionButton.setPreferredSize(new Dimension(90, 30));
+		gridBagConstraints.gridx = 3;
+		gridBagConstraints.gridy = 2;
+		add(eyeActionButton, gridBagConstraints);
+		eyeActionButton.setVisible(false);
 	}
 	
 	/** 
@@ -163,6 +180,19 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 		gridBagConstraints.gridx = 4;
 		gridBagConstraints.gridy = 2;
 		add(eyeCheckBox, gridBagConstraints);
+	}
+
+	public void changeActivateButtonType() {
+		GridBagConstraints gridBagConstraints = new GridBagConstraints();
+		gridBagConstraints.gridx = 3;
+		gridBagConstraints.gridy = 2;
+		if(expressionsModel.isEyeCheckBoxChecked()) {
+			eyeActionToggle.setVisible(false);
+			eyeActionButton.setVisible(true);
+		} else {
+			eyeActionToggle.setVisible(true);
+			eyeActionButton.setVisible(false);
+		}
 	}
 	
 	/** 
@@ -204,7 +234,14 @@ public class ExpressionsView extends JPanel implements ViewInterface {
      * Method to add ItemListener to the activate toggle button
 	 */
 	public void addActivateToggleButtonItemListener(ItemListener itemListener) {
-		eyeAction.addItemListener(itemListener);
+		eyeActionToggle.addItemListener(itemListener);
+	}
+
+	/**
+	 * Method to add ChangeListener to the activate button
+	 */
+	public void addActivateButtonListener(ChangeListener changeListener) {
+		eyeActionButton.getModel().addChangeListener(changeListener);
 	}
 
 	/** 

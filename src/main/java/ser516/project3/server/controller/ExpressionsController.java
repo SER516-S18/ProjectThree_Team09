@@ -9,10 +9,13 @@ import ser516.project3.utilities.ServerCommonData;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+
+import static java.lang.Thread.sleep;
 
 /**
  * Class that helps communicate between ExpressionsView and ExpressionsModel.
@@ -48,6 +51,7 @@ public class ExpressionsController implements ControllerInterface{
     expressionsView.addLowerFaceSpinnerChangeListener(new LowerFaceSpinnerChangeListener());
     expressionsView.addUpperFaceSpinnerChangeListener(new UpperFaceSpinnerChangeListener());
     expressionsView.addActivateToggleButtonItemListener(new ActivateToggleButtonItemListener());
+    expressionsView.addActivateButtonListener(new ActivateButtonChangeListener());
     expressionsView.addEyeCheckBoxListener(new EyeCheckBoxListener());
   }
   
@@ -129,6 +133,28 @@ public class ExpressionsController implements ControllerInterface{
     }
   }
 
+  private class ActivateButtonChangeListener implements ChangeListener {
+    private boolean pressed = false;
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+      ButtonModel model = (ButtonModel) e.getSource();
+      if (model.isPressed() != pressed) {
+        expressionsModel.setEyeValue(true);
+        try {
+          sleep((long)ServerController.getInstance().getTopController().getTopModel().getInterval() * 1000);
+        } catch(InterruptedException ex) {
+          ex.printStackTrace();
+        }
+        updateEye(expressionsModel.getEyeItem(), expressionsModel.getEyeValue());
+        pressed = model.isPressed();
+      } else {
+        expressionsModel.setEyeValue(false);
+        updateEye(expressionsModel.getEyeItem(), expressionsModel.getEyeValue());
+      }
+    }
+  }
+
   /**
    * Inner class to add action listener to eye action auto-reset
    * check box in the expressions panel 
@@ -136,9 +162,9 @@ public class ExpressionsController implements ControllerInterface{
   class EyeCheckBoxListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-      // To be implemented
-      // AbstractButton abstractButton = (AbstractButton) e.getSource();
-      // updateEyeAutoReset(abstractButton.getModel().isSelected());
+      JCheckBox jCheckBox = (JCheckBox) e.getSource();
+      expressionsModel.setEyeCheckBoxChecked(jCheckBox.isSelected());
+      expressionsView.changeActivateButtonType();
     }
   }
 
