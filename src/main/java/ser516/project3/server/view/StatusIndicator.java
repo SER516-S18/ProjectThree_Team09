@@ -17,7 +17,7 @@ import javax.swing.Timer;
 public class StatusIndicator extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
-	private final Color GREEN = new Color(0, 128, 0);
+	private final Color GREEN = new Color(0, 255, 0);
 	private final Color RED = new Color(255, 0, 0);
 	private final int BLINK_INTERVAL = 500;
 
@@ -29,6 +29,7 @@ public class StatusIndicator extends JPanel{
 	 * Method to toggle the visibility of the circle every 500ms
 	 */
 	public StatusIndicator() {
+		setBackground(Color.decode("#747b83"));
 		this.blinkAnimation = new Timer(BLINK_INTERVAL, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
