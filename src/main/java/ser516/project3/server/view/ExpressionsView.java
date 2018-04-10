@@ -1,5 +1,8 @@
 package ser516.project3.server.view;
 
+import com.alee.laf.button.WebButton;
+import com.alee.laf.button.WebToggleButton;
+import ser516.project3.constants.ClientConstants;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ExpressionsModel;
 
@@ -24,8 +27,8 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 	private JComboBox<Object> eyeCombo;
 	private JSpinner lowerFaceSpinner;
 	private JSpinner upperFaceSpinner;
-	private JToggleButton eyeActionToggle;
-	private JButton eyeActionButton;
+	private WebToggleButton eyeActionToggle;
+	private WebButton eyeActionButton;
 	private JCheckBox eyeCheckBox;
 	private ExpressionsModel expressionsModel;
 	String[] lowerFaceList = { "Smile", "Clench", "Smirk Left", "Smirk Right", "Laugh" };
@@ -53,6 +56,7 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 
 		GridBagLayout gbl_expressionPanel = new GridBagLayout();
 		setLayout(gbl_expressionPanel);
+		setBackground(Color.decode("#747b83"));
 		setBorder(
 				new TitledBorder(null, "Expressions", TitledBorder.LEADING,
 						TitledBorder.TOP, SUBFONT, null));
@@ -147,8 +151,14 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 	 * 
 	 */
 	public void createActivateToggleButton(GridBagConstraints gridBagConstraints) {
-		eyeActionToggle = new JToggleButton("Activate");
+		eyeActionToggle = new WebToggleButton("Activate");
 		eyeActionToggle.setPreferredSize(new Dimension(90, 30));
+		eyeActionToggle.setBottomBgColor(Color.BLACK);
+		eyeActionToggle.setTopBgColor(Color.BLACK);
+		eyeActionToggle.setBottomSelectedBgColor(Color.WHITE);
+		eyeActionToggle.setTopSelectedBgColor(Color.WHITE);
+		eyeActionToggle.setForeground(Color.WHITE);
+		eyeActionToggle.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, 15));
 		gridBagConstraints.gridx = 3;
 		gridBagConstraints.gridy = 2;
 		add(eyeActionToggle, gridBagConstraints);
@@ -161,8 +171,14 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 	 *
 	 */
 	public void createActivateButton(GridBagConstraints gridBagConstraints) {
-		eyeActionButton = new JButton("Activate");
+		eyeActionButton = new WebButton("Activate");
 		eyeActionButton.setPreferredSize(new Dimension(90, 30));
+		eyeActionButton.setBottomBgColor(Color.BLACK);
+		eyeActionButton.setTopBgColor(Color.BLACK);
+		eyeActionButton.setBottomSelectedBgColor(Color.WHITE);
+		eyeActionButton.setTopSelectedBgColor(Color.WHITE);
+		eyeActionButton.setForeground(Color.WHITE);
+		eyeActionButton.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, 15));
 		gridBagConstraints.gridx = 3;
 		gridBagConstraints.gridy = 2;
 		add(eyeActionButton, gridBagConstraints);

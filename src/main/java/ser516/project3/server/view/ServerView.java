@@ -61,9 +61,6 @@ public class ServerView extends JFrame implements ViewInterface {
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setTitle("Server");
 		setVisible(true);
-		addWindowListener(new WindowAdapter() {
-
-		});
 	}
 
 	/**
@@ -71,7 +68,7 @@ public class ServerView extends JFrame implements ViewInterface {
 	 *
 	 * @return the second sub-panel
 	 */
-	public Component createConfigurationPanels() {
+	private Component createConfigurationPanels() {
 		JPanel configPanel = new JPanel();
 		JPanel timerPanel = timerView;
 		JPanel emotionsPanel = emotionsView;

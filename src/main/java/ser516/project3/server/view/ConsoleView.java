@@ -1,5 +1,7 @@
 package ser516.project3.server.view;
 
+import com.alee.laf.button.WebButton;
+import ser516.project3.constants.ClientConstants;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ConsoleModel;
 
@@ -22,7 +24,7 @@ import java.util.Observer;
 
 public class ConsoleView extends JPanel implements Observer, ViewInterface {
     private JTextArea consoleOutput;
-    private JButton clearConsole;
+    private WebButton clearConsole;
     private JScrollPane consoleScroll;
     private ConsoleModel consoleModel;
 
@@ -48,6 +50,7 @@ public class ConsoleView extends JPanel implements Observer, ViewInterface {
     public void initializeView(ViewInterface[] subViews) {
         setBorder(new TitledBorder(null, "Console", TitledBorder.LEADING,
             TitledBorder.TOP, SUBFONT, null));
+        setBackground(Color.decode("#747b83"));
         setLayout(new FlowLayout());
 
         consoleOutput = new JTextArea();
@@ -62,10 +65,15 @@ public class ConsoleView extends JPanel implements Observer, ViewInterface {
         consoleScroll.setBorder(BorderFactory.createCompoundBorder(border,
             BorderFactory.createEmptyBorder(1, 1, 1, 1)));
 
-        clearConsole = new JButton();
+        clearConsole = new WebButton();
         clearConsole.setText("Clear");
+        clearConsole.setBottomBgColor(Color.BLACK);
+        clearConsole.setTopBgColor(Color.BLACK);
+        clearConsole.setBottomSelectedBgColor(Color.WHITE);
+        clearConsole.setTopSelectedBgColor(Color.WHITE);
+        clearConsole.setForeground(Color.WHITE);
+        clearConsole.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, 15));
         add(consoleScroll);
-        //add(consoleOutput);
         add(clearConsole);
     }
     

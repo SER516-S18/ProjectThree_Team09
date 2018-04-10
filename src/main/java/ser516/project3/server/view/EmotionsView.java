@@ -3,9 +3,7 @@ package ser516.project3.server.view;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.EmotionsModel;
 
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
+import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -41,6 +39,7 @@ public class EmotionsView extends JPanel implements ViewInterface {
 	public void initializeView(ViewInterface[] subViews) {
 		setBorder(new TitledBorder(null, "Emotions", TitledBorder.LEADING,
 				TitledBorder.TOP, SUBFONT, null));
+		setBackground(Color.decode("#747b83"));
 		Dimension spinnerDimension = new Dimension(65, 30);
 		double current = 0.0;
 		double min = 0.0;
