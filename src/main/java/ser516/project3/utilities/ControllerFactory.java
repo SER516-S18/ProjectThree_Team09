@@ -1,29 +1,12 @@
 package ser516.project3.utilities;
 
-import ser516.project3.client.controller.ClientController;
-import ser516.project3.client.controller.ConnectionPopUpController;
-import ser516.project3.client.controller.ExpressionsController;
-import ser516.project3.client.controller.GraphController;
-import ser516.project3.client.controller.HeaderController;
-import ser516.project3.client.controller.PerformanceMetricController;
-import ser516.project3.client.view.ConnectionPopUpView;
-import ser516.project3.client.view.ExpressionsView;
-import ser516.project3.client.view.GraphView;
-import ser516.project3.client.view.HeaderView;
-import ser516.project3.client.view.PerformanceMetricView;
+import ser516.project3.client.controller.*;
+import ser516.project3.client.view.*;
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.interfaces.ModelInterface;
 import ser516.project3.interfaces.ViewInterface;
-import ser516.project3.model.ConnectionPopUpModel;
-import ser516.project3.model.ConsoleModel;
-import ser516.project3.model.EmotionsModel;
-import ser516.project3.model.ExpressionsModel;
-import ser516.project3.model.GraphModel;
-import ser516.project3.model.HeaderModel;
-import ser516.project3.model.PerformanceMetricModel;
-import ser516.project3.model.TimerModel;
-import ser516.project3.model.TopModel;
+import ser516.project3.model.*;
 import ser516.project3.server.controller.ConsoleController;
 import ser516.project3.server.controller.EmotionsController;
 import ser516.project3.server.controller.ServerController;
@@ -51,7 +34,7 @@ public class ControllerFactory {
 	 * @return the controller object
 	 */
 	public ControllerInterface getController(String controllerType, ModelInterface model, ViewInterface view,
-			ControllerInterface subController) {
+			ControllerInterface subControllers[]) {
 		if (controllerType == null) {
 			return null;
 		}
@@ -61,15 +44,17 @@ public class ControllerFactory {
 			return ServerController.getInstance();
 		} else if (controllerType.equalsIgnoreCase(ClientConstants.HEADER)) {
 			return new HeaderController((HeaderModel) model, (HeaderView) view,
-					(ConnectionPopUpController) subController);
+					(ConnectionPopUpController) subControllers[0]);
 		} else if (controllerType.equalsIgnoreCase(ClientConstants.PERFORMANCE_METRICS)) {
 			return new PerformanceMetricController((PerformanceMetricModel) model, (PerformanceMetricView) view,
-					(GraphController) subController);
+					(GraphController) subControllers[0]);
 		} else if (controllerType.equalsIgnoreCase(ClientConstants.EXPRESSIONS)) {
 			return new ExpressionsController((ExpressionsModel) model, (ExpressionsView) view,
-					(GraphController) subController);
+					(GraphController) subControllers[0], (FaceController) subControllers[1] );
 		} else if (controllerType.equalsIgnoreCase(ClientConstants.GRAPH)) {
 			return new GraphController((GraphModel) model, (GraphView) view);
+		} else if (controllerType.equalsIgnoreCase("FACE")) {
+			return new FaceController((FaceModel) model, (FaceView) view);
 		} else if (controllerType.equalsIgnoreCase("CONNECTION_POP_UP")) {
 			return new ConnectionPopUpController((ConnectionPopUpModel) model, (ConnectionPopUpView) view);
 		} else if (controllerType.equalsIgnoreCase("TOP")) {

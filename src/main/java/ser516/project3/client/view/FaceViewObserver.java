@@ -3,6 +3,8 @@ package ser516.project3.client.view;
 import java.util.Observable;
 import java.util.Observer;
 
+import ser516.project3.client.controller.ClientController;
+import ser516.project3.client.controller.FaceController;
 import ser516.project3.model.FaceExpressionsObservable;
 
 /**
@@ -17,9 +19,10 @@ public class FaceViewObserver implements Observer {
 
 	@Override
 	public void update(Observable dataObject, Object observerObj) {
-		
 		FaceExpressionsObservable faceExpressionObject=(FaceExpressionsObservable) dataObject;
-		FaceView.getInstance().updateFaceElements(faceExpressionObject.getMessageBean());
+
+		FaceController faceController = ClientController.getInstance().getFaceController();
+		faceController.updateFaceElements(faceExpressionObject.getMessageBean());
 	}
 
 }

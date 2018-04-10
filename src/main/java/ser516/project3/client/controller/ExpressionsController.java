@@ -15,11 +15,13 @@ public class ExpressionsController implements ControllerInterface {
   private ExpressionsView expressionsView;
 
   private GraphController graphController;
+  private FaceController faceController;
 
-  public ExpressionsController(ExpressionsModel expressionsModel, ExpressionsView expressionsView, GraphController graphController) {
+  public ExpressionsController(ExpressionsModel expressionsModel, ExpressionsView expressionsView, GraphController graphController, FaceController faceController) {
     this.expressionsModel = expressionsModel;
     this.expressionsView = expressionsView;
     this.graphController = graphController;
+    this.faceController = faceController;
   }
 
   @Override
@@ -30,7 +32,7 @@ public class ExpressionsController implements ControllerInterface {
     graphController.setNoOfChannels(12);
     graphController.setXLength(100);
     graphController.updateGraphView();
-    ViewInterface clientViewInterface[] = {graphController.getGraphView()};
+    ViewInterface clientViewInterface[] = {graphController.getGraphView(), faceController.getFaceView()};
     expressionsView.initializeView(clientViewInterface);
   }
 
@@ -44,6 +46,6 @@ public class ExpressionsController implements ControllerInterface {
 
   public void setSelected(boolean selected) {
     expressionsModel.setTabSelected(selected);
-      FaceView.getInstance().setSelected(selected);
+    faceController.setSelected(selected);
   }
 }
