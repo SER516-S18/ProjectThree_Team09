@@ -7,7 +7,11 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Arc2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import ser516.project3.client.view.eyes.LeftEye;
@@ -25,6 +29,10 @@ public class FaceView extends JPanel implements ViewInterface {
 	private static Color faceColor = new Color(255, 223, 135);
 	private static int width = 300;
 	private static int height = 300;
+	private static final String faceLayoutPath = "images/FaceImage.png";
+	BufferedImage faceBufferedImage = null;
+    private static final String nosePath = "images/nose.png";
+    BufferedImage noseBufferedImage = null;
 
 	public FaceView(int width, int height, Color faceColor) {
 		this.width = width;
@@ -36,6 +44,14 @@ public class FaceView extends JPanel implements ViewInterface {
 		this.rightEye = new RightEye();
 		this.leftEyeBall = new LeftEyeBall();
 		this.rightEyeBall = new RightEyeBall();
+		File faceFile = new File(faceLayoutPath);
+        File noseFile = new File(nosePath);
+		try {
+			this.faceBufferedImage = ImageIO.read(faceFile);
+			this.noseBufferedImage = ImageIO.read(noseFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static FaceView instance;
@@ -66,12 +82,15 @@ public class FaceView extends JPanel implements ViewInterface {
 	public void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
 		graphics.setColor(new Color(96, 85, 46));
-		graphics.drawOval(110, 110, width - 100, height - 80);
-		graphics.drawPolygon(new int[] {207, 197, 217}, new int[] {205, 245, 245}, 3);
+		//graphics.drawOval(110, 110, width - 100, height - 80);
 
 		Graphics2D graphics2D = (Graphics2D) graphics;
+        graphics2D.drawImage(this.faceBufferedImage, 45,40,null);
+        graphics2D.drawImage(this.noseBufferedImage, 190, 210, null);
+
 		graphics2D.setStroke(new BasicStroke(4));
 
+        //graphics.drawPolygon(new int[] {207, 197, 217}, new int[] {205, 245, 245}, 3);
 		graphics2D.draw(LeftEyeBrow.getInstance());
 		graphics2D.draw(RightEyeBrow.getInstance());
 		graphics2D.setStroke(new BasicStroke(3));
