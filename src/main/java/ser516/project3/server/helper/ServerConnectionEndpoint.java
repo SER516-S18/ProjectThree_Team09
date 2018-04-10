@@ -45,27 +45,16 @@ public class ServerConnectionEndpoint {
                 boolean isAutoRepeat = ServerController.getInstance().getTopController().
                 			getTopModel().isAutoRepeatCheckBoxChecked();
                 if (isShouldSend) {
-                    if (isAutoRepeat) {
-                        session.getBasicRemote().sendObject(serverCommonDataObject.getMessage());
-                        double timeElapsed = ServerCommonData.getInstance().getMessage().
-                        		getTimeStamp();
-                        double dataInterval = ServerCommonData.getInstance().getMessage().
-                        		getInterval();
-                        ServerCommonData.getInstance().getMessage().setTimeStamp(
-                        		timeElapsed + dataInterval);
-                        ServerController.getInstance().getTimerController().
-                        		updateTimeStamp(timeElapsed);
-                    } else {
-                        session.getBasicRemote().sendObject(serverCommonDataObject.getMessage());
-                        long timeElapsed = (long) ServerCommonData.getInstance().getMessage().
-                        		getTimeStamp();
-                        double dataInterval = ServerCommonData.getInstance().getMessage().
-                        		getInterval();
-                        ServerCommonData.getInstance().getMessage().setTimeStamp(
-                        		timeElapsed + dataInterval);
-                        ServerController.getInstance().getTopController().
-                        		getTopModel().setShouldSendData(false);
-                    }
+                    session.getBasicRemote().sendObject(serverCommonDataObject.getMessage());
+                    double timeElapsed = ServerCommonData.getInstance().getMessage().
+                        getTimeStamp();
+                    double dataInterval = ServerCommonData.getInstance().getMessage().
+                        getInterval();
+                    ServerCommonData.getInstance().getMessage().setTimeStamp(
+                        timeElapsed + dataInterval);
+                    ServerController.getInstance().getTimerController().updateTimeStamp(timeElapsed);
+                    if (!isAutoRepeat)
+                      ServerController.getInstance().getTopController().getTopModel().setShouldSendData(false);
                 }
                 Thread.sleep((long) (serverCommonDataObject.getMessage().getInterval() * 1000));
             }
