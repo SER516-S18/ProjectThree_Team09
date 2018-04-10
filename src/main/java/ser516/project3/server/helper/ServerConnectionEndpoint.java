@@ -13,6 +13,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.apache.log4j.Logger;
 
+import ser516.project3.model.MessageModel;
 import ser516.project3.server.controller.ServerController;
 import ser516.project3.utilities.MessageEncoder;
 import ser516.project3.utilities.ServerCommonData;
@@ -25,6 +26,8 @@ import ser516.project3.utilities.ServerCommonData;
 @ServerEndpoint(value = "/server", encoders = {MessageEncoder.class})
 public class ServerConnectionEndpoint {
     final static Logger logger = Logger.getLogger(ServerConnectionEndpoint.class);
+    private static int connectionCount = 0;
+    private static double timeElapsed = 0;
 	
     /**
 	 * Method containing logic to start sending the message json based on the value
@@ -34,6 +37,8 @@ public class ServerConnectionEndpoint {
 	 */	
     @OnOpen
     public void onOpen(final Session session) throws IOException {
+    	connectionCount++;
+    	double syncTimeElapsed = 0;
         try {
         	logger.info("New Client connected :::: " + session.getBasicRemote());
             ServerController.getInstance().getConsoleController().getConsoleModel().
@@ -45,14 +50,19 @@ public class ServerConnectionEndpoint {
                 boolean isAutoRepeat = ServerController.getInstance().getTopController().
                 			getTopModel().isAutoRepeatCheckBoxChecked();
                 if (isShouldSend) {
-                    session.getBasicRemote().sendObject(serverCommonDataObject.getMessage());
-                    double timeElapsed = ServerCommonData.getInstance().getMessage().
-                        getTimeStamp();
+                	MessageModel messageModel = new MessageModel();
+                	messageModel = serverCommonDataObject.getMessage();
+                	messageModel.setTimeStamp(syncTimeElapsed);
+                    session.getBasicRemote().sendObject(messageModel);
+//                    double timeElapsed = ServerCommonData.getInstance().getMessage().
+//                        getTimeStamp();
                     double dataInterval = ServerCommonData.getInstance().getMessage().
-                        getInterval();
+                        getInterval()/connectionCount;
+                    timeElapsed = timeElapsed + dataInterval;
                     ServerCommonData.getInstance().getMessage().setTimeStamp(
                         timeElapsed + dataInterval);
-                    ServerController.getInstance().getTimerController().updateTimeStamp(timeElapsed);
+                    ServerController.getInstance().getTimerController().updateTimeStamp((int)timeElapsed);
+                    syncTimeElapsed = syncTimeElapsed + dataInterval * connectionCount;
                     if (!isAutoRepeat)
                       ServerController.getInstance().getTopController().getTopModel().setShouldSendData(false);
                 }
@@ -60,7 +70,7 @@ public class ServerConnectionEndpoint {
             }
 
         } catch (IOException | EncodeException | InterruptedException e) {
-            logger.error("Error occurred in onOpen method :::: " + e.getStackTrace());
+            logger.error("Error occurred in onOpen method :::: " + e.getMessage());
             ServerController.getInstance().getConsoleController().getConsoleModel().
             	logMessage("Error occurred while connecting to client");
         }
@@ -84,10 +94,11 @@ public class ServerConnectionEndpoint {
     @OnClose
     public void onClose(Session session, CloseReason closeReason) {
         logger.info("onClose: " + closeReason);
+        connectionCount--;
         try {
             session.getBasicRemote().sendText("Connection closed");
         } catch (IOException e) {
-            logger.error("Error occurred while sending text::::" + e.getStackTrace());
+            logger.error("Error occurred while sending text::::" + e.getMessage());
         }
     }
 

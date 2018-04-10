@@ -34,7 +34,7 @@ public class ClientConnectionEndpoint {
 		try {
 			session.getBasicRemote().sendText(ServerCommonData.getInstance().getMessage().toString());
 		} catch (IOException ex) {
-			logger.error("Exception in onOpen method::::" + ex.getStackTrace());
+			logger.error("Exception in onOpen method::::" + ex.getMessage());
 		}
 	}
 

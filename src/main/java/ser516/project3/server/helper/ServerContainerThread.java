@@ -30,7 +30,7 @@ public class ServerContainerThread implements Runnable {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			reader.readLine();
 		} catch (Exception e) {
-			logger.error("Error occurred while trying to start the server websocket::::" + e.getStackTrace());
+			logger.error("Error occurred while trying to start the server websocket::::" + e.getMessage());
 			ServerController.getInstance().getConsoleController().getConsoleModel()
 					.logMessage("Error occurred while trying to start the server");
 		} finally {
