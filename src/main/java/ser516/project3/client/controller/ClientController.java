@@ -67,7 +67,8 @@ public class ClientController implements ControllerInterface {
 		clientView.initializeView(subViews);
 		clientView.addServerMenuItemListener(new ServerMenuItemListener());
 		clientView.addClientWindowListener(new WindowClosingEventListener());
-		clientView.addTabbedPaneSelectionListener(new TabSelectionListener());
+        clientView.addTabbedPaneSelectionListener(new TabSelectionListener());
+        expressionsController.setSelected(false);
 	}
 
 	private void initializeHeader(ViewFactory viewFactory, ControllerFactory controllerFactory) {
@@ -190,9 +191,7 @@ public class ClientController implements ControllerInterface {
 			if (e.getSource() instanceof JTabbedPane) {
 				JTabbedPane pane = (JTabbedPane) e.getSource();
 				int selectedIndex = pane.getSelectedIndex();
-				if (selectedIndex == 1) {
-					expressionsController.setSelected(true);
-				}
+				expressionsController.setSelected((selectedIndex == 1) ? true : false);
 			}
 		}
 	}
