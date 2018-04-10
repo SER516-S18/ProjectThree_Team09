@@ -7,7 +7,7 @@ import java.awt.geom.Arc2D;
 
 public class RightEye extends Arc2D.Double implements FaceElementsInterface {
 
-    private final double xPosition = 225;
+    private final double xPosition = 340;
     private final double yPosition = 172;
     private final double width = 30;
     private final double height = 40;

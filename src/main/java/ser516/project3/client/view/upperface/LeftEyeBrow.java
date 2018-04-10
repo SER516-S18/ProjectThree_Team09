@@ -6,7 +6,7 @@ import ser516.project3.client.view.FaceElementsInterface;
 
 public class LeftEyeBrow extends Arc2D.Double implements FaceElementsInterface {
 	// initial positions
-	private static int xPosition = 150;
+	private static int xPosition = 265;
 	private static int yPosition = 163;
 	private static int width = 50;
 	private static int height = 60;

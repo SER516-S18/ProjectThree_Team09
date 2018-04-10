@@ -7,7 +7,7 @@ import java.awt.geom.Arc2D;
 
 public class LeftEyeBall extends Arc2D.Double implements FaceElementsInterface {
 
-    private final double xPosition = 167;
+    private final double xPosition = 282;
     private final double yPosition = 182;
     private final double width = 15;
     private final double height = 20;
@@ -35,10 +35,10 @@ public class LeftEyeBall extends Arc2D.Double implements FaceElementsInterface {
                 this.resetPositionToDefault();
                 break;
             case lookingLeft:
-                setArc(160, yPosition, width, height, 0, 360, CHORD);
+                setArc(275, yPosition, width, height, 0, 360, CHORD);
                 break;
             case lookingRight:
-                setArc(175, yPosition, width, height, 0, 360, CHORD);
+                setArc(290, yPosition, width, height, 0, 360, CHORD);
                 break;
         }
     }
