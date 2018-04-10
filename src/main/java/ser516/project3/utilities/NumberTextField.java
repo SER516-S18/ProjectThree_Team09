@@ -14,8 +14,10 @@ import static java.awt.event.KeyEvent.*;
  */
 public class NumberTextField extends JTextField {
 	private static final long serialVersionUID = 1L;
+	private boolean isDouble = false;
 
-	public NumberTextField(String input) {
+	public NumberTextField(String input, boolean isDouble) {
+		this.isDouble = isDouble;
 		setText(input);
 	}
 
@@ -25,6 +27,8 @@ public class NumberTextField extends JTextField {
 				|| keyEvent.getKeyChar() == VK_ENTER || keyEvent.getKeyCode() == VK_LEFT
 				|| keyEvent.getKeyCode() == VK_RIGHT)
 				|| (getText().length() < 4 && (Character.isDigit(keyEvent.getKeyChar())))) {
+			super.processKeyEvent(keyEvent);
+		} else if(getText().length() < 4 && isDouble && keyEvent.getKeyChar() == VK_PERIOD) {
 			super.processKeyEvent(keyEvent);
 		}
 		keyEvent.consume();

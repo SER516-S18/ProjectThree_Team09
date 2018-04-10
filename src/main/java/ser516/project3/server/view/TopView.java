@@ -3,6 +3,7 @@ package ser516.project3.server.view;
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.TopModel;
+import ser516.project3.utilities.NumberTextField;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -70,7 +71,7 @@ public class TopView extends JPanel implements ViewInterface{
 
    /** 
     * Method to create labels in server settings panel
-	* @param gridBagConstraints-GridBagConstraints object to set the position
+	* @param gridBagConstraint GridBagConstraints object to set the position
 	* 		  for each label
 	* 
 	*/
@@ -88,12 +89,12 @@ public class TopView extends JPanel implements ViewInterface{
   
   /** 
    * Method to create text fields in server settings panel
-   * @param gridBagConstraints-GridBagConstraints object to set the position
+   * @param gridBagConstraint GridBagConstraints object to set the position
    * 		  for each text field
    * 
    */
   private void createIntervalInputTextField(GridBagConstraints gridBagConstraint) {
-	    intervalInputTextField = new JTextField("" + topModel.getInterval());
+	    intervalInputTextField = new NumberTextField("" + topModel.getInterval(), true);
 	    intervalInputTextField.setBorder(BorderFactory.createLineBorder(Color.black));
 	    intervalInputTextField.setColumns(3);
 	    intervalInputTextField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -108,7 +109,7 @@ public class TopView extends JPanel implements ViewInterface{
 
   /** 
    * Method to create CheckBox in server settings panel
-   * @param gridBagConstraints-GridBagConstraints object to set the position
+   * @param gridBagConstraint GridBagConstraints object to set the position
    * 		  for Auto-Repeat checkBox
    * 
    */	
@@ -125,7 +126,7 @@ public class TopView extends JPanel implements ViewInterface{
 
   /** 
    * Method to create a start/stop button in settings panel
-   * @param gridBagConstraints-GridBagConstraints object to set the position
+   * @param gridBagConstraint GridBagConstraints object to set the position
    * 		  for toggleButton
    * 
    */
@@ -143,7 +144,7 @@ public class TopView extends JPanel implements ViewInterface{
 
   /** 
    * Method to create a send button in settings panel
-   * @param gridBagConstraints-GridBagConstraints object to set the position
+   * @param gridBagConstraint GridBagConstraints object to set the position
    * 		  for toggleButton
    * 
    */
@@ -162,7 +163,7 @@ public class TopView extends JPanel implements ViewInterface{
 
   /** 
    * Method to create a status indicator in settings panel
-   * @param gridBagConstraints-GridBagConstraints object to set the position
+   * @param gridBagConstraint GridBagConstraints object to set the position
    * 		  for toggleButton
    * 
    */

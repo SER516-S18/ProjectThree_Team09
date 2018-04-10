@@ -7,6 +7,7 @@ public class TopModel implements ModelInterface {
   private boolean autoRepeatCheckBoxChecked;
   private boolean serverStarted;
   private boolean shouldSendData;
+  private boolean intervalError;
   private boolean intervalEditable;
   private boolean autoRepeatEnabled;
   private boolean sendButtonEnabled;
@@ -95,5 +96,13 @@ public class TopModel implements ModelInterface {
 
   public void setIntervalEditable(boolean intervalEditable) {
     this.intervalEditable = intervalEditable;
+  }
+
+  public boolean isIntervalError() {
+    return intervalError;
+  }
+
+  public void setIntervalError(boolean intervalError) {
+    this.intervalError = intervalError;
   }
 }

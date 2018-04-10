@@ -7,6 +7,7 @@ import ser516.project3.server.service.ServerConnectionServiceInterface;
 import ser516.project3.server.view.TopView;
 import ser516.project3.utilities.ServerCommonData;
 
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
@@ -73,10 +74,14 @@ public class TopController implements ControllerInterface{
           topModel.setInterval(Double.parseDouble(e.getDocument().getText(0, 
         		  									e.getDocument().getLength())));
         }
+        topModel.setIntervalError(false);
         ServerCommonData.getInstance().getMessage().setInterval(topModel.getInterval());
         logger.info("Removed value of interval");
+      } catch(NumberFormatException ex) {
+        topModel.setIntervalError(true);
+        JOptionPane.showMessageDialog(null, "Invalid interval!");
       } catch(BadLocationException ex) {
-        ex.printStackTrace();
+        logger.info("Some problem in the interval input.");
       }
     }
 	/**
@@ -88,9 +93,13 @@ public class TopController implements ControllerInterface{
         topModel.setInterval(Double.parseDouble(e.getDocument().getText(0, 
         											e.getDocument().getLength())));
         ServerCommonData.getInstance().getMessage().setInterval(topModel.getInterval());
+        topModel.setIntervalError(false);
         logger.info("Inserted value of interval");
+      } catch(NumberFormatException ex) {
+        topModel.setIntervalError(true);
+        JOptionPane.showMessageDialog(null, "Invalid interval!");
       } catch(BadLocationException ex) {
-        ex.printStackTrace();
+        logger.info("Some problem in the interval input.");
       }
     }
 
@@ -153,23 +162,27 @@ public class TopController implements ControllerInterface{
     @Override
     public void actionPerformed(ActionEvent e) {
       logger.info("Send button pressed");
-      ServerController.getInstance().getConsoleController().getConsoleModel().
+      if(!topModel.isIntervalError()) {
+        ServerController.getInstance().getConsoleController().getConsoleModel().
       											logMessage("Sending Data to Client.");
-      if(topModel.isAutoRepeatCheckBoxChecked()) {
-        if(topModel.getSendButtonText().equals(START))
-          topModel.setSendButtonText(STOP);
-        else
-          topModel.setSendButtonText(START);
-        topModel.setAutoRepeatEnabled(!topModel.isAutoRepeatEnabled());
-        topModel.setIntervalEditable(!topModel.isIntervalEditable());
-        topView.updateSendButtonText();
-        topView.enableDisableAutoRepeatCheckBox();
-        topView.enableDisableEditableIntervalInputTextField();
-      }
-      if (topModel.isShouldSendData()) {
-        topModel.setShouldSendData(false);
+        if(topModel.isAutoRepeatCheckBoxChecked()) {
+          if(topModel.getSendButtonText().equals(START))
+            topModel.setSendButtonText(STOP);
+          else
+            topModel.setSendButtonText(START);
+          topModel.setAutoRepeatEnabled(!topModel.isAutoRepeatEnabled());
+          topModel.setIntervalEditable(!topModel.isIntervalEditable());
+          topView.updateSendButtonText();
+          topView.enableDisableAutoRepeatCheckBox();
+          topView.enableDisableEditableIntervalInputTextField();
+        }
+        if (topModel.isShouldSendData()) {
+          topModel.setShouldSendData(false);
+        } else {
+          topModel.setShouldSendData(true);
+        }
       } else {
-        topModel.setShouldSendData(true);
+        JOptionPane.showMessageDialog(null, "Invalid interval! Please correct it.");
       }
     }
   }

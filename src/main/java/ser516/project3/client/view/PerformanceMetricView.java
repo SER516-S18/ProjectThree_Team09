@@ -135,7 +135,7 @@ public class PerformanceMetricView extends JPanel implements ViewInterface {
 		gridBagConstraints.gridy = 3;
 		gridBagConstraints.ipadx = 20;
 		gridBagConstraints.ipady = 20;
-		displayLengthField = new NumberTextField("" + performanceMetricModel.getDisplayLength());
+		displayLengthField = new NumberTextField("" + performanceMetricModel.getDisplayLength(), false);
 		displayLengthField.setBackground(Color.decode(ClientConstants.TEXT_FIELD_COLOR_HEX));
 		displayLengthField.setForeground(Color.WHITE);
 		displayLengthField.setHorizontalAlignment(SwingConstants.CENTER);
