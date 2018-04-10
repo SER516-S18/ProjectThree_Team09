@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ser516.project3.server.controller;
 
 import java.awt.event.WindowAdapter;
@@ -47,6 +44,11 @@ public class ServerController implements ControllerInterface {
 
 	private static ServerController instance;
 
+    /**
+	 * Constructor to initialize all components in the 
+	 * server UI and also the  set up a Server service object
+	 * to perform requested tasks
+	 */	
 	public ServerController() {
 		viewFactory = new ViewFactory();
 		ControllerFactory controllerFactory = new ControllerFactory();
@@ -57,14 +59,22 @@ public class ServerController implements ControllerInterface {
 		initializeExpressions(viewFactory, controllerFactory);
 		initializeConsole(viewFactory, controllerFactory);
 	}
-
+	
+	/**
+	 * Creates a singleton instance of ServerController. 
+	 * If exists, returns it, else creates it.
+	 * @return instance of the ServerController
+	 */
 	public static ServerController getInstance() {
 		if (instance == null) {
 			instance = new ServerController();
 		}
 		return instance;
 	}
-
+	
+	/**
+	* Method create initialize all the sub panels in the server
+	*/
 	@Override
 	public void initializeView() {
 		serverView = (ServerView) viewFactory.getView("SERVER", null);
@@ -76,6 +86,11 @@ public class ServerController implements ControllerInterface {
 		serverView.addServerWindowListener(new ServerWindowsListener());
 	}
 
+	/**
+	* Method to initialize the top server settings panel
+	* @param viewFactory- ViewFactory object
+	* @param controllerFactory- ControllerFactory object
+	*/
 	private void initializeTop(ViewFactory viewFactory, ControllerFactory controllerFactory) {
 		TopModel topModel = new TopModel();
 		TopView topView = (TopView) viewFactory.getView("TOP", topModel);
@@ -84,6 +99,11 @@ public class ServerController implements ControllerInterface {
 		topController.initializeView();
 	}
 
+	/**
+	* Method to initialize the server timer panel
+	* @param viewFactory- ViewFactory object
+	* @param controllerFactory- ControllerFactory object
+	*/
 	private void initializeTimer(ViewFactory viewFactory, ControllerFactory controllerFactory) {
 		TimerModel timerModel = new TimerModel();
 		TimerView timerView = (TimerView) viewFactory.getView("TIMER", timerModel);
@@ -91,6 +111,11 @@ public class ServerController implements ControllerInterface {
 		timerController.initializeView();
 	}
 
+	/**
+	* Method to initialize the emotions panel
+	* @param viewFactory- ViewFactory object
+	* @param controllerFactory- ControllerFactory object
+	*/
 	private void initializeEmotions(ViewFactory viewFactory, ControllerFactory controllerFactory) {
 		EmotionsModel emotionsModel = new EmotionsModel();
 		EmotionsView emotionsView = (EmotionsView) viewFactory.getView("EMOTIONS", emotionsModel);
@@ -99,26 +124,43 @@ public class ServerController implements ControllerInterface {
 		emotionsController.initializeView();
 	}
 
-	private void initializeExpressions(ViewFactory viewFactory, ControllerFactory controllerFactory) {
+	/**
+	* Method to initialize the expressions panel
+	* @param viewFactory- ViewFactory object
+	* @param controllerFactory- ControllerFactory object
+	*/
+	private void initializeExpressions(ViewFactory viewFactory,ControllerFactory controllerFactory){
 		ExpressionsModel expressionsModel = new ExpressionsModel();
-		ExpressionsView expressionsView = (ExpressionsView) viewFactory.getView("SERVER_EXPRESSIONS", expressionsModel);
-		expressionsController = (ExpressionsController) controllerFactory.getController("SERVER_EXPRESSIONS",
-				expressionsModel, expressionsView, null);
+		ExpressionsView expressionsView = (ExpressionsView) viewFactory.getView(
+				"SERVER_EXPRESSIONS", expressionsModel);
+		expressionsController = (ExpressionsController) controllerFactory.getController(
+				"SERVER_EXPRESSIONS", expressionsModel, expressionsView, null);
 		expressionsController.initializeView();
 	}
 
-	private void initializeConsole(ViewFactory viewFactory, ControllerFactory controllerFactory) {
+	/**
+	* Method to initialize the console panel
+	* @param viewFactory- ViewFactory object
+	* @param controllerFactory- ControllerFactory object
+	*/
+	private void initializeConsole(ViewFactory viewFactory, ControllerFactory controllerFactory){
 		ConsoleModel consoleModel = new ConsoleModel();
 		ConsoleView consoleView = (ConsoleView) viewFactory.getView("CONSOLE", consoleModel);
-		consoleController = (ConsoleController) controllerFactory.getController("CONSOLE", consoleModel, consoleView,
-				null);
+		consoleController = (ConsoleController) controllerFactory.getController("CONSOLE",
+				consoleModel, consoleView, null);
 		consoleController.initializeView();
 	}
 
+	/**
+	* Method to make the server frame visible
+	*/	
 	public void showServer() {
 		serverView.setVisible(true);
 	}
 
+	/**
+	 * Inner class to add window listener to server window
+	 */
 	class ServerWindowsListener extends WindowAdapter {
 		public void windowClosed(WindowEvent e) {
 			serverConnectionService.stopServerEndpoint();
@@ -126,14 +168,26 @@ public class ServerController implements ControllerInterface {
 		}
 	}
 
+	/**
+	 * Gets the Top panel controller object
+	 * @return TopController object
+	 */	
 	public TopController getTopController() {
 		return topController;
 	}
-
+	
+	/**
+	 * Gets the Timer panel controller object
+	 * @return TimerController object
+	 */	
 	public TimerController getTimerController() {
 		return timerController;
 	}
-
+	
+	/**
+	 * Gets the Console panel controller object
+	 * @return ConsoleController object
+	 */	
 	public ConsoleController getConsoleController() {
 		return consoleController;
 	}
