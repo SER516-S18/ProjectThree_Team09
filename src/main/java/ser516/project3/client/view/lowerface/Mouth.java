@@ -86,6 +86,8 @@ public class Mouth extends Arc2D.Double implements FaceElementsInterface {
                 //reset it to smile
                 setMouthExpression(MouthExpression.smile);
             }
+        }else if(changedValueRoundOff == 0) {
+        	resetPositionToDefault();
         }
     }
 

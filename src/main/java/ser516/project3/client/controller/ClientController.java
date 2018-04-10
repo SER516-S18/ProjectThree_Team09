@@ -15,7 +15,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
+/**
+ * The Controller class to handle requests from the Client UI
+ * @author vsriva12
+ *
+ */
 public class ClientController implements ControllerInterface {
 	private boolean connected = false;
 	private ClientConnectionServiceInterface clientConnectionService;
@@ -111,8 +115,8 @@ public class ClientController implements ControllerInterface {
 
 	/**
 	 * Method to connect to a server end point
-	 * @param ipAddress
-	 * @param port
+	 * @param ipAddress - the IP address field
+	 * @param port - the port field
 	 */
 	public void toggleConnectionToServer(String ipAddress, int port) {
 		if (connected) {

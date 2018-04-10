@@ -8,6 +8,14 @@ import org.glassfish.tyrus.server.Server;
 
 import ser516.project3.server.controller.ServerController;
 
+/**
+ * The thread class for Server Container which initializes the glass fish
+ * container to provide environment for the server's web socket to receive
+ * connections
+ * 
+ * @author vsriva12
+ *
+ */
 public class ServerContainerThread implements Runnable {
 	final static Logger logger = Logger.getLogger(ServerContainerThread.class);
 	private static final int PORT = 1516;
@@ -23,7 +31,8 @@ public class ServerContainerThread implements Runnable {
 			reader.readLine();
 		} catch (Exception e) {
 			logger.error("Error occurred while trying to start the server websocket::::" + e.getStackTrace());
-			ServerController.getInstance().getConsoleController().getConsoleModel().logMessage("Error occurred while trying to start the server");
+			ServerController.getInstance().getConsoleController().getConsoleModel()
+					.logMessage("Error occurred while trying to start the server");
 		} finally {
 			server.stop();
 			ServerController.getInstance().getTopController().getTopModel().setServerStarted(false);
@@ -38,11 +47,11 @@ public class ServerContainerThread implements Runnable {
 	}
 
 	/**
-	 * @param server the server to set
+	 * @param server
+	 *            the server to set
 	 */
 	public void setServer(Server server) {
 		this.server = server;
 	}
-	
 
 }

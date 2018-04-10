@@ -4,7 +4,11 @@ import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.client.view.ExpressionsView;
 import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.model.ExpressionsModel;
-
+/**
+ * The Controller class for Expressions related tasks
+ * @author vsriva12
+ *
+ */
 public class ExpressionsController implements ControllerInterface {
   private ExpressionsModel expressionsModel;
   private ExpressionsView expressionsView;

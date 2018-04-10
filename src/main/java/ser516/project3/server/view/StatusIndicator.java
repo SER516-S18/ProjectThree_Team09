@@ -2,6 +2,9 @@ package ser516.project3.server.view;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -26,10 +29,13 @@ public class StatusIndicator extends JPanel{
 	 * Method to toggle the visibility of the circle every 500ms
 	 */
 	public StatusIndicator() {
-		this.blinkAnimation = new Timer(BLINK_INTERVAL, event -> {
-			this.isVisible = !this.isVisible;
-			this.repaint();
-		});
+		this.blinkAnimation = new Timer(BLINK_INTERVAL, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				isVisible = !isVisible;
+				repaint();	
+			}
+		 });
 		this.setBlinking(false);
 	}
 
@@ -64,7 +70,7 @@ public class StatusIndicator extends JPanel{
 		super.paint(graphics);
 		graphics.setColor(circleColor);
 		if (isVisible) {
-			graphics.fillOval(10, 20, 20, 20);
+			graphics.fillOval(10, 20, 15, 15);
 		}
 	}
 

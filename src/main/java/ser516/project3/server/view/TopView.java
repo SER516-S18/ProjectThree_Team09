@@ -136,7 +136,7 @@ public class TopView extends JPanel implements ViewInterface{
 	    gridBagConstraint.weighty = 2.0;
 	    gridBagConstraint.gridx = 0;
 	    gridBagConstraint.gridy = 1;
-	    gridBagConstraint.ipady = 20;
+	    gridBagConstraint.ipady = 10;
 	    gridBagConstraint.insets = new Insets(0, 30, 0, 30);
 	    add(serverStartStopButton, gridBagConstraint);
   }
@@ -153,10 +153,10 @@ public class TopView extends JPanel implements ViewInterface{
 	    sendButton.setEnabled(false);
 	    gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
 	    gridBagConstraint.weighty = 2.0;
-	    gridBagConstraint.gridx = 1;
+	    gridBagConstraint.gridx = 2;
 	    gridBagConstraint.gridy = 1;
-	    gridBagConstraint.ipady = 20;
-	    gridBagConstraint.insets = new Insets(0, 30, 0, 30);
+	    gridBagConstraint.ipady = 0;
+	    gridBagConstraint.insets = new Insets(0, 10, 0, 0);
 	    add(sendButton, gridBagConstraint);
   }
 
@@ -171,9 +171,9 @@ public class TopView extends JPanel implements ViewInterface{
 	    statusIndicator.setBounds(100, 200, 50, 80);
 	    gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
 	    gridBagConstraint.weightx = 1;
-	    gridBagConstraint.gridx = 2;
+	    gridBagConstraint.gridx = 1;
 	    gridBagConstraint.gridy = 1;
-	    gridBagConstraint.ipady = 10;
+	    gridBagConstraint.ipady = 0;
 	    gridBagConstraint.insets = new Insets(0, 0, 0, 0);
 	    add(statusIndicator,gridBagConstraint);
   }

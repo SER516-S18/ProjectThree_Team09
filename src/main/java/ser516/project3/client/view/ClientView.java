@@ -7,6 +7,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * The ClientView class extends JFrame class to create the main clientUI window
+ * and add the corresponding listeners to it
+ * 
+ * @author vsriva12
+ *
+ */
+@SuppressWarnings("serial")
 public class ClientView extends JFrame implements ViewInterface {
 
 	private static ClientView clientViewInstance = null;
@@ -33,7 +41,7 @@ public class ClientView extends JFrame implements ViewInterface {
 
 	@Override
 	public void initializeView(ViewInterface subviews[]) {
-		headerView = (HeaderView)subviews[0];
+		headerView = (HeaderView) subviews[0];
 		performanceMetricView = (PerformanceMetricView) subviews[1];
 		expressionsView = (ExpressionsView) subviews[2];
 

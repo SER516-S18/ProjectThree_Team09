@@ -1,11 +1,6 @@
 package ser516.project3.client.view;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Shape;
+import java.awt.*;
 import java.awt.geom.Arc2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -24,6 +19,12 @@ import ser516.project3.client.view.upperface.RightEyeBrow;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.MessageModel;
 
+/**
+ * The FaceView class creates the face panel on the client UI
+ * 
+ * @author vsriva12
+ *
+ */
 @SuppressWarnings("serial")
 public class FaceView extends JPanel implements ViewInterface {
 	private static Color faceColor = new Color(255, 223, 135);
@@ -82,7 +83,6 @@ public class FaceView extends JPanel implements ViewInterface {
 	public void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
 		graphics.setColor(new Color(96, 85, 46));
-		//graphics.drawOval(110, 110, width - 100, height - 80);
 
 		Graphics2D graphics2D = (Graphics2D) graphics;
         graphics2D.drawImage(this.faceBufferedImage, 45,40,null);
@@ -90,12 +90,11 @@ public class FaceView extends JPanel implements ViewInterface {
 
 		graphics2D.setStroke(new BasicStroke(4));
 
-        //graphics.drawPolygon(new int[] {207, 197, 217}, new int[] {205, 245, 245}, 3);
 		graphics2D.draw(LeftEyeBrow.getInstance());
 		graphics2D.draw(RightEyeBrow.getInstance());
 		graphics2D.setStroke(new BasicStroke(3));
 
-        graphics2D.draw(leftEye);
+		graphics2D.draw(leftEye);
 		graphics2D.draw(rightEye);
 		graphics2D.fill(leftEyeBall);
 		graphics2D.fill(rightEyeBall);
@@ -106,18 +105,18 @@ public class FaceView extends JPanel implements ViewInterface {
 	}
 
 	public void updateFaceElements(MessageModel messageBean) {
-		LeftEyeBrow.getInstance().moveElement("raiseBrow",messageBean.getAbstractExpression("raiseBrow"));
-		RightEyeBrow.getInstance().moveElement("raiseBrow",messageBean.getAbstractExpression("raiseBrow"));
-		LeftEyeBrow.getInstance().moveElement("furrowBrow",messageBean.getAbstractExpression("furrowBrow"));
-		RightEyeBrow.getInstance().moveElement("furrowBrow",messageBean.getAbstractExpression("furrowBrow"));
+		LeftEyeBrow.getInstance().moveElement("raiseBrow", messageBean.getAbstractExpression("raiseBrow"));
+		RightEyeBrow.getInstance().moveElement("raiseBrow", messageBean.getAbstractExpression("raiseBrow"));
+		LeftEyeBrow.getInstance().moveElement("furrowBrow", messageBean.getAbstractExpression("furrowBrow"));
+		RightEyeBrow.getInstance().moveElement("furrowBrow", messageBean.getAbstractExpression("furrowBrow"));
 		String lowerFaceExpression = messageBean.getSelectionFlag("lowerFace");
 		mouthView.moveElement(lowerFaceExpression, messageBean.getAbstractExpression(lowerFaceExpression));
 
 		String eyeExpression = messageBean.getSelectionFlag("eye");
-        leftEye.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
-        rightEye.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
-        leftEyeBall.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
-        rightEyeBall.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
+		leftEye.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
+		rightEye.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
+		leftEyeBall.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
+		rightEyeBall.moveElement(eyeExpression, messageBean.getConcreteExpression(eyeExpression));
 
 		Graphics2D graphics2d = (Graphics2D) getGraphics();
 		paintComponent(graphics2d);
@@ -130,9 +129,7 @@ public class FaceView extends JPanel implements ViewInterface {
 
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
-			
+
 	}
-	
-	
 
 }
