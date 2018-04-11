@@ -20,8 +20,8 @@ import ser516.project3.server.view.ExpressionsView;
 import ser516.project3.server.view.ServerView;
 import ser516.project3.server.view.TimerView;
 import ser516.project3.server.view.TopView;
-import ser516.project3.utilities.ControllerFactory;
-import ser516.project3.utilities.ViewFactory;
+import ser516.project3.factory.ControllerFactory;
+import ser516.project3.factory.ViewFactory;
 
 /**
  * The ServerController class is the main controller class for the server

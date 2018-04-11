@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.apache.log4j.Logger;
 
-import ser516.project3.client.controller.ClientController;
 import ser516.project3.client.view.ExpressionsGraphObserver;
 import ser516.project3.client.view.FaceViewObserver;
 import ser516.project3.client.view.HeaderObserver;
@@ -14,7 +13,7 @@ import ser516.project3.model.HeaderObservable;
 import ser516.project3.model.PerformanceMetricDataObservable;
 import ser516.project3.client.view.PerformanceMetricGraphObserver;
 import ser516.project3.client.helper.ClientConnectionThread;
-import ser516.project3.utilities.ControllerFactory;
+import ser516.project3.factory.ControllerFactory;
 
 public class ClientConnectionServiceImpl implements ClientConnectionServiceInterface {
 	final static Logger logger = Logger.getLogger(ClientConnectionServiceImpl.class);

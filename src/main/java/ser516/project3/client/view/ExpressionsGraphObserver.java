@@ -3,10 +3,9 @@ package ser516.project3.client.view;
 import java.util.Observable;
 import java.util.Observer;
 
-import ser516.project3.client.controller.ClientController;
 import ser516.project3.client.controller.GraphController;
 import ser516.project3.model.ExpressionsDataObservable;
-import ser516.project3.utilities.ControllerFactory;
+import ser516.project3.factory.ControllerFactory;
 
 /**
  * 

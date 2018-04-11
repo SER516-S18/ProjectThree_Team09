@@ -5,10 +5,9 @@ import java.util.Observer;
 
 import org.apache.log4j.Logger;
 
-import ser516.project3.client.controller.ClientController;
 import ser516.project3.client.controller.GraphController;
 import ser516.project3.model.PerformanceMetricDataObservable;
-import ser516.project3.utilities.ControllerFactory;
+import ser516.project3.factory.ControllerFactory;
 
 /**
  * 
