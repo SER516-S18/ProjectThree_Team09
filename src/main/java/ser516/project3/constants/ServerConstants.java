@@ -65,6 +65,17 @@ public class ServerConstants {
     public final static String ERROR_SERVER_ENDPOINT = "Error occurred in Server Endpoint";
     public final static String LOCALHOST = "localhost";
     public final static String ERROR_SERVER_START = "Error occurred while trying to start the server ";
+    public final static String SERVER_STARTED = "Server Started";
+    public final static String SERVER_STOPPED = "Server Stopped";
+
+    // View constants on server display
+    public final static String FONT_NAME = "Courier New";
+    public final static String CONSOLE = "Console";
+    public final static String COLOR_CODE = "#747b83";
+    public final static String CLEAR = "Clear";
+    public final static String DATE_FORMAT = "dd/MM/yy HH:mm:ss";
+    public final static String COLOR_CODE2 = "#616266"
+
 
 
 

@@ -1,6 +1,7 @@
 package ser516.project3.server.view;
 
 import org.apache.log4j.Logger;
+import ser516.project3.constants.ServerConstants;
 import ser516.project3.interfaces.ViewInterface;
 
 import javax.swing.*;
@@ -27,7 +28,7 @@ public class ServerView extends JFrame implements ViewInterface {
 	private ExpressionsView expressionsView;
 	private ConsoleView consoleView;
 
-	private static final Font FONT = new Font("Courier New", Font.BOLD, 17);
+	private static final Font FONT = new Font(ServerConstants.FONT_NAME, Font.BOLD, 17);
 
 	/** 
      * Method to return the ServerView instance
@@ -59,7 +60,7 @@ public class ServerView extends JFrame implements ViewInterface {
 
 		setMinimumSize(new Dimension(500, 800));
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Server");
+		setTitle(ServerConstants.SERVER);
 		setVisible(true);
 	}
 

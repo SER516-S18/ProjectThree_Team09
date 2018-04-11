@@ -21,6 +21,7 @@ import javax.swing.event.DocumentListener;
 import com.alee.laf.button.WebButton;
 
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.constants.ServerConstants;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.TopModel;
 import ser516.project3.utilities.NumberTextField;
@@ -197,7 +198,7 @@ public class TopView extends JPanel implements ViewInterface{
   private void createStatusIndicator(GridBagConstraints gridBagConstraint) {
 	    statusIndicator.setBorder(BorderFactory.createEmptyBorder(30, 10, 10, 10));
 	    statusIndicator.setBounds(100, 200, 50, 80);
-	    statusIndicator.setBackground(Color.decode("#747b83"));
+	    statusIndicator.setBackground(Color.decode(ServerConstants.COLOR_CODE));
 	    gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
 	    gridBagConstraint.weightx = 1;
 	    gridBagConstraint.gridx = 1;

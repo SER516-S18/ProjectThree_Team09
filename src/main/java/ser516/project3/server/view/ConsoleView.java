@@ -2,6 +2,7 @@ package ser516.project3.server.view;
 
 import com.alee.laf.button.WebButton;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.constants.ServerConstants;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ConsoleModel;
 
@@ -28,7 +29,7 @@ public class ConsoleView extends JPanel implements Observer, ViewInterface {
     private JScrollPane consoleScroll;
     private ConsoleModel consoleModel;
 
-    private static final Font SUBFONT = new Font("Courier New", Font.BOLD, 14);
+    private static final Font SUBFONT = new Font(ServerConstants.FONT_NAME, Font.BOLD, 14);
     private static final Color LIGHTGREY = new Color(245, 245, 245);
 
 
@@ -48,15 +49,15 @@ public class ConsoleView extends JPanel implements Observer, ViewInterface {
 	 */
     @Override
     public void initializeView(ViewInterface[] subViews) {
-        setBorder(new TitledBorder(null, "Console", TitledBorder.LEADING,
+        setBorder(new TitledBorder(null, ServerConstants.CONSOLE, TitledBorder.LEADING,
             TitledBorder.TOP, SUBFONT, null));
-        setBackground(Color.decode("#747b83"));
+        setBackground(Color.decode(ServerConstants.COLOR_CODE));
         setLayout(new FlowLayout());
 
         consoleOutput = new JTextArea();
         consoleOutput.setEditable(false);
         consoleOutput.setBackground(LIGHTGREY);
-        consoleOutput.setFont(new Font("Courier New", Font.PLAIN, 12));
+        consoleOutput.setFont(new Font(ServerConstants.FONT_NAME, Font.PLAIN, 12));
 
         consoleScroll = new JScrollPane(consoleOutput, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
         										JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -66,7 +67,7 @@ public class ConsoleView extends JPanel implements Observer, ViewInterface {
             BorderFactory.createEmptyBorder(1, 1, 1, 1)));
 
         clearConsole = new WebButton();
-        clearConsole.setText("Clear");
+        clearConsole.setText(ServerConstants.CLEAR);
         clearConsole.setBottomBgColor(Color.BLACK);
         clearConsole.setTopBgColor(Color.BLACK);
         clearConsole.setBottomSelectedBgColor(Color.WHITE);
@@ -84,7 +85,7 @@ public class ConsoleView extends JPanel implements Observer, ViewInterface {
     public void update(Observable messageArrayObject, Object observerObj) {
         ConsoleModel model = (ConsoleModel) messageArrayObject;
         String message = model.getLogArray().get(model.getLogArray().size() - 1);
-        DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+        DateFormat df = new SimpleDateFormat(ServerConstants.DATE_FORMAT);
         Date dateObj = new Date();
 
         consoleOutput.append("[" + df.format(dateObj) + "] : " + message);
