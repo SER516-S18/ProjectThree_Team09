@@ -80,11 +80,20 @@ public class ClientController implements ControllerInterface, CommonDataInterfac
         setTabSelected(false);
 	}
 
+	/**
+	 * Method to get Client view
+	 * and @return Client view object
+	 */
 	@Override
 	public ViewInterface getView() {
 		return null;
 	}
 
+	/**
+	 * Returns the set of sub controllers in case any
+	 *
+	 * @return array containing sub controllers
+	 */
 	@Override
 	public ControllerInterface[] getSubControllers() {
 		ControllerInterface[] subControllers = {headerController, performanceMetricController, expressionsController,
@@ -92,12 +101,21 @@ public class ClientController implements ControllerInterface, CommonDataInterfac
 		return subControllers;
 	}
 
+    /**
+     * Overridden method to set the connection status of the client to the server
+     *
+     * @param connectionStatus the status of the connection to server
+     */
 	@Override
 	public void setConnectionStatus(boolean connectionStatus) {
 		connected = connectionStatus;
 		headerController.setConnectionStatus(connectionStatus);
 	}
 
+    /**
+     *
+     * @param tabSelected Current selected tab.
+     */
 	public void setTabSelected(boolean tabSelected) {
 		expressionsController.setTabSelected(tabSelected);
 	}
@@ -105,6 +123,9 @@ public class ClientController implements ControllerInterface, CommonDataInterfac
 	/**
 	 *  Header panel is initalized  where connection to server
 	 *  dialog box is created.
+     *
+     * @param controllerFactory the factory object to create the instances of the controller classes
+     * @param viewFactory the object to create the instances of the views
 	 */
 	private void initializeHeader(ClientViewFactory viewFactory, ClientControllerFactory controllerFactory) {
 		ConnectionPopUpModel connectionPopUpModel = new ConnectionPopUpModel();
@@ -121,7 +142,9 @@ public class ClientController implements ControllerInterface, CommonDataInterfac
 	/**
 	 * Performance Metrics panel is created where graph controller and performance metric
 	 * views are initialized.
-	 *
+     *
+     * @param controllerFactory the factory object to create the instances of the controller classes
+     * @param viewFactory the object to create the instances of the views
 	 */
 	private void initializePerformanceMetrics(ClientViewFactory viewFactory, ClientControllerFactory controllerFactory) {
 		GraphModel performanceMetricGraphModel = new GraphModel();
@@ -140,6 +163,9 @@ public class ClientController implements ControllerInterface, CommonDataInterfac
 	/**
 	 * Expression panel is created where expression controller graph
 	 * and expression controller views are created
+     *
+     * @param controllerFactory the factory object to create the instances of the controller classes
+     * @param viewFactory the object to create the instances of the views
 	 */
 	private void initializeExpressions(ClientViewFactory viewFactory, ClientControllerFactory controllerFactory) {
 		GraphModel expressionsGraphModel = new GraphModel();

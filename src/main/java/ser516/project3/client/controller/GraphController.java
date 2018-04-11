@@ -38,6 +38,9 @@ public class GraphController implements ControllerInterface {
 		this.graphView = graphView;
 	}
 
+	/**
+	 * initializes the graph view with respective values
+	 */
 	@Override
 	public void initializeView() {
 		graphView.initializeView(null);
@@ -51,6 +54,11 @@ public class GraphController implements ControllerInterface {
 		return graphView;
 	}
 
+	/**
+	 * Returns the set of sub controllers in case any
+	 *
+	 * @return array containing sub controllers
+	 */
 	@Override
 	public ControllerInterface[] getSubControllers() {
 		return null;

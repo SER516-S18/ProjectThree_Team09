@@ -52,6 +52,11 @@ public class EmotionsController implements ControllerInterface{
     return emotionsView;
   }
 
+  /**
+   * Returns the set of sub controllers in case any
+   *
+   * @return array containing sub controllers
+   */
   @Override
   public ControllerInterface[] getSubControllers() {
     return null;
