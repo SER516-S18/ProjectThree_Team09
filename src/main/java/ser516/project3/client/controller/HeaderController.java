@@ -6,9 +6,7 @@ import java.awt.event.ActionListener;
 import ser516.project3.client.view.HeaderView;
 import ser516.project3.interfaces.CommonDataInterface;
 import ser516.project3.interfaces.ControllerInterface;
-import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.HeaderModel;
-import ser516.project3.utilities.ControllerFactory;
 
 /**
  * This class controls the UI for the header view on client which helps in

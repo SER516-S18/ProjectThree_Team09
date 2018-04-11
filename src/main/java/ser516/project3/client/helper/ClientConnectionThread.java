@@ -12,9 +12,9 @@ import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
 
 import org.apache.log4j.Logger;
-import ser516.project3.client.controller.ClientController;
+
+import ser516.project3.client.controller.ControllerFactory;
 import ser516.project3.constants.ClientConstants;
-import ser516.project3.utilities.ControllerFactory;
 
 /**
  * Thread class to create a client web socket end point

@@ -9,8 +9,6 @@ import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.*;
 import ser516.project3.server.controller.ServerController;
-import ser516.project3.utilities.ControllerFactory;
-import ser516.project3.utilities.ViewFactory;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

@@ -5,8 +5,8 @@ import java.awt.*;
 import javax.swing.UIManager;
 
 import ser516.project3.client.controller.ClientController;
+import ser516.project3.client.controller.ControllerFactory;
 import ser516.project3.constants.ClientConstants;
-import ser516.project3.utilities.ControllerFactory;
 
 /**
  * Main class to initialize the client
