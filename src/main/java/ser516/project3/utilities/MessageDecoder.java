@@ -68,25 +68,31 @@ public class MessageDecoder implements Decoder.Text<MessageModel> {
                     selectionAttributes.getJsonString(selectionFlag.name()).toString());
         }
 
-        // Unmarshal the expression attributes.
-        for (AbstractExpression aex : AbstractExpression.values()) {
-            messageModel.setAbstractExpression(aex.name(),
-                    expressionAttributes.getJsonNumber(aex.name()).doubleValue());
-        }
-        for (ConcreteExpression cex : ConcreteExpression.values()) {
-            messageModel.setConcreteExpression(cex.name(), expressionAttributes.getBoolean(cex.name()));
-        }
-        // Unmarshal the emotion attributes.
-        for (Emotion em : Emotion.values()) {
-            messageModel.setEmotion(em.name(), emotionAttributes.getJsonNumber(em.name()).doubleValue());
-        }
+		// Unmarshal the expression attributes.
+		for (AbstractExpression abstractExpression : AbstractExpression.values()) {
+			messageModel.setAbstractExpression(abstractExpression.name(),
+					expressionAttributes.getJsonNumber(abstractExpression.name()).doubleValue());
+		}
+		for (ConcreteExpression concreteExpression : ConcreteExpression.values()) {
+			messageModel.setConcreteExpression(concreteExpression.name(), 
+					expressionAttributes.getBoolean(concreteExpression.name()));
+		}
+		// Unmarshal the emotion attributes.
+		for (Emotion emotion : Emotion.values()) {
+			messageModel.setEmotion(emotion.name(), emotionAttributes.getJsonNumber(emotion.name()).doubleValue());
+		}
 
-        return messageModel;
-    }
-
-    @Override
-    public boolean willDecode(String s) {
-        return true;
-    }
+		return messageModel;
+	}
+	
+	/**
+	 * Returns a boolean indicating if a given string 
+	 * will be decoded or not
+	 * @param - string to check for decoding
+	 */
+	@Override
+	public boolean willDecode(String string) {
+		return true;
+	}
 
 }

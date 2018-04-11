@@ -87,10 +87,10 @@ public class EmotionsView extends JPanel implements ViewInterface {
      * Method to listener to every spinner in the emotions panel
      *
      * @param changeListener object of ChangeListener
-     */
-    public void addSpinnerListener(ChangeListener changeListener) {
-        for (EmotionPanel em : EmotionPanel.values()) {
-            jspinner[em.id].addChangeListener(changeListener);
-        }
-    }
+	 */
+	public void addSpinnerListener(ChangeListener changeListener) {
+		for(EmotionPanel emotionPanel : EmotionPanel.values()) {
+			jspinner[emotionPanel.id].addChangeListener(changeListener);
+		}
+	}
 }

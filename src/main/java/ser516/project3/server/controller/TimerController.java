@@ -9,7 +9,7 @@ import ser516.project3.server.view.TimerView;
  * The controller can receive and update data from the TimerView,
  * and use this data to update the TimerModel.
  *
- * @author Ser516-Team09
+ * @author Adhiraj Tikku
  */
 public class TimerController implements ControllerInterface {
     private TimerModel timerModel;

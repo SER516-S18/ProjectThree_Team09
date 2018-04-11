@@ -19,7 +19,7 @@ import java.util.Observer;
 
 /**
  * Class to create console and print the status to console
- * with timestamp.
+ * with time stamp.
  *
  * @author Vishakha, Zain, Pratik
  */
@@ -86,10 +86,10 @@ public class ConsoleView extends JPanel implements Observer, ViewInterface {
     public void update(Observable messageArrayObject, Object observerObj) {
         ConsoleModel model = (ConsoleModel) messageArrayObject;
         String message = model.getLogArray().get(model.getLogArray().size() - 1);
-        DateFormat df = new SimpleDateFormat(ServerConstants.DATE_FORMAT);
+        DateFormat dateFormat = new SimpleDateFormat(ServerConstants.DATE_FORMAT);
         Date dateObj = new Date();
 
-        consoleOutput.append("[" + df.format(dateObj) + "] : " + message);
+        consoleOutput.append("[" + dateFormat.format(dateObj) + "] : " + message);
         consoleOutput.append("\n");
     }
 

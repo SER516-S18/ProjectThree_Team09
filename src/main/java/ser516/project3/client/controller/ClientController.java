@@ -29,6 +29,8 @@ import ser516.project3.model.GraphModel;
 import ser516.project3.model.HeaderModel;
 import ser516.project3.model.PerformanceMetricModel;
 import ser516.project3.server.controller.ServerController;
+import ser516.project3.server.controller.ServerControllerFactory;
+
 /**
  * The Controller class to handle requests from the Client UI
  * @author vsriva12, Adhiraj Tikku
@@ -214,8 +216,8 @@ public class ClientController implements ControllerInterface, CommonDataInterfac
 	 */
 	public void openServer() {
         if(serverController == null) {
-            ClientControllerFactory controllerFactory = ClientControllerFactory.getInstance();
-            serverController = (ServerController) controllerFactory.getController("SERVER", null, null, null);
+            ServerControllerFactory controllerFactory = ServerControllerFactory.getInstance();
+            serverController = (ServerController) controllerFactory.getController("SERVER", null, null);
             serverController.initializeView();
         } else {
             serverController.showServer();

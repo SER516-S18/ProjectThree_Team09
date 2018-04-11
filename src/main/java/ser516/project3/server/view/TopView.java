@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
  * Class to create components in server settings panel in the server
  * window and to add listeners for each component
  *
- * @author User
+ * @author Varun, Janani, Sangeetha, Ravi
  */
 public class TopView extends JPanel implements ViewInterface {
 
