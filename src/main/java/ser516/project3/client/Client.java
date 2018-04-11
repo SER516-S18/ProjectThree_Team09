@@ -11,7 +11,7 @@ import ser516.project3.utilities.ControllerFactory;
 /**
  * Main class to initialize the client
  * 
- * @author User
+ * @author Adhiraj Tikku, Manish Tandon
  *
  */
 public class Client {

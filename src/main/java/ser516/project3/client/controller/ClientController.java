@@ -21,7 +21,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 /**
  * The Controller class to handle requests from the Client UI
- * @author vsriva12
+ * @author vsriva12, Adhiraj Tikku
  *
  */
 public class ClientController implements ControllerInterface, CommonDataInterface {

@@ -18,7 +18,8 @@ import ser516.project3.utilities.ControllerFactory;
 
 /**
  * Thread class to create a client web socket end point
- * @author User
+ *
+ * @author Adhiraj Tikku
  *
  */
 public class ClientConnectionThread implements Runnable {
