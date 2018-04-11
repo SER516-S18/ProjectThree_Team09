@@ -1,6 +1,6 @@
 package ser516.project3.client;
 
-import java.awt.EventQueue;
+import java.awt.*;
 
 import javax.swing.UIManager;
 
@@ -41,7 +41,7 @@ public class Client {
 						System.out.println("Look and Feel UI not found");
 					}
 				}
-				ControllerFactory controllerFactory = new ControllerFactory();
+				ControllerFactory controllerFactory = ControllerFactory.getInstance();
 				ClientController clientController = (ClientController) controllerFactory
 						.getController(ClientConstants.CLIENT, null, null, null);
 				clientController.initializeView();

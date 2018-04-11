@@ -6,8 +6,16 @@ import java.io.InputStreamReader;
 import org.apache.log4j.Logger;
 import org.glassfish.tyrus.server.Server;
 
-import ser516.project3.utilities.ServerCommonData;
+import ser516.project3.server.controller.ServerController;
 
+/**
+ * The thread class for Server Container which initializes the glass fish
+ * container to provide environment for the server's web socket to receive
+ * connections
+ * 
+ * @author vsriva12
+ *
+ */
 public class ServerContainerThread implements Runnable {
 	final static Logger logger = Logger.getLogger(ServerContainerThread.class);
 	private static final int PORT = 1516;
@@ -18,14 +26,16 @@ public class ServerContainerThread implements Runnable {
 		server = new Server("localhost", PORT, "", null, ServerConnectionEndpoint.class);
 		try {
 			server.start();
-			ServerCommonData.getInstance().setServerStarted(true);
+			ServerController.getInstance().getTopController().getTopModel().setServerStarted(true);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			reader.readLine();
 		} catch (Exception e) {
-			logger.error("Error occurred while trying to start the server websocket::::" + e.getStackTrace());
+			logger.error("Error occurred while trying to start the server websocket::::" + e.getMessage());
+			ServerController.getInstance().getConsoleController().getConsoleModel()
+					.logMessage("Error occurred while trying to start the server");
 		} finally {
 			server.stop();
-			ServerCommonData.getInstance().setServerStarted(false);
+			ServerController.getInstance().getTopController().getTopModel().setServerStarted(false);
 		}
 	}
 
@@ -37,11 +47,11 @@ public class ServerContainerThread implements Runnable {
 	}
 
 	/**
-	 * @param server the server to set
+	 * @param server
+	 *            the server to set
 	 */
 	public void setServer(Server server) {
 		this.server = server;
 	}
-	
 
 }

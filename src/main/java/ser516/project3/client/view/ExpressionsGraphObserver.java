@@ -1,12 +1,13 @@
 package ser516.project3.client.view;
 
-import ser516.project3.client.controller.ClientController;
-import ser516.project3.client.controller.GraphController;
-import ser516.project3.constants.ClientConstants;
-import ser516.project3.model.ExpressionsDataObservable;
-
 import java.util.Observable;
 import java.util.Observer;
+
+import ser516.project3.client.controller.ClientController;
+import ser516.project3.client.controller.GraphController;
+import ser516.project3.model.ExpressionsDataObservable;
+import ser516.project3.utilities.ControllerFactory;
+
 /**
  * 
  * On receiving new data in ExpressionsDataObservable object update function of
@@ -15,22 +16,17 @@ import java.util.Observer;
  * @author Manish Tandon
  *
  */
-public class ExpressionsGraphObserver implements Observer{
+public class ExpressionsGraphObserver implements Observer {
 
 	@Override
 	public void update(Observable observable, Object observerObj) {
 		ExpressionsDataObservable expressionsDataObservable = (ExpressionsDataObservable) observable;
 
-		GraphController graphController = ClientController.getInstance()
-				.getExpressionsController().getGraphController();
+		GraphController graphController = ControllerFactory.getInstance().getExpressionsGraphController();
 
 		graphController.setGraphData(expressionsDataObservable.getExpressionsData());
 		graphController.setNoOfChannels(12);
-		graphController.setXLength(ClientConstants.DEFAULT_DISPLAY_LENGTH);
 		graphController.updateGraphView();
-
-		ClientController.getInstance().getExpressionsController().getExpressionsView().revalidate();
-		ClientController.getInstance().getExpressionsController().getExpressionsView().repaint();
 	}
 
 }

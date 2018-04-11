@@ -1,6 +1,8 @@
 package ser516.project3.model;
 
-public class HeaderModel implements ModelInterface{
+import ser516.project3.interfaces.ModelInterface;
+
+public class HeaderModel implements ModelInterface {
   private boolean connectionStatus;
   private double timeStamp;
 

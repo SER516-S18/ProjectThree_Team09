@@ -1,6 +1,7 @@
 package ser516.project3.model;
 
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.ModelInterface;
 
 import java.awt.*;
 
@@ -13,7 +14,7 @@ import java.awt.*;
  * @since 2018-04-01
  *
  */
-public class PerformanceMetricModel implements ModelInterface{
+public class PerformanceMetricModel implements ModelInterface {
   private Color interestColor;
   private Color engagementColor;
   private Color stressColor;

@@ -1,21 +1,36 @@
 package ser516.project3.client.controller;
 
-import ser516.project3.client.view.ClientViewInterface;
+import ser516.project3.client.view.FaceView;
+import ser516.project3.interfaces.CommonDataInterface;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.client.view.ExpressionsView;
+import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.model.ExpressionsModel;
-
-public class ExpressionsController implements ClientControllerInterface{
+/**
+ * The Controller class for Expressions related tasks
+ * @author vsriva12
+ *
+ */
+public class ExpressionsController implements ControllerInterface, CommonDataInterface {
   private ExpressionsModel expressionsModel;
   private ExpressionsView expressionsView;
 
   private GraphController graphController;
+  private FaceController faceController;
 
-  public ExpressionsController(ExpressionsModel expressionsModel, ExpressionsView expressionsView, GraphController graphController) {
+  private boolean connectionStatus;
+
+  public ExpressionsController(ExpressionsModel expressionsModel, ExpressionsView expressionsView, GraphController graphController, FaceController faceController) {
     this.expressionsModel = expressionsModel;
     this.expressionsView = expressionsView;
     this.graphController = graphController;
+    this.faceController = faceController;
   }
 
+  /**
+   * Expression view is initialized where face
+   * and eyes expression are added along with channel size and length
+   */
   @Override
   public void initializeView() {
     String legendNames[] = {"blink", "rightWink", "leftWink", "lookingRight", "lookingLeft",
@@ -24,15 +39,33 @@ public class ExpressionsController implements ClientControllerInterface{
     graphController.setNoOfChannels(12);
     graphController.setXLength(100);
     graphController.updateGraphView();
-    ClientViewInterface clientViewInterface[] = {graphController.getGraphView()};
+    ViewInterface clientViewInterface[] = {graphController.getView(), faceController.getView()};
     expressionsView.initializeView(clientViewInterface);
   }
 
-  public ExpressionsView getExpressionsView() {
+  /**
+   * Method to get expression view
+   * and @return expression view object
+   */
+  @Override
+  public ExpressionsView getView() {
     return expressionsView;
   }
 
-  public GraphController getGraphController() {
-    return graphController;
+  @Override
+  public ControllerInterface[] getSubControllers() {
+    ControllerInterface[] subControllers = {graphController, faceController};
+    return subControllers;
+  }
+
+  @Override
+  public void setConnectionStatus(boolean connectionStatus) {
+    this.connectionStatus = connectionStatus;
+  }
+
+  @Override
+  public void setTabSelected(boolean tabSelected) {
+    expressionsModel.setTabSelected(tabSelected);
+    faceController.setSelected(tabSelected);
   }
 }

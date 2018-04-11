@@ -1,15 +1,21 @@
 package ser516.project3.client.view;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionListener;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import com.alee.laf.button.WebButton;
 
-import ser516.project3.client.controller.HeaderController;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.HeaderModel;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
 
 /**
  * HeaderView class to implement the header view for client to show and update
@@ -18,7 +24,7 @@ import java.awt.event.ActionListener;
  * @author Vishakha Singal, Adhiraj Tikku
  * @version 1.0
  */
-public class HeaderView extends JPanel implements ClientViewInterface{
+public class HeaderView extends JPanel implements ViewInterface {
 
 	private JLabel connectionLabel;
 	private JLabel timeStampLabel;
@@ -35,7 +41,7 @@ public class HeaderView extends JPanel implements ClientViewInterface{
 	}
 
 	@Override
-	public void initializeView(ClientViewInterface[] subViews) {
+	public void initializeView(ViewInterface[] subViews) {
 		setBorder(null);
 		setLayout(new GridBagLayout());
 		setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
@@ -103,7 +109,7 @@ public class HeaderView extends JPanel implements ClientViewInterface{
 		bagConstraints.insets = new Insets(0, 20, 0, 20);
 		add(connectButton, bagConstraints);
 	}
-	
+
 	private void createServerOpenButton(GridBagConstraints bagConstraints) {
 		serverOpenButton = new WebButton(ClientConstants.OPEN_SERVER);
 		serverOpenButton.setPreferredSize(new Dimension(120, 35));
@@ -125,7 +131,7 @@ public class HeaderView extends JPanel implements ClientViewInterface{
 	public void addConnectButtonListener(ActionListener actionListener) {
 		connectButton.addActionListener(actionListener);
 	}
-	
+
 	public void addServerOpenButtonListener(ActionListener actionListener) {
 		serverOpenButton.addActionListener(actionListener);
 	}
@@ -140,9 +146,8 @@ public class HeaderView extends JPanel implements ClientViewInterface{
 			connectionLabel.setText(ClientConstants.DISCONNECTED);
 		}
 	}
-	
-	public void updateTimeStamp()
-	{
+
+	public void updateTimeStamp() {
 		timeStampLabel.setText(String.valueOf(headerModel.getTimeStamp()));
 	}
 }

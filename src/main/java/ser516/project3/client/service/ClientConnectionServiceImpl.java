@@ -6,12 +6,15 @@ import org.apache.log4j.Logger;
 
 import ser516.project3.client.controller.ClientController;
 import ser516.project3.client.view.ExpressionsGraphObserver;
+import ser516.project3.client.view.FaceViewObserver;
 import ser516.project3.client.view.HeaderObserver;
 import ser516.project3.model.ExpressionsDataObservable;
+import ser516.project3.model.FaceExpressionsObservable;
 import ser516.project3.model.HeaderObservable;
 import ser516.project3.model.PerformanceMetricDataObservable;
 import ser516.project3.client.view.PerformanceMetricGraphObserver;
 import ser516.project3.client.helper.ClientConnectionThread;
+import ser516.project3.utilities.ControllerFactory;
 
 public class ClientConnectionServiceImpl implements ClientConnectionServiceInterface {
 	final static Logger logger = Logger.getLogger(ClientConnectionServiceImpl.class);
@@ -31,6 +34,9 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
 		ExpressionsGraphObserver expressionsGraphObserver = new ExpressionsGraphObserver();
 		ExpressionsDataObservable.getInstance().addObserver(expressionsGraphObserver);
 		
+		FaceViewObserver faceViewObserver=new FaceViewObserver();
+		FaceExpressionsObservable.getInstance().addObserver(faceViewObserver);
+		
 		threadInstance = new ClientConnectionThread(ipAddress, port, endpoint);
 		clientConnectionThread = new Thread(threadInstance);
 		clientConnectionThread.start();
@@ -41,10 +47,10 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
 		try {
 			if(threadInstance != null && threadInstance.getClientSession() != null)
 				threadInstance.getClientSession().close();
-			ClientController.getInstance().setConnectionStatus(false);
+			ControllerFactory.getInstance().getClientController().setConnectionStatus(false);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			logger.error("Error while stopping client end point::::" + e.getStackTrace().toString());
+			logger.error("Error while stopping client end point::::" + e.getMessage().toString());
 		}
 		clientConnectionThread.interrupt();
 	}
