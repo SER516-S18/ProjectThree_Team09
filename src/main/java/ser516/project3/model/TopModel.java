@@ -2,6 +2,11 @@ package ser516.project3.model;
 
 import ser516.project3.interfaces.ModelInterface;
 
+/**
+ * Stores data for the top view of the server view like connection states.
+ *
+ * @author Adhiraj Tikku
+ */
 public class TopModel implements ModelInterface {
   private double interval;
   private boolean autoRepeatCheckBoxChecked;
@@ -14,6 +19,9 @@ public class TopModel implements ModelInterface {
   private String serverStartStopButtonText;
   private String sendButtonText;
 
+    /**
+     * Constructor to initialize the values to default
+     */
   public TopModel() {
     interval = 1;
     autoRepeatCheckBoxChecked = false;

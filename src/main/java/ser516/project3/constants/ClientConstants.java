@@ -20,6 +20,8 @@ public class ClientConstants {
 	public final static String PANEL_COLOR_HEX = "#AFAFAF";
 	public final static String TEXT_FIELD_COLOR_HEX = "#565c61";
 	public final static String GRAPH_COLOR_HEX = "#676165";
+	public final static String CONNECTION_POP_UP = "CONNECTION_POP_UP";
+	public final static String FACE = "FACE";
 
 
 	// Performance Metrics Constants

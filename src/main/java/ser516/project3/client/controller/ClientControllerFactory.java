@@ -27,8 +27,6 @@ import ser516.project3.server.view.TopView;
 public class ClientControllerFactory {
 	private ClientController clientController;
 	private HeaderController headerController;
-	private PerformanceMetricController performanceMetricController;
-	private ExpressionsController expressionsController;
 	private FaceController faceController;
 	private GraphController performanceMetricGraphController;
 	private GraphController expressionsGraphController;
@@ -63,69 +61,66 @@ public class ClientControllerFactory {
 		if (controllerType.equalsIgnoreCase(ClientConstants.CLIENT)) {
 			clientController = new ClientController();
 			return clientController;
-		} else if (controllerType.equalsIgnoreCase("SERVER")) {
-			return ServerController.getInstance();
 		} else if (controllerType.equalsIgnoreCase(ClientConstants.HEADER)) {
 			headerController = new HeaderController((HeaderModel) model, (HeaderView) view,
 					(ConnectionPopUpController) subControllers[0]);
 			return headerController;
 		} else if (controllerType.equalsIgnoreCase(ClientConstants.PERFORMANCE_METRICS)) {
 			performanceMetricGraphController = (GraphController) subControllers[0];
-			performanceMetricController = new PerformanceMetricController((PerformanceMetricModel) model, (PerformanceMetricView) view,
+			return new PerformanceMetricController((PerformanceMetricModel) model, (PerformanceMetricView) view,
 					performanceMetricGraphController);
-			return performanceMetricController;
 		} else if (controllerType.equalsIgnoreCase(ClientConstants.EXPRESSIONS)) {
 			expressionsGraphController = (GraphController) subControllers[0];
-			expressionsController = new ExpressionsController((ExpressionsModel) model, (ExpressionsView) view,
+			return new ExpressionsController((ExpressionsModel) model, (ExpressionsView) view,
 					expressionsGraphController, (FaceController) subControllers[1] );
-			return expressionsController;
 		} else if (controllerType.equalsIgnoreCase(ClientConstants.GRAPH)) {
 			return new GraphController((GraphModel) model, (GraphView) view);
-		} else if (controllerType.equalsIgnoreCase("FACE")) {
+		} else if (controllerType.equalsIgnoreCase(ClientConstants.FACE)) {
 			faceController = new FaceController((FaceModel) model, (FaceView) view);
 			return faceController;
-		} else if (controllerType.equalsIgnoreCase("CONNECTION_POP_UP")) {
+		} else if (controllerType.equalsIgnoreCase(ClientConstants.CONNECTION_POP_UP)) {
 			return new ConnectionPopUpController((ConnectionPopUpModel) model, (ConnectionPopUpView) view);
-		} else if (controllerType.equalsIgnoreCase("TOP")) {
-			return new TopController((TopModel) model, (TopView) view);
-		} else if (controllerType.equalsIgnoreCase("TIMER")) {
-			return new TimerController((TimerModel) model, (TimerView) view);
-		} else if (controllerType.equalsIgnoreCase("EMOTIONS")) {
-			return new EmotionsController((EmotionsModel) model, (EmotionsView) view);
-		} else if (controllerType.equalsIgnoreCase("SERVER_EXPRESSIONS")) {
-			return new ser516.project3.server.controller.ExpressionsController((ExpressionsModel) model,
-					(ser516.project3.server.view.ExpressionsView) view);
-		} else if (controllerType.equalsIgnoreCase("CONSOLE")) {
-			return new ConsoleController((ConsoleModel) model, (ConsoleView) view);
 		}
 
 		return null;
 	}
 
+	/**
+	 *
+	 * @return the instance of the Client Controller
+	 */
 	public ClientController getClientController() {
 		return clientController;
 	}
 
+	/**
+	 *
+	 * @return returns the instance of the header controller
+	 */
 	public HeaderController getHeaderController() {
 		return headerController;
 	}
 
-	public PerformanceMetricController getPerformanceMetricController() {
-		return performanceMetricController;
-	}
-
-	public ExpressionsController getExpressionsController() {
-		return expressionsController;
-	}
-
+	/**
+	 *
+	 * @return returns the instance of the face controller
+	 */
 	public FaceController getFaceController() {
 		return faceController;
 	}
 
+	/**
+	 *
+	 * @return returns the instance of the Graph performance controller
+	 */
 	public GraphController getPerformanceMetricGraphController() {
 		return performanceMetricGraphController;
 	}
 
+	/**
+	 *
+	 * @return returns the instance of the Graph expressions Controller
+	 */
 	public GraphController getExpressionsGraphController() {
 		return expressionsGraphController;
 	}
