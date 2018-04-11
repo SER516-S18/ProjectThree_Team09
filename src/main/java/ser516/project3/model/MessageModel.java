@@ -81,44 +81,44 @@ public class MessageModel {
 	 * @param aex key for the abstract expression type 
 	 * @param val value for the abstract expression key
 	 */
-	public void setAbstractExpression(String aex, Double val) {
-		this.abstractExpressionMap.put(aex, val);
+	public void setAbstractExpression(String abstractExpression, Double val) {
+		this.abstractExpressionMap.put(abstractExpression, val);
 	}
 
 	/**
 	 * Returns the value for the respective key
 	 *
-	 * @param aex abstract expression key for which the value has to be received
+	 * @param abstractExpression abstract expression key for which the value has to be received
 	 * @return returns the value for the respective abstract expression key
 	 */
-	public double getAbstractExpression(String aex) {
-		if (aex == null || this.abstractExpressionMap.get(aex) == null) {
+	public double getAbstractExpression(String abstractExpression) {
+		if (abstractExpression == null || this.abstractExpressionMap.get(abstractExpression) == null) {
 			return 0.0;
 		}
-		return this.abstractExpressionMap.get(aex);
+		return this.abstractExpressionMap.get(abstractExpression);
 	}
 
 	/**
 	 * Adds the passed double value to the corresponding string in the hashmap
 	 *
-	 * @param cex key for the concrete expression type
+	 * @param concreteExpression key for the concrete expression type
 	 * @param val value for the concrete expression key
 	 */
-	public void setConcreteExpression(String cex, Boolean val) {
-		this.concreteExpressionMap.put(cex, val);
+	public void setConcreteExpression(String concreteExpression, Boolean val) {
+		this.concreteExpressionMap.put(concreteExpression, val);
 	}
 
 	/**
 	 * Returns the value for the respective key
 	 *
-	 * @param cex concrete expression key for which the value has to be received
+	 * @param concreteExpression concrete expression key for which the value has to be received
 	 * @return returns the value for the respective concrete expression key
 	 */
-	public Boolean getConcreteExpression(String cex) {
-		if (cex == null || this.concreteExpressionMap.get(cex) == null) {
+	public Boolean getConcreteExpression(String concreteExpression) {
+		if (concreteExpression == null || this.concreteExpressionMap.get(concreteExpression) == null) {
 			return false;
 		}
-		return this.concreteExpressionMap.get(cex);
+		return this.concreteExpressionMap.get(concreteExpression);
 	}
 
 	/**
