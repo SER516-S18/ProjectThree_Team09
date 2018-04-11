@@ -15,18 +15,6 @@ public class NumberTextField extends JTextField {
     private static final long serialVersionUID = 1L;
     private boolean isDouble = false;
 
-    /**
-     * contructor to construct the textfield with input string and if it can be double value
-     *
-     * @param input    The string entered in the textfield
-     * @param isDouble True if the textfield supports double value
-     */
-    public NumberTextField(String input, boolean isDouble) {
-        this.isDouble = isDouble;
-        setText(input);
-    }
-
-
 	/**
 	 * constructor to construct the textfield with input string and if it can be double value
 	 *
