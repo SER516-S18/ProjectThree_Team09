@@ -49,7 +49,7 @@ public class MessageEncoder implements Encoder.Text<MessageModel> {
     /**
      * Encodes the model to JSON format to be transmitted
      *
-     * @param messageModel model to eb encoded
+     * @param messageModel model to be encoded
      * @return returns the encoded
      * @throws EncodeException
      */

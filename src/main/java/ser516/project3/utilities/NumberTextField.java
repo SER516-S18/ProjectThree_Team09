@@ -17,7 +17,7 @@ public class NumberTextField extends JTextField {
 	private boolean isDouble = false;
 
 	/**
-	 * contructor to construct the textfield with input string and if it can be double value
+	 * constructor to construct the textfield with input string and if it can be double value
 	 *
 	 * @param input	The string entered in the textfield
 	 * @param isDouble	True if the textfield supports double value
@@ -30,7 +30,7 @@ public class NumberTextField extends JTextField {
 	/**
 	 * prevents the processing of keys except the ones specified
 	 *
-	 * @param keyEvent intake sthe key pressed
+	 * @param keyEvent intakes the key pressed
 	 */
 	@Override
 	public void processKeyEvent(KeyEvent keyEvent) {

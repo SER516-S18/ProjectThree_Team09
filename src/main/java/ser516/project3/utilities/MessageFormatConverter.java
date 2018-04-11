@@ -29,9 +29,9 @@ public class MessageFormatConverter {
 	public static ArrayList<CoordinatesModel> convertMessageToPeformanceMetrics(MessageModel messageModelObject) {
 		ArrayList<CoordinatesModel> resultCoordinateModel = new ArrayList<CoordinatesModel>();
 
-		for(Emotion em : Emotion.values()) {
+		for(Emotion emotions : Emotion.values()) {
 			CoordinatesModel currentCoordModel = new CoordinatesModel(messageModelObject.getTimeStamp(),
-				messageModelObject.getEmotion(em.name()));
+				messageModelObject.getEmotion(emotions.name()));
 			resultCoordinateModel.add(currentCoordModel);
 		}
 		return resultCoordinateModel;
@@ -62,5 +62,4 @@ public class MessageFormatConverter {
 		}
 		return resultExpressionsCoordinateModel;
 	}
-
 }

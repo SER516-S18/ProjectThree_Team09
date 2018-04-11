@@ -48,20 +48,20 @@ public class EmotionsView extends JPanel implements ViewInterface {
 		double step = 0.1;
 		jspinner = new JSpinner[6];
 
-		for(EmotionPanel em : EmotionPanel.values()) {
-			JLabel interest_label = new JLabel(em.name());
+		for(EmotionPanel emotion : EmotionPanel.values()) {
+			JLabel interest_label = new JLabel(emotion.name());
 			GridBagConstraints gbc = new GridBagConstraints();
-			gbc.gridx = em.gbc_x;
-			gbc.gridy = em.gbc_y;
+			gbc.gridx = emotion.gbc_x;
+			gbc.gridy = emotion.gbc_y;
 			add(interest_label, gbc);
 			SpinnerModel spinner = new SpinnerNumberModel(current, min, max, step);
-			jspinner[em.id] = new JSpinner(spinner);
-			jspinner[em.id].setPreferredSize(spinnerDimension);
-			jspinner[em.id].setName(em.name);
+			jspinner[emotion.id] = new JSpinner(spinner);
+			jspinner[emotion.id].setPreferredSize(spinnerDimension);
+			jspinner[emotion.id].setName(emotion.name);
 			GridBagConstraints spinnerGbc = new GridBagConstraints();
-			spinnerGbc.gridx = em.spinner_x;
-			spinnerGbc.gridy = em.spinner_y;
-			add(jspinner[em.id], spinnerGbc);
+			spinnerGbc.gridx = emotion.spinner_x;
+			spinnerGbc.gridy = emotion.spinner_y;
+			add(jspinner[emotion.id], spinnerGbc);
 		}
 	}
 	
@@ -90,8 +90,8 @@ public class EmotionsView extends JPanel implements ViewInterface {
      * @param changeListener object of ChangeListener
 	 */
 	public void addSpinnerListener(ChangeListener changeListener) {
-		for(EmotionPanel em : EmotionPanel.values()) {
-			jspinner[em.id].addChangeListener(changeListener);
+		for(EmotionPanel emotionPanel : EmotionPanel.values()) {
+			jspinner[emotionPanel.id].addChangeListener(changeListener);
 		}
 	}
 }

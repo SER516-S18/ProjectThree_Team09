@@ -21,7 +21,7 @@ import java.awt.event.ActionListener;
  * The controller can receive and update data from the TopView, 
  * and use this data to update the TopModel.
  * 
- * @author Ser516-Team09
+ * @author Adhiraj Tikku
  */
 public class TopController implements ControllerInterface{
   final static Logger logger = Logger.getLogger(TopController.class);
