@@ -17,8 +17,8 @@ public class TimerController implements ControllerInterface{
 
   /**
    * Constructor to set the timer view and model object
-   * @param timerModel - TimerModel object
-   * @param timerView - TimerView object 
+   * @param timerModel TimerModel object
+   * @param timerView TimerView object
    */
   public TimerController(TimerModel timerModel, TimerView timerView) {
     this.timerModel = timerModel;
@@ -45,7 +45,7 @@ public class TimerController implements ControllerInterface{
 
   /**
    * Updates the time stamp in TimerModel  and TimerView
-   * @param timeStamp - value to be set for timeStamp in the server
+   * @param timeStamp value to be set for timeStamp in the server
    */
   public void updateTimeStamp(double timeStamp) {
     timerModel.setTimeElapsed(timeStamp);

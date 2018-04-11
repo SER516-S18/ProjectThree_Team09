@@ -5,7 +5,12 @@ import java.awt.event.WindowEvent;
 
 import org.apache.log4j.Logger;
 
+<<<<<<< HEAD
 import ser516.project3.constants.ServerConstants;
+=======
+import ser516.project3.client.controller.ControllerFactory;
+import ser516.project3.client.controller.ViewFactory;
+>>>>>>> d027729b3f286189ee70e7aac32b31e0254fc0a4
 import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ConsoleModel;
@@ -21,8 +26,6 @@ import ser516.project3.server.view.ExpressionsView;
 import ser516.project3.server.view.ServerView;
 import ser516.project3.server.view.TimerView;
 import ser516.project3.server.view.TopView;
-import ser516.project3.utilities.ControllerFactory;
-import ser516.project3.utilities.ViewFactory;
 
 /**
  * The ServerController class is the main controller class for the server
@@ -35,6 +38,7 @@ import ser516.project3.utilities.ViewFactory;
 public class ServerController implements ControllerInterface {
 	final static Logger logger = Logger.getLogger(ServerView.class);
 	private ViewFactory viewFactory;
+	private ControllerFactory controllerFactory;
 	private ServerView serverView;
 	private TopController topController;
 	private TimerController timerController;
@@ -52,13 +56,13 @@ public class ServerController implements ControllerInterface {
 	 */	
 	public ServerController() {
 		viewFactory = new ViewFactory();
-		ControllerFactory controllerFactory = ControllerFactory.getInstance();
+		controllerFactory = ControllerFactory.getInstance();
 		serverConnectionService = new ServerConnectionServiceImpl();
-		initializeTop(viewFactory, controllerFactory);
-		initializeTimer(viewFactory, controllerFactory);
-		initializeEmotions(viewFactory, controllerFactory);
-		initializeExpressions(viewFactory, controllerFactory);
-		initializeConsole(viewFactory, controllerFactory);
+		initializeTop();
+		initializeTimer();
+		initializeEmotions();
+		initializeExpressions();
+		initializeConsole();
 	}
 	
 	/**
@@ -100,10 +104,10 @@ public class ServerController implements ControllerInterface {
 
 	/**
 	* Method to initialize the top server settings panel
-	* @param viewFactory- ViewFactory object
-	* @param controllerFactory- ControllerFactory object
+	* @param viewFactory ViewFactory object
+	* @param controllerFactory ControllerFactory object
 	*/
-	private void initializeTop(ViewFactory viewFactory, ControllerFactory controllerFactory) {
+	private void initializeTop() {
 		TopModel topModel = new TopModel();
 		TopView topView = (TopView) viewFactory.getView(ServerConstants.TOP, topModel);
 		topController = (TopController) controllerFactory.getController(ServerConstants.TOP, topModel, topView, null);
@@ -113,10 +117,10 @@ public class ServerController implements ControllerInterface {
 
 	/**
 	* Method to initialize the server timer panel
-	* @param viewFactory- ViewFactory object
-	* @param controllerFactory- ControllerFactory object
+	* @param viewFactory ViewFactory object
+	* @param controllerFactory ControllerFactory object
 	*/
-	private void initializeTimer(ViewFactory viewFactory, ControllerFactory controllerFactory) {
+	private void initializeTimer() {
 		TimerModel timerModel = new TimerModel();
 		TimerView timerView = (TimerView) viewFactory.getView(ServerConstants.TIMER, timerModel);
 		timerController = (TimerController) controllerFactory.getController(ServerConstants.TIMER, timerModel, timerView, null);
@@ -125,10 +129,10 @@ public class ServerController implements ControllerInterface {
 
 	/**
 	* Method to initialize the emotions panel
-	* @param viewFactory- ViewFactory object
-	* @param controllerFactory- ControllerFactory object
+	* @param viewFactory ViewFactory object
+	* @param controllerFactory ControllerFactory object
 	*/
-	private void initializeEmotions(ViewFactory viewFactory, ControllerFactory controllerFactory) {
+	private void initializeEmotions() {
 		EmotionsModel emotionsModel = new EmotionsModel();
 		EmotionsView emotionsView = (EmotionsView) viewFactory.getView(ServerConstants.EMOTIONS, emotionsModel);
 		emotionsController = (EmotionsController) controllerFactory.getController(ServerConstants.EMOTIONS, emotionsModel,
@@ -138,10 +142,10 @@ public class ServerController implements ControllerInterface {
 
 	/**
 	* Method to initialize the expressions panel
-	* @param viewFactory- ViewFactory object
-	* @param controllerFactory- ControllerFactory object
+	* @param viewFactory ViewFactory object
+	* @param controllerFactory ControllerFactory object
 	*/
-	private void initializeExpressions(ViewFactory viewFactory,ControllerFactory controllerFactory){
+	private void initializeExpressions(){
 		ExpressionsModel expressionsModel = new ExpressionsModel();
 		ExpressionsView expressionsView = (ExpressionsView) viewFactory.getView(
 				ServerConstants.SERVER_EXPRESSIONS, expressionsModel);
@@ -152,10 +156,10 @@ public class ServerController implements ControllerInterface {
 
 	/**
 	* Method to initialize the console panel
-	* @param viewFactory- ViewFactory object
-	* @param controllerFactory- ControllerFactory object
+	* @param viewFactory ViewFactory object
+	* @param controllerFactory ControllerFactory object
 	*/
-	private void initializeConsole(ViewFactory viewFactory, ControllerFactory controllerFactory){
+	private void initializeConsole(){
 		ConsoleModel consoleModel = new ConsoleModel();
 		ConsoleView consoleView = (ConsoleView) viewFactory.getView(ServerConstants.CONSOLE, consoleModel);
 		consoleController = (ConsoleController) controllerFactory.getController(ServerConstants.CONSOLE,

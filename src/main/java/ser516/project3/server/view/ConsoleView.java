@@ -34,7 +34,7 @@ public class ConsoleView extends JPanel implements Observer, ViewInterface {
 
 	/** 
      * Method to set console model
-	 * @param consoleModel-model object containing required console data.
+	 * @param consoleModel model object containing required console data.
 	 * 
 	 */
     public ConsoleView(ConsoleModel consoleModel) {
@@ -43,7 +43,7 @@ public class ConsoleView extends JPanel implements Observer, ViewInterface {
 
 	/** 
      * Method to initialize the expressions view panel
-	 * @param subViews-object of type ViewInterface
+	 * @param subViews object of type ViewInterface
 	 * 
 	 */
     @Override

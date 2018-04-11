@@ -34,7 +34,7 @@ public class ServerConnectionEndpoint {
 	 * Method containing logic to start sending the message json based on the value
      * of auto send flag. If the flag is false, just send the json once, 
      * else keep sending based on the interval
-     * @param session - web socket session
+     * @param session web socket session
 	 */	
     @OnOpen
     public void onOpen(final Session session) throws IOException {
@@ -80,7 +80,7 @@ public class ServerConnectionEndpoint {
 	
     /**
 	 * Method containing logic on what to do when message from client is received
-	 * @param session - web socket session 
+	 * @param session web socket session
 	 */	
     @OnMessage
     public void onMessage(String message, Session session) {
@@ -89,8 +89,8 @@ public class ServerConnectionEndpoint {
     
     /**
 	 * Method containing logic on what to do when session is closed
-	 * @param session - web socket session
-	 * @param closeReason - web socket close reason
+	 * @param session web socket session
+	 * @param closeReason web socket close reason
 	 */
     @OnClose
     public void onClose(Session session, CloseReason closeReason) {
@@ -105,8 +105,8 @@ public class ServerConnectionEndpoint {
 
     /**
 	 * Method containing logic on what to do error occurs
-	 * @param session - web socket session
-	 * @param throwable - Throwable object
+	 * @param session web socket session
+	 * @param throwable Throwable object
 	 */
     @OnError
     public void onError(Session session, Throwable throwable) {

@@ -1,5 +1,10 @@
 package ser516.project3.client.service;
 
+/**
+ * Interface to define the methods to be implemented by classes whichever wants to connect to the server.
+ *
+ * @author Adhiraj Tikku
+ */
 public interface ClientConnectionServiceInterface {
 
 	/**

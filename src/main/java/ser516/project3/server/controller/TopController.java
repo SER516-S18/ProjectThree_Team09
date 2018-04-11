@@ -36,8 +36,8 @@ public class TopController implements ControllerInterface{
 
   /**
    * Constructor to set the top view and model object
-   * @param topModel - TopModel object
-   * @param topView - TopView object 
+   * @param topModel TopModel object
+   * @param topView TopView object
    */
   public TopController(TopModel topModel, TopView topView) {
     this.topModel = topModel;
@@ -205,7 +205,7 @@ public class TopController implements ControllerInterface{
   
   /**
    * Method to set the server connection service interface 
-   * @param serverConnectionService - ServerConnectionServiceInterface object
+   * @param serverConnectionService ServerConnectionServiceInterface object
    */
   public void setServerConnectionService(ServerConnectionServiceInterface serverConnectionService){
     this.serverConnectionService = serverConnectionService;
@@ -213,7 +213,7 @@ public class TopController implements ControllerInterface{
 
   /**
    * Method to set the server status indicator
-   * @param status - Status of the server
+   * @param status Status of the server
    */
   public void setBlinking(boolean status) {
     topView.setBlinking(status);

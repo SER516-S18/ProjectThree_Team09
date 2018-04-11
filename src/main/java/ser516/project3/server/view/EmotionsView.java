@@ -23,7 +23,7 @@ public class EmotionsView extends JPanel implements ViewInterface {
 	
 	/** 
      * Method to set emotion model
-	 * @param emotionsModel-model object containing required emotions data.
+	 * @param emotionsModel model object containing required emotions data.
 	 * 
 	 */
 	public EmotionsView(EmotionsModel emotionsModel){
@@ -32,7 +32,7 @@ public class EmotionsView extends JPanel implements ViewInterface {
 
 	/** 
      * Method to initialize the emotions view panel
-	 * @param subViews-object of type ViewInterface
+	 * @param subViews object of type ViewInterface
 	 * 
 	 */
 	@Override
@@ -86,7 +86,7 @@ public class EmotionsView extends JPanel implements ViewInterface {
 	
 	/** 
      * Method to listener to every spinner in the emotions panel
-     * @param changeListener-object of ChangeListener 
+     * @param changeListener object of ChangeListener
 	 */
 	public void addSpinnerListener(ChangeListener changeListener) {
 		for(EmotionPanel em : EmotionPanel.values()) {

@@ -42,7 +42,7 @@ public class ServerView extends JFrame implements ViewInterface {
 	
 	/** 
      * Method to initialize the expressions view panel
-	 * @param subViews-object of type ViewInterface
+	 * @param subViews object of type ViewInterface
 	 * 
 	 */
 	@Override
@@ -122,7 +122,7 @@ public class ServerView extends JFrame implements ViewInterface {
 
 	/** 
      * Method to WindowListener to the Server window
-	 * @param windowAdapter- WindowAdapter object
+	 * @param windowAdapter WindowAdapter object
 	 * 
 	 */
 	public void addServerWindowListener(WindowAdapter windowAdapter) {

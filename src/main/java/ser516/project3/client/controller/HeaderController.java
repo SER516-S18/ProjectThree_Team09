@@ -6,9 +6,7 @@ import java.awt.event.ActionListener;
 import ser516.project3.client.view.HeaderView;
 import ser516.project3.interfaces.CommonDataInterface;
 import ser516.project3.interfaces.ControllerInterface;
-import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.HeaderModel;
-import ser516.project3.utilities.ControllerFactory;
 
 /**
  * This class controls the UI for the header view on client which helps in
@@ -49,23 +47,45 @@ public class HeaderController implements ControllerInterface, CommonDataInterfac
 		headerView.addServerOpenButtonListener(new ServerOpenListener());
 	}
 
+	/**
+	 * Returns the instance of headerView
+     *
+	 * @return headerView instance which is on top of the screen UI
+	 */
 	@Override
 	public HeaderView getView() {
 		return headerView;
 	}
 
+    /**
+     * Returns the set of sub controllers in case any
+     *
+     * @return array containing connectionPopUp controller which is a sub
+     *      controller
+     */
 	@Override
 	public ControllerInterface[] getSubControllers() {
 		ControllerInterface[] subControllers = {connectionPopUpController};
 		return subControllers;
 	}
 
+    /**
+     * Updates the status of the connection to the server in the model and
+     * subsequently, in the view
+     *
+     * @param connectionStatus  The status of the current connection to server
+     */
 	@Override
 	public void setConnectionStatus(boolean connectionStatus) {
 		headerModel.setConnectionStatus(connectionStatus);
 		headerView.updateConnectionLabel();
 	}
 
+    /**
+     * Overrriden method from interface for selected tab on screen
+     *
+     * @param tabSelected Current selected tab.
+     */
 	@Override
 	public void setTabSelected(boolean tabSelected) {
 		this.tabSelected = tabSelected;
@@ -102,6 +122,9 @@ public class HeaderController implements ControllerInterface, CommonDataInterfac
     /**
      * Method to set header time stamp
      * and update it once the interval and elapsed time is set in the server dialog
+     *
+     * @param timeStamp The timestamp is the current timestamp received from the server
+     *                  to be updated on the UI
      */
 	public void setHeaderTimeStamp(double timeStamp) {
 		headerModel.setTimeStamp(timeStamp);

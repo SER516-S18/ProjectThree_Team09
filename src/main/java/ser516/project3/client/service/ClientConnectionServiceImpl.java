@@ -4,18 +4,24 @@ import java.io.IOException;
 
 import org.apache.log4j.Logger;
 
-import ser516.project3.client.controller.ClientController;
-import ser516.project3.client.view.ExpressionsGraphObserver;
-import ser516.project3.client.view.FaceViewObserver;
-import ser516.project3.client.view.HeaderObserver;
 import ser516.project3.model.ExpressionsDataObservable;
 import ser516.project3.model.FaceExpressionsObservable;
 import ser516.project3.model.HeaderObservable;
 import ser516.project3.model.PerformanceMetricDataObservable;
-import ser516.project3.client.view.PerformanceMetricGraphObserver;
+import ser516.project3.client.controller.ControllerFactory;
 import ser516.project3.client.helper.ClientConnectionThread;
-import ser516.project3.utilities.ControllerFactory;
+import ser516.project3.client.observers.ExpressionsGraphObserver;
+import ser516.project3.client.observers.FaceViewObserver;
+import ser516.project3.client.observers.HeaderObserver;
+import ser516.project3.client.observers.PerformanceMetricGraphObserver;
 
+/**
+ * Class to register the client and connect it to the server. Also, updates the observers whenever
+ * the data is received from server
+ *
+ * @author Adhiraj Tikku
+ *
+ */
 public class ClientConnectionServiceImpl implements ClientConnectionServiceInterface {
 	final static Logger logger = Logger.getLogger(ClientConnectionServiceImpl.class);
 	Thread clientConnectionThread;
