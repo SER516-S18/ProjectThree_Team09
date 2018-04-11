@@ -14,6 +14,7 @@ import javax.websocket.WebSocketContainer;
 import org.apache.log4j.Logger;
 import ser516.project3.client.controller.ClientController;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.utilities.ControllerFactory;
 
 /**
  * Thread class to create a client web socket end point
@@ -57,10 +58,10 @@ public class ClientConnectionThread implements Runnable {
 		try {
 			clientSession = container.connectToServer(ClientConnectionEndpoint.class, URI.create(uri));
 			messageLatch.await(0, TimeUnit.SECONDS);
-			ClientController.getInstance().setConnectionStatus(true);
+			ControllerFactory.getInstance().getClientController().setConnectionStatus(true);
 		} catch (DeploymentException | IOException | InterruptedException e) {
 			logger.error("Exception occurred in createClientConnection method::::" + e.getMessage().toString());
-			ClientController.getInstance().setConnectionStatus(false);
+			ControllerFactory.getInstance().getClientController().setConnectionStatus(false);
 			final JDialog dialog = new JDialog();
 			dialog.setAlwaysOnTop(true);
 			JOptionPane.showMessageDialog(dialog, ClientConstants.NO_CONNECTION_MESSAGE,ClientConstants.ERROR_STRING,JOptionPane.ERROR_MESSAGE);
@@ -68,7 +69,7 @@ public class ClientConnectionThread implements Runnable {
 
 	}
 
-	/**
+	/**Method to get ClientSession
 	 * @return the clientSession
 	 */
 	public Session getClientSession() {

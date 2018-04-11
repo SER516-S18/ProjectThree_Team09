@@ -3,7 +3,9 @@ package ser516.project3.client.controller;
 import ser516.project3.client.view.ConnectionPopUpView;
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.interfaces.ControllerInterface;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ConnectionPopUpModel;
+import ser516.project3.utilities.ControllerFactory;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -24,10 +26,20 @@ public class ConnectionPopUpController implements ControllerInterface{
   private ConnectionPopUpView connectionPopUpView;
   private ConnectionPopUpModel connectionPopUpModel;
 
+  /**
+   * Constructor to add popup model and view in
+   * Connection popup controller
+   */
+  
   public ConnectionPopUpController(ConnectionPopUpModel connectionPopUpModel, ConnectionPopUpView connectionPopUpView) {
     this.connectionPopUpModel = connectionPopUpModel;
     this.connectionPopUpView = connectionPopUpView;
   }
+  
+  /**
+   * Method to initialize connection popup 
+   * view and add Connect, IP document and Port components to it
+   */
 
   @Override
   public void initializeView() {
@@ -35,6 +47,16 @@ public class ConnectionPopUpController implements ControllerInterface{
     connectionPopUpView.addConnectButtonListener(new ConnectListener());
     connectionPopUpView.addIPDocumentListener(new IPDocumentListener());
     connectionPopUpView.addPortDocumentListener(new PortDocumentListener());
+  }
+
+  @Override
+  public ViewInterface getView() {
+    return connectionPopUpView;
+  }
+
+  @Override
+  public ControllerInterface[] getSubControllers() {
+    return null;
   }
 
   /**
@@ -54,7 +76,7 @@ public class ConnectionPopUpController implements ControllerInterface{
         dialog.setAlwaysOnTop(true);
         JOptionPane.showMessageDialog(dialog, ClientConstants.NO_PORT_NO_MESSAGE);
       } else {
-        ClientController.getInstance().toggleConnectionToServer(connectionPopUpModel.getIpAddress(), connectionPopUpModel.getPortNumber());
+        ControllerFactory.getInstance().getClientController().toggleConnectionToServer(connectionPopUpModel.getIpAddress(), connectionPopUpModel.getPortNumber());
         connectionPopUpView.dispose();
       }
     }

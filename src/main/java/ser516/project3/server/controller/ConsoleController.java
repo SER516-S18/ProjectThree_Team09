@@ -38,6 +38,20 @@ public class ConsoleController implements ControllerInterface {
   }
 
   /**
+   * Method to get console view object
+   * @return ConsoleView object
+   */
+  @Override
+  public ConsoleView getView() {
+    return consoleView;
+  }
+
+  @Override
+  public ControllerInterface[] getSubControllers() {
+    return null;
+  }
+
+  /**
    * Inner class to add action listener to console 
    */
   class ClearConsoleListener implements ActionListener {
@@ -45,14 +59,6 @@ public class ConsoleController implements ControllerInterface {
     public void actionPerformed(ActionEvent e) {
       consoleView.clearConsole();
     }
-  }
-
-  /**
-   * Method to get console view object
-   * @return ConsoleView object 
-   */ 
-  public ConsoleView getConsoleView() {
-    return consoleView;
   }
   
   /**

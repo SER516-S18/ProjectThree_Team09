@@ -1,17 +1,29 @@
 package ser516.project3.server.view;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentListener;
+
 import com.alee.laf.button.WebButton;
+
 import ser516.project3.constants.ClientConstants;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.TopModel;
 import ser516.project3.utilities.NumberTextField;
-
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
-import javax.swing.event.DocumentListener;
-import java.awt.*;
-import java.awt.event.ActionListener;
 
 /**
  * Class to create components in server settings panel in the server  
@@ -185,6 +197,7 @@ public class TopView extends JPanel implements ViewInterface{
   private void createStatusIndicator(GridBagConstraints gridBagConstraint) {
 	    statusIndicator.setBorder(BorderFactory.createEmptyBorder(30, 10, 10, 10));
 	    statusIndicator.setBounds(100, 200, 50, 80);
+	    statusIndicator.setBackground(Color.decode("#747b83"));
 	    gridBagConstraint.fill = GridBagConstraints.HORIZONTAL;
 	    gridBagConstraint.weightx = 1;
 	    gridBagConstraint.gridx = 1;

@@ -38,6 +38,24 @@ public class GraphController implements ControllerInterface {
 		this.graphView = graphView;
 	}
 
+	@Override
+	public void initializeView() {
+		graphView.initializeView(null);
+	}
+
+    /**
+    * Method to get the Graph View
+    */
+	@Override
+	public GraphView getView() {
+		return graphView;
+	}
+
+	@Override
+	public ControllerInterface[] getSubControllers() {
+		return null;
+	}
+
 	/**
 	 * Sets the X-axis display length in the <code>GraphModel</code>.
 	 *
@@ -140,24 +158,5 @@ public class GraphController implements ControllerInterface {
 	 */
 	public void updateGraphView() {
 		graphView.updateGraphView(graphModel);
-	}
-
-	/**
-	 * Gets the Graph View
-	 */
-	public GraphView getGraphView() {
-		return graphView;
-	}
-
-	/**
-	 * Gets the Graph Model
-	 */
-	public GraphModel getGraphModel() {
-		return graphModel;
-	}
-
-	@Override
-	public void initializeView() {
-		graphView.initializeView(null);
 	}
 }

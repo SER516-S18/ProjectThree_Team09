@@ -33,6 +33,10 @@ public class PerformanceMetricController implements ControllerInterface {
 		this.graphController = graphController;
 	}
 
+	/**
+	 * Method is used to initialize performance view
+	 * where emotion buttons and display length text field is added
+	 */
 	@Override
 	public void initializeView() {
 		graphController.setNoOfChannels(6);
@@ -43,21 +47,33 @@ public class PerformanceMetricController implements ControllerInterface {
 				performanceMetricModel.getFocusColor() };
 		graphController.setChannelColors(channelColors);
 		graphController.updateGraphView();
-		ViewInterface clientViewInterface[] = { graphController.getGraphView() };
+		ViewInterface clientViewInterface[] = { graphController.getView() };
 		performanceMetricView.initializeView(clientViewInterface);
 		performanceMetricView.addEmotionButtonsListener(new EmotionButtonsListener());
 		performanceMetricView.addDisplayLengthListener(new DisplayLengthKeyListener(),
 				new DisplayLengthDocumentListener());
 	}
 
-	public PerformanceMetricView getPerformanceMetricView() {
+    /**
+     * Method to get PerformanceMetric view
+     * @return performancemetric view object
+     */
+	@Override
+	public PerformanceMetricView getView() {
 		return performanceMetricView;
 	}
 
-	public GraphController getGraphController() {
-		return graphController;
+	@Override
+	public ControllerInterface[] getSubControllers() {
+		ControllerInterface[] subControllers = {graphController};
+		return subControllers;
 	}
 
+	/**
+	 * Class implemented to handle action listener
+	 * of all emotion buttons like Stress, Interest, Focus, Excitement, Engagement
+	 * and Relaxation
+	 */
 	public class EmotionButtonsListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -120,21 +136,34 @@ public class PerformanceMetricController implements ControllerInterface {
 					performanceMetricModel.getFocusColor() };
 			graphController.setChannelColors(channelColors);
 			graphController.updateGraphView();
-
+			performanceMetricView.revalidate();
+			performanceMetricView.repaint();
 			performanceMetricView.updatePerformanceMetricView(performanceMetricModel);
 		}
 	}
 
+	/**
+	 * Class created to support display length key listener
+	 * to update graph controller and performance metric view
+	 * based on key event
+	 *
+	 */
 	public class DisplayLengthKeyListener extends KeyAdapter {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 				graphController.updateGraphView();
 				performanceMetricView.updatePerformanceMetricView(performanceMetricModel);
+				performanceMetricView.revalidate();
+				performanceMetricView.repaint();
 			}
 		}
 	}
 
+	/**
+	 * Class implemented to handle document listener of all
+	 * display length related components
+	 */
 	class DisplayLengthDocumentListener implements DocumentListener {
 		@Override
 		public void removeUpdate(DocumentEvent e) {

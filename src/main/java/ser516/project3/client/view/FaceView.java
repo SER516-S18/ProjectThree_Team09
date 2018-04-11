@@ -1,7 +1,10 @@
 package ser516.project3.client.view;
 
-import java.awt.*;
-import java.awt.geom.Arc2D;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,25 +20,23 @@ import ser516.project3.client.view.lowerface.Mouth;
 import ser516.project3.client.view.upperface.LeftEyeBrow;
 import ser516.project3.client.view.upperface.RightEyeBrow;
 import ser516.project3.interfaces.ViewInterface;
+import ser516.project3.model.FaceModel;
 import ser516.project3.model.MessageModel;
 
 /**
  * The FaceView class creates the face panel on the client UI
  * 
- * @author vsriva12
+ * @author Varun Srivastava , Manish Tandon , Vishakha Singal, Adhiraj Tikku
  *
  */
 @SuppressWarnings("serial")
 public class FaceView extends JPanel implements ViewInterface {
-	private static Color faceColor = new Color(255, 223, 135);
-	private static int width = 300;
-	private static int height = 300;
-	private static final String faceLayoutPath = "images/FaceImage.png";
-    private static final String nosePath = "images/nose.png";
+	private FaceModel faceModel;
 
-    BufferedImage faceBufferedImage = null;
-    BufferedImage noseBufferedImage = null;
+    private BufferedImage faceBufferedImage = null;
+    private BufferedImage noseBufferedImage = null;
     private boolean isSelected;
+<<<<<<< HEAD
 
 	
     public FaceView(int width, int height, Color faceColor) {
@@ -59,30 +60,32 @@ public class FaceView extends JPanel implements ViewInterface {
 	}
 
 	private static FaceView instance;
+=======
+>>>>>>> b164e15ccc3302646aa0743ff6f366816f875ba1
 	private Mouth mouthView;
 	private LeftEye leftEye;
 	private RightEye rightEye;
 	private RightEyeBall rightEyeBall;
 	private LeftEyeBall leftEyeBall;
 
-	/**
-	 * Creates a singleton instance . If exists, returns it, else creates it.
-	 * 
-	 * @return instance of the LeftEyeBrow
-	 */
-	public static FaceView getInstance() {
+	private static Color faceColor = new Color(255, 223, 135);
+	private static int width = 300;
+	private static int height = 300;
+	private static final String faceLayoutPath = "images/FaceImage.png";
+	private static final String nosePath = "images/nose.png";
 
-		try {
-			if (instance == null) {
-				instance = new FaceView(width, height, faceColor);
-			}
-		} catch (Exception e) {
-		}
-		return instance;
-
+	public FaceView(FaceModel faceModel) {
+		this.faceModel = faceModel;
 	}
+<<<<<<< HEAD
 	
 	
+=======
+
+	/**
+	 * Overridden method , that is used for painting graphic on the Jpanel.
+	 */
+>>>>>>> b164e15ccc3302646aa0743ff6f366816f875ba1
 	@Override
 	public void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
@@ -108,7 +111,16 @@ public class FaceView extends JPanel implements ViewInterface {
 
 	}
 
+<<<<<<< HEAD
 	
+=======
+	/**
+	 * This method is called by FaceObserver, to update elements as per the current
+	 * data packet sent from server.
+	 *
+	 * @param messageBean
+	 */
+>>>>>>> b164e15ccc3302646aa0743ff6f366816f875ba1
 	public void updateFaceElements(MessageModel messageBean) {
 	    if (isSelected) {
             LeftEyeBrow.getInstance().moveElement("raiseBrow", messageBean.getAbstractExpression("raiseBrow"));
@@ -136,7 +148,20 @@ public class FaceView extends JPanel implements ViewInterface {
 
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
-
+		setPreferredSize(new Dimension(width, height));
+		mouthView = new Mouth();
+		leftEye = new LeftEye();
+		rightEye = new RightEye();
+		leftEyeBall = new LeftEyeBall();
+		rightEyeBall = new RightEyeBall();
+		File faceFile = new File(faceLayoutPath);
+		File noseFile = new File(nosePath);
+		try {
+			faceBufferedImage = ImageIO.read(faceFile);
+			noseBufferedImage = ImageIO.read(noseFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
     public boolean isSelected() {
