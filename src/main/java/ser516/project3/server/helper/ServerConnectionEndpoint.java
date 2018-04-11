@@ -14,22 +14,18 @@ import javax.websocket.server.ServerEndpoint;
 import org.apache.log4j.Logger;
 
 import ser516.project3.constants.ServerConstants;
-import ser516.project3.model.MessageModel;
 import ser516.project3.server.controller.ServerController;
 import ser516.project3.utilities.MessageEncoder;
 import ser516.project3.utilities.ServerCommonData;
 
 /**
- * The Web server socket endpoint class for the server application
+ * The Web server socket end point class for the server application
  *
  * @author User
  */
 @ServerEndpoint(value = "/server", encoders = {MessageEncoder.class})
 public class ServerConnectionEndpoint {
     final static Logger logger = Logger.getLogger(ServerConnectionEndpoint.class);
-    private static int connectionCount = 0;
-    private static double timeElapsed = 0;
-	
     /**
 	 * Method containing logic to start sending the message json based on the value
      * of auto send flag. If the flag is false, just send the json once, 
@@ -38,9 +34,7 @@ public class ServerConnectionEndpoint {
 	 */	
     @OnOpen
     public void onOpen(final Session session) throws IOException {
-    	connectionCount++;
-    	double syncTimeElapsed = 0;
-        try {
+    	try {
         	logger.info(ServerConstants.CLIENT_CONNECTED + session.getBasicRemote());
             ServerController.getInstance().getConsoleController().getConsoleModel().
             	logMessage(ServerConstants.CLIENT_CONNECTED);
@@ -51,19 +45,14 @@ public class ServerConnectionEndpoint {
                 boolean isAutoRepeat = ServerController.getInstance().getTopController().
                 			getTopModel().isAutoRepeatCheckBoxChecked();
                 if (isShouldSend) {
-                	MessageModel messageModel = new MessageModel();
-                	messageModel = serverCommonDataObject.getMessage();
-                	messageModel.setTimeStamp(syncTimeElapsed);
-                    session.getBasicRemote().sendObject(messageModel);
-//                    double timeElapsed = ServerCommonData.getInstance().getMessage().
-//                        getTimeStamp();
+                    session.getBasicRemote().sendObject(serverCommonDataObject.getMessage());
+                    double timeElapsed = ServerCommonData.getInstance().getMessage().
+                        getTimeStamp();
                     double dataInterval = ServerCommonData.getInstance().getMessage().
-                        getInterval()/connectionCount;
-                    timeElapsed = timeElapsed + dataInterval;
+                        getInterval();
                     ServerCommonData.getInstance().getMessage().setTimeStamp(
                         timeElapsed + dataInterval);
-                    ServerController.getInstance().getTimerController().updateTimeStamp((int)timeElapsed);
-                    syncTimeElapsed = syncTimeElapsed + dataInterval * connectionCount;
+                    ServerController.getInstance().getTimerController().updateTimeStamp(timeElapsed);
                     if (!isAutoRepeat)
                       ServerController.getInstance().getTopController().getTopModel().setShouldSendData(false);
                 }
@@ -95,7 +84,6 @@ public class ServerConnectionEndpoint {
     @OnClose
     public void onClose(Session session, CloseReason closeReason) {
         logger.info(ServerConstants.ON_CLOSE + closeReason);
-        connectionCount--;
         try {
             session.getBasicRemote().sendText(ServerConstants.CONNECTION_CLOSED);
         } catch (IOException e) {
