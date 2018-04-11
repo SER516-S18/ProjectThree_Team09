@@ -36,10 +36,20 @@ public class HeaderView extends JPanel implements ViewInterface {
 
 	private final static int FONT_SIZE = 15;
 
+	/**
+	 * This constructor initializes the model of HeaderView
+	 * @param headerModel
+	 */
 	public HeaderView(HeaderModel headerModel) {
 		this.headerModel = headerModel;
 	}
-
+	
+	/**
+	 * This method initializes the view of Header and creates components
+	 * on view.
+	 * 
+	 * @param subViews 
+	 */
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
 		setBorder(null);
@@ -54,6 +64,13 @@ public class HeaderView extends JPanel implements ViewInterface {
 		createServerOpenButton(bagConstraints);
 	}
 
+	/**
+	 * This method creates labels on the panel of Header and
+	 * configures them. 
+	 * @param gridbagConstraints an instance of GridBagConstraints
+	 * 							 for setting position of labels 
+	 * 							 on panel 
+	 */
 	private void createLabels(GridBagConstraints gridbagConstraints) {
 		connectionTextLabel = new JLabel(ClientConstants.STATUS);
 		connectionTextLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -92,6 +109,10 @@ public class HeaderView extends JPanel implements ViewInterface {
 		add(timeStampLabel, gridbagConstraints);
 	}
 
+	/**
+	 * This method creates connect button on the Panel.
+	 * @param bagConstraints to set the position of button on panel.
+	 */
 	private void createConnectButton(GridBagConstraints bagConstraints) {
 		connectButton = new WebButton(ClientConstants.CONNECT);
 		connectButton.setPreferredSize(new Dimension(120, 35));
@@ -110,6 +131,10 @@ public class HeaderView extends JPanel implements ViewInterface {
 		add(connectButton, bagConstraints);
 	}
 
+	/**
+	 * This method creates server open button on panel.
+	 * @param bagConstraints to set position of button on panel.
+	 */
 	private void createServerOpenButton(GridBagConstraints bagConstraints) {
 		serverOpenButton = new WebButton(ClientConstants.OPEN_SERVER);
 		serverOpenButton.setPreferredSize(new Dimension(120, 35));
@@ -128,14 +153,25 @@ public class HeaderView extends JPanel implements ViewInterface {
 		add(serverOpenButton, bagConstraints);
 	}
 
+	/**
+	 * This method handles events on the connect button on panel.
+	 * @param actionListener
+	 */
 	public void addConnectButtonListener(ActionListener actionListener) {
 		connectButton.addActionListener(actionListener);
 	}
 
+	/**
+	 * This method handles events on the server open button on panel.
+	 * @param actionListener
+	 */
 	public void addServerOpenButtonListener(ActionListener actionListener) {
 		serverOpenButton.addActionListener(actionListener);
 	}
 
+	/**
+	 * This method updates the connection status on panel.
+	 */
 	public void updateConnectionLabel() {
 		// May need to update this
 		if (headerModel.isConnectionStatus()) {
@@ -147,6 +183,9 @@ public class HeaderView extends JPanel implements ViewInterface {
 		}
 	}
 
+	/**
+	 * This method updates the time stamp on the panel.
+	 */
 	public void updateTimeStamp() {
 		timeStampLabel.setText(String.valueOf(headerModel.getTimeStamp()));
 	}

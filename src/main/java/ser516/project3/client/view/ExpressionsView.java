@@ -17,10 +17,19 @@ import java.awt.*;
 public class ExpressionsView extends JPanel implements ViewInterface {
 	private ExpressionsModel expressionsModel;
 
+	/**
+	 * This constructor initializes the model of Expressions view.
+	 * @param expressionsModel an object of ExpressionsModel class
+	 */
 	public ExpressionsView(ExpressionsModel expressionsModel) {
 		this.expressionsModel = expressionsModel;
 	}
 
+	/**
+	 * this method initializes the views and configures the 
+	 * panel.
+	 * @param subViews an array of objects of ViewInterface class
+	 */
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
 		GraphView graphView = (GraphView) subViews[0];

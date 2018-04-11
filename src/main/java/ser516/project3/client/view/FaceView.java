@@ -48,12 +48,17 @@ public class FaceView extends JPanel implements ViewInterface {
 	private static final String faceLayoutPath = "images/FaceImage.png";
 	private static final String nosePath = "images/nose.png";
 
+	/**
+	 * this constructor initializes model of face view.
+	 * @param faceModel an object of FaceModel
+	 */
 	public FaceView(FaceModel faceModel) {
 		this.faceModel = faceModel;
 	}
 
 	/**
 	 * Overridden method , that is used for painting graphic on the Jpanel.
+	 * @param graphics an object of Graphics class
 	 */
 	@Override
 	public void paintComponent(Graphics graphics) {
@@ -106,11 +111,21 @@ public class FaceView extends JPanel implements ViewInterface {
         }
 	}
 
+	/**
+	 * This method sets color for face.
+	 * @param newColor an object of Color
+	 */
 	public void setColor(Color newColor) {
 
 		faceColor = newColor;
 	}
 
+	/**
+	 * This method initializes the face view.
+	 * 
+	 * @param subViews an array of objects of class ViewInterface
+	 * @throws IOException
+	 */
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
 		setPreferredSize(new Dimension(width, height));
@@ -129,10 +144,18 @@ public class FaceView extends JPanel implements ViewInterface {
 		}
 	}
 
+	/**
+	 * this method gets the status of selection. 
+	 * @return isSelected boolean
+	 */
     public boolean isSelected() {
         return isSelected;
     }
 
+    /**
+     * this method sets the status of selection.
+     * @param selected boolean
+     */
     public void setSelected(boolean selected) {
         isSelected = selected;
     }

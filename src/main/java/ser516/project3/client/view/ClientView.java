@@ -33,13 +33,23 @@ public class ClientView extends JFrame implements ViewInterface {
 	private final static int FRAME_WIDTH = 1400;
 	private final static int FRAME_HEIGHT = 700;
 
+	/**
+	 * This method gets client view. 
+	 * @return clientViewInstance an object of class ClientView
+	 */
 	public static ClientView getClientView() {
 		if (clientViewInstance == null) {
 			clientViewInstance = new ClientView();
 		}
 		return clientViewInstance;
 	}
-
+	
+	/**
+	 * This method initializes views, creates components
+	 * and configures view. 
+	 * 
+	 * @param subviews[] an array of ViewInterface objects
+	 */
 	@Override
 	public void initializeView(ViewInterface subviews[]) {
 		headerView = (HeaderView) subviews[0];
@@ -56,6 +66,10 @@ public class ClientView extends JFrame implements ViewInterface {
 		setVisible(true);
 	}
 
+	/**
+	 * This method creates an option menu with item to open server
+	 * from client.
+	 */
 	private void createMenuBar() {
 		menuBar = new JMenuBar();
 		optionsMenu = new JMenu(ClientConstants.OPTIONS);
@@ -66,6 +80,10 @@ public class ClientView extends JFrame implements ViewInterface {
 		menuBar.add(optionsMenu);
 	}
 
+	/**
+	 * This method creates expression and 
+	 * performance metric tabs.
+	 */
 	private void createTabs() {
 		expressionsEmotionsCombinedTab = new JTabbedPane();
 		expressionsEmotionsCombinedTab.addTab(ClientConstants.PERFORMANCE_METRICS, performanceMetricView);
@@ -73,6 +91,10 @@ public class ClientView extends JFrame implements ViewInterface {
 		expressionsEmotionsCombinedTab.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE));
 	}
 
+	/**
+	 * This method creates layout with desired
+	 * configuration.
+	 */
 	private void createLayout() {
 		setLayout(new GridBagLayout());
 		getContentPane().setBackground(Color.decode(ClientConstants.FRAME_COLOR_HEX));
@@ -92,15 +114,25 @@ public class ClientView extends JFrame implements ViewInterface {
 		gridBagConstraints.insets = new Insets(10, 10, 15, 10);
 		add(expressionsEmotionsCombinedTab, gridBagConstraints);
 	}
-
+	
+	/**
+	 * This method handles the events on menu item 
+	 * in options menu.
+	 */
 	public void addServerMenuItemListener(ActionListener actionListener) {
 		serverMenuItem.addActionListener(actionListener);
 	}
 
+	/**
+	 * This method handles events on window.
+	 */
 	public void addClientWindowListener(WindowListener windowListener) {
 		addWindowListener(windowListener);
 	}
 
+	/**
+	 * This method handles events on the tabs.
+	 */
 	public void addTabbedPaneSelectionListener(ChangeListener changeListener) {
 		expressionsEmotionsCombinedTab.addChangeListener(changeListener);
 	}
