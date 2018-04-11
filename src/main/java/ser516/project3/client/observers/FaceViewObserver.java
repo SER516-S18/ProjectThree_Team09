@@ -15,7 +15,10 @@ import java.util.Observer;
  */
 public class FaceViewObserver implements Observer {
     /**
-     * Overridden method that updates the face elements.
+     * Update for face
+     *
+     * @param dataObject observable for face
+     * @param observerObj observer obj for face
      */
     @Override
     public void update(Observable dataObject, Object observerObj) {

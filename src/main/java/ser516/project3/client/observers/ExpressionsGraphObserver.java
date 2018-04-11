@@ -15,6 +15,12 @@ import java.util.Observer;
  */
 public class ExpressionsGraphObserver implements Observer {
 
+    /**
+     * Update for expressions
+     *
+     * @param observable observable for expression
+     * @param observerObj observer obj for expression
+     */
     @Override
     public void update(Observable observable, Object observerObj) {
         ExpressionsDataObservable expressionsDataObservable = (ExpressionsDataObservable) observable;
