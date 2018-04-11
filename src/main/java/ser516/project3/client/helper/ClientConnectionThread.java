@@ -69,7 +69,7 @@ public class ClientConnectionThread implements Runnable {
 
 	}
 
-	/**
+	/**Method to get ClientSession
 	 * @return the clientSession
 	 */
 	public Session getClientSession() {

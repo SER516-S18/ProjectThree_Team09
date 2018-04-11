@@ -33,6 +33,10 @@ public class PerformanceMetricController implements ControllerInterface {
 		this.graphController = graphController;
 	}
 
+	/**
+	 * Method is used to initialize performance view
+	 * where emotion buttons and display length text field is added
+	 */
 	@Override
 	public void initializeView() {
 		graphController.setNoOfChannels(6);
@@ -50,6 +54,10 @@ public class PerformanceMetricController implements ControllerInterface {
 				new DisplayLengthDocumentListener());
 	}
 
+    /**
+     * Method to get PerformanceMetric view
+     * @return performancemetric view object
+     */
 	@Override
 	public PerformanceMetricView getView() {
 		return performanceMetricView;
@@ -61,6 +69,11 @@ public class PerformanceMetricController implements ControllerInterface {
 		return subControllers;
 	}
 
+	/**
+	 * Class implemented to handle action listener
+	 * of all emotion buttons like Stress, Interest, Focus, Excitement, Engagement
+	 * and Relaxation
+	 */
 	public class EmotionButtonsListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -129,6 +142,12 @@ public class PerformanceMetricController implements ControllerInterface {
 		}
 	}
 
+	/**
+	 * Class created to support display length key listener
+	 * to update graph controller and performance metric view
+	 * based on key event
+	 *
+	 */
 	public class DisplayLengthKeyListener extends KeyAdapter {
 		@Override
 		public void keyPressed(KeyEvent e) {
@@ -141,6 +160,10 @@ public class PerformanceMetricController implements ControllerInterface {
 		}
 	}
 
+	/**
+	 * Class implemented to handle document listener of all
+	 * display length related components
+	 */
 	class DisplayLengthDocumentListener implements DocumentListener {
 		@Override
 		public void removeUpdate(DocumentEvent e) {

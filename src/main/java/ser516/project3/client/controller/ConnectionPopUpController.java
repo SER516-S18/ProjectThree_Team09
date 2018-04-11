@@ -26,10 +26,20 @@ public class ConnectionPopUpController implements ControllerInterface{
   private ConnectionPopUpView connectionPopUpView;
   private ConnectionPopUpModel connectionPopUpModel;
 
+  /**
+   * Constructor to add popup model and view in
+   * Connection popup controller
+   */
+  
   public ConnectionPopUpController(ConnectionPopUpModel connectionPopUpModel, ConnectionPopUpView connectionPopUpView) {
     this.connectionPopUpModel = connectionPopUpModel;
     this.connectionPopUpView = connectionPopUpView;
   }
+  
+  /**
+   * Method to initialize connection popup 
+   * view and add Connect, IP document and Port components to it
+   */
 
   @Override
   public void initializeView() {

@@ -43,6 +43,9 @@ public class GraphController implements ControllerInterface {
 		graphView.initializeView(null);
 	}
 
+    /**
+    * Method to get the Graph View
+    */
 	@Override
 	public GraphView getView() {
 		return graphView;

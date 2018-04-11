@@ -27,6 +27,10 @@ public class ExpressionsController implements ControllerInterface, CommonDataInt
     this.faceController = faceController;
   }
 
+  /**
+   * Expression view is initialized where face
+   * and eyes expression are added along with channel size and length
+   */
   @Override
   public void initializeView() {
     String legendNames[] = {"blink", "rightWink", "leftWink", "lookingRight", "lookingLeft",
@@ -39,6 +43,10 @@ public class ExpressionsController implements ControllerInterface, CommonDataInt
     expressionsView.initializeView(clientViewInterface);
   }
 
+  /**
+   * Method to get expression view
+   * and @return expression view object
+   */
   @Override
   public ExpressionsView getView() {
     return expressionsView;

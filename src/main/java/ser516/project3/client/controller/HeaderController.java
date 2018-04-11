@@ -39,6 +39,9 @@ public class HeaderController implements ControllerInterface, CommonDataInterfac
 		this.connectionPopUpController = connectionPopUpController;
 	}
 
+    /**
+    * Method to add Connect and Server Open button in headerview
+    */
 	@Override
 	public void initializeView() {
 		headerView.initializeView(null);
@@ -68,6 +71,11 @@ public class HeaderController implements ControllerInterface, CommonDataInterfac
 		this.tabSelected = tabSelected;
 	}
 
+    /**
+     * Class implemented to handle action listener
+     * of server open button
+     *
+     */
 	class ServerOpenListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -75,6 +83,11 @@ public class HeaderController implements ControllerInterface, CommonDataInterfac
 		}
 	}
 
+	/**
+	 * Class implemented to handle action listener
+	 * of Connect to server button
+	 *
+	 */
 	class ConnectListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -86,6 +99,10 @@ public class HeaderController implements ControllerInterface, CommonDataInterfac
 		}
 	}
 
+    /**
+     * Method to set header time stamp
+     * and update it once the interval and elapsed time is set in the server dialog
+     */
 	public void setHeaderTimeStamp(double timeStamp) {
 		headerModel.setTimeStamp(timeStamp);
 		headerView.updateTimeStamp();
