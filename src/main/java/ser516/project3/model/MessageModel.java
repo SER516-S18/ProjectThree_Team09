@@ -81,26 +81,26 @@ public class MessageModel {
 	 * @param aex key for the abstract expression type 
 	 * @param val value for the emotion key
 	 */
-	public void setAbstractExpression(String aex, Double val) {
-		this.abstractExpressionMap.put(aex, val);
+	public void setAbstractExpression(String abstractExpression, Double val) {
+		this.abstractExpressionMap.put(abstractExpression, val);
 	}
 
-	public double getAbstractExpression(String aex) {
-		if (aex == null || this.abstractExpressionMap.get(aex) == null) {
+	public double getAbstractExpression(String abstractExpression) {
+		if (abstractExpression == null || this.abstractExpressionMap.get(abstractExpression) == null) {
 			return 0.0;
 		}
-		return this.abstractExpressionMap.get(aex);
+		return this.abstractExpressionMap.get(abstractExpression);
 	}
 
-	public void setConcreteExpression(String cex, Boolean val) {
-		this.concreteExpressionMap.put(cex, val);
+	public void setConcreteExpression(String concreteExpression, Boolean val) {
+		this.concreteExpressionMap.put(concreteExpression, val);
 	}
 
-	public Boolean getConcreteExpression(String cex) {
-		if (cex == null || this.concreteExpressionMap.get(cex) == null) {
+	public Boolean getConcreteExpression(String concreteExpression) {
+		if (concreteExpression == null || this.concreteExpressionMap.get(concreteExpression) == null) {
 			return false;
 		}
-		return this.concreteExpressionMap.get(cex);
+		return this.concreteExpressionMap.get(concreteExpression);
 	}
 
 	public String getSelectionFlag(String selectionFlag) {
