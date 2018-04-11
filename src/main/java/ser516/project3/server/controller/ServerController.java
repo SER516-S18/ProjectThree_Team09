@@ -5,12 +5,9 @@ import java.awt.event.WindowEvent;
 
 import org.apache.log4j.Logger;
 
-<<<<<<< HEAD
 import ser516.project3.constants.ServerConstants;
-=======
 import ser516.project3.client.controller.ControllerFactory;
 import ser516.project3.client.controller.ViewFactory;
->>>>>>> d027729b3f286189ee70e7aac32b31e0254fc0a4
 import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ConsoleModel;

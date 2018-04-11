@@ -23,16 +23,31 @@ import ser516.project3.model.MessageModel.SelectedCriteria;
  */
 public class MessageDecoder implements Decoder.Text<MessageModel> {
 
+	/**
+	 * Initialization method overridden from the interface
+	 *
+	 * @param config configuration for the decoding of the model
+	 */
 	@Override
 	public void init(EndpointConfig config) {
 		// Intentionally empty.
 	}
 
+	/**
+	 * Destroys the object, if exists. Overridden from the interface
+	 */
 	@Override
 	public void destroy() {
 		// Intentionally empty.
 	}
 
+	/**
+	 * Decodes the Strings to get a messageModel object
+	 *
+	 * @param payload JSON string to be decoded
+	 * @return Returns the MessageModel object
+	 * @throws DecodeException
+	 */
 	@Override
 	public MessageModel decode(String payload) throws DecodeException {
 

@@ -2,81 +2,86 @@ package ser516.project3.model;
 
 import ser516.project3.interfaces.ModelInterface;
 
+/**
+ * Class to store the data for the expressions tab
+ *
+ * @author Adhiraj Tikku
+ */
 public class ExpressionsModel implements ModelInterface {
-  private String lowerFaceItem;
-  private String upperFaceItem;
-  private String eyeItem;
-  private double upperFaceValue;
-  private double lowerFaceValue;
-  private boolean eyeValue;
-  private boolean eyeCheckBoxChecked;
-  private boolean isTabSelected;
+    private String lowerFaceItem;
+    private String upperFaceItem;
+    private String eyeItem;
+    private double upperFaceValue;
+    private double lowerFaceValue;
+    private boolean eyeValue;
+    private boolean eyeCheckBoxChecked;
+    private boolean isTabSelected;
 
-  public ExpressionsModel() {
-    lowerFaceItem = "Smile";
-    upperFaceItem = "Raise Brow";
-    eyeItem = "Blink";
-    upperFaceValue = 0;
-    lowerFaceValue = 0;
-    eyeValue = false;
-    eyeCheckBoxChecked = false;
-  }
+    public ExpressionsModel() {
+        lowerFaceItem = "Smile";
+        upperFaceItem = "Raise Brow";
+        eyeItem = "Blink";
+        upperFaceValue = 0;
+        lowerFaceValue = 0;
+        eyeValue = false;
+        eyeCheckBoxChecked = false;
+    }
 
-  public String getUpperFaceItem() {
-    return upperFaceItem;
-  }
+    public String getUpperFaceItem() {
+        return upperFaceItem;
+    }
 
-  public void setUpperFaceItem(String upperFaceItem) {
-    this.upperFaceItem = upperFaceItem;
-  }
+    public void setUpperFaceItem(String upperFaceItem) {
+        this.upperFaceItem = upperFaceItem;
+    }
 
-  public String getLowerFaceItem() {
-    return lowerFaceItem;
-  }
+    public String getLowerFaceItem() {
+        return lowerFaceItem;
+    }
 
-  public void setLowerFaceItem(String lowerFaceItem) {
-    this.lowerFaceItem = lowerFaceItem;
-  }
+    public void setLowerFaceItem(String lowerFaceItem) {
+        this.lowerFaceItem = lowerFaceItem;
+    }
 
-  public String getEyeItem() {
-    return eyeItem;
-  }
+    public String getEyeItem() {
+        return eyeItem;
+    }
 
-  public void setEyeItem(String eyeItem) {
-    this.eyeItem = eyeItem;
-  }
+    public void setEyeItem(String eyeItem) {
+        this.eyeItem = eyeItem;
+    }
 
-  public double getUpperFaceValue() {
-    return upperFaceValue;
-  }
+    public double getUpperFaceValue() {
+        return upperFaceValue;
+    }
 
-  public void setUpperFaceValue(double upperFaceValue) {
-    this.upperFaceValue = upperFaceValue;
-  }
+    public void setUpperFaceValue(double upperFaceValue) {
+        this.upperFaceValue = upperFaceValue;
+    }
 
-  public double getLowerFaceValue() {
-    return lowerFaceValue;
-  }
+    public double getLowerFaceValue() {
+        return lowerFaceValue;
+    }
 
-  public void setLowerFaceValue(double lowerFaceValue) {
-    this.lowerFaceValue = lowerFaceValue;
-  }
+    public void setLowerFaceValue(double lowerFaceValue) {
+        this.lowerFaceValue = lowerFaceValue;
+    }
 
-  public boolean getEyeValue() {
-    return eyeValue;
-  }
+    public boolean getEyeValue() {
+        return eyeValue;
+    }
 
-  public void setEyeValue(boolean eyeValue) {
-    this.eyeValue = eyeValue;
-  }
+    public void setEyeValue(boolean eyeValue) {
+        this.eyeValue = eyeValue;
+    }
 
-  public boolean isEyeCheckBoxChecked() {
-    return eyeCheckBoxChecked;
-  }
+    public boolean isEyeCheckBoxChecked() {
+        return eyeCheckBoxChecked;
+    }
 
-  public void setEyeCheckBoxChecked(boolean eyeCheckBoxChecked) {
-    this.eyeCheckBoxChecked = eyeCheckBoxChecked;
-  }
+    public void setEyeCheckBoxChecked(boolean eyeCheckBoxChecked) {
+        this.eyeCheckBoxChecked = eyeCheckBoxChecked;
+    }
 
     public boolean isTabSelected() {
         return isTabSelected;
