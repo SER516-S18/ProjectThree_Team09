@@ -11,6 +11,9 @@ public class FaceModel implements ModelInterface{
   private int width;
   private int height;
 
+  /**
+   * Creates a model for the face.
+   */
   public FaceModel() {
     this.width = 300;
     this.height = 300;
