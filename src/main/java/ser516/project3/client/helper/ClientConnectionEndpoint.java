@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import ser516.project3.client.controller.ClientController;
 import ser516.project3.model.*;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.utilities.ControllerFactory;
 import ser516.project3.utilities.MessageDecoder;
 import ser516.project3.utilities.MessageFormatConverter;
 import ser516.project3.utilities.ServerCommonData;
@@ -34,7 +35,7 @@ public class ClientConnectionEndpoint {
 		try {
 			session.getBasicRemote().sendText(ServerCommonData.getInstance().getMessage().toString());
 		} catch (IOException ex) {
-			logger.error("Exception in onOpen method::::" + ex.getStackTrace());
+			logger.error("Exception in onOpen method::::" + ex.getMessage());
 		}
 	}
 
@@ -43,6 +44,7 @@ public class ClientConnectionEndpoint {
 		logger.info("Received data:::: " + messageModelBean);
 		PerformanceMetricDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToPeformanceMetrics(messageModelBean));
 		ExpressionsDataObservable.getInstance().addToListValues(MessageFormatConverter.convertMessageToExpressionsData(messageModelBean));
+		FaceExpressionsObservable.getInstance().setMessageBean(messageModelBean);
 		HeaderObservable.getInstance().setHeaderData(messageModelBean.getTimeStamp(), messageModelBean.getInterval());
 	}
 
@@ -50,6 +52,7 @@ public class ClientConnectionEndpoint {
 	public void processError(Throwable t) {
 
 		logger.error("Error occurred in Client End Point");
+		t.printStackTrace();
 	}
 
 	@OnClose
@@ -59,7 +62,7 @@ public class ClientConnectionEndpoint {
 			final JDialog dialog = new JDialog();
 			dialog.setAlwaysOnTop(true);
 			JOptionPane.showMessageDialog(dialog, ClientConstants.SERVER_STOPPED_MESSAGE, ClientConstants.ERROR_STRING, JOptionPane.ERROR_MESSAGE);
-			ClientController.getInstance().stopClientConnector();
+			ControllerFactory.getInstance().getClientController().stopClientConnector();
 		}
 	}
 	

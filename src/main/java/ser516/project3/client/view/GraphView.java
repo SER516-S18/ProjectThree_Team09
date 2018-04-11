@@ -3,7 +3,6 @@ package ser516.project3.client.view;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.SymbolAxis;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
@@ -12,6 +11,7 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.CoordinatesModel;
 import ser516.project3.model.GraphModel;
 
@@ -30,11 +30,12 @@ import java.util.ArrayList;
  * @since 2018-03-30
  *
  */
-public class GraphView extends JPanel implements ClientViewInterface{
+public class GraphView extends JPanel implements ViewInterface {
   private JFreeChart chart;
   private ChartPanel chartPanel;
   private GraphModel graphModel;
   private boolean legendDisplay;
+  private double currentXCoordinate;
 
   private static final int TITLE_FONT_SIZE = 17;
   private static final int GRAPH_AXIS_FONT_SIZE = 14;
@@ -43,13 +44,20 @@ public class GraphView extends JPanel implements ClientViewInterface{
    * Initializes a graph instance and creates a default empty
    * graph.
    *
+   * @param graphModel
    */
   public GraphView(GraphModel graphModel) {
     this.graphModel = graphModel;
+    currentXCoordinate = 0;
   }
-
+  
+  /**
+   * This method generates the baisc view for the graph.
+   * 
+   * @param subViews
+   */
   @Override
-  public void initializeView(ClientViewInterface[] subViews) {
+  public void initializeView(ViewInterface[] subViews) {
     setLayout(new GridLayout(1, 1, 8, 8));
     setBorder(new TitledBorder(null, ClientConstants.GRAPH,
         TitledBorder.CENTER, TitledBorder.TOP, new Font(ClientConstants.FONT_NAME, Font.BOLD, TITLE_FONT_SIZE), null));
@@ -70,9 +78,8 @@ public class GraphView extends JPanel implements ClientViewInterface{
   public void updateGraphView(GraphModel graphModel) {
     this.graphModel = graphModel;
     legendDisplay = true;
-    if(graphModel.getNoOfChannels() == 6) {
+    if(graphModel.getNoOfChannels() == 6)
       legendDisplay = false;
-    }
     remove(chartPanel);
     XYDataset dataSet = createDataSet();
     chart = createChart(dataSet);
@@ -80,7 +87,10 @@ public class GraphView extends JPanel implements ClientViewInterface{
     add(chartPanel);
     setVisible(true);
   }
-
+  
+  /**
+   * 
+   */
   private XYDataset createDataSet() {
     XYSeries series[] = new XYSeries[graphModel.getNoOfChannels()];
     XYSeriesCollection dataSet = new XYSeriesCollection();
@@ -97,7 +107,11 @@ public class GraphView extends JPanel implements ClientViewInterface{
         for(int i = 0; i < graphModel.getNoOfChannels(); i++) {
           double xCoordinate = data.get(i).getXCoordinate();
           double yCoordinate = data.get(i).getYCoordinate();
-          series[i].add(xCoordinate, yCoordinate);
+          if(graphModel.getNoOfChannels() == 6)
+            series[i].add(graphModel.getXLength() - xCoordinate, yCoordinate);
+          else
+            series[i].add(xCoordinate, yCoordinate);
+          currentXCoordinate = xCoordinate;
         }
       }
     }
@@ -109,6 +123,12 @@ public class GraphView extends JPanel implements ClientViewInterface{
     return dataSet;
   }
 
+  /**
+   * This method generates the graph based on the values obtained.
+   * 
+   * @param dataSet
+   * @return chart
+   */
   private JFreeChart createChart(final XYDataset dataSet) {
     JFreeChart chart = ChartFactory.createXYLineChart("", "",
         "", dataSet, PlotOrientation.VERTICAL, legendDisplay, true,
@@ -128,7 +148,14 @@ public class GraphView extends JPanel implements ClientViewInterface{
     }
 
     range = plot.getDomainAxis();
-    range.setRange(0, graphModel.getXLength());
+    if(graphModel.getNoOfChannels() == 12 && currentXCoordinate > graphModel.getXLength()) {
+      int diff = (int)currentXCoordinate - graphModel.getXLength();
+      graphModel.setXStartPoint(graphModel.getXStartPoint() + diff);
+      graphModel.setXLength(graphModel.getXLength() + diff);
+      range.setRange(graphModel.getXStartPoint(), graphModel.getXLength());
+    } else {
+      range.setRange(0, graphModel.getXLength());
+    }
     range.setTickLabelPaint(Color.WHITE);
     range.setTickLabelFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, GRAPH_AXIS_FONT_SIZE));
 

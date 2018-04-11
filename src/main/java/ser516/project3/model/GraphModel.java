@@ -1,5 +1,7 @@
 package ser516.project3.model;
 
+import ser516.project3.interfaces.ModelInterface;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -18,16 +20,18 @@ import java.util.ArrayList;
  * @since 2018-03-30
  *
  */
-public class GraphModel implements ModelInterface{
+public class GraphModel implements ModelInterface {
   private int XLength;
   private int noOfChannels;
   private Color channelColors[];
   private ArrayList<ArrayList<CoordinatesModel>> graphData;
   private String[] legendNames;
+  private int xStartPoint;
 
   public GraphModel() {
     XLength = 1;
     noOfChannels = 1;
+    xStartPoint = 0;
   }
 
   /**
@@ -117,5 +121,23 @@ public class GraphModel implements ModelInterface{
    */
   public String[] getLegendNames() {
     return legendNames;
+  }
+
+  /**
+   * Sets the x-axis starting point of the graph.
+   *
+   * @param xStartPoint the x-axis starting point of the graph
+   */
+  public void setXStartPoint(int xStartPoint) {
+    this.xStartPoint = xStartPoint;
+  }
+
+  /**
+   * Gets the x-axis starting point of the graph.
+   *
+   * @return the x-axis starting point of the graph
+   */
+  public int getXStartPoint() {
+    return xStartPoint;
   }
 }

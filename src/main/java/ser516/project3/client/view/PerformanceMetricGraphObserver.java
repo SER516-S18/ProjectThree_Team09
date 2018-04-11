@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import ser516.project3.client.controller.ClientController;
 import ser516.project3.client.controller.GraphController;
 import ser516.project3.model.PerformanceMetricDataObservable;
+import ser516.project3.utilities.ControllerFactory;
 
 /**
  * 
@@ -25,20 +26,19 @@ public class PerformanceMetricGraphObserver implements Observer {
 	/**
 	 * 
 	 * Overriding the update method in Observer class to update the graph .
+	 * 
+	 * @param observable
+	 * @param observerObj
 	 */
 	@Override
 	public void update(Observable observable, Object observerObj) {
 
 		PerformanceMetricDataObservable performanceMetricDataObservable = (PerformanceMetricDataObservable) observable;
 
-		GraphController graphController = ClientController.getInstance()
-				.getPerformanceMetricController().getGraphController();
+		GraphController graphController = ControllerFactory.getInstance().getPerformanceMetricGraphController();
 
 		graphController.setGraphData(performanceMetricDataObservable.getPerformanceMetricData());
 		graphController.updateGraphView();
-
-		ClientController.getInstance().getPerformanceMetricController().getPerformanceMetricView().revalidate();
-		ClientController.getInstance().getPerformanceMetricController().getPerformanceMetricView().repaint();
 	}
 
 }

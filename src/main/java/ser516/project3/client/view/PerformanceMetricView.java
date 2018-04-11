@@ -2,6 +2,7 @@ package ser516.project3.client.view;
 
 import com.alee.laf.button.WebButton;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.PerformanceMetricModel;
 import ser516.project3.utilities.NumberTextField;
 
@@ -18,7 +19,7 @@ import java.awt.event.KeyAdapter;
  * 
  * @author Mohan Vasantrao Yadav, Adhiraj Tikku
  */
-public class PerformanceMetricView extends JPanel implements ClientViewInterface{
+public class PerformanceMetricView extends JPanel implements ViewInterface {
 	private PerformanceMetricModel performanceMetricModel;
 
 	private JPanel mainPanel;
@@ -34,12 +35,25 @@ public class PerformanceMetricView extends JPanel implements ClientViewInterface
 
 	private static final int FONT_SIZE = 17;
 	
+	
+	/**
+	 * This method gets the value of the emotions and the 
+	 * display length of the x-axis.
+	 * 
+	 * @param performanceMetricModel
+	 */
 	public PerformanceMetricView(PerformanceMetricModel performanceMetricModel){
 		this.performanceMetricModel = performanceMetricModel;
 	}
-
+	
+   /**
+    * This method creates main panel for client, graph view
+    * and calls the method that creates panel that displays emotions.
+    * 
+    * @param subViews
+    */
 	@Override
-	public void initializeView(ClientViewInterface[] subViews) {
+	public void initializeView(ViewInterface[] subViews) {
 		GraphView graphView = (GraphView) subViews[0];
 		setLayout(new GridBagLayout());
 		setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
@@ -69,8 +83,9 @@ public class PerformanceMetricView extends JPanel implements ClientViewInterface
 		setVisible(true);
 	}
 	
-	/* This method returns a panel of 6 buttons,
-	 * 2 labels and 1 text field.
+	/**
+	 *  This method creates a JPanel 
+	 * that displays emotions button and display length of x-axis.
 	 */
 	private void createEmotionPanel() {
 		mainPanel = new JPanel();
@@ -80,6 +95,11 @@ public class PerformanceMetricView extends JPanel implements ClientViewInterface
 		mainPanel.setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
 	}
 
+	/**
+	 * This method displays the 6 different emotions buttons of different colors.
+	 * 
+	 * @param gridBagConstraints
+	 */
 	private void createEmotionButtons(GridBagConstraints gridBagConstraints) {
 		gridBagConstraints.ipadx = 50;
 		gridBagConstraints.ipady = 50;
@@ -116,6 +136,12 @@ public class PerformanceMetricView extends JPanel implements ClientViewInterface
 		focusButton = createEmotionButton(ClientConstants.FOCUS, performanceMetricModel.getFocusColor());
 		mainPanel.add(focusButton, gridBagConstraints);
 	}
+	
+	/**
+	 * This method creates a label that shows the length of x-axis.
+	 * 
+	 * @param gridBagConstraints
+	 */
 
 	private void createDisplayLengthLabel(GridBagConstraints gridBagConstraints) {
 		gridBagConstraints.insets = new Insets(10, 5, 10, 5);
@@ -128,13 +154,20 @@ public class PerformanceMetricView extends JPanel implements ClientViewInterface
 		displaylengthLabel.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE));
 		mainPanel.add(displaylengthLabel, gridBagConstraints);
 	}
+	
+	/**
+	 * This method creates a text field that shows the length of 
+	 * the x-axis.
+	 * 
+	 * @param gridBagConstraints
+	 */
 
 	private void createDisplayLengthField(GridBagConstraints gridBagConstraints) {
 		gridBagConstraints.gridx = 2;
 		gridBagConstraints.gridy = 3;
 		gridBagConstraints.ipadx = 20;
 		gridBagConstraints.ipady = 20;
-		displayLengthField = new NumberTextField("" + performanceMetricModel.getDisplayLength());
+		displayLengthField = new NumberTextField("" + performanceMetricModel.getDisplayLength(), false);
 		displayLengthField.setBackground(Color.decode(ClientConstants.TEXT_FIELD_COLOR_HEX));
 		displayLengthField.setForeground(Color.WHITE);
 		displayLengthField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -143,6 +176,11 @@ public class PerformanceMetricView extends JPanel implements ClientViewInterface
 		mainPanel.add(displayLengthField, gridBagConstraints);
 	}
 
+	/**
+	 * This method creates a label named "Seconds" 
+	 * 
+	 * @param gridBagConstraints
+	 */
 	private void createSecondsLabel(GridBagConstraints gridBagConstraints) {
 		gridBagConstraints.gridx = 3;
 		gridBagConstraints.gridy = 3;
@@ -159,7 +197,9 @@ public class PerformanceMetricView extends JPanel implements ClientViewInterface
 	 * This method adds Emotion buttons into the panel where dimensions,color
 	 * and emotion name is passed as arguments
 	 * 
-	 *
+	 * @param emotion
+	 * @param color
+	 * @return emotionButton
 	 */
 	private WebButton createEmotionButton(String emotion, Color color)
 	{
@@ -175,6 +215,13 @@ public class PerformanceMetricView extends JPanel implements ClientViewInterface
 		emotionButton.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE));
 		return emotionButton;
 	}
+	
+	/**
+	 * This method calls the action listener
+	 * when any one of the emotion button is pressed.
+	 * 
+	 * @param actionListener
+	 */
 
 	public void addEmotionButtonsListener(ActionListener actionListener) {
 		interestButton.addActionListener(actionListener);
@@ -185,11 +232,24 @@ public class PerformanceMetricView extends JPanel implements ClientViewInterface
 		focusButton.addActionListener(actionListener);
 	}
 
+	/**
+	 * This method is called when the value in the text field 
+	 * is changed and that value is passed to the action listener.
+	 * 
+	 * @param keyAdapter
+	 * @param documentListener
+	 */
 	public void addDisplayLengthListener(KeyAdapter keyAdapter, DocumentListener documentListener) {
 		displayLengthField.addKeyListener(keyAdapter);
 		displayLengthField.getDocument().addDocumentListener(documentListener);
 	}
 
+/**
+ *  This method plots the graph of the data obtained
+ *  from the emotions and the display length of the x-axis.
+ *  
+ *  @param performanceMetricModel
+ */
 	public void updatePerformanceMetricView(PerformanceMetricModel performanceMetricModel) {
 		this.performanceMetricModel = performanceMetricModel;
 		interestButton.setBottomBgColor(this.performanceMetricModel.getInterestColor());

@@ -1,9 +1,8 @@
 package ser516.project3.client.view;
 
 import com.alee.laf.button.WebButton;
-import org.apache.log4j.Logger;
-import ser516.project3.client.controller.ClientController;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ConnectionPopUpModel;
 import ser516.project3.utilities.NumberTextField;
 
@@ -20,9 +19,7 @@ import java.awt.event.ActionListener;
  * @author Vishakha Singal, Adhiraj Tikku
  * @version 1.0
  */
-public class ConnectionPopUpView extends JDialog {
-	final static Logger logger = Logger.getLogger(ConnectionPopUpView.class);
-	private ClientController clientController;
+public class ConnectionPopUpView extends JDialog implements ViewInterface{
 	private ConnectionPopUpModel connectionPopUpModel;
 	private JPanel mainPanel;
 	private JLabel ipAddressLabel;
@@ -33,11 +30,23 @@ public class ConnectionPopUpView extends JDialog {
 
 	private final static int FONT_SIZE = 15;
 
+	/**
+	 * This methods uses the model to get and set IP address and port number
+	 * entered by the client.
+	 * 
+	 * @param connectionPopUpModel 
+	 */
 	public ConnectionPopUpView(ConnectionPopUpModel connectionPopUpModel) {
-
 		this.connectionPopUpModel = connectionPopUpModel;
-		clientController = new ClientController();
+	}
 
+	/** 
+	 * Overriden method that creates a pop up menu to enter IP address and port number.
+	 * 
+	 * @param subViews
+	 */
+	@Override
+	public void initializeView(ViewInterface[] subViews) {
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setMinimumSize(new Dimension(280, 200));
 		setResizable(false);
@@ -45,15 +54,10 @@ public class ConnectionPopUpView extends JDialog {
 
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
-		initializeConnectionPopUpView();
-	}
-
-	private void initializeConnectionPopUpView() {
-		createMainPanel();
-
 		GridBagConstraints bagConstraints = new GridBagConstraints();
 		bagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
+		createMainPanel();
 		createLabels(bagConstraints);
 		createTextFields(bagConstraints);
 		createOkButton(bagConstraints);
@@ -62,6 +66,10 @@ public class ConnectionPopUpView extends JDialog {
 		setVisible(true);
 	}
 
+	/**
+	 * Creates a panel that contains labels and text fields.
+	 * 
+	 */
 	private void createMainPanel() {
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
@@ -70,6 +78,11 @@ public class ConnectionPopUpView extends JDialog {
 		mainPanel.setBackground(Color.WHITE);
 	}
 
+	/** 
+	 * Creates labels to ask for IP address and port number.
+	 * 
+	 * @param bagConstraints
+	 */
 	private void createLabels(GridBagConstraints bagConstraints) {
 		ipAddressLabel = new JLabel(ClientConstants.IP_ADDRESS);
 		ipAddressLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -90,6 +103,11 @@ public class ConnectionPopUpView extends JDialog {
 		mainPanel.add(portNumberLabel, bagConstraints);
 	}
 
+	/**
+	 * Creates text fields for the client to enter IP address and port number
+	 * 
+	 * @param bagConstraints
+	 */
 	private void createTextFields(GridBagConstraints bagConstraints) {
 		ipAddressTextField = new JTextField(connectionPopUpModel.getIpAddress());
 		ipAddressTextField.setPreferredSize(new Dimension(120, 20));
@@ -98,7 +116,7 @@ public class ConnectionPopUpView extends JDialog {
 		bagConstraints.insets = new Insets(0, 0, 10, 0);
 		mainPanel.add(ipAddressTextField, bagConstraints);
 
-		portNumberTextField = new NumberTextField("" + connectionPopUpModel.getPortNumber());
+		portNumberTextField = new NumberTextField("" + connectionPopUpModel.getPortNumber(), false);
 		portNumberTextField.setPreferredSize(new Dimension(80, 20));
 		bagConstraints.gridx = 1;
 		bagConstraints.gridy = 1;
@@ -106,6 +124,11 @@ public class ConnectionPopUpView extends JDialog {
 		mainPanel.add(portNumberTextField, bagConstraints);
 	}
 
+	/**
+	 * Creates a button that confirms the IP address and port number entered.
+	 * 
+	 * @param bagConstraints
+	 */
 	private void createOkButton(GridBagConstraints bagConstraints) {
 		okButton = new WebButton(ClientConstants.OK);
 		okButton.setPreferredSize(new Dimension(120, 35));
@@ -124,14 +147,29 @@ public class ConnectionPopUpView extends JDialog {
 		mainPanel.add(okButton, bagConstraints);
 	}
 
+	/** 
+	 * This method is called when the OK button is clicked.
+	 * 
+	 * @param actionListener
+	 */
 	public void addConnectButtonListener(ActionListener actionListener) {
 		okButton.addActionListener(actionListener);
 	}
 
+	/**
+	 * This method gets the value entered for the IP address.
+	 * 
+	 * @param documentListener
+	 */
 	public void addIPDocumentListener(DocumentListener documentListener) {
 		ipAddressTextField.getDocument().addDocumentListener(documentListener);
 	}
 
+	/**
+	 * This method gets the value entered for port number.
+	 * 
+	 * @param documentListener
+	 */
 	public void addPortDocumentListener(DocumentListener documentListener) {
 		portNumberTextField.getDocument().addDocumentListener(documentListener);
 	}

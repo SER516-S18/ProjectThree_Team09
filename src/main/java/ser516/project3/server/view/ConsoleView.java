@@ -1,12 +1,14 @@
 package ser516.project3.server.view;
 
+import com.alee.laf.button.WebButton;
+import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ConsoleModel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,54 +22,66 @@ import java.util.Observer;
  *
  */
 
-public class ConsoleView implements Observer {
+public class ConsoleView extends JPanel implements Observer, ViewInterface {
+    private JTextArea consoleOutput;
+    private WebButton clearConsole;
+    private JScrollPane consoleScroll;
+    private ConsoleModel consoleModel;
 
     private static final Font SUBFONT = new Font("Courier New", Font.BOLD, 14);
     private static final Color LIGHTGREY = new Color(245, 245, 245);
 
-    private JTextArea consoleOutput;
-    private JPanel consolePanel;
-    private JButton clearConsole;
 
-    // Constructor to initialize console.
-    public ConsoleView() {
-        consolePanel = new JPanel();
-        consolePanel.setBorder(new TitledBorder(null, "Console", TitledBorder.LEADING,
-                TitledBorder.TOP, SUBFONT, null));
-        consolePanel.setLayout(new FlowLayout());
+	/** 
+     * Method to set console model
+	 * @param consoleModel-model object containing required console data.
+	 * 
+	 */
+    public ConsoleView(ConsoleModel consoleModel) {
+        this.consoleModel = consoleModel;
+    }
+
+	/** 
+     * Method to initialize the expressions view panel
+	 * @param subViews-object of type ViewInterface
+	 * 
+	 */
+    @Override
+    public void initializeView(ViewInterface[] subViews) {
+        setBorder(new TitledBorder(null, "Console", TitledBorder.LEADING,
+            TitledBorder.TOP, SUBFONT, null));
+        setBackground(Color.decode("#747b83"));
+        setLayout(new FlowLayout());
 
         consoleOutput = new JTextArea();
-        consoleOutput.setPreferredSize(new Dimension(400,100));
         consoleOutput.setEditable(false);
         consoleOutput.setBackground(LIGHTGREY);
-        consoleOutput.setFont(new Font("Courier New", Font.PLAIN, 15));
+        consoleOutput.setFont(new Font("Courier New", Font.PLAIN, 12));
 
+        consoleScroll = new JScrollPane(consoleOutput, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+        										JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        consoleScroll.setPreferredSize(new Dimension(400,90));
         Border border = BorderFactory.createLineBorder(Color.BLACK);
-        consoleOutput.setBorder(BorderFactory.createCompoundBorder(border,
-                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        consoleScroll.setBorder(BorderFactory.createCompoundBorder(border,
+            BorderFactory.createEmptyBorder(1, 1, 1, 1)));
 
-        clearConsole = new JButton();
+        clearConsole = new WebButton();
         clearConsole.setText("Clear");
-        consolePanel.add(consoleOutput);
-        consolePanel.add(clearConsole);
-        clearConsole.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                clear();
-            }
-        });
-
+        clearConsole.setBottomBgColor(Color.BLACK);
+        clearConsole.setTopBgColor(Color.BLACK);
+        clearConsole.setBottomSelectedBgColor(Color.WHITE);
+        clearConsole.setTopSelectedBgColor(Color.WHITE);
+        clearConsole.setForeground(Color.WHITE);
+        clearConsole.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, 15));
+        add(consoleScroll);
+        add(clearConsole);
     }
-
-    public JPanel getConsolePanel() {
-        return consolePanel;
-    }
-
+    
+	/** 
+     * Method to append the new messages to console 
+     */
     @Override
     public void update(Observable messageArrayObject, Object observerObj) {
-        //messageArrayObject is ConsoleModel object
         ConsoleModel model = (ConsoleModel) messageArrayObject;
         String message = model.getLogArray().get(model.getLogArray().size() - 1);
         DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
@@ -77,7 +91,17 @@ public class ConsoleView implements Observer {
         consoleOutput.append("\n");
     }
 
-    public void clear(){
+	/** 
+     * Method to add listener to the clear console button
+     */
+    public void addClearConsoleListener(ActionListener actionListener) {
+        clearConsole.addActionListener(actionListener);
+    }
+
+	/** 
+     * Method to clear the console
+     */
+    public void clearConsole(){
         consoleOutput.setText(null);
     }
 }
