@@ -22,53 +22,85 @@ public class MessageModel {
 	private HashMap<String, Double> abstractExpressionMap = new HashMap<String, Double>();
 	private HashMap<String, Boolean> concreteExpressionMap = new HashMap<String, Boolean>();
 
+	
+
+	/**
+	 * @return the interval
+	 */
 	public double getInterval() {
 		return interval;
 	}
 
+	/**
+	 * @param interval the interval to set
+	 */
 	public void setInterval(double interval) {
 		this.interval = interval;
 	}
 
+	/**
+	 * @return the timeStamp
+	 */
 	public double getTimeStamp() {
 		return timeStamp;
 	}
 
+	/**
+	 * @param timeStamp the timeStamp to set
+	 */
 	public void setTimeStamp(double timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 
-	public void setEmotion(String em, Double val) {
-		this.emotionMap.put(em.toLowerCase(), val);
+	/**
+	 * Adds the passed double value to the corresponding string in the hashmap
+	 * 
+	 * @param emotionKey key for the emotion type 
+	 * @param val value for the emotion key
+	 */
+	public void setEmotion(String emotionKey, Double val) {
+		this.emotionMap.put(emotionKey.toLowerCase(), val);
 	}
 
-	public double getEmotion(String em) {
-		if (em == null || this.emotionMap.get(em.toLowerCase()) == null) {
+	/**
+	 * Returns the value for the respective key
+	 * 
+	 * @param emotionKey emotion key for which the value has to be received
+	 * @return returns the value for the respective emotion key
+	 */
+	public double getEmotion(String emotionKey) {
+		if (emotionKey == null || this.emotionMap.get(emotionKey.toLowerCase()) == null) {
 			return 0.0;
 		}
-		return this.emotionMap.get(em.toLowerCase());
+		return this.emotionMap.get(emotionKey.toLowerCase());
 	}
 
-	public void setAbstractExpression(String aex, Double val) {
-		this.abstractExpressionMap.put(aex, val);
+	/**
+	 * Adds the passed double value to the corresponding string in the hashmap
+	 * 
+	 * @param aex key for the abstract expression type 
+	 * @param val value for the emotion key
+	 */
+	public void setAbstractExpression(String abstractExpression, Double val) {
+		this.abstractExpressionMap.put(abstractExpression, val);
 	}
 
-	public double getAbstractExpression(String aex) {
-		if (aex == null || this.abstractExpressionMap.get(aex) == null) {
+	public double getAbstractExpression(String abstractExpression) {
+		if (abstractExpression == null || this.abstractExpressionMap.get(abstractExpression) == null) {
 			return 0.0;
 		}
-		return this.abstractExpressionMap.get(aex);
+		return this.abstractExpressionMap.get(abstractExpression);
 	}
 
-	public void setConcreteExpression(String cex, Boolean val) {
-		this.concreteExpressionMap.put(cex, val);
+	public void setConcreteExpression(String concreteExpression, Boolean val) {
+		this.concreteExpressionMap.put(concreteExpression, val);
 	}
 
-	public Boolean getConcreteExpression(String cex) {
-		if (cex == null || this.concreteExpressionMap.get(cex) == null) {
+	public Boolean getConcreteExpression(String concreteExpression) {
+		if (concreteExpression == null || this.concreteExpressionMap.get(concreteExpression) == null) {
 			return false;
 		}
-		return this.concreteExpressionMap.get(cex);
+		return this.concreteExpressionMap.get(concreteExpression);
 	}
 
 	public String getSelectionFlag(String selectionFlag) {
