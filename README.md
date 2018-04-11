@@ -13,7 +13,7 @@ mvn package
 The `mvn package` command will build the client into an executable fat JAR file that includes the library dependencies. To execute the client, simply double-click on the JAR file in `target/` or run the following command in a terminal window.
 
 ```bash
-java -jar target/project3-1.0-SNAPSHOT.jar
+java -jar target/project3-1.0-jar-with-dependencies.jar
 ```
 ## Import Project on Eclipse
 File >> Import >> Maven >> Existing Maven Projects >> Browse to Project Folder(Directory with pom.xml) 
