@@ -44,7 +44,7 @@ public class StatusIndicator extends JPanel{
 	 * running and a green blinking circle. If `blink` is false, then the server
 	 * is not running and is indicated by a (non-blinking) red circle.
 	 * 
-	 * @param blink - Server status flag
+	 * @param blink Server status flag
 	 */
 	public void setBlinking(boolean blink) {
 		if (blink) {
@@ -63,7 +63,7 @@ public class StatusIndicator extends JPanel{
 	 * Paints the status circle with relevant colors
 	 * 
 	 * @param graphics
-	 *            - Graphics object to change the color the circle
+	 *            Graphics object to change the color the circle
 	 */
 	@Override
 	public void paint(Graphics graphics) {

@@ -26,6 +26,11 @@ import ser516.project3.model.MessageModel.SelectedCriteria;
  */
 public class MessageEncoder implements Encoder.Text<MessageModel> {
 
+	/**
+	 * Initializer for the Message encoder. Empty as no 
+	 *
+	 * @param config
+	 */
 	@Override
 	public void init(EndpointConfig config) {
 		// Intentionally empty.

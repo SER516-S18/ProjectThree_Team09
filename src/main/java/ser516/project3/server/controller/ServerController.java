@@ -100,8 +100,8 @@ public class ServerController implements ControllerInterface {
 
 	/**
 	* Method to initialize the top server settings panel
-	* @param viewFactory- ViewFactory object
-	* @param controllerFactory- ControllerFactory object
+	* @param viewFactory ViewFactory object
+	* @param controllerFactory ControllerFactory object
 	*/
 	private void initializeTop() {
 		TopModel topModel = new TopModel();
@@ -113,8 +113,8 @@ public class ServerController implements ControllerInterface {
 
 	/**
 	* Method to initialize the server timer panel
-	* @param viewFactory- ViewFactory object
-	* @param controllerFactory- ControllerFactory object
+	* @param viewFactory ViewFactory object
+	* @param controllerFactory ControllerFactory object
 	*/
 	private void initializeTimer() {
 		TimerModel timerModel = new TimerModel();
@@ -125,8 +125,8 @@ public class ServerController implements ControllerInterface {
 
 	/**
 	* Method to initialize the emotions panel
-	* @param viewFactory- ViewFactory object
-	* @param controllerFactory- ControllerFactory object
+	* @param viewFactory ViewFactory object
+	* @param controllerFactory ControllerFactory object
 	*/
 	private void initializeEmotions() {
 		EmotionsModel emotionsModel = new EmotionsModel();
@@ -138,8 +138,8 @@ public class ServerController implements ControllerInterface {
 
 	/**
 	* Method to initialize the expressions panel
-	* @param viewFactory- ViewFactory object
-	* @param controllerFactory- ControllerFactory object
+	* @param viewFactory ViewFactory object
+	* @param controllerFactory ControllerFactory object
 	*/
 	private void initializeExpressions(){
 		ExpressionsModel expressionsModel = new ExpressionsModel();
@@ -152,8 +152,8 @@ public class ServerController implements ControllerInterface {
 
 	/**
 	* Method to initialize the console panel
-	* @param viewFactory- ViewFactory object
-	* @param controllerFactory- ControllerFactory object
+	* @param viewFactory ViewFactory object
+	* @param controllerFactory ControllerFactory object
 	*/
 	private void initializeConsole(){
 		ConsoleModel consoleModel = new ConsoleModel();

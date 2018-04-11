@@ -27,7 +27,7 @@ public class TimerView extends JPanel implements ViewInterface{
 
 	/** 
      * Method to set timer model
-	 * @param timerModel-model object containing required timer data.
+	 * @param timerModel model object containing required timer data.
 	 * 
 	 */
 	public TimerView(TimerModel timerModel) {
@@ -36,7 +36,7 @@ public class TimerView extends JPanel implements ViewInterface{
 
 	/** 
      * Method to initialize the timer view panel
-	 * @param subViews-object of type ViewInterface
+	 * @param subViews object of type ViewInterface
 	 * 
 	 */
 	@Override
@@ -51,7 +51,7 @@ public class TimerView extends JPanel implements ViewInterface{
 
 	/** 
      * Method to create labels in timer panel
-	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * @param gridBagConstraints GridBagConstraints object to set the position
 	 * 		  for each label
 	 * 
 	 */
@@ -68,7 +68,7 @@ public class TimerView extends JPanel implements ViewInterface{
 	
 	/** 
      * Method to create text fields in timer panel
-	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * @param gridBagConstraints GridBagConstraints object to set the position
 	 * 		  for each text field
 	 * 
 	 */

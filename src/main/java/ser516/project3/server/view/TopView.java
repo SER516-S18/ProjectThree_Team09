@@ -49,7 +49,7 @@ public class TopView extends JPanel implements ViewInterface{
 
   /** 
    * Method to set top model
-   * @param topModel-
+   * @param topModel
    * 		model object containing required data for the
    * 		server settings panel 
    */
@@ -59,7 +59,7 @@ public class TopView extends JPanel implements ViewInterface{
   
   /** 
    * Method to initialize the server settings panel
-   * @param subViews-object of type ViewInterface
+   * @param subViews object of type ViewInterface
    * 
    */
   @Override
@@ -272,7 +272,7 @@ public class TopView extends JPanel implements ViewInterface{
 
   /** 
    * Method to set the state status indicator
-   * @param status - status of the server
+   * @param status  status of the server
    */
   public void setBlinking(boolean status) {
     statusIndicator.setBlinking(status);

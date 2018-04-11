@@ -39,7 +39,7 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 
 	/** 
      * Method to set expressions model
-	 * @param expressionsModel-model object containing required expressions data.
+	 * @param expressionsModel model object containing required expressions data.
 	 * 
 	 */
 	public ExpressionsView(ExpressionsModel expressionsModel) {
@@ -48,7 +48,7 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 
 	/** 
      * Method to initialize the expressions view panel
-	 * @param subViews-object of type ViewInterface
+	 * @param subViews object of type ViewInterface
 	 * 
 	 */
 	@Override
@@ -72,7 +72,7 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 	
 	/** 
      * Method to create labels in expressions panel
-	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * @param gridBagConstraints GridBagConstraints object to set the position
 	 * 		  for each label
 	 * 
 	 */
@@ -95,7 +95,7 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 
 	/** 
      * Method to create ComboBoxes in expressions panel
-	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * @param gridBagConstraints GridBagConstraints object to set the position
 	 * 		  for each combo box
 	 * 
 	 */
@@ -124,7 +124,7 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 	
 	/** 
      * Method to create spinners in expressions panel
-	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * @param gridBagConstraints GridBagConstraints object to set the position
 	 * 		  for each spinners
 	 * 
 	 */
@@ -146,7 +146,7 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 
 	/** 
      * Method to create toggleButton in expressions panel
-	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * @param gridBagConstraints GridBagConstraints object to set the position
 	 * 		  for toggleButton
 	 * 
 	 */
@@ -166,7 +166,7 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 
 	/**
 	 * Method to create toggleButton in expressions panel
-	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * @param gridBagConstraints GridBagConstraints object to set the position
 	 * 		  for toggleButton
 	 *
 	 */
@@ -187,7 +187,7 @@ public class ExpressionsView extends JPanel implements ViewInterface {
 	
 	/** 
      * Method to create CheckBox in expressions panel
-	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * @param gridBagConstraints GridBagConstraints object to set the position
 	 * 		  for CheckBox
 	 * 
 	 */	

@@ -31,8 +31,8 @@ public class ExpressionsController implements ControllerInterface{
 
   /**
    * Constructor to set the emotions view and model object
-   * @param expressionsModel - ExpressionsModel object
-   * @param expressionsView - ExpressionsView object 
+   * @param expressionsModel ExpressionsModel object
+   * @param expressionsView ExpressionsView object
    */
   public ExpressionsController(ExpressionsModel expressionsModel, ExpressionsView expressionsView) {
     this.expressionsModel = expressionsModel;
@@ -187,8 +187,8 @@ public class ExpressionsController implements ControllerInterface{
    * Method to update the lower face attributes based on the values 
    * set for each lower face expression in the expression panel
    * 
-   * @param lowerFaceAttribute - type of lower face expression
-   * @param lowerFaceVal - value set for a particular expression
+   * @param lowerFaceAttribute type of lower face expression
+   * @param lowerFaceVal value set for a particular expression
    */
   private static void updateLowerFace(String lowerFaceAttribute, Double lowerFaceVal){  
     ServerCommonData.getInstance().getMessage().setAbstractExpression(
@@ -230,8 +230,8 @@ public class ExpressionsController implements ControllerInterface{
    * Method to update the upper face attributes based on the values 
    * set for each upper face expression in the expression panel
    * 
-   * @param upperFaceAttribute - type of upper face expression
-   * @param upperFaceVal - value set for a particular expression
+   * @param upperFaceAttribute type of upper face expression
+   * @param upperFaceVal value set for a particular expression
    */
   private static void updateUpperFace(String upperFaceAttribute, Double upperFaceVal) {
 	ServerCommonData.getInstance().getMessage().setSelectionFlag("upperFace", 
@@ -248,8 +248,8 @@ public class ExpressionsController implements ControllerInterface{
    * Method to update the eye related attributes based on the values 
    * set for each upper face expression in the expression panel
    * 
-   * @param eyeAttribute - type of eye expression
-   * @param eyeVal - value set for a particular eye expression
+   * @param eyeAttribute type of eye expression
+   * @param eyeVal value set for a particular eye expression
    */
   private static void updateEye(String eyeAttribute, Boolean eyeVal) {
 	ServerCommonData.getInstance().getMessage().setSelectionFlag("eye", eyeAttribute);

@@ -2,6 +2,10 @@ package ser516.project3.model;
 
 import ser516.project3.interfaces.ModelInterface;
 
+/**
+ * Model for
+ *
+ */
 public class ConnectionPopUpModel implements ModelInterface{
   private String ipAddress;
   private int portNumber;
