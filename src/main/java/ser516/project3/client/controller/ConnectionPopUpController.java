@@ -48,11 +48,20 @@ public class ConnectionPopUpController implements ControllerInterface{
     connectionPopUpView.addPortDocumentListener(new PortDocumentListener());
   }
 
+  /**
+   * Method to get ConnectionPopUp view
+   * and @return ConnectionPopUp view object
+   */
   @Override
   public ViewInterface getView() {
     return connectionPopUpView;
   }
 
+  /**
+   * Returns the set of sub controllers in case any
+   *
+   * @return array containing sub controllers
+   */
   @Override
   public ControllerInterface[] getSubControllers() {
     return null;

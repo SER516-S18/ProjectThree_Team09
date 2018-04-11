@@ -33,11 +33,20 @@ public class TimerController implements ControllerInterface{
     timerView.initializeView(null);
   }
 
+  /**
+   * Returns the set of sub controllers in case any
+   *
+   * @return array containing sub controllers
+   */
   @Override
   public ControllerInterface[] getSubControllers() {
     return null;
   }
 
+  /**
+   * Method to get Timer view
+   * and @return Timer view object
+   */
   @Override
   public TimerView getView() {
     return timerView;

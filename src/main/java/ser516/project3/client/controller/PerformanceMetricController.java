@@ -26,6 +26,14 @@ public class PerformanceMetricController implements ControllerInterface {
 
 	private GraphController graphController;
 
+	/**
+	 * Constructor to set the private variables with the passed parameters
+     *
+	 * @param performanceMetricModel    the model to store the performance metrics
+	 * @param performanceMetricView     the view to show the performance metrics
+	 * @param graphController           the controller which controls the graph view
+     *                                     on the performance metrics tab
+	 */
 	public PerformanceMetricController(PerformanceMetricModel performanceMetricModel,
 			PerformanceMetricView performanceMetricView, GraphController graphController) {
 		this.performanceMetricModel = performanceMetricModel;
@@ -63,6 +71,11 @@ public class PerformanceMetricController implements ControllerInterface {
 		return performanceMetricView;
 	}
 
+	/**
+	 * Returns the set of sub controllers in case any
+	 *
+	 * @return array containing sub controllers
+	 */
 	@Override
 	public ControllerInterface[] getSubControllers() {
 		ControllerInterface[] subControllers = {graphController};

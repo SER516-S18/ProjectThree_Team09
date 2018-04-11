@@ -86,11 +86,20 @@ public class ServerController implements ControllerInterface {
 		serverView.addServerWindowListener(new ServerWindowsListener());
 	}
 
+	/**
+	 * Method to get Server view
+	 * and @return Server view object
+	 */
 	@Override
 	public ViewInterface getView() {
 		return serverView;
 	}
 
+	/**
+	 * Returns the set of sub controllers in case any
+	 *
+	 * @return array containing sub controllers
+	 */
 	@Override
 	public ControllerInterface[] getSubControllers() {
 		ControllerInterface subControllers[] = {topController, timerController, emotionsController, expressionsController, consoleController};
