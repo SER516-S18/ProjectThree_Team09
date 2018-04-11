@@ -26,16 +26,33 @@ import ser516.project3.model.MessageModel.SelectedCriteria;
  */
 public class MessageEncoder implements Encoder.Text<MessageModel> {
 
+	/**
+	 * Initializer for the Message encoder. Empty as no initial configuration
+     * needs to be updated
+	 *
+	 * @param config The configuration of endpoint for the encoding
+	 */
 	@Override
 	public void init(EndpointConfig config) {
 		// Intentionally empty.
 	}
 
+    /**
+     * Destroys the component if created
+     *
+     */
 	@Override
 	public void destroy() {
 		// Intentionally empty.
 	}
 
+    /**
+     * Encodes the model to JSON format to be transmitted
+     *
+     * @param messageModel model to eb encoded
+     * @return returns the encoded
+     * @throws EncodeException
+     */
 	@Override
 	public String encode(MessageModel messageModel) throws EncodeException {
 		Map<String, Object> config = new HashMap<String, Object>();

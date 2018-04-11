@@ -1,5 +1,6 @@
 package ser516.project3.server.controller;
 
+import ser516.project3.constants.ServerConstants;
 import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.model.EmotionsModel;
 import ser516.project3.server.view.EmotionsView;
@@ -65,22 +66,22 @@ public class EmotionsController implements ControllerInterface{
     public void stateChanged(ChangeEvent e) {
       JSpinner source = (JSpinner)e.getSource();
       switch (source.getName()) {
-        case "Interest":
+        case ServerConstants.INTEREST:
           emotionsModel.setInterest((double)source.getValue());
           break;
-        case "Engagement":
+        case ServerConstants.ENGAGEMENT:
           emotionsModel.setEngagement((double)source.getValue());
           break;
-        case "Stress":
+        case ServerConstants.STRESS:
           emotionsModel.setStress((double)source.getValue());
           break;
-        case "Relaxation":
+        case ServerConstants.RELAXATION:
           emotionsModel.setRelaxation((double)source.getValue());
           break;
-        case "Excitement":
+        case ServerConstants.EXCITEMENT:
           emotionsModel.setExcitement((double)source.getValue());
           break;
-        case "Focus":
+        case ServerConstants.FOCUS:
           emotionsModel.setFocus((double)source.getValue());
           break;
       }

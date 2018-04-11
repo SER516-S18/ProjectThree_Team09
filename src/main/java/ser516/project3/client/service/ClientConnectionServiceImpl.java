@@ -15,6 +15,13 @@ import ser516.project3.client.observers.FaceViewObserver;
 import ser516.project3.client.observers.HeaderObserver;
 import ser516.project3.client.observers.PerformanceMetricGraphObserver;
 
+/**
+ * Class to register the client and connect it to the server. Also, updates the observers whenever
+ * the data is received from server
+ *
+ * @author Adhiraj Tikku
+ *
+ */
 public class ClientConnectionServiceImpl implements ClientConnectionServiceInterface {
 	final static Logger logger = Logger.getLogger(ClientConnectionServiceImpl.class);
 	Thread clientConnectionThread;

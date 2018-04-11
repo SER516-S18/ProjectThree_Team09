@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import ser516.project3.constants.ServerConstants;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.TimerModel;
 
@@ -27,7 +28,7 @@ public class TimerView extends JPanel implements ViewInterface{
 
 	/** 
      * Method to set timer model
-	 * @param timerModel-model object containing required timer data.
+	 * @param timerModel model object containing required timer data.
 	 * 
 	 */
 	public TimerView(TimerModel timerModel) {
@@ -36,13 +37,13 @@ public class TimerView extends JPanel implements ViewInterface{
 
 	/** 
      * Method to initialize the timer view panel
-	 * @param subViews-object of type ViewInterface
+	 * @param subViews object of type ViewInterface
 	 * 
 	 */
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
 		setPreferredSize(new Dimension(100,100));
-		setBackground(Color.decode("#747b83"));
+		setBackground(Color.decode(ServerConstants.COLOR_CODE));
 
 		GridBagConstraints gridBagConstraints = new GridBagConstraints();
 		createTimeElapsedLabel(gridBagConstraints);
@@ -51,13 +52,13 @@ public class TimerView extends JPanel implements ViewInterface{
 
 	/** 
      * Method to create labels in timer panel
-	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * @param gridBagConstraints GridBagConstraints object to set the position
 	 * 		  for each label
 	 * 
 	 */
 	private void createTimeElapsedLabel(GridBagConstraints gridBagConstraints) {
 		timeElapsedLabel = new JLabel(TIME_ELAPSED);
-		timeElapsedLabel.setBackground(Color.decode("#747b83"));
+		timeElapsedLabel.setBackground(Color.decode(ServerConstants.COLOR_CODE));
 
 		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.gridx = 0;
@@ -68,13 +69,13 @@ public class TimerView extends JPanel implements ViewInterface{
 	
 	/** 
      * Method to create text fields in timer panel
-	 * @param gridBagConstraints-GridBagConstraints object to set the position
+	 * @param gridBagConstraints GridBagConstraints object to set the position
 	 * 		  for each text field
 	 * 
 	 */
 	private void createTimeElapsedInputTextField(GridBagConstraints gridBagConstraints) {
 		timeElapsedInputTextField = new JTextField("0");
-		timeElapsedInputTextField.setBackground(Color.decode("#616266"));
+		timeElapsedInputTextField.setBackground(Color.decode(ServerConstants.COLOR_CODE2));
 		timeElapsedInputTextField.setBorder(null);
 		timeElapsedInputTextField.setColumns(10);
 		timeElapsedInputTextField.setHorizontalAlignment(SwingConstants.CENTER);

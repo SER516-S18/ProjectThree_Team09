@@ -1,5 +1,6 @@
 package ser516.project3.server.controller;
 
+import ser516.project3.constants.ServerConstants;
 import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ExpressionsModel;
@@ -31,8 +32,8 @@ public class ExpressionsController implements ControllerInterface{
 
   /**
    * Constructor to set the emotions view and model object
-   * @param expressionsModel - ExpressionsModel object
-   * @param expressionsView - ExpressionsView object 
+   * @param expressionsModel ExpressionsModel object
+   * @param expressionsView ExpressionsView object
    */
   public ExpressionsController(ExpressionsModel expressionsModel, ExpressionsView expressionsView) {
     this.expressionsModel = expressionsModel;
@@ -187,41 +188,41 @@ public class ExpressionsController implements ControllerInterface{
    * Method to update the lower face attributes based on the values 
    * set for each lower face expression in the expression panel
    * 
-   * @param lowerFaceAttribute - type of lower face expression
-   * @param lowerFaceVal - value set for a particular expression
+   * @param lowerFaceAttribute type of lower face expression
+   * @param lowerFaceVal value set for a particular expression
    */
   private static void updateLowerFace(String lowerFaceAttribute, Double lowerFaceVal){  
     ServerCommonData.getInstance().getMessage().setAbstractExpression(
         MessageModel.AbstractExpression.smile.name() ,
-        lowerFaceAttribute.equals("Smile") ? lowerFaceVal : 0.0);
+        lowerFaceAttribute.equals(ServerConstants.SMILE) ? lowerFaceVal : 0.0);
     ServerCommonData.getInstance().getMessage().setAbstractExpression(
         MessageModel.AbstractExpression.clench.name(),
-        lowerFaceAttribute.equals("Clench") ? lowerFaceVal : 0.0);
+        lowerFaceAttribute.equals(ServerConstants.CLENCH) ? lowerFaceVal : 0.0);
     ServerCommonData.getInstance().getMessage().setAbstractExpression(
         MessageModel.AbstractExpression.leftSmirk.name(),
-        lowerFaceAttribute.equals("Smirk Left") ? lowerFaceVal : 0.0);
+        lowerFaceAttribute.equals(ServerConstants.SMIRK_LEFT) ? lowerFaceVal : 0.0);
     ServerCommonData.getInstance().getMessage().setAbstractExpression(
         MessageModel.AbstractExpression.rightSmirk.name(),
-        lowerFaceAttribute.equals("Smirk Right") ? lowerFaceVal : 0.0);
+        lowerFaceAttribute.equals(ServerConstants.SMIRK_RIGHT) ? lowerFaceVal : 0.0);
     ServerCommonData.getInstance().getMessage().setAbstractExpression(
         MessageModel.AbstractExpression.laugh.name(),
-        lowerFaceAttribute.equals("Laugh") ? lowerFaceVal : 0.0);
+        lowerFaceAttribute.equals(ServerConstants.LAUGH) ? lowerFaceVal : 0.0);
 
-    if (lowerFaceAttribute.equals("Laugh")) {
+    if (lowerFaceAttribute.equals(ServerConstants.LAUGH)) {
         ServerCommonData.getInstance().getMessage().setSelectionFlag(
-                "lowerFace", MessageModel.AbstractExpression.laugh.name());
-    } else if (lowerFaceAttribute.equals("Clench")) {
+                ServerConstants.LOWER_FACE, MessageModel.AbstractExpression.laugh.name());
+    } else if (lowerFaceAttribute.equals(ServerConstants.CLENCH)) {
         ServerCommonData.getInstance().getMessage().setSelectionFlag
-                ("lowerFace", MessageModel.AbstractExpression.clench.name());
-    } else if (lowerFaceAttribute.equals("Smirk Left")) {
+                (ServerConstants.LOWER_FACE, MessageModel.AbstractExpression.clench.name());
+    } else if (lowerFaceAttribute.equals(ServerConstants.SMIRK_LEFT)) {
         ServerCommonData.getInstance().getMessage().setSelectionFlag
-                ("lowerFace", MessageModel.AbstractExpression.leftSmirk.name());
-    } else if (lowerFaceAttribute.equals("Smirk Right")) {
+                (ServerConstants.LOWER_FACE, MessageModel.AbstractExpression.leftSmirk.name());
+    } else if (lowerFaceAttribute.equals(ServerConstants.SMIRK_RIGHT)) {
         ServerCommonData.getInstance().getMessage().setSelectionFlag
-                ("lowerFace", MessageModel.AbstractExpression.rightSmirk.name());
+                (ServerConstants.LOWER_FACE, MessageModel.AbstractExpression.rightSmirk.name());
     } else {
         ServerCommonData.getInstance().getMessage().setSelectionFlag
-                ("lowerFace", MessageModel.AbstractExpression.smile.name());
+                (ServerConstants.LOWER_FACE, MessageModel.AbstractExpression.smile.name());
     }
 
   }
@@ -230,60 +231,60 @@ public class ExpressionsController implements ControllerInterface{
    * Method to update the upper face attributes based on the values 
    * set for each upper face expression in the expression panel
    * 
-   * @param upperFaceAttribute - type of upper face expression
-   * @param upperFaceVal - value set for a particular expression
+   * @param upperFaceAttribute type of upper face expression
+   * @param upperFaceVal value set for a particular expression
    */
   private static void updateUpperFace(String upperFaceAttribute, Double upperFaceVal) {
-	ServerCommonData.getInstance().getMessage().setSelectionFlag("upperFace", 
+	ServerCommonData.getInstance().getMessage().setSelectionFlag(ServerConstants.UPPER_FACE,
 		upperFaceAttribute);
     ServerCommonData.getInstance().getMessage().setAbstractExpression(
         MessageModel.AbstractExpression.raiseBrow.name(),
-        upperFaceAttribute.equals("Raise Brow") ? upperFaceVal : 0.0);
+        upperFaceAttribute.equals(ServerConstants.RAISE_BROW) ? upperFaceVal : 0.0);
     ServerCommonData.getInstance().getMessage().setAbstractExpression(
         MessageModel.AbstractExpression.furrowBrow.name(),
-        upperFaceAttribute.equals("Furrow Brow") ? upperFaceVal : 0.0);
+        upperFaceAttribute.equals(ServerConstants.FURROW_BROW) ? upperFaceVal : 0.0);
   }
 
   /**
    * Method to update the eye related attributes based on the values 
    * set for each upper face expression in the expression panel
    * 
-   * @param eyeAttribute - type of eye expression
-   * @param eyeVal - value set for a particular eye expression
+   * @param eyeAttribute type of eye expression
+   * @param eyeVal value set for a particular eye expression
    */
   private static void updateEye(String eyeAttribute, Boolean eyeVal) {
-	ServerCommonData.getInstance().getMessage().setSelectionFlag("eye", eyeAttribute);
+	ServerCommonData.getInstance().getMessage().setSelectionFlag(ServerConstants.EYE, eyeAttribute);
     ServerCommonData.getInstance().getMessage().setConcreteExpression(
         MessageModel.ConcreteExpression.blink.name(), 
-        eyeAttribute.equals("Blink") ? eyeVal : false);
+        eyeAttribute.equals(ServerConstants.BLINK) ? eyeVal : false);
     ServerCommonData.getInstance().getMessage().setConcreteExpression(
         MessageModel.ConcreteExpression.leftWink.name(),
-        eyeAttribute.equals("Wink Left") ? eyeVal : false);
+        eyeAttribute.equals(ServerConstants.WINK_LEFT) ? eyeVal : false);
     ServerCommonData.getInstance().getMessage().setConcreteExpression(
         MessageModel.ConcreteExpression.rightWink.name(),
-        eyeAttribute.equals("Wink Right") ? eyeVal : false);
+        eyeAttribute.equals(ServerConstants.WINK_RIGHT) ? eyeVal : false);
     ServerCommonData.getInstance().getMessage().setConcreteExpression(
         MessageModel.ConcreteExpression.lookingLeft.name(),
-        eyeAttribute.equals("Look Left") ? eyeVal : false);
+        eyeAttribute.equals(ServerConstants.LOOK_LEFT) ? eyeVal : false);
     ServerCommonData.getInstance().getMessage().setConcreteExpression(
         MessageModel.ConcreteExpression.lookingRight.name(),
-        eyeAttribute.equals("Look Right") ? eyeVal : false);
+        eyeAttribute.equals(ServerConstants.LOOK_RIGHT) ? eyeVal : false);
 
-      if (eyeAttribute.equals("Blink")) {
+      if (eyeAttribute.equals(ServerConstants.BLINK)) {
           ServerCommonData.getInstance().getMessage().setSelectionFlag(
-                  "eye", MessageModel.ConcreteExpression.blink.name());
-      } else if (eyeAttribute.equals("Wink Left")) {
+                  ServerConstants.EYE, MessageModel.ConcreteExpression.blink.name());
+      } else if (eyeAttribute.equals(ServerConstants.WINK_LEFT)) {
           ServerCommonData.getInstance().getMessage().setSelectionFlag
-                  ("eye", MessageModel.ConcreteExpression.leftWink.name());
-      } else if (eyeAttribute.equals("Wink Right")) {
+                  (ServerConstants.EYE, MessageModel.ConcreteExpression.leftWink.name());
+      } else if (eyeAttribute.equals(ServerConstants.WINK_RIGHT)) {
           ServerCommonData.getInstance().getMessage().setSelectionFlag
-                  ("eye", MessageModel.ConcreteExpression.rightWink.name());
-      } else if (eyeAttribute.equals("Look Left")) {
+                  (ServerConstants.EYE, MessageModel.ConcreteExpression.rightWink.name());
+      } else if (eyeAttribute.equals(ServerConstants.LOOK_LEFT)) {
           ServerCommonData.getInstance().getMessage().setSelectionFlag
-                  ("eye", MessageModel.ConcreteExpression.lookingLeft.name());
-      } else if (eyeAttribute.equals("Look Right")){
+                  (ServerConstants.EYE, MessageModel.ConcreteExpression.lookingLeft.name());
+      } else if (eyeAttribute.equals(ServerConstants.LOOK_RIGHT)){
           ServerCommonData.getInstance().getMessage().setSelectionFlag
-                  ("eye", MessageModel.ConcreteExpression.lookingRight.name());
+                  (ServerConstants.EYE, MessageModel.ConcreteExpression.lookingRight.name());
       }
   }
 }

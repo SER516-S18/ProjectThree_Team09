@@ -31,7 +31,7 @@ import ser516.project3.model.PerformanceMetricModel;
 import ser516.project3.server.controller.ServerController;
 /**
  * The Controller class to handle requests from the Client UI
- * @author vsriva12
+ * @author vsriva12, Adhiraj Tikku
  *
  */
 public class ClientController implements ControllerInterface, CommonDataInterface {

@@ -5,6 +5,7 @@ import java.awt.event.WindowEvent;
 
 import org.apache.log4j.Logger;
 
+import ser516.project3.constants.ServerConstants;
 import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ConsoleModel;
@@ -76,7 +77,7 @@ public class ServerController implements ControllerInterface {
 	*/
 	@Override
 	public void initializeView() {
-		serverView = (ServerView) viewFactory.getView("SERVER", null);
+		serverView = (ServerView) viewFactory.getView(ServerConstants.SERVER, null);
 		serverView = ServerView.getServerView();
 		ViewInterface subViews[] = { topController.getView(), timerController.getView(),
 				emotionsController.getView(), expressionsController.getView(),
@@ -164,7 +165,7 @@ public class ServerController implements ControllerInterface {
 	class ServerWindowsListener extends WindowAdapter {
 		public void windowClosed(WindowEvent e) {
 			serverConnectionService.stopServerEndpoint();
-			logger.info("server window closed");
+			logger.info(ServerConstants.SERVER_CLOSE_MESSAGE);
 		}
 	}
 

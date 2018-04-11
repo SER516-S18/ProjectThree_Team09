@@ -2,68 +2,76 @@ package ser516.project3.model;
 
 import ser516.project3.interfaces.ModelInterface;
 
+/**
+ * Class stores the data for the emotions tab in the client
+ *
+ * @author Adhiraj Tikku
+ */
 public class EmotionsModel implements ModelInterface {
-  private double interest;
-  private double engagement;
-  private double stress;
-  private double relaxation;
-  private double excitement;
-  private double focus;
+    private double interest;
+    private double engagement;
+    private double stress;
+    private double relaxation;
+    private double excitement;
+    private double focus;
 
-  public EmotionsModel() {
-    interest = 0;
-    engagement = 0;
-    stress = 0;
-    relaxation = 0;
-    excitement = 0;
-    focus = 0;
-  }
+    /**
+     * Constructor to initialize all the values to a default value
+     */
+    public EmotionsModel() {
+        interest = 0;
+        engagement = 0;
+        stress = 0;
+        relaxation = 0;
+        excitement = 0;
+        focus = 0;
+    }
 
-  public double getInterest() {
-    return interest;
-  }
+    public double getInterest() {
+        return interest;
+    }
 
-  public void setInterest(double interest) {
-    this.interest = interest;
-  }
+    public void setInterest(double interest) {
+        this.interest = interest;
+    }
 
-  public double getEngagement() {
-    return engagement;
-  }
+    public double getEngagement() {
+        return engagement;
+    }
 
-  public void setEngagement(double engagement) {
-    this.engagement = engagement;
-  }
+    public void setEngagement(double engagement) {
+        this.engagement = engagement;
+    }
 
-  public double getStress() {
-    return stress;
-  }
+    public double getStress() {
+        return stress;
+    }
 
-  public void setStress(double stress) {
-    this.stress = stress;
-  }
+    public void setStress(double stress) {
+        this.stress = stress;
+    }
 
-  public double getRelaxation() {
-    return relaxation;
-  }
+    public double getRelaxation() {
+        return relaxation;
+    }
 
-  public void setRelaxation(double relaxation) {
-    this.relaxation = relaxation;
-  }
+    public void setRelaxation(double relaxation) {
+        this.relaxation = relaxation;
+    }
 
-  public double getExcitement() {
-    return excitement;
-  }
+    public double getExcitement() {
+        return excitement;
+    }
 
-  public void setExcitement(double excitement) {
-    this.excitement = excitement;
-  }
+    public void setExcitement(double excitement) {
+        this.excitement = excitement;
+    }
 
-  public double getFocus() {
-    return focus;
-  }
+    public double getFocus() {
+        return focus;
+    }
 
-  public void setFocus(double focus) {
-    this.focus = focus;
-  }
+    public void setFocus(double focus) {
+        this.focus = focus;
+    }
 }
