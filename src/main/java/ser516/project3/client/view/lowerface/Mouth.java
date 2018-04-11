@@ -3,10 +3,11 @@ package ser516.project3.client.view.lowerface;
 import java.awt.geom.Arc2D;
 
 import ser516.project3.interfaces.FaceElementsInterface;
+
 /**
- * This class returns an arc based on the input values and state.
- * Mouth can have states like Smile,clench,smirk and laugh.
- * Input value determines the extent of each state
+ * This class returns an arc based on the input values and state. Mouth can have
+ * states like Smile,clench,smirk and laugh. Input value determines the extent
+ * of each state
  * 
  * @author Vishakha Singal, Manish Tandon
  *
@@ -18,6 +19,7 @@ public class Mouth extends Arc2D.Double implements FaceElementsInterface {
 	}
 
 	private MouthExpression mouthExpression = MouthExpression.smile;
+	// Constants
 	private static final double X_POSITION = 275;
 	private static final double Y_POSITION = 225;
 	private static final double WIDTH = 100;
@@ -26,32 +28,52 @@ public class Mouth extends Arc2D.Double implements FaceElementsInterface {
 	private static final double ANGLE_EXTENT = -50;
 	private static final double WIDTH_CLENCH = 50;
 	private static final double X_POSITION_CLENCH = 300;
-	private static final double START_ANGLE_SMILE=240;
-	private static final double EXTENT_ANGLE_SMILE=65;
-	private static final String SMILE="smile";
-	private static final String CLENCH="clench";
-	private static final String LEFT_SMIRK="leftSmirk";
-	private static final String RIGHT_SMIRK="rightSmirk";
-	private static final String LAUGH="laugh";
+	private static final double START_ANGLE_SMILE = 240;
+	private static final double EXTENT_ANGLE_SMILE = 65;
+	private static final String SMILE = "smile";
+	private static final String CLENCH = "clench";
+	private static final String LEFT_SMIRK = "leftSmirk";
+	private static final String RIGHT_SMIRK = "rightSmirk";
+	private static final String LAUGH = "laugh";
 
+	/**
+	 * Initialize the mouth part of face
+	 * 
+	 */
 	public Mouth() {
 		super();
 		setArc(X_POSITION, Y_POSITION, WIDTH, HEIGHT, ANGLE_START, ANGLE_EXTENT, OPEN);
 	}
 
+	/**
+	 * Getter for mouth expression
+	 * 
+	 * @return
+	 */
 	public MouthExpression getMouthExpression() {
 		return mouthExpression;
 	}
 
+	/**
+	 * Setter for mouth expression
+	 * 
+	 * @param mouthExpression
+	 */
 	public void setMouthExpression(MouthExpression mouthExpression) {
 		this.mouthExpression = mouthExpression;
 	}
 
+	/**
+	 * Resets the position of Mouth coordinates to default.
+	 */
 	@Override
 	public void resetPositionToDefault() {
 		setArc(X_POSITION, Y_POSITION, WIDTH, HEIGHT, ANGLE_START, ANGLE_EXTENT, OPEN);
 	}
 
+	/**
+	 * Moves the mouth to different positions based on the mouth expression flag
+	 */
 	@Override
 	public void moveToDifferentPosition() {
 		double angleStart = 180;
@@ -82,8 +104,8 @@ public class Mouth extends Arc2D.Double implements FaceElementsInterface {
 	}
 
 	/**
-	 * Update the arc based on instruction and change value.
-	 * Extent of each instruction state depends on the value passed.
+	 * Update the arc based on instruction and change value. Extent of each
+	 * instruction state depends on the value passed.
 	 */
 	@Override
 	public void moveElement(String instruction, double changeValue) {
@@ -110,7 +132,6 @@ public class Mouth extends Arc2D.Double implements FaceElementsInterface {
 
 		if (instruction.equals(SMILE)) {
 
-			
 			double angleStartNew = START_ANGLE_SMILE - (changeValue * 30);
 			double angleExentNew = EXTENT_ANGLE_SMILE + (changeValue * 55);
 			setArc(X_POSITION, Y_POSITION, WIDTH, HEIGHT, angleStartNew, angleExentNew, OPEN);
@@ -118,7 +139,7 @@ public class Mouth extends Arc2D.Double implements FaceElementsInterface {
 				resetPositionToDefault();
 			}
 		}
-		if(instruction.equals(LAUGH)) {
+		if (instruction.equals(LAUGH)) {
 			double angleStartNew = START_ANGLE_SMILE - (changeValue * 30);
 			double angleExentNew = EXTENT_ANGLE_SMILE + (changeValue * 55);
 			setArc(X_POSITION, Y_POSITION, WIDTH, HEIGHT, angleStartNew, angleExentNew, CHORD);
@@ -129,8 +150,12 @@ public class Mouth extends Arc2D.Double implements FaceElementsInterface {
 
 	}
 
+	/**
+	 * Moves the mouth based on the boolean value set on the server.
+	 */
 	@Override
 	public void moveElement(String instruction, boolean changeValue) {
-
+		// intentionally blank, no use currently for this, since mouth has double
+		// attributes on server.
 	}
 }
