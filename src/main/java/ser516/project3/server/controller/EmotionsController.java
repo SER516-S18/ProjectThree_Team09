@@ -15,7 +15,7 @@ import javax.swing.event.ChangeListener;
  * The controller can receive and update data from the EmotionsView, 
  * and use this data to update the EmotionsModel.
  *   
- * @author Ser516-Team09
+ * @author Adhiraj Tikku
  */
 public class EmotionsController implements ControllerInterface{
   private EmotionsModel emotionsModel;

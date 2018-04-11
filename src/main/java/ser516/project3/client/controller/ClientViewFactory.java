@@ -6,7 +6,6 @@ import ser516.project3.constants.ClientConstants;
 import ser516.project3.interfaces.ModelInterface;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.*;
-import ser516.project3.server.view.*;
 
 /**
  * The factory class to create specific views class instances based on arguments
@@ -26,8 +25,6 @@ public class ClientViewFactory {
 		}
 		if (viewType.equalsIgnoreCase(ClientConstants.CLIENT)) {
 			return ClientView.getClientView();
-		} else if (viewType.equalsIgnoreCase("SERVER")) {
-			return ServerView.getServerView();
 		} else if (viewType.equalsIgnoreCase(ClientConstants.HEADER)) {
 			return new HeaderView((HeaderModel) model);
 		} else if (viewType.equalsIgnoreCase(ClientConstants.PERFORMANCE_METRICS)) {
@@ -36,20 +33,10 @@ public class ClientViewFactory {
 			return new ExpressionsView((ExpressionsModel) model);
 		} else if (viewType.equalsIgnoreCase(ClientConstants.GRAPH)) {
 			return new GraphView((GraphModel) model);
-		} else if (viewType.equalsIgnoreCase("FACE")) {
+		} else if (viewType.equalsIgnoreCase(ClientConstants.FACE)) {
 			return new FaceView((FaceModel) model);
-		} else if (viewType.equalsIgnoreCase("CONNECTION_POP_UP")) {
+		} else if (viewType.equalsIgnoreCase(ClientConstants.CONNECTION_POP_UP)) {
 			return new ConnectionPopUpView((ConnectionPopUpModel) model);
-		} else if (viewType.equalsIgnoreCase("TOP")) {
-			return new TopView((TopModel) model);
-		} else if (viewType.equalsIgnoreCase("TIMER")) {
-			return new TimerView((TimerModel) model);
-		} else if (viewType.equalsIgnoreCase("EMOTIONS")) {
-			return new EmotionsView((EmotionsModel) model);
-		} else if (viewType.equalsIgnoreCase("SERVER_EXPRESSIONS")) {
-			return new ser516.project3.server.view.ExpressionsView((ExpressionsModel) model);
-		} else if (viewType.equalsIgnoreCase("CONSOLE")) {
-			return new ConsoleView((ConsoleModel) model);
 		}
 
 		return null;

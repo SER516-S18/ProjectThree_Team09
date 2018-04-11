@@ -2,6 +2,11 @@ package ser516.project3.model;
 
 import ser516.project3.interfaces.ModelInterface;
 
+/**
+ * Stores data for the time elapsed interval in the server
+ *
+ * @author Raviteja
+ */
 public class TimerModel implements ModelInterface{
   private double timeElapsed;
 

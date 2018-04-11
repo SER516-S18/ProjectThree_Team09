@@ -16,6 +16,13 @@ import java.util.Observer;
  */
 public class HeaderObserver implements Observer {
 
+	/**
+	 * Overridden method to intialize the observer with the observable object to be observed
+	 *
+	 * @param observable the object of the observable class to be observed
+	 * @param observerObj Object updated
+	 */
+	@Override
 	public void update(Observable observable, Object observerObj) {
 		HeaderObservable headerObservable = (HeaderObservable) observable;
 		HeaderController headerController = ClientControllerFactory.getInstance().getHeaderController();

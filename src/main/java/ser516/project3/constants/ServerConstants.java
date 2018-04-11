@@ -2,7 +2,7 @@ package ser516.project3.constants;
 
 /**
  * Common class for constants used across the Server application
- * @author User
+ * @author Zain Siddiqui
  *
  */
 

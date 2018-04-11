@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
  * Class that controls the console on the server which 
  * shows server status and any error messages
  * 
- * @author Ser516-Team09
+ * @author Adhiraj Tikku
  */
 public class ConsoleController implements ControllerInterface {
   private ConsoleModel consoleModel;

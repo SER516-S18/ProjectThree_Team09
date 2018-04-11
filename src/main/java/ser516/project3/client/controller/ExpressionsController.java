@@ -20,7 +20,16 @@ public class ExpressionsController implements ControllerInterface, CommonDataInt
 
   private boolean connectionStatus;
 
-  public ExpressionsController(ExpressionsModel expressionsModel, ExpressionsView expressionsView, GraphController graphController, FaceController faceController) {
+  /**
+   * Constructor to initialize the expressions controller values with the passed values
+   *
+   * @param expressionsModel the model to initialize the graph and view
+   * @param expressionsView the view to instantiate the complete view
+   * @param graphController the controller to instantiate the graph
+   * @param faceController  the controller to initialize the face
+   */
+  public ExpressionsController(ExpressionsModel expressionsModel, ExpressionsView expressionsView,
+                               GraphController graphController, FaceController faceController) {
     this.expressionsModel = expressionsModel;
     this.expressionsView = expressionsView;
     this.graphController = graphController;
@@ -52,17 +61,32 @@ public class ExpressionsController implements ControllerInterface, CommonDataInt
     return expressionsView;
   }
 
+  /**
+   * Overridden method to return the sub controllers in the class
+   *
+   * @return subcontrollers in the class
+   */
   @Override
   public ControllerInterface[] getSubControllers() {
     ControllerInterface[] subControllers = {graphController, faceController};
     return subControllers;
   }
 
+  /**
+   * sets the connection status of the server
+   *
+   * @param connectionStatus
+   */
   @Override
   public void setConnectionStatus(boolean connectionStatus) {
     this.connectionStatus = connectionStatus;
   }
 
+  /**
+   * sets the value to true if the expressions tab is selected
+   *
+   * @param tabSelected Current selected tab.
+   */
   @Override
   public void setTabSelected(boolean tabSelected) {
     expressionsModel.setTabSelected(tabSelected);

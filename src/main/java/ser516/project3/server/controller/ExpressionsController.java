@@ -24,7 +24,7 @@ import static java.lang.Thread.sleep;
  * The controller can receive and update data from the ExpressionsView, 
  * and use this data to update the ExpressionsModel.
  * 
- * @author Ser516-Team09
+ * @author Adhiraj Tikku
  */
 public class ExpressionsController implements ControllerInterface{
   private ExpressionsModel expressionsModel;
