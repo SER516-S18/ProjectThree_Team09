@@ -34,6 +34,7 @@ public class ClientController implements ControllerInterface {
 	private ExpressionsController expressionsController;
 	private GraphController performanceMetricsGraphController;
 	private GraphController expressionGraphController;
+	private FaceController faceController;
 	private ConnectionPopUpController connectionPopUpController;
 
 	private static ClientController instance;
@@ -89,9 +90,11 @@ public class ClientController implements ControllerInterface {
 		ConnectionPopUpView connectionPopUpView = (ConnectionPopUpView) viewFactory.getView("CONNECTION_POP_UP", connectionPopUpModel);
 		connectionPopUpController = (ConnectionPopUpController) controllerFactory.getController("CONNECTION_POP_UP", connectionPopUpModel, connectionPopUpView, null);
 
+		ControllerInterface subControllers[] = {connectionPopUpController};
+
 		HeaderModel headerModel = new HeaderModel();
 		HeaderView headerView = (HeaderView) viewFactory.getView(ClientConstants.HEADER, headerModel);
-		headerController = (HeaderController)controllerFactory.getController(ClientConstants.HEADER, headerModel, headerView, connectionPopUpController);
+		headerController = (HeaderController)controllerFactory.getController(ClientConstants.HEADER, headerModel, headerView, subControllers);
 		headerController.initializeView();
 	}
 	/**
@@ -105,9 +108,11 @@ public class ClientController implements ControllerInterface {
 		performanceMetricsGraphController = (GraphController) controllerFactory.getController(ClientConstants.GRAPH, performanceMetricGraphModel, performanceMetricGraphView, null);
 		performanceMetricsGraphController.initializeView();
 
+		ControllerInterface subControllers[] = {performanceMetricsGraphController};
+
 		PerformanceMetricModel performanceMetricModel = new PerformanceMetricModel();
 		PerformanceMetricView performanceMetricView = (PerformanceMetricView) viewFactory.getView(ClientConstants.PERFORMANCE_METRICS, performanceMetricModel);
-		performanceMetricController = (PerformanceMetricController) controllerFactory.getController(ClientConstants.PERFORMANCE_METRICS, performanceMetricModel, performanceMetricView, performanceMetricsGraphController);
+		performanceMetricController = (PerformanceMetricController) controllerFactory.getController(ClientConstants.PERFORMANCE_METRICS, performanceMetricModel, performanceMetricView, subControllers);
 		performanceMetricController.initializeView();
 	}
 	/**
@@ -121,9 +126,15 @@ public class ClientController implements ControllerInterface {
 		expressionGraphController = (GraphController) controllerFactory.getController(ClientConstants.GRAPH, expressionsGraphModel, expressionsGraphView, null);
 		expressionGraphController.initializeView();
 
+		FaceModel faceModel = new FaceModel();
+		FaceView faceView = (FaceView) viewFactory.getView("FACE", faceModel);
+		faceController = (FaceController) controllerFactory.getController("FACE", faceModel, faceView, null);
+		faceController.initializeView();
+
+		ControllerInterface subControllers[] = {expressionGraphController, faceController};
 		ExpressionsModel expressionsModel = new ExpressionsModel();
 		ExpressionsView expressionsView = (ExpressionsView) viewFactory.getView(ClientConstants.EXPRESSIONS, expressionsModel);
-		expressionsController = (ExpressionsController) controllerFactory.getController(ClientConstants.EXPRESSIONS, expressionsModel, expressionsView, expressionGraphController);
+		expressionsController = (ExpressionsController) controllerFactory.getController(ClientConstants.EXPRESSIONS, expressionsModel, expressionsView, subControllers);
 		expressionsController.initializeView();
 	}
 	/**
@@ -143,6 +154,10 @@ public class ClientController implements ControllerInterface {
 	 */
 	public ExpressionsController getExpressionsController() {
 		return expressionsController;
+	}
+
+	public FaceController getFaceController() {
+		return faceController;
 	}
 
 	/**

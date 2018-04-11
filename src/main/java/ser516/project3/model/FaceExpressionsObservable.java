@@ -23,15 +23,12 @@ public class FaceExpressionsObservable extends Observable{
 		}
 		return instance;
 	}
-
-	 
 	
 	public MessageModel getMessageBean() {
 		return messageBean;
 	}
 
 	public void setMessageBean(MessageModel messageBean) {
-
 		this.messageBean = messageBean;
 		setChanged();
 		notifyObservers();

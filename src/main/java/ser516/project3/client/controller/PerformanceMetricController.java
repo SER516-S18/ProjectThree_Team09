@@ -138,7 +138,8 @@ public class PerformanceMetricController implements ControllerInterface {
 					performanceMetricModel.getFocusColor() };
 			graphController.setChannelColors(channelColors);
 			graphController.updateGraphView();
-
+			performanceMetricView.revalidate();
+			performanceMetricView.repaint();
 			performanceMetricView.updatePerformanceMetricView(performanceMetricModel);
 		}
 	}
@@ -156,6 +157,8 @@ public class PerformanceMetricController implements ControllerInterface {
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 				graphController.updateGraphView();
 				performanceMetricView.updatePerformanceMetricView(performanceMetricModel);
+				performanceMetricView.revalidate();
+				performanceMetricView.repaint();
 			}
 		}
 	}
