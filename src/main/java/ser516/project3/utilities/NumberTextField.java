@@ -8,19 +8,29 @@ import static java.awt.event.KeyEvent.*;
 /**
  * The NumberTextField class is an extension of JTextField class which
  * implements input validations on this element
- * 
- * @author vsriva12
  *
+ * @author vsriva12
  */
 public class NumberTextField extends JTextField {
-	private static final long serialVersionUID = 1L;
-	private boolean isDouble = false;
+    private static final long serialVersionUID = 1L;
+    private boolean isDouble = false;
 
+	/**
+	 * constructor to construct the textfield with input string and if it can be double value
+	 *
+	 * @param input	The string entered in the textfield
+	 * @param isDouble	True if the textfield supports double value
+	 */
 	public NumberTextField(String input, boolean isDouble) {
 		this.isDouble = isDouble;
 		setText(input);
 	}
 
+	/**
+	 * prevents the processing of keys except the ones specified
+	 *
+	 * @param keyEvent intakes the key pressed
+	 */
 	@Override
 	public void processKeyEvent(KeyEvent keyEvent) {
 		if ((keyEvent.getKeyChar() == VK_BACK_SPACE || keyEvent.getKeyChar() == VK_DELETE
@@ -36,7 +46,8 @@ public class NumberTextField extends JTextField {
 	
 	/**
 	 * This method gets the value of text in the text field
-	 * @return
+	 *
+	 * @return returns the number
 	 */
 	public Long getNumber() {
 		Long result = null;

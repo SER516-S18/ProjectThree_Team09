@@ -1,36 +1,42 @@
 package ser516.project3.server.view;
 
-import org.apache.log4j.Logger;
-import ser516.project3.interfaces.ViewInterface;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.WindowAdapter;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import javax.swing.WindowConstants;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
-import java.awt.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+
+import ser516.project3.constants.ServerConstants;
+import ser516.project3.interfaces.ViewInterface;
 
 /**
  * The JFrame class of Server application
  * 
- * @author User
- *
+ * @author Ganesh, Janani, Sangeetha
  */
 @SuppressWarnings("serial")
 public class ServerView extends JFrame implements ViewInterface {
-	private static ServerView serverViewInstance = null;
+    private static ServerView serverViewInstance = null;
 
-	private TopView topView;
-	private TimerView timerView;
-	private EmotionsView emotionsView;
-	private ExpressionsView expressionsView;
-	private ConsoleView consoleView;
+    private TopView topView;
+    private TimerView timerView;
+    private EmotionsView emotionsView;
+    private ExpressionsView expressionsView;
+    private ConsoleView consoleView;
 
-	private static final Font FONT = new Font("Courier New", Font.BOLD, 17);
+    private static final Font FONT = new Font(ServerConstants.FONT_NAME, Font.BOLD, 17);
 
-	/** 
-     * Method to return the ServerView instance
+	/**
+	 * Method to return the ServerView instance
 	 * 
 	 */
 	public static ServerView getServerView() {
@@ -39,10 +45,12 @@ public class ServerView extends JFrame implements ViewInterface {
 		}
 		return serverViewInstance;
 	}
-	
-	/** 
-     * Method to initialize the expressions view panel
-	 * @param subViews-object of type ViewInterface
+
+	/**
+	 * Method to initialize the expressions view panel
+	 * 
+	 * @param subViews
+	 *            object of type ViewInterface
 	 * 
 	 */
 	@Override
@@ -59,7 +67,7 @@ public class ServerView extends JFrame implements ViewInterface {
 
 		setMinimumSize(new Dimension(500, 800));
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Server");
+		setTitle(ServerConstants.SERVER);
 		setVisible(true);
 	}
 
@@ -86,8 +94,8 @@ public class ServerView extends JFrame implements ViewInterface {
 		configPanel.add(expressionPanel);
 		configPanel.add(consolePanel);
 
-		Border titledBorder = new TitledBorder(null, "Configuration", TitledBorder.LEADING, TitledBorder.TOP, FONT,
-				null);
+		Border titledBorder = new TitledBorder(null, "Configuration", TitledBorder.LEADING, 
+				TitledBorder.TOP, FONT, null);
 		Border marginBorder = BorderFactory.createEmptyBorder(30, 10, 30, 10);
 
 		Border compound = BorderFactory.createCompoundBorder(marginBorder, titledBorder);
@@ -120,9 +128,11 @@ public class ServerView extends JFrame implements ViewInterface {
 		return configPanel;
 	}
 
-	/** 
-     * Method to WindowListener to the Server window
-	 * @param windowAdapter- WindowAdapter object
+	/**
+	 * Method to WindowListener to the Server window
+	 * 
+	 * @param windowAdapter
+	 *            WindowAdapter object
 	 * 
 	 */
 	public void addServerWindowListener(WindowAdapter windowAdapter) {

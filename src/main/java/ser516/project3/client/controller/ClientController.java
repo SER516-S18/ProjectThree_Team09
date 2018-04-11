@@ -1,33 +1,45 @@
 package ser516.project3.client.controller;
 
-import ser516.project3.client.service.ClientConnectionServiceImpl;
-import ser516.project3.client.service.ClientConnectionServiceInterface;
-import ser516.project3.client.view.*;
-import ser516.project3.constants.ClientConstants;
-import ser516.project3.interfaces.CommonDataInterface;
-import ser516.project3.interfaces.ControllerInterface;
-import ser516.project3.interfaces.ViewInterface;
-import ser516.project3.model.*;
-import ser516.project3.server.controller.ServerController;
-import ser516.project3.utilities.ControllerFactory;
-import ser516.project3.utilities.ViewFactory;
-
-import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+
+import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import ser516.project3.client.service.ClientConnectionServiceImpl;
+import ser516.project3.client.service.ClientConnectionServiceInterface;
+import ser516.project3.client.view.ClientView;
+import ser516.project3.client.view.ConnectionPopUpView;
+import ser516.project3.client.view.ExpressionsView;
+import ser516.project3.client.view.FaceView;
+import ser516.project3.client.view.GraphView;
+import ser516.project3.client.view.HeaderView;
+import ser516.project3.client.view.PerformanceMetricView;
+import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.CommonDataInterface;
+import ser516.project3.interfaces.ControllerInterface;
+import ser516.project3.interfaces.ViewInterface;
+import ser516.project3.model.ConnectionPopUpModel;
+import ser516.project3.model.ExpressionsModel;
+import ser516.project3.model.FaceModel;
+import ser516.project3.model.GraphModel;
+import ser516.project3.model.HeaderModel;
+import ser516.project3.model.PerformanceMetricModel;
+import ser516.project3.server.controller.ServerController;
+import ser516.project3.server.controller.ServerControllerFactory;
+
 /**
  * The Controller class to handle requests from the Client UI
- * @author vsriva12
+ * @author vsriva12, Adhiraj Tikku
  *
  */
 public class ClientController implements ControllerInterface, CommonDataInterface {
 	private boolean connected = false;
 	private ClientConnectionServiceInterface clientConnectionService;
-	private ViewFactory viewFactory;
+	private ClientViewFactory viewFactory;
 	private ClientView clientView;
 	private ServerController serverController;
 	private HeaderController headerController;
@@ -44,8 +56,8 @@ public class ClientController implements ControllerInterface, CommonDataInterfac
 	 *
 	 */
 	public ClientController() {
-		viewFactory = new ViewFactory();
-		ControllerFactory controllerFactory = ControllerFactory.getInstance();
+		viewFactory = new ClientViewFactory();
+		ClientControllerFactory controllerFactory = ClientControllerFactory.getInstance();
 		initializeHeader(viewFactory, controllerFactory);
 		initializePerformanceMetrics(viewFactory, controllerFactory);
 		initializeExpressions(viewFactory, controllerFactory);
@@ -68,11 +80,20 @@ public class ClientController implements ControllerInterface, CommonDataInterfac
         setTabSelected(false);
 	}
 
+	/**
+	 * Method to get Client view
+	 * and @return Client view object
+	 */
 	@Override
 	public ViewInterface getView() {
 		return null;
 	}
 
+	/**
+	 * Returns the set of sub controllers in case any
+	 *
+	 * @return array containing sub controllers
+	 */
 	@Override
 	public ControllerInterface[] getSubControllers() {
 		ControllerInterface[] subControllers = {headerController, performanceMetricController, expressionsController,
@@ -80,12 +101,21 @@ public class ClientController implements ControllerInterface, CommonDataInterfac
 		return subControllers;
 	}
 
+    /**
+     * Overridden method to set the connection status of the client to the server
+     *
+     * @param connectionStatus the status of the connection to server
+     */
 	@Override
 	public void setConnectionStatus(boolean connectionStatus) {
 		connected = connectionStatus;
 		headerController.setConnectionStatus(connectionStatus);
 	}
 
+    /**
+     *
+     * @param tabSelected Current selected tab.
+     */
 	public void setTabSelected(boolean tabSelected) {
 		expressionsController.setTabSelected(tabSelected);
 	}
@@ -93,11 +123,14 @@ public class ClientController implements ControllerInterface, CommonDataInterfac
 	/**
 	 *  Header panel is initalized  where connection to server
 	 *  dialog box is created.
+     *
+     * @param controllerFactory the factory object to create the instances of the controller classes
+     * @param viewFactory the object to create the instances of the views
 	 */
-	private void initializeHeader(ViewFactory viewFactory, ControllerFactory controllerFactory) {
+	private void initializeHeader(ClientViewFactory viewFactory, ClientControllerFactory controllerFactory) {
 		ConnectionPopUpModel connectionPopUpModel = new ConnectionPopUpModel();
-		ConnectionPopUpView connectionPopUpView = (ConnectionPopUpView) viewFactory.getView("CONNECTION_POP_UP", connectionPopUpModel);
-		connectionPopUpController = controllerFactory.getController("CONNECTION_POP_UP", connectionPopUpModel, connectionPopUpView, null);
+		ConnectionPopUpView connectionPopUpView = (ConnectionPopUpView) viewFactory.getView(ClientConstants.CONNECTION_POP_UP, connectionPopUpModel);
+		connectionPopUpController = controllerFactory.getController(ClientConstants.CONNECTION_POP_UP, connectionPopUpModel, connectionPopUpView, null);
 
 		ControllerInterface subControllers[] = {connectionPopUpController};
 
@@ -109,9 +142,11 @@ public class ClientController implements ControllerInterface, CommonDataInterfac
 	/**
 	 * Performance Metrics panel is created where graph controller and performance metric
 	 * views are initialized.
-	 *
+     *
+     * @param controllerFactory the factory object to create the instances of the controller classes
+     * @param viewFactory the object to create the instances of the views
 	 */
-	private void initializePerformanceMetrics(ViewFactory viewFactory, ControllerFactory controllerFactory) {
+	private void initializePerformanceMetrics(ClientViewFactory viewFactory, ClientControllerFactory controllerFactory) {
 		GraphModel performanceMetricGraphModel = new GraphModel();
 		GraphView performanceMetricGraphView = (GraphView) viewFactory.getView(ClientConstants.GRAPH, performanceMetricGraphModel);
 		performanceMetricsGraphController = controllerFactory.getController(ClientConstants.GRAPH, performanceMetricGraphModel, performanceMetricGraphView, null);
@@ -128,16 +163,19 @@ public class ClientController implements ControllerInterface, CommonDataInterfac
 	/**
 	 * Expression panel is created where expression controller graph
 	 * and expression controller views are created
+     *
+     * @param controllerFactory the factory object to create the instances of the controller classes
+     * @param viewFactory the object to create the instances of the views
 	 */
-	private void initializeExpressions(ViewFactory viewFactory, ControllerFactory controllerFactory) {
+	private void initializeExpressions(ClientViewFactory viewFactory, ClientControllerFactory controllerFactory) {
 		GraphModel expressionsGraphModel = new GraphModel();
 		GraphView expressionsGraphView = (GraphView) viewFactory.getView(ClientConstants.GRAPH, expressionsGraphModel);
 		expressionGraphController = controllerFactory.getController(ClientConstants.GRAPH, expressionsGraphModel, expressionsGraphView, null);
 		expressionGraphController.initializeView();
 
 		FaceModel faceModel = new FaceModel();
-		FaceView faceView = (FaceView) viewFactory.getView("FACE", faceModel);
-		faceController = controllerFactory.getController("FACE", faceModel, faceView, null);
+		FaceView faceView = (FaceView) viewFactory.getView(ClientConstants.FACE, faceModel);
+		faceController = controllerFactory.getController(ClientConstants.FACE, faceModel, faceView, null);
 		faceController.initializeView();
 
 		ControllerInterface subControllers[] = {expressionGraphController, faceController};
@@ -178,8 +216,8 @@ public class ClientController implements ControllerInterface, CommonDataInterfac
 	 */
 	public void openServer() {
         if(serverController == null) {
-            ControllerFactory controllerFactory = ControllerFactory.getInstance();
-            serverController = (ServerController) controllerFactory.getController("SERVER", null, null, null);
+            ServerControllerFactory controllerFactory = ServerControllerFactory.getInstance();
+            serverController = (ServerController) controllerFactory.getController("SERVER", null, null);
             serverController.initializeView();
         } else {
             serverController.showServer();
