@@ -30,10 +30,21 @@ public class ConnectionPopUpView extends JDialog implements ViewInterface{
 
 	private final static int FONT_SIZE = 15;
 
+	/**
+	 * This constructor initializes the instance of connection PopUp dialog.
+	 * 
+	 * @param connectionPopUpModel an instance of ConnectionPopUpModel class
+	 */
 	public ConnectionPopUpView(ConnectionPopUpModel connectionPopUpModel) {
 		this.connectionPopUpModel = connectionPopUpModel;
 	}
 
+	/**
+	 * This method initializes the view, creates components on dialog
+	 * and configures dialog box.
+	 * 
+	 * @param subViews an array of objects of ViewInterface class
+	 */
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -55,6 +66,10 @@ public class ConnectionPopUpView extends JDialog implements ViewInterface{
 		setVisible(true);
 	}
 
+	/**
+	 * This method creates a main panel for connection pop up
+	 * dialog with desired configuration.
+	 */
 	private void createMainPanel() {
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
@@ -63,6 +78,11 @@ public class ConnectionPopUpView extends JDialog implements ViewInterface{
 		mainPanel.setBackground(Color.WHITE);
 	}
 
+	/**
+	 * This method creates labels on connection PopUp dialog.
+	 * 
+	 * @param bagConstraints object of GridBagConstraints Class
+	 */
 	private void createLabels(GridBagConstraints bagConstraints) {
 		ipAddressLabel = new JLabel(ClientConstants.IP_ADDRESS);
 		ipAddressLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -83,6 +103,12 @@ public class ConnectionPopUpView extends JDialog implements ViewInterface{
 		mainPanel.add(portNumberLabel, bagConstraints);
 	}
 
+	/**
+	 * This method creates text fields for Ip and port numbers
+	 * on connection PopUp dialog.
+	 * 
+	 * @param bagConstraints an object of GridBagConstraints
+	 */
 	private void createTextFields(GridBagConstraints bagConstraints) {
 		ipAddressTextField = new JTextField(connectionPopUpModel.getIpAddress());
 		ipAddressTextField.setPreferredSize(new Dimension(120, 20));
@@ -99,6 +125,11 @@ public class ConnectionPopUpView extends JDialog implements ViewInterface{
 		mainPanel.add(portNumberTextField, bagConstraints);
 	}
 
+	/**
+	 * This method creates button on connection PopUp dailog.
+	 * 
+	 * @param bagConstraints an object of GridBagConstraints
+	 */
 	private void createOkButton(GridBagConstraints bagConstraints) {
 		okButton = new WebButton(ClientConstants.OK);
 		okButton.setPreferredSize(new Dimension(120, 35));
@@ -116,15 +147,32 @@ public class ConnectionPopUpView extends JDialog implements ViewInterface{
 		bagConstraints.insets = new Insets(20, 20, 0, 20);
 		mainPanel.add(okButton, bagConstraints);
 	}
-
+	
+	/**
+	 * This method handles connect button on connection popup dialog.
+	 * 
+	 * @param actionListener an object of ActionListener class
+	 */
 	public void addConnectButtonListener(ActionListener actionListener) {
 		okButton.addActionListener(actionListener);
 	}
-
+	
+	/**
+	 * This method handles ip text field 
+	 * on connectionPopUp dialog.
+	 * 
+	 * @param documentListener an object of DocumentListener
+	 */
 	public void addIPDocumentListener(DocumentListener documentListener) {
 		ipAddressTextField.getDocument().addDocumentListener(documentListener);
 	}
 
+	/**
+	 * This method handles port number text field 
+	 * on connectionPopUp dialog.
+	 * 
+	 * @param documentListener an object of DocumentListener
+	 */
 	public void addPortDocumentListener(DocumentListener documentListener) {
 		portNumberTextField.getDocument().addDocumentListener(documentListener);
 	}

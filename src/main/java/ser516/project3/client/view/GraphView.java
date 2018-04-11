@@ -50,6 +50,10 @@ public class GraphView extends JPanel implements ViewInterface {
     currentXCoordinate = 0;
   }
 
+  /**
+   * this method initializes the view and configures the positions of 
+   * components.
+   */
   @Override
   public void initializeView(ViewInterface[] subViews) {
     setLayout(new GridLayout(1, 1, 8, 8));
@@ -82,6 +86,10 @@ public class GraphView extends JPanel implements ViewInterface {
     setVisible(true);
   }
 
+  /**
+   * this method creates data set to plot graph
+   * @return dataset an object of XYDataset
+   */
   private XYDataset createDataSet() {
     XYSeries series[] = new XYSeries[graphModel.getNoOfChannels()];
     XYSeriesCollection dataSet = new XYSeriesCollection();
@@ -114,6 +122,11 @@ public class GraphView extends JPanel implements ViewInterface {
     return dataSet;
   }
 
+  /**
+   * This method creates chart for graphs.
+   * @param dataSet XYDataset
+   * @return chart JFreeChart
+   */
   private JFreeChart createChart(final XYDataset dataSet) {
     JFreeChart chart = ChartFactory.createXYLineChart("", "",
         "", dataSet, PlotOrientation.VERTICAL, legendDisplay, true,

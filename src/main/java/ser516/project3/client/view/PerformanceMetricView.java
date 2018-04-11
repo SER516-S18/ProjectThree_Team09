@@ -35,10 +35,20 @@ public class PerformanceMetricView extends JPanel implements ViewInterface {
 
 	private static final int FONT_SIZE = 17;
 	
+	/**
+	 * This constructor initializes the model of performance metric view
+	 * @param performanceMetricModel
+	 */
 	public PerformanceMetricView(PerformanceMetricModel performanceMetricModel){
 		this.performanceMetricModel = performanceMetricModel;
 	}
-
+	
+	/**
+	 * This method initializes the Graph view, creates components and
+	 * configures positions on layout.
+	 * 
+	 * @param subViews an array of ViewInterface objects
+	 */
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
 		GraphView graphView = (GraphView) subViews[0];
@@ -70,8 +80,8 @@ public class PerformanceMetricView extends JPanel implements ViewInterface {
 		setVisible(true);
 	}
 	
-	/* This method returns a panel of 6 buttons,
-	 * 2 labels and 1 text field.
+	/**
+	 *  This method creates panel and configures components on the panel.
 	 */
 	private void createEmotionPanel() {
 		mainPanel = new JPanel();
@@ -81,6 +91,12 @@ public class PerformanceMetricView extends JPanel implements ViewInterface {
 		mainPanel.setBackground(Color.decode(ClientConstants.PANEL_COLOR_HEX));
 	}
 
+	/**
+	 * This method creates buttons for performance metric.
+	 * @param gridBagConstraints an object of GridBagContraints class
+	 * 							 to configure the positions of buttons on
+	 * 							 panel.
+	 */
 	private void createEmotionButtons(GridBagConstraints gridBagConstraints) {
 		gridBagConstraints.ipadx = 50;
 		gridBagConstraints.ipady = 50;
@@ -118,6 +134,10 @@ public class PerformanceMetricView extends JPanel implements ViewInterface {
 		mainPanel.add(focusButton, gridBagConstraints);
 	}
 
+	/**
+	 * This method creates label to show display length
+	 * @param gridBagConstraints
+	 */
 	private void createDisplayLengthLabel(GridBagConstraints gridBagConstraints) {
 		gridBagConstraints.insets = new Insets(10, 5, 10, 5);
 		gridBagConstraints.gridx = 1;
@@ -130,6 +150,10 @@ public class PerformanceMetricView extends JPanel implements ViewInterface {
 		mainPanel.add(displaylengthLabel, gridBagConstraints);
 	}
 
+	/**
+	 * This method creates text field to input display length.
+	 * @param gridBagConstraints
+	 */
 	private void createDisplayLengthField(GridBagConstraints gridBagConstraints) {
 		gridBagConstraints.gridx = 2;
 		gridBagConstraints.gridy = 3;
@@ -144,6 +168,10 @@ public class PerformanceMetricView extends JPanel implements ViewInterface {
 		mainPanel.add(displayLengthField, gridBagConstraints);
 	}
 
+	/**
+	 * This method creates label to display units for display length.
+	 * @param gridBagConstraints
+	 */
 	private void createSecondsLabel(GridBagConstraints gridBagConstraints) {
 		gridBagConstraints.gridx = 3;
 		gridBagConstraints.gridy = 3;
@@ -160,7 +188,9 @@ public class PerformanceMetricView extends JPanel implements ViewInterface {
 	 * This method adds Emotion buttons into the panel where dimensions,color
 	 * and emotion name is passed as arguments
 	 * 
-	 *
+	 *@param emotion String
+	 *@param color 	 Color object
+	 *@return emotionButton a WebButton
 	 */
 	private WebButton createEmotionButton(String emotion, Color color)
 	{
@@ -177,6 +207,10 @@ public class PerformanceMetricView extends JPanel implements ViewInterface {
 		return emotionButton;
 	}
 
+	/**
+	 * This method handles events on emotion buttons.
+	 * @param actionListener
+	 */
 	public void addEmotionButtonsListener(ActionListener actionListener) {
 		interestButton.addActionListener(actionListener);
 		engagementButton.addActionListener(actionListener);
@@ -186,11 +220,20 @@ public class PerformanceMetricView extends JPanel implements ViewInterface {
 		focusButton.addActionListener(actionListener);
 	}
 
+	/**
+	 * This method handles key events on display length field.
+	 * @param keyAdapter
+	 * @param documentListener
+	 */
 	public void addDisplayLengthListener(KeyAdapter keyAdapter, DocumentListener documentListener) {
 		displayLengthField.addKeyListener(keyAdapter);
 		displayLengthField.getDocument().addDocumentListener(documentListener);
 	}
 
+	/**
+	 * This method updates the performance metric view buttons on color selection.
+	 * @param performanceMetricModel
+	 */
 	public void updatePerformanceMetricView(PerformanceMetricModel performanceMetricModel) {
 		this.performanceMetricModel = performanceMetricModel;
 		interestButton.setBottomBgColor(this.performanceMetricModel.getInterestColor());
