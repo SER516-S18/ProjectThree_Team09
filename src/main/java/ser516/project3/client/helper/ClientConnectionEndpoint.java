@@ -8,8 +8,8 @@ import javax.websocket.*;
 import org.apache.log4j.Logger;
 
 import ser516.project3.model.*;
+import ser516.project3.client.controller.ControllerFactory;
 import ser516.project3.constants.ClientConstants;
-import ser516.project3.factory.ControllerFactory;
 import ser516.project3.utilities.MessageDecoder;
 import ser516.project3.utilities.MessageFormatConverter;
 import ser516.project3.utilities.ServerCommonData;

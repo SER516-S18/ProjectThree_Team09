@@ -4,16 +4,16 @@ import java.io.IOException;
 
 import org.apache.log4j.Logger;
 
-import ser516.project3.client.view.ExpressionsGraphObserver;
-import ser516.project3.client.view.FaceViewObserver;
-import ser516.project3.client.view.HeaderObserver;
 import ser516.project3.model.ExpressionsDataObservable;
 import ser516.project3.model.FaceExpressionsObservable;
 import ser516.project3.model.HeaderObservable;
 import ser516.project3.model.PerformanceMetricDataObservable;
-import ser516.project3.client.view.PerformanceMetricGraphObserver;
+import ser516.project3.client.controller.ControllerFactory;
 import ser516.project3.client.helper.ClientConnectionThread;
-import ser516.project3.factory.ControllerFactory;
+import ser516.project3.client.observers.ExpressionsGraphObserver;
+import ser516.project3.client.observers.FaceViewObserver;
+import ser516.project3.client.observers.HeaderObserver;
+import ser516.project3.client.observers.PerformanceMetricGraphObserver;
 
 public class ClientConnectionServiceImpl implements ClientConnectionServiceInterface {
 	final static Logger logger = Logger.getLogger(ClientConnectionServiceImpl.class);

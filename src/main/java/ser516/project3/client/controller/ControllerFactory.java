@@ -1,4 +1,4 @@
-package ser516.project3.factory;
+package ser516.project3.client.controller;
 
 import ser516.project3.client.controller.*;
 import ser516.project3.client.view.*;
