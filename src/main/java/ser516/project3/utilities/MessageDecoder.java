@@ -1,94 +1,92 @@
 package ser516.project3.utilities;
 
-import java.io.StringReader;
-
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.websocket.DecodeException;
-import javax.websocket.Decoder;
-import javax.websocket.EndpointConfig;
-
 import ser516.project3.model.MessageModel;
 import ser516.project3.model.MessageModel.AbstractExpression;
 import ser516.project3.model.MessageModel.ConcreteExpression;
 import ser516.project3.model.MessageModel.Emotion;
 import ser516.project3.model.MessageModel.SelectedCriteria;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.websocket.DecodeException;
+import javax.websocket.Decoder;
+import javax.websocket.EndpointConfig;
+import java.io.StringReader;
+
 /**
  * The MessageDecoder class implements the web-socket Decoder interface. This
  * class handles the Unmarshalling of JSON into message class object.
- * 
- * @author vsriva12
  *
+ * @author vsriva12
  */
 public class MessageDecoder implements Decoder.Text<MessageModel> {
 
-	/**
-	 * Initialization method overridden from the interface
-	 *
-	 * @param config configuration for the decoding of the model
-	 */
-	@Override
-	public void init(EndpointConfig config) {
-		// Intentionally empty.
-	}
+    /**
+     * Initialization method overridden from the interface
+     *
+     * @param config configuration for the decoding of the model
+     */
+    @Override
+    public void init(EndpointConfig config) {
+        // Intentionally empty.
+    }
 
-	/**
-	 * Destroys the object, if exists. Overridden from the interface
-	 */
-	@Override
-	public void destroy() {
-		// Intentionally empty.
-	}
+    /**
+     * Destroys the object, if exists. Overridden from the interface
+     */
+    @Override
+    public void destroy() {
+        // Intentionally empty.
+    }
 
-	/**
-	 * Decodes the Strings to get a messageModel object
-	 *
-	 * @param payload JSON string to be decoded
-	 * @return Returns the MessageModel object
-	 * @throws DecodeException
-	 */
-	@Override
-	public MessageModel decode(String payload) throws DecodeException {
+    /**
+     * Decodes the Strings to get a messageModel object
+     *
+     * @param payload JSON string to be decoded
+     * @return Returns the MessageModel object
+     * @throws DecodeException
+     */
+    @Override
+    public MessageModel decode(String payload) throws DecodeException {
 
-		MessageModel messageModel = new MessageModel();
+        MessageModel messageModel = new MessageModel();
 
-		// Read the payload.
-		JsonObject root = Json.createReader(new StringReader(payload)).readObject();
-		JsonObject timeAttributes = root.getJsonObject("Time-Attributes");
-		JsonObject selectionAttributes = root.getJsonObject("Selection-Flags");
-		JsonObject expressionAttributes = root.getJsonObject("Expression");
-		JsonObject emotionAttributes = root.getJsonObject("Emotion");
+        // Read the payload.
+        JsonObject root = Json.createReader(new StringReader(payload)).readObject();
+        JsonObject timeAttributes = root.getJsonObject("Time-Attributes");
+        JsonObject selectionAttributes = root.getJsonObject("Selection-Flags");
+        JsonObject expressionAttributes = root.getJsonObject("Expression");
+        JsonObject emotionAttributes = root.getJsonObject("Emotion");
 
-		// Unmarshal the time attributes
-		messageModel.setInterval(timeAttributes.getJsonNumber("Interval").doubleValue());
-		messageModel.setTimeStamp(timeAttributes.getJsonNumber("TimeStamp").doubleValue());
+        // Unmarshal the time attributes
+        messageModel.setInterval(timeAttributes.getJsonNumber("Interval").doubleValue());
+        messageModel.setTimeStamp(timeAttributes.getJsonNumber("TimeStamp").doubleValue());
 
-		// Unmarshal the selection flag attributes.
-		for (SelectedCriteria selectionFlag : SelectedCriteria.values()) {
-			messageModel.setSelectionFlag(selectionFlag.name(),
-					selectionAttributes.getJsonString(selectionFlag.name()).toString());
-		}
+        // Unmarshal the selection flag attributes.
+        for (SelectedCriteria selectionFlag : SelectedCriteria.values()) {
+            messageModel.setSelectionFlag(selectionFlag.name(),
+                    selectionAttributes.getJsonString(selectionFlag.name()).toString());
+        }
 
-		// Unmarshal the expression attributes.
-		for (AbstractExpression aex : AbstractExpression.values()) {
-			messageModel.setAbstractExpression(aex.name(),
-					expressionAttributes.getJsonNumber(aex.name()).doubleValue());
-		}
-		for (ConcreteExpression cex : ConcreteExpression.values()) {
-			messageModel.setConcreteExpression(cex.name(), expressionAttributes.getBoolean(cex.name()));
-		}
-		// Unmarshal the emotion attributes.
-		for (Emotion em : Emotion.values()) {
-			messageModel.setEmotion(em.name(), emotionAttributes.getJsonNumber(em.name()).doubleValue());
-		}
+        // Unmarshal the expression attributes.
+        for (AbstractExpression aex : AbstractExpression.values()) {
+            messageModel.setAbstractExpression(aex.name(),
+                    expressionAttributes.getJsonNumber(aex.name()).doubleValue());
+        }
+        for (ConcreteExpression cex : ConcreteExpression.values()) {
+            messageModel.setConcreteExpression(cex.name(), expressionAttributes.getBoolean(cex.name()));
+        }
+        // Unmarshal the emotion attributes.
+        for (Emotion em : Emotion.values()) {
+            messageModel.setEmotion(em.name(), emotionAttributes.getJsonNumber(em.name()).doubleValue());
+        }
 
-		return messageModel;
-	}
+        return messageModel;
+    }
 
-	@Override
-	public boolean willDecode(String s) {
-		return true;
-	}
+    @Override
+    public boolean willDecode(String s) {
+        return true;
+    }
 
 }

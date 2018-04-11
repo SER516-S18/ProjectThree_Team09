@@ -1,6 +1,5 @@
 package ser516.project3.client.controller;
 
-import ser516.project3.client.view.FaceView;
 import ser516.project3.interfaces.CommonDataInterface;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.client.view.ExpressionsView;

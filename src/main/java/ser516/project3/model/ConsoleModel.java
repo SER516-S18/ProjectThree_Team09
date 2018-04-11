@@ -8,7 +8,6 @@ import java.util.ArrayList;
  * It stores the messages to be displayed for console view
  *
  * @author Zain, Vishakha
- *
  */
 public class ConsoleModel extends java.util.Observable implements ModelInterface {
 

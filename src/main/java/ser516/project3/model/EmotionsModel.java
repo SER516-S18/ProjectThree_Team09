@@ -27,89 +27,89 @@ public class EmotionsModel implements ModelInterface {
         focus = 0;
     }
 
-	/**
-	 * @return the interest
-	 */
-	public double getInterest() {
-		return interest;
-	}
+    /**
+     * @return the interest
+     */
+    public double getInterest() {
+        return interest;
+    }
 
-	/**
-	 * @param interest the interest to set
-	 */
-	public void setInterest(double interest) {
-		this.interest = interest;
-	}
+    /**
+     * @param interest the interest to set
+     */
+    public void setInterest(double interest) {
+        this.interest = interest;
+    }
 
-	/**
-	 * @return the engagement
-	 */
-	public double getEngagement() {
-		return engagement;
-	}
+    /**
+     * @return the engagement
+     */
+    public double getEngagement() {
+        return engagement;
+    }
 
-	/**
-	 * @param engagement the engagement to set
-	 */
-	public void setEngagement(double engagement) {
-		this.engagement = engagement;
-	}
+    /**
+     * @param engagement the engagement to set
+     */
+    public void setEngagement(double engagement) {
+        this.engagement = engagement;
+    }
 
-	/**
-	 * @return the stress
-	 */
-	public double getStress() {
-		return stress;
-	}
+    /**
+     * @return the stress
+     */
+    public double getStress() {
+        return stress;
+    }
 
-	/**
-	 * @param stress the stress to set
-	 */
-	public void setStress(double stress) {
-		this.stress = stress;
-	}
+    /**
+     * @param stress the stress to set
+     */
+    public void setStress(double stress) {
+        this.stress = stress;
+    }
 
-	/**
-	 * @return the relaxation
-	 */
-	public double getRelaxation() {
-		return relaxation;
-	}
+    /**
+     * @return the relaxation
+     */
+    public double getRelaxation() {
+        return relaxation;
+    }
 
-	/**
-	 * @param relaxation the relaxation to set
-	 */
-	public void setRelaxation(double relaxation) {
-		this.relaxation = relaxation;
-	}
+    /**
+     * @param relaxation the relaxation to set
+     */
+    public void setRelaxation(double relaxation) {
+        this.relaxation = relaxation;
+    }
 
-	/**
-	 * @return the excitement
-	 */
-	public double getExcitement() {
-		return excitement;
-	}
+    /**
+     * @return the excitement
+     */
+    public double getExcitement() {
+        return excitement;
+    }
 
-	/**
-	 * @param excitement the excitement to set
-	 */
-	public void setExcitement(double excitement) {
-		this.excitement = excitement;
-	}
+    /**
+     * @param excitement the excitement to set
+     */
+    public void setExcitement(double excitement) {
+        this.excitement = excitement;
+    }
 
-	/**
-	 * @return the focus
-	 */
-	public double getFocus() {
-		return focus;
-	}
+    /**
+     * @return the focus
+     */
+    public double getFocus() {
+        return focus;
+    }
 
-	/**
-	 * @param focus the focus to set
-	 */
-	public void setFocus(double focus) {
-		this.focus = focus;
-	}
+    /**
+     * @param focus the focus to set
+     */
+    public void setFocus(double focus) {
+        this.focus = focus;
+    }
 
-    
+
 }

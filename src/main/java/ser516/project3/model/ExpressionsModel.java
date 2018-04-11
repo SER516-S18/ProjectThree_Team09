@@ -30,117 +30,117 @@ public class ExpressionsModel implements ModelInterface {
         eyeCheckBoxChecked = false;
     }
 
-	/**
-	 * @return the lowerFaceItem
-	 */
-	public String getLowerFaceItem() {
-		return lowerFaceItem;
-	}
+    /**
+     * @return the lowerFaceItem
+     */
+    public String getLowerFaceItem() {
+        return lowerFaceItem;
+    }
 
-	/**
-	 * @param lowerFaceItem the lowerFaceItem to set
-	 */
-	public void setLowerFaceItem(String lowerFaceItem) {
-		this.lowerFaceItem = lowerFaceItem;
-	}
+    /**
+     * @param lowerFaceItem the lowerFaceItem to set
+     */
+    public void setLowerFaceItem(String lowerFaceItem) {
+        this.lowerFaceItem = lowerFaceItem;
+    }
 
-	/**
-	 * @return the upperFaceItem
-	 */
-	public String getUpperFaceItem() {
-		return upperFaceItem;
-	}
+    /**
+     * @return the upperFaceItem
+     */
+    public String getUpperFaceItem() {
+        return upperFaceItem;
+    }
 
-	/**
-	 * @param upperFaceItem the upperFaceItem to set
-	 */
-	public void setUpperFaceItem(String upperFaceItem) {
-		this.upperFaceItem = upperFaceItem;
-	}
+    /**
+     * @param upperFaceItem the upperFaceItem to set
+     */
+    public void setUpperFaceItem(String upperFaceItem) {
+        this.upperFaceItem = upperFaceItem;
+    }
 
-	/**
-	 * @return the eyeItem
-	 */
-	public String getEyeItem() {
-		return eyeItem;
-	}
+    /**
+     * @return the eyeItem
+     */
+    public String getEyeItem() {
+        return eyeItem;
+    }
 
-	/**
-	 * @param eyeItem the eyeItem to set
-	 */
-	public void setEyeItem(String eyeItem) {
-		this.eyeItem = eyeItem;
-	}
+    /**
+     * @param eyeItem the eyeItem to set
+     */
+    public void setEyeItem(String eyeItem) {
+        this.eyeItem = eyeItem;
+    }
 
-	/**
-	 * @return the upperFaceValue
-	 */
-	public double getUpperFaceValue() {
-		return upperFaceValue;
-	}
+    /**
+     * @return the upperFaceValue
+     */
+    public double getUpperFaceValue() {
+        return upperFaceValue;
+    }
 
-	/**
-	 * @param upperFaceValue the upperFaceValue to set
-	 */
-	public void setUpperFaceValue(double upperFaceValue) {
-		this.upperFaceValue = upperFaceValue;
-	}
+    /**
+     * @param upperFaceValue the upperFaceValue to set
+     */
+    public void setUpperFaceValue(double upperFaceValue) {
+        this.upperFaceValue = upperFaceValue;
+    }
 
-	/**
-	 * @return the lowerFaceValue
-	 */
-	public double getLowerFaceValue() {
-		return lowerFaceValue;
-	}
+    /**
+     * @return the lowerFaceValue
+     */
+    public double getLowerFaceValue() {
+        return lowerFaceValue;
+    }
 
-	/**
-	 * @param lowerFaceValue the lowerFaceValue to set
-	 */
-	public void setLowerFaceValue(double lowerFaceValue) {
-		this.lowerFaceValue = lowerFaceValue;
-	}
+    /**
+     * @param lowerFaceValue the lowerFaceValue to set
+     */
+    public void setLowerFaceValue(double lowerFaceValue) {
+        this.lowerFaceValue = lowerFaceValue;
+    }
 
-	/**
-	 * @return the eyeValue
-	 */
-	public boolean isEyeValue() {
-		return eyeValue;
-	}
+    /**
+     * @return the eyeValue
+     */
+    public boolean isEyeValue() {
+        return eyeValue;
+    }
 
-	/**
-	 * @param eyeValue the eyeValue to set
-	 */
-	public void setEyeValue(boolean eyeValue) {
-		this.eyeValue = eyeValue;
-	}
+    /**
+     * @param eyeValue the eyeValue to set
+     */
+    public void setEyeValue(boolean eyeValue) {
+        this.eyeValue = eyeValue;
+    }
 
-	/**
-	 * @return the eyeCheckBoxChecked
-	 */
-	public boolean isEyeCheckBoxChecked() {
-		return eyeCheckBoxChecked;
-	}
+    /**
+     * @return the eyeCheckBoxChecked
+     */
+    public boolean isEyeCheckBoxChecked() {
+        return eyeCheckBoxChecked;
+    }
 
-	/**
-	 * @param eyeCheckBoxChecked the eyeCheckBoxChecked to set
-	 */
-	public void setEyeCheckBoxChecked(boolean eyeCheckBoxChecked) {
-		this.eyeCheckBoxChecked = eyeCheckBoxChecked;
-	}
+    /**
+     * @param eyeCheckBoxChecked the eyeCheckBoxChecked to set
+     */
+    public void setEyeCheckBoxChecked(boolean eyeCheckBoxChecked) {
+        this.eyeCheckBoxChecked = eyeCheckBoxChecked;
+    }
 
-	/**
-	 * @return the isTabSelected
-	 */
-	public boolean isTabSelected() {
-		return isTabSelected;
-	}
+    /**
+     * @return the isTabSelected
+     */
+    public boolean isTabSelected() {
+        return isTabSelected;
+    }
 
-	/**
-	 * @param isTabSelected the isTabSelected to set
-	 */
-	public void setTabSelected(boolean isTabSelected) {
-		this.isTabSelected = isTabSelected;
-	}
+    /**
+     * @param isTabSelected the isTabSelected to set
+     */
+    public void setTabSelected(boolean isTabSelected) {
+        this.isTabSelected = isTabSelected;
+    }
 
-    
+
 }
