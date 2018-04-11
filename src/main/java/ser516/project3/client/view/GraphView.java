@@ -152,6 +152,8 @@ public class GraphView extends JPanel implements ViewInterface {
             graphModel.setXLength(graphModel.getXLength() + diff);
             range.setRange(graphModel.getXStartPoint(), graphModel.getXLength());
         } else {
+            if(graphModel.getXLength() == 0)
+                graphModel.setXLength(1);
             range.setRange(0, graphModel.getXLength());
         }
         range.setTickLabelPaint(Color.WHITE);
