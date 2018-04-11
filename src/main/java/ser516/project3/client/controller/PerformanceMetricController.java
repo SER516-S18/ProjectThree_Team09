@@ -32,6 +32,10 @@ public class PerformanceMetricController implements ControllerInterface {
 		this.performanceMetricView = performanceMetricView;
 		this.graphController = graphController;
 	}
+	/**
+	 * Method is used to initialize performance view
+	 * where emotion buttons and display length text field is added
+	 */
 
 	@Override
 	public void initializeView() {
@@ -49,15 +53,29 @@ public class PerformanceMetricController implements ControllerInterface {
 		performanceMetricView.addDisplayLengthListener(new DisplayLengthKeyListener(),
 				new DisplayLengthDocumentListener());
 	}
-
+	
+	/**
+	 * Method to get PerformanceMetric view
+	 * @return performancemetric view object
+	 */
 	public PerformanceMetricView getPerformanceMetricView() {
 		return performanceMetricView;
 	}
+	
+	/**
+	 * Method to get Graph Controller
+	 * @return graph Controller object
+	 */
 
 	public GraphController getGraphController() {
 		return graphController;
 	}
-
+	
+	/**
+	 * Class implemented to handle action listener
+	 * of all emotion buttons like Stress, Interest, Focus, Excitement, Engagement
+	 * and Relaxation
+	 */
 	public class EmotionButtonsListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -124,7 +142,14 @@ public class PerformanceMetricController implements ControllerInterface {
 			performanceMetricView.updatePerformanceMetricView(performanceMetricModel);
 		}
 	}
-
+	
+	/**
+	 * Class created to support display length key listener
+	 * to update graph controller and performance metric view
+	 * based on key event
+	 *
+	 */
+	
 	public class DisplayLengthKeyListener extends KeyAdapter {
 		@Override
 		public void keyPressed(KeyEvent e) {
@@ -134,7 +159,11 @@ public class PerformanceMetricController implements ControllerInterface {
 			}
 		}
 	}
-
+	
+	/**
+	 * Class implemented to handle document listener of all
+	 * display length related components
+	 */
 	class DisplayLengthDocumentListener implements DocumentListener {
 		@Override
 		public void removeUpdate(DocumentEvent e) {

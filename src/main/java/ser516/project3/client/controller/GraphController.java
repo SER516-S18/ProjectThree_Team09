@@ -143,14 +143,14 @@ public class GraphController implements ControllerInterface {
 	}
 
 	/**
-	 * Gets the Graph View
+	 * Method to get the Graph View
 	 */
 	public GraphView getGraphView() {
 		return graphView;
 	}
 
 	/**
-	 * Gets the Graph Model
+	 * Method to get  the Graph Model
 	 */
 	public GraphModel getGraphModel() {
 		return graphModel;

@@ -22,6 +22,10 @@ public class ExpressionsController implements ControllerInterface {
     this.graphController = graphController;
   }
 
+  /**
+   * Expression view is initialized where face 
+   * and eyes expression are added along with channel size and length
+   */
   @Override
   public void initializeView() {
     String legendNames[] = {"blink", "rightWink", "leftWink", "lookingRight", "lookingLeft",
@@ -33,15 +37,26 @@ public class ExpressionsController implements ControllerInterface {
     ViewInterface clientViewInterface[] = {graphController.getGraphView()};
     expressionsView.initializeView(clientViewInterface);
   }
-
+  /**
+   * Method to get expression view
+   * and @return expression view object
+   */
   public ExpressionsView getExpressionsView() {
     return expressionsView;
   }
-
+  
+  /**
+   * Method to get GraphController
+   * and @return GraphController object
+   */
   public GraphController getGraphController() {
     return graphController;
   }
 
+  /**
+   * Method to get FaceView instance
+   * 
+   */
   public void setSelected(boolean selected) {
     expressionsModel.setTabSelected(selected);
       FaceView.getInstance().setSelected(selected);

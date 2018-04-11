@@ -33,14 +33,21 @@ public class HeaderController implements ControllerInterface {
 		this.headerModel = headerModel;
 		this.connectionPopUpController = connectionPopUpController;
 	}
-
+	/**
+	 * Method to add Connect and Server Open button in headerview
+	 */
 	@Override
 	public void initializeView() {
 		headerView.initializeView(null);
 		headerView.addConnectButtonListener(new ConnectListener());
 		headerView.addServerOpenButtonListener(new ServerOpenListener());
 	}
-
+	/**
+	 * Class implemented to handle action listener
+	 * of server open button
+	 *
+	 */
+	
 	class ServerOpenListener implements ActionListener {
 
 		@Override
@@ -50,6 +57,11 @@ public class HeaderController implements ControllerInterface {
 
 	}
 
+	/**
+	 * Class implemented to handle action listener
+	 * of Connect to server button
+	 *
+	 */
 	class ConnectListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -60,16 +72,27 @@ public class HeaderController implements ControllerInterface {
 			}
 		}
 	}
+	/**
+	 * Method to get Header View
+	 * @return header view object
+	 */
 
 	public HeaderView getHeaderView() {
 		return headerView;
 	}
+	/**
+	 * Method to set Connection status
+	 * and update the status of connection after the server is connected or disconnected
+	 */
 
 	public void setConnectionStatus(boolean connectionStatus) {
 		headerModel.setConnectionStatus(connectionStatus);
 		headerView.updateConnectionLabel();
 	}
-
+	/**
+	 * Method to set header time stamp
+	 * and update it once the interval and elapsed time is set in the server dialog
+	 */
 	public void setHeaderTimeStamp(double timeStamp) {
 		headerModel.setTimeStamp(timeStamp);
 		headerView.updateTimeStamp();

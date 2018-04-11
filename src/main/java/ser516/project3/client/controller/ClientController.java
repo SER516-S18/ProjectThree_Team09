@@ -37,6 +37,11 @@ public class ClientController implements ControllerInterface {
 	private ConnectionPopUpController connectionPopUpController;
 
 	private static ClientController instance;
+ /**
+  * Constructor created to intialize 
+  * Header, PerformanceMetrics and Face Expressions
+  * 
+  */
 	public ClientController() {
 		viewFactory = new ViewFactory();
 		ControllerFactory controllerFactory = new ControllerFactory();
@@ -57,6 +62,11 @@ public class ClientController implements ControllerInterface {
 		return instance;
 	}
 
+	/**
+	 * Main Client view where server menu items
+	 * and expression controller is embedded.
+	 */
+	
 	@Override
 	public void initializeView() {
 		clientView = (ClientView) viewFactory.getView(ClientConstants.CLIENT, null);
@@ -70,7 +80,10 @@ public class ClientController implements ControllerInterface {
         clientView.addTabbedPaneSelectionListener(new TabSelectionListener());
         expressionsController.setSelected(false);
 	}
-
+	/**
+	 *  Header panel is initalized  where connection to server 
+	 *  dialog box is created.
+	 */
 	private void initializeHeader(ViewFactory viewFactory, ControllerFactory controllerFactory) {
 		ConnectionPopUpModel connectionPopUpModel = new ConnectionPopUpModel();
 		ConnectionPopUpView connectionPopUpView = (ConnectionPopUpView) viewFactory.getView("CONNECTION_POP_UP", connectionPopUpModel);
@@ -81,7 +94,11 @@ public class ClientController implements ControllerInterface {
 		headerController = (HeaderController)controllerFactory.getController(ClientConstants.HEADER, headerModel, headerView, connectionPopUpController);
 		headerController.initializeView();
 	}
-
+	/**
+	 * Performance Metrics panel is created where graph controller and performance metric 
+	 * views are initialized.
+	 * 
+	 */
 	private void initializePerformanceMetrics(ViewFactory viewFactory, ControllerFactory controllerFactory) {
 		GraphModel performanceMetricGraphModel = new GraphModel();
 		GraphView performanceMetricGraphView = (GraphView) viewFactory.getView(ClientConstants.GRAPH, performanceMetricGraphModel);
@@ -93,6 +110,10 @@ public class ClientController implements ControllerInterface {
 		performanceMetricController = (PerformanceMetricController) controllerFactory.getController(ClientConstants.PERFORMANCE_METRICS, performanceMetricModel, performanceMetricView, performanceMetricsGraphController);
 		performanceMetricController.initializeView();
 	}
+	/**
+	 * Expression panel is created where expression controller graph
+	 * and expression controller views are created
+	 */
 
 	private void initializeExpressions(ViewFactory viewFactory, ControllerFactory controllerFactory) {
 		GraphModel expressionsGraphModel = new GraphModel();
@@ -105,15 +126,21 @@ public class ClientController implements ControllerInterface {
 		expressionsController = (ExpressionsController) controllerFactory.getController(ClientConstants.EXPRESSIONS, expressionsModel, expressionsView, expressionGraphController);
 		expressionsController.initializeView();
 	}
-
+	/**
+	 * Method to get header controller
+	 */
 	public HeaderController getHeaderController() {
 		return headerController;
 	}
-
+	/**
+	 * Method to get PerformanceMetric Controller
+	 */
 	public PerformanceMetricController getPerformanceMetricController() {
 		return performanceMetricController;
 	}
-
+	/**
+	 * Method to get Expression Controller
+	 */
 	public ExpressionsController getExpressionsController() {
 		return expressionsController;
 	}
@@ -143,12 +170,16 @@ public class ClientController implements ControllerInterface {
 			clientConnectionService.stopClientConnection();
 		connected = false;
 	}
-
+	/**
+	 * Method to set server connection status
+	 */
 	public void setConnectionStatus(boolean connectionStatus) {
 		connected = connectionStatus;
 		headerController.setConnectionStatus(connectionStatus);
 	}
-
+	/**
+	 * Method to display server view if its not open
+	 */
 	public void openServer() {
         if(serverController == null) {
             ControllerFactory controllerFactory = new ControllerFactory();
@@ -158,14 +189,22 @@ public class ClientController implements ControllerInterface {
             serverController.showServer();
         }
     }
-
+	/**
+	 * 
+	 * Class implemented to handle action listener of all server menu item components
+	 * like lower face, upper face.
+	 */
 	class ServerMenuItemListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			openServer();
 		}
 	}
-
+	/**
+	 * 
+	 *Class to deal with windows status like 
+	 *opened, closed, activated or deactivated
+	 */
 	class WindowClosingEventListener implements WindowListener {
 		@Override
 		public void windowClosing(WindowEvent windowEvent) {
@@ -184,7 +223,11 @@ public class ClientController implements ControllerInterface {
 		@Override
 		public void windowDeactivated(WindowEvent arg0) {}
 	}
-
+	/**
+	 * Class implemented to handle expression 
+	 * controller changes
+	 *
+	 */
 	class TabSelectionListener implements ChangeListener {
 		@Override
 		public void stateChanged(ChangeEvent e) {
