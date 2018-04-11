@@ -24,7 +24,7 @@ import ser516.project3.server.view.TopView;
  * @author vsriva12
  *
  */
-public class ControllerFactory {
+public class ClientControllerFactory {
 	private ClientController clientController;
 	private HeaderController headerController;
 	private PerformanceMetricController performanceMetricController;
@@ -33,16 +33,16 @@ public class ControllerFactory {
 	private GraphController performanceMetricGraphController;
 	private GraphController expressionsGraphController;
 
-	private static ControllerFactory instance;
+	private static ClientControllerFactory instance;
 
 	/**
 	 * Creates a singleton instance of ControllerFactory.
 	 * If exists, returns it, else creates it.
 	 * @return instance of the ControllerFactory
 	 */
-	public static ControllerFactory getInstance() {
+	public static ClientControllerFactory getInstance() {
 		if (instance == null) {
-			instance = new ControllerFactory();
+			instance = new ClientControllerFactory();
 		}
 		return instance;
 	}

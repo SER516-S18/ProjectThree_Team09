@@ -8,7 +8,7 @@ import ser516.project3.model.ExpressionsDataObservable;
 import ser516.project3.model.FaceExpressionsObservable;
 import ser516.project3.model.HeaderObservable;
 import ser516.project3.model.PerformanceMetricDataObservable;
-import ser516.project3.client.controller.ControllerFactory;
+import ser516.project3.client.controller.ClientControllerFactory;
 import ser516.project3.client.helper.ClientConnectionThread;
 import ser516.project3.client.observers.ExpressionsGraphObserver;
 import ser516.project3.client.observers.FaceViewObserver;
@@ -46,7 +46,7 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
 		try {
 			if(threadInstance != null && threadInstance.getClientSession() != null)
 				threadInstance.getClientSession().close();
-			ControllerFactory.getInstance().getClientController().setConnectionStatus(false);
+			ClientControllerFactory.getInstance().getClientController().setConnectionStatus(false);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			logger.error("Error while stopping client end point::::" + e.getMessage().toString());

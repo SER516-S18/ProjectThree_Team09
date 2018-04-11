@@ -75,7 +75,7 @@ public class ConnectionPopUpController implements ControllerInterface{
         dialog.setAlwaysOnTop(true);
         JOptionPane.showMessageDialog(dialog, ClientConstants.NO_PORT_NO_MESSAGE);
       } else {
-        ControllerFactory.getInstance().getClientController().toggleConnectionToServer(connectionPopUpModel.getIpAddress(), connectionPopUpModel.getPortNumber());
+        ClientControllerFactory.getInstance().getClientController().toggleConnectionToServer(connectionPopUpModel.getIpAddress(), connectionPopUpModel.getPortNumber());
         connectionPopUpView.dispose();
       }
     }

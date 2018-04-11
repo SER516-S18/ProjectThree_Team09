@@ -5,7 +5,7 @@ import java.util.Observer;
 
 import org.apache.log4j.Logger;
 
-import ser516.project3.client.controller.ControllerFactory;
+import ser516.project3.client.controller.ClientControllerFactory;
 import ser516.project3.client.controller.GraphController;
 import ser516.project3.model.PerformanceMetricDataObservable;
 
@@ -31,7 +31,7 @@ public class PerformanceMetricGraphObserver implements Observer {
 
 		PerformanceMetricDataObservable performanceMetricDataObservable = (PerformanceMetricDataObservable) observable;
 
-		GraphController graphController = ControllerFactory.getInstance().getPerformanceMetricGraphController();
+		GraphController graphController = ClientControllerFactory.getInstance().getPerformanceMetricGraphController();
 
 		graphController.setGraphData(performanceMetricDataObservable.getPerformanceMetricData());
 		graphController.updateGraphView();

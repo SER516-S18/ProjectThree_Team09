@@ -77,7 +77,7 @@ public class HeaderController implements ControllerInterface, CommonDataInterfac
 	class ServerOpenListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			ControllerFactory.getInstance().getClientController().openServer();
+			ClientControllerFactory.getInstance().getClientController().openServer();
 		}
 	}
 
@@ -90,7 +90,7 @@ public class HeaderController implements ControllerInterface, CommonDataInterfac
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (headerModel.isConnectionStatus()) {
-				ControllerFactory.getInstance().getClientController().toggleConnectionToServer(null, 0);
+				ClientControllerFactory.getInstance().getClientController().toggleConnectionToServer(null, 0);
 			} else {
 				connectionPopUpController.initializeView();
 			}

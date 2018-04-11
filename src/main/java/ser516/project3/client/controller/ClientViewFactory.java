@@ -13,7 +13,7 @@ import ser516.project3.server.view.*;
  * @author vsriva12
  *
  */
-public class ViewFactory {
+public class ClientViewFactory {
 	/**
 	 * The function which creates specific views based on the viewtype argument
 	 * @param viewType - the type of the view

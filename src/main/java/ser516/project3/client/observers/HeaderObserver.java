@@ -1,6 +1,6 @@
 package ser516.project3.client.observers;
 
-import ser516.project3.client.controller.ControllerFactory;
+import ser516.project3.client.controller.ClientControllerFactory;
 import ser516.project3.client.controller.HeaderController;
 import ser516.project3.model.HeaderObservable;
 
@@ -18,7 +18,7 @@ public class HeaderObserver implements Observer {
 
 	public void update(Observable observable, Object observerObj) {
 		HeaderObservable headerObservable = (HeaderObservable) observable;
-		HeaderController headerController = ControllerFactory.getInstance().getHeaderController();
+		HeaderController headerController = ClientControllerFactory.getInstance().getHeaderController();
 		double currentTimeStampFromServer = headerObservable.getHeaderTimeStamp();
 		if (currentTimeStampFromServer == 0) {
 			headerController.setHeaderTimeStamp((int)currentTimeStampFromServer);

@@ -5,8 +5,6 @@ import java.awt.event.WindowEvent;
 
 import org.apache.log4j.Logger;
 
-import ser516.project3.client.controller.ControllerFactory;
-import ser516.project3.client.controller.ViewFactory;
 import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ConsoleModel;
@@ -33,8 +31,8 @@ import ser516.project3.server.view.TopView;
  */
 public class ServerController implements ControllerInterface {
 	final static Logger logger = Logger.getLogger(ServerView.class);
-	private ViewFactory viewFactory;
-	private ControllerFactory controllerFactory;
+	private ServerViewFactory viewFactory;
+	private ServerControllerFactory serverControllerFactory;
 	private ServerView serverView;
 	private TopController topController;
 	private TimerController timerController;
@@ -51,8 +49,8 @@ public class ServerController implements ControllerInterface {
 	 * to perform requested tasks
 	 */	
 	public ServerController() {
-		viewFactory = new ViewFactory();
-		controllerFactory = ControllerFactory.getInstance();
+		viewFactory = new ServerViewFactory();
+		serverControllerFactory = ServerControllerFactory.getInstance();
 		serverConnectionService = new ServerConnectionServiceImpl();
 		initializeTop();
 		initializeTimer();
@@ -100,66 +98,56 @@ public class ServerController implements ControllerInterface {
 
 	/**
 	* Method to initialize the top server settings panel
-	* @param viewFactory- ViewFactory object
-	* @param controllerFactory- ControllerFactory object
 	*/
 	private void initializeTop() {
 		TopModel topModel = new TopModel();
 		TopView topView = (TopView) viewFactory.getView("TOP", topModel);
-		topController = (TopController) controllerFactory.getController("TOP", topModel, topView, null);
+		topController = (TopController) serverControllerFactory.getController("TOP", topModel, topView);
 		topController.setServerConnectionService(serverConnectionService);
 		topController.initializeView();
 	}
 
 	/**
 	* Method to initialize the server timer panel
-	* @param viewFactory- ViewFactory object
-	* @param controllerFactory- ControllerFactory object
 	*/
 	private void initializeTimer() {
 		TimerModel timerModel = new TimerModel();
 		TimerView timerView = (TimerView) viewFactory.getView("TIMER", timerModel);
-		timerController = (TimerController) controllerFactory.getController("TIMER", timerModel, timerView, null);
+		timerController = (TimerController) serverControllerFactory.getController("TIMER", timerModel, timerView);
 		timerController.initializeView();
 	}
 
 	/**
 	* Method to initialize the emotions panel
-	* @param viewFactory- ViewFactory object
-	* @param controllerFactory- ControllerFactory object
 	*/
 	private void initializeEmotions() {
 		EmotionsModel emotionsModel = new EmotionsModel();
 		EmotionsView emotionsView = (EmotionsView) viewFactory.getView("EMOTIONS", emotionsModel);
-		emotionsController = (EmotionsController) controllerFactory.getController("EMOTIONS", emotionsModel,
-				emotionsView, null);
+		emotionsController = (EmotionsController) serverControllerFactory.getController("EMOTIONS", emotionsModel,
+				emotionsView);
 		emotionsController.initializeView();
 	}
 
 	/**
 	* Method to initialize the expressions panel
-	* @param viewFactory- ViewFactory object
-	* @param controllerFactory- ControllerFactory object
 	*/
 	private void initializeExpressions(){
 		ExpressionsModel expressionsModel = new ExpressionsModel();
 		ExpressionsView expressionsView = (ExpressionsView) viewFactory.getView(
 				"SERVER_EXPRESSIONS", expressionsModel);
-		expressionsController = (ExpressionsController) controllerFactory.getController(
-				"SERVER_EXPRESSIONS", expressionsModel, expressionsView, null);
+		expressionsController = (ExpressionsController) serverControllerFactory.getController(
+				"SERVER_EXPRESSIONS", expressionsModel, expressionsView);
 		expressionsController.initializeView();
 	}
 
 	/**
 	* Method to initialize the console panel
-	* @param viewFactory- ViewFactory object
-	* @param controllerFactory- ControllerFactory object
 	*/
 	private void initializeConsole(){
 		ConsoleModel consoleModel = new ConsoleModel();
 		ConsoleView consoleView = (ConsoleView) viewFactory.getView("CONSOLE", consoleModel);
-		consoleController = (ConsoleController) controllerFactory.getController("CONSOLE",
-				consoleModel, consoleView, null);
+		consoleController = (ConsoleController) serverControllerFactory.getController("CONSOLE",
+				consoleModel, consoleView);
 		consoleController.initializeView();
 	}
 

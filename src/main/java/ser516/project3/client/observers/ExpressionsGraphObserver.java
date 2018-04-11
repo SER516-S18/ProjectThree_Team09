@@ -3,7 +3,7 @@ package ser516.project3.client.observers;
 import java.util.Observable;
 import java.util.Observer;
 
-import ser516.project3.client.controller.ControllerFactory;
+import ser516.project3.client.controller.ClientControllerFactory;
 import ser516.project3.client.controller.GraphController;
 import ser516.project3.model.ExpressionsDataObservable;
 
@@ -21,7 +21,7 @@ public class ExpressionsGraphObserver implements Observer {
 	public void update(Observable observable, Object observerObj) {
 		ExpressionsDataObservable expressionsDataObservable = (ExpressionsDataObservable) observable;
 
-		GraphController graphController = ControllerFactory.getInstance().getExpressionsGraphController();
+		GraphController graphController = ClientControllerFactory.getInstance().getExpressionsGraphController();
 
 		graphController.setGraphData(expressionsDataObservable.getExpressionsData());
 		graphController.setNoOfChannels(12);

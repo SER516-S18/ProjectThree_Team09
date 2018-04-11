@@ -5,7 +5,7 @@ import java.awt.*;
 import javax.swing.UIManager;
 
 import ser516.project3.client.controller.ClientController;
-import ser516.project3.client.controller.ControllerFactory;
+import ser516.project3.client.controller.ClientControllerFactory;
 import ser516.project3.constants.ClientConstants;
 
 /**
@@ -41,7 +41,7 @@ public class Client {
 						System.out.println("Look and Feel UI not found");
 					}
 				}
-				ControllerFactory controllerFactory = ControllerFactory.getInstance();
+				ClientControllerFactory controllerFactory = ClientControllerFactory.getInstance();
 				ClientController clientController = (ClientController) controllerFactory
 						.getController(ClientConstants.CLIENT, null, null, null);
 				clientController.initializeView();
