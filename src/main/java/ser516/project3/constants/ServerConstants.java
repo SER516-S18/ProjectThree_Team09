@@ -2,8 +2,8 @@ package ser516.project3.constants;
 
 /**
  * Common class for constants used across the Server application
- * @author Zain Siddiqui
  *
+ * @author Zain Siddiqui
  */
 
 public class ServerConstants {
@@ -75,8 +75,6 @@ public class ServerConstants {
     public final static String CLEAR = "Clear";
     public final static String DATE_FORMAT = "dd/MM/yy HH:mm:ss";
     public final static String COLOR_CODE2 = "#616266";
-
-
 
 
 }

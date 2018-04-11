@@ -22,19 +22,18 @@ import ser516.project3.interfaces.ViewInterface;
  * The JFrame class of Server application
  * 
  * @author Ganesh, Janani, Sangeetha
- *
  */
 @SuppressWarnings("serial")
 public class ServerView extends JFrame implements ViewInterface {
-	private static ServerView serverViewInstance = null;
+    private static ServerView serverViewInstance = null;
 
-	private TopView topView;
-	private TimerView timerView;
-	private EmotionsView emotionsView;
-	private ExpressionsView expressionsView;
-	private ConsoleView consoleView;
+    private TopView topView;
+    private TimerView timerView;
+    private EmotionsView emotionsView;
+    private ExpressionsView expressionsView;
+    private ConsoleView consoleView;
 
-	private static final Font FONT = new Font(ServerConstants.FONT_NAME, Font.BOLD, 17);
+    private static final Font FONT = new Font(ServerConstants.FONT_NAME, Font.BOLD, 17);
 
 	/**
 	 * Method to return the ServerView instance

@@ -7,10 +7,10 @@ package ser516.project3.interfaces;
  */
 public interface ViewInterface {
 
-  /**
-   * Initializes the view from all the controllers
-   *
-   * @param subViews gives array of all the subviews to be initialized
-   */
-  void initializeView(ViewInterface subViews[]);
+    /**
+     * Initializes the view from all the controllers
+     *
+     * @param subViews gives array of all the subviews to be initialized
+     */
+    void initializeView(ViewInterface subViews[]);
 }

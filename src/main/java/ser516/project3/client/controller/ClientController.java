@@ -129,8 +129,8 @@ public class ClientController implements ControllerInterface, CommonDataInterfac
 	 */
 	private void initializeHeader(ClientViewFactory viewFactory, ClientControllerFactory controllerFactory) {
 		ConnectionPopUpModel connectionPopUpModel = new ConnectionPopUpModel();
-		ConnectionPopUpView connectionPopUpView = (ConnectionPopUpView) viewFactory.getView("CONNECTION_POP_UP", connectionPopUpModel);
-		connectionPopUpController = controllerFactory.getController("CONNECTION_POP_UP", connectionPopUpModel, connectionPopUpView, null);
+		ConnectionPopUpView connectionPopUpView = (ConnectionPopUpView) viewFactory.getView(ClientConstants.CONNECTION_POP_UP, connectionPopUpModel);
+		connectionPopUpController = controllerFactory.getController(ClientConstants.CONNECTION_POP_UP, connectionPopUpModel, connectionPopUpView, null);
 
 		ControllerInterface subControllers[] = {connectionPopUpController};
 
@@ -174,8 +174,8 @@ public class ClientController implements ControllerInterface, CommonDataInterfac
 		expressionGraphController.initializeView();
 
 		FaceModel faceModel = new FaceModel();
-		FaceView faceView = (FaceView) viewFactory.getView("FACE", faceModel);
-		faceController = controllerFactory.getController("FACE", faceModel, faceView, null);
+		FaceView faceView = (FaceView) viewFactory.getView(ClientConstants.FACE, faceModel);
+		faceController = controllerFactory.getController(ClientConstants.FACE, faceModel, faceView, null);
 		faceController.initializeView();
 
 		ControllerInterface subControllers[] = {expressionGraphController, faceController};

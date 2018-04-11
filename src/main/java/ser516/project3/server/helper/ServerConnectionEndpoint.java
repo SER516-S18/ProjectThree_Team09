@@ -1,22 +1,14 @@
 package ser516.project3.server.helper;
 
-import java.io.IOException;
-
-import javax.websocket.CloseReason;
-import javax.websocket.EncodeException;
-import javax.websocket.OnClose;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
-import javax.websocket.server.ServerEndpoint;
-
 import org.apache.log4j.Logger;
-
 import ser516.project3.constants.ServerConstants;
 import ser516.project3.server.controller.ServerController;
 import ser516.project3.utilities.MessageEncoder;
 import ser516.project3.utilities.ServerCommonData;
+
+import javax.websocket.*;
+import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
 
 /**
  * The Web server socket end point class for the server application
@@ -26,35 +18,37 @@ import ser516.project3.utilities.ServerCommonData;
 @ServerEndpoint(value = "/server", encoders = {MessageEncoder.class})
 public class ServerConnectionEndpoint {
     final static Logger logger = Logger.getLogger(ServerConnectionEndpoint.class);
+
     /**
-	 * Method containing logic to start sending the message json based on the value
-     * of auto send flag. If the flag is false, just send the json once, 
+     * Method containing logic to start sending the message json based on the value
+     * of auto send flag. If the flag is false, just send the json once,
      * else keep sending based on the interval
+     *
      * @param session web socket session
-	 */	
+     */
     @OnOpen
     public void onOpen(final Session session) throws IOException {
-    	try {
-        	logger.info(ServerConstants.CLIENT_CONNECTED + session.getBasicRemote());
+        try {
+            logger.info(ServerConstants.CLIENT_CONNECTED + session.getBasicRemote());
             ServerController.getInstance().getConsoleController().getConsoleModel().
-            	logMessage(ServerConstants.CLIENT_CONNECTED);
+                    logMessage(ServerConstants.CLIENT_CONNECTED);
             ServerCommonData serverCommonDataObject = ServerCommonData.getInstance();
             while (true) {
                 boolean isShouldSend = ServerController.getInstance().getTopController().
-                			getTopModel().isShouldSendData();
+                        getTopModel().isShouldSendData();
                 boolean isAutoRepeat = ServerController.getInstance().getTopController().
-                			getTopModel().isAutoRepeatCheckBoxChecked();
+                        getTopModel().isAutoRepeatCheckBoxChecked();
                 if (isShouldSend) {
                     session.getBasicRemote().sendObject(serverCommonDataObject.getMessage());
                     double timeElapsed = ServerCommonData.getInstance().getMessage().
-                        getTimeStamp();
+                            getTimeStamp();
                     double dataInterval = ServerCommonData.getInstance().getMessage().
-                        getInterval();
+                            getInterval();
                     ServerCommonData.getInstance().getMessage().setTimeStamp(
-                        timeElapsed + dataInterval);
+                            timeElapsed + dataInterval);
                     ServerController.getInstance().getTimerController().updateTimeStamp(timeElapsed);
                     if (!isAutoRepeat)
-                      ServerController.getInstance().getTopController().getTopModel().setShouldSendData(false);
+                        ServerController.getInstance().getTopController().getTopModel().setShouldSendData(false);
                 }
                 Thread.sleep((long) (serverCommonDataObject.getMessage().getInterval() * 1000));
             }
@@ -62,25 +56,27 @@ public class ServerConnectionEndpoint {
         } catch (IOException | EncodeException | InterruptedException e) {
             logger.error(ServerConstants.ERROR_CLIENT_CONNECTION + e.getMessage());
             ServerController.getInstance().getConsoleController().getConsoleModel().
-            	logMessage(ServerConstants.ERROR_CLIENT_CONNECTION);
+                    logMessage(ServerConstants.ERROR_CLIENT_CONNECTION);
         }
     }
-    
-	
+
+
     /**
-	 * Method containing logic on what to do when message from client is received
-	 * @param session web socket session
-	 */	
+     * Method containing logic on what to do when message from client is received
+     *
+     * @param session web socket session
+     */
     @OnMessage
     public void onMessage(String message, Session session) {
 
     }
-    
+
     /**
-	 * Method containing logic on what to do when session is closed
-	 * @param session web socket session
-	 * @param closeReason web socket close reason
-	 */
+     * Method containing logic on what to do when session is closed
+     *
+     * @param session     web socket session
+     * @param closeReason web socket close reason
+     */
     @OnClose
     public void onClose(Session session, CloseReason closeReason) {
         logger.info(ServerConstants.ON_CLOSE + closeReason);
@@ -92,10 +88,11 @@ public class ServerConnectionEndpoint {
     }
 
     /**
-	 * Method containing logic on what to do error occurs
-	 * @param session web socket session
-	 * @param throwable Throwable object
-	 */
+     * Method containing logic on what to do error occurs
+     *
+     * @param session   web socket session
+     * @param throwable Throwable object
+     */
     @OnError
     public void onError(Session session, Throwable throwable) {
         logger.error(ServerConstants.ERROR_SERVER_ENDPOINT);

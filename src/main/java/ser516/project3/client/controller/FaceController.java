@@ -12,9 +12,9 @@ import ser516.project3.model.MessageModel;
  * @author Adhiraj Tikku
  */
 
-public class FaceController implements ControllerInterface{
-  private FaceModel faceModel;
-  private FaceView faceView;
+public class FaceController implements ControllerInterface {
+    private FaceModel faceModel;
+    private FaceView faceView;
 
     /**
      * Contructor to initialize the controller with instances of view and model
@@ -22,28 +22,28 @@ public class FaceController implements ControllerInterface{
      * @param faceModel Model containing the eligible set of data for the Face View
      * @param faceView  View class which renders the view for fae on screen
      */
-  public FaceController(FaceModel faceModel, FaceView faceView) {
-    this.faceModel = faceModel;
-    this.faceView = faceView;
-  }
+    public FaceController(FaceModel faceModel, FaceView faceView) {
+        this.faceModel = faceModel;
+        this.faceView = faceView;
+    }
 
     /**
      * Initializes the face view class whenever the view is opened
      */
-  @Override
-  public void initializeView() {
-    faceView.initializeView(null);
-  }
+    @Override
+    public void initializeView() {
+        faceView.initializeView(null);
+    }
 
     /**
      * returns the instance of FaceView
      *
      * @return FaceView object rendered on the screen returned
      */
-  @Override
-  public FaceView getView() {
-    return faceView;
-  }
+    @Override
+    public FaceView getView() {
+        return faceView;
+    }
 
     /**
      * Overriden method from Interface. Does not have any specific
@@ -51,21 +51,21 @@ public class FaceController implements ControllerInterface{
      *
      * @return returns null in this case
      */
-  @Override
-  public ControllerInterface[] getSubControllers() {
-    return null;
-  }
+    @Override
+    public ControllerInterface[] getSubControllers() {
+        return null;
+    }
 
     /**
      * Updates the elements on teh face view on basis of the message
      * received from the client
      *
      * @param messageModel Contains the set of face expression values
-     *                    sent from the server
+     *                     sent from the server
      */
-  public void updateFaceElements(MessageModel messageModel) {
-    faceView.updateFaceElements(messageModel);
-  }
+    public void updateFaceElements(MessageModel messageModel) {
+        faceView.updateFaceElements(messageModel);
+    }
 
     /**
      * Verifies if the tab for the expressions is selected, if yes
@@ -74,7 +74,7 @@ public class FaceController implements ControllerInterface{
      * @param selected true if the expressions tab is selected
      */
 
-  public void setSelected(boolean selected) {
-    faceView.setSelected(selected);
-  }
+    public void setSelected(boolean selected) {
+        faceView.setSelected(selected);
+    }
 }

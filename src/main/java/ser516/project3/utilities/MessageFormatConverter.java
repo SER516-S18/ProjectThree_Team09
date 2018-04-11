@@ -1,22 +1,21 @@
 package ser516.project3.utilities;
 
-import java.util.ArrayList;
-
 import ser516.project3.model.CoordinatesModel;
 import ser516.project3.model.MessageModel;
 import ser516.project3.model.MessageModel.AbstractExpression;
 import ser516.project3.model.MessageModel.ConcreteExpression;
 import ser516.project3.model.MessageModel.Emotion;
 
+import java.util.ArrayList;
+
 /**
  * This class converts message bean in to a format that can be understood by
  * various UI elements like graph
- * 
- * 
- * @author Manish Tandon
  *
+ * @author Manish Tandon
  */
 public class MessageFormatConverter {
+
 
 	/**
 	 * 
