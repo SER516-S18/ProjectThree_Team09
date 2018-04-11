@@ -25,12 +25,34 @@ import ser516.project3.server.view.TopView;
  *
  */
 public class ControllerFactory {
+	private ClientController clientController;
+	private HeaderController headerController;
+	private PerformanceMetricController performanceMetricController;
+	private ExpressionsController expressionsController;
+	private FaceController faceController;
+	private GraphController performanceMetricGraphController;
+	private GraphController expressionsGraphController;
+
+	private static ControllerFactory instance;
+
+	/**
+	 * Creates a singleton instance of ControllerFactory.
+	 * If exists, returns it, else creates it.
+	 * @return instance of the ControllerFactory
+	 */
+	public static ControllerFactory getInstance() {
+		if (instance == null) {
+			instance = new ControllerFactory();
+		}
+		return instance;
+	}
+
 	/**
 	 * The getController method creates Controller classes based on the value of controller type
 	 * @param controllerType - the Type of the controller
 	 * @param model - the controllers model
 	 * @param view - the controllers view
-	 * @param subController - the sub controller
+	 * @param subControllers the sub controller
 	 * @return the controller object
 	 */
 	public ControllerInterface getController(String controllerType, ModelInterface model, ViewInterface view,
@@ -39,22 +61,29 @@ public class ControllerFactory {
 			return null;
 		}
 		if (controllerType.equalsIgnoreCase(ClientConstants.CLIENT)) {
-			return ClientController.getInstance();
+			clientController = new ClientController();
+			return clientController;
 		} else if (controllerType.equalsIgnoreCase("SERVER")) {
 			return ServerController.getInstance();
 		} else if (controllerType.equalsIgnoreCase(ClientConstants.HEADER)) {
-			return new HeaderController((HeaderModel) model, (HeaderView) view,
+			headerController = new HeaderController((HeaderModel) model, (HeaderView) view,
 					(ConnectionPopUpController) subControllers[0]);
+			return headerController;
 		} else if (controllerType.equalsIgnoreCase(ClientConstants.PERFORMANCE_METRICS)) {
-			return new PerformanceMetricController((PerformanceMetricModel) model, (PerformanceMetricView) view,
-					(GraphController) subControllers[0]);
+			performanceMetricGraphController = (GraphController) subControllers[0];
+			performanceMetricController = new PerformanceMetricController((PerformanceMetricModel) model, (PerformanceMetricView) view,
+					performanceMetricGraphController);
+			return performanceMetricController;
 		} else if (controllerType.equalsIgnoreCase(ClientConstants.EXPRESSIONS)) {
-			return new ExpressionsController((ExpressionsModel) model, (ExpressionsView) view,
-					(GraphController) subControllers[0], (FaceController) subControllers[1] );
+			expressionsGraphController = (GraphController) subControllers[0];
+			expressionsController = new ExpressionsController((ExpressionsModel) model, (ExpressionsView) view,
+					expressionsGraphController, (FaceController) subControllers[1] );
+			return expressionsController;
 		} else if (controllerType.equalsIgnoreCase(ClientConstants.GRAPH)) {
 			return new GraphController((GraphModel) model, (GraphView) view);
 		} else if (controllerType.equalsIgnoreCase("FACE")) {
-			return new FaceController((FaceModel) model, (FaceView) view);
+			faceController = new FaceController((FaceModel) model, (FaceView) view);
+			return faceController;
 		} else if (controllerType.equalsIgnoreCase("CONNECTION_POP_UP")) {
 			return new ConnectionPopUpController((ConnectionPopUpModel) model, (ConnectionPopUpView) view);
 		} else if (controllerType.equalsIgnoreCase("TOP")) {
@@ -71,5 +100,33 @@ public class ControllerFactory {
 		}
 
 		return null;
+	}
+
+	public ClientController getClientController() {
+		return clientController;
+	}
+
+	public HeaderController getHeaderController() {
+		return headerController;
+	}
+
+	public PerformanceMetricController getPerformanceMetricController() {
+		return performanceMetricController;
+	}
+
+	public ExpressionsController getExpressionsController() {
+		return expressionsController;
+	}
+
+	public FaceController getFaceController() {
+		return faceController;
+	}
+
+	public GraphController getPerformanceMetricGraphController() {
+		return performanceMetricGraphController;
+	}
+
+	public GraphController getExpressionsGraphController() {
+		return expressionsGraphController;
 	}
 }

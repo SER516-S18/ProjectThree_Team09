@@ -2,6 +2,7 @@ package ser516.project3.server.controller;
 
 import org.apache.log4j.Logger;
 import ser516.project3.interfaces.ControllerInterface;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.TopModel;
 import ser516.project3.server.service.ServerConnectionServiceInterface;
 import ser516.project3.server.view.TopView;
@@ -54,6 +55,20 @@ public class TopController implements ControllerInterface{
     topView.addServerStartStopButtonListener(new ServerStartStopButtonListener());
     topView.addSendButtonListener(new SendButtonListener());
     ServerCommonData.getInstance().getMessage().setInterval(topModel.getInterval());
+  }
+
+  /**
+   * Method to get the TopView object
+   * @return TopView object
+   */
+  @Override
+  public TopView getView() {
+    return topView;
+  }
+
+  @Override
+  public ControllerInterface[] getSubControllers() {
+    return null;
   }
 
   /**
@@ -223,13 +238,5 @@ public class TopController implements ControllerInterface{
    */
   public TopModel getTopModel() {
     return topModel;
-  }
-  
-  /**
-   * Method to get the TopView object
-   * @return TopView object 
-   */
-  public TopView getTopView() {
-    return topView;
   }
 }

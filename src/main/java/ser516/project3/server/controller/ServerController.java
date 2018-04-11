@@ -51,7 +51,7 @@ public class ServerController implements ControllerInterface {
 	 */	
 	public ServerController() {
 		viewFactory = new ViewFactory();
-		ControllerFactory controllerFactory = new ControllerFactory();
+		ControllerFactory controllerFactory = ControllerFactory.getInstance();
 		serverConnectionService = new ServerConnectionServiceImpl();
 		initializeTop(viewFactory, controllerFactory);
 		initializeTimer(viewFactory, controllerFactory);
@@ -79,11 +79,22 @@ public class ServerController implements ControllerInterface {
 	public void initializeView() {
 		serverView = (ServerView) viewFactory.getView("SERVER", null);
 		serverView = ServerView.getServerView();
-		ViewInterface subViews[] = { topController.getTopView(), timerController.getTimerView(),
-				emotionsController.getEmotionsView(), expressionsController.getExpressionsView(),
-				consoleController.getConsoleView() };
+		ViewInterface subViews[] = { topController.getView(), timerController.getView(),
+				emotionsController.getView(), expressionsController.getView(),
+				consoleController.getView() };
 		serverView.initializeView(subViews);
 		serverView.addServerWindowListener(new ServerWindowsListener());
+	}
+
+	@Override
+	public ViewInterface getView() {
+		return serverView;
+	}
+
+	@Override
+	public ControllerInterface[] getSubControllers() {
+		ControllerInterface subControllers[] = {topController, timerController, emotionsController, expressionsController, consoleController};
+		return subControllers;
 	}
 
 	/**

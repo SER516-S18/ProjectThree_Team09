@@ -4,6 +4,7 @@ import ser516.project3.client.service.ClientConnectionServiceImpl;
 import ser516.project3.client.service.ClientConnectionServiceInterface;
 import ser516.project3.client.view.*;
 import ser516.project3.constants.ClientConstants;
+import ser516.project3.interfaces.CommonDataInterface;
 import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.*;
@@ -23,91 +24,100 @@ import java.awt.event.WindowListener;
  * @author vsriva12
  *
  */
-public class ClientController implements ControllerInterface {
+public class ClientController implements ControllerInterface, CommonDataInterface {
 	private boolean connected = false;
 	private ClientConnectionServiceInterface clientConnectionService;
 	private ViewFactory viewFactory;
 	private ClientView clientView;
 	private ServerController serverController;
 	private HeaderController headerController;
-	private PerformanceMetricController performanceMetricController;
+	private ControllerInterface performanceMetricController;
 	private ExpressionsController expressionsController;
-	private GraphController performanceMetricsGraphController;
-	private GraphController expressionGraphController;
-	private FaceController faceController;
-	private ConnectionPopUpController connectionPopUpController;
+	private ControllerInterface performanceMetricsGraphController;
+	private ControllerInterface expressionGraphController;
+	private ControllerInterface faceController;
+	private ControllerInterface connectionPopUpController;
 
-	private static ClientController instance;
 	public ClientController() {
 		viewFactory = new ViewFactory();
-		ControllerFactory controllerFactory = new ControllerFactory();
+		ControllerFactory controllerFactory = ControllerFactory.getInstance();
 		initializeHeader(viewFactory, controllerFactory);
 		initializePerformanceMetrics(viewFactory, controllerFactory);
 		initializeExpressions(viewFactory, controllerFactory);
-	}
-
-	/**
-	 * Creates a singleton instance . If exists, returns it, else creates it.
-	 *
-	 * @return instance of the ClientController
-	 */
-	public static ClientController getInstance() {
-		if (instance == null) {
-			instance = new ClientController();
-		}
-		return instance;
 	}
 
 	@Override
 	public void initializeView() {
 		clientView = (ClientView) viewFactory.getView(ClientConstants.CLIENT, null);
 		ViewInterface subViews[] = {
-				headerController.getHeaderView(),
-				performanceMetricController.getPerformanceMetricView(),
-				expressionsController.getExpressionsView()};
+				headerController.getView(),
+				performanceMetricController.getView(),
+				expressionsController.getView()};
 		clientView.initializeView(subViews);
 		clientView.addServerMenuItemListener(new ServerMenuItemListener());
 		clientView.addClientWindowListener(new WindowClosingEventListener());
         clientView.addTabbedPaneSelectionListener(new TabSelectionListener());
-        expressionsController.setSelected(false);
+        setTabSelected(false);
+	}
+
+	@Override
+	public ViewInterface getView() {
+		return null;
+	}
+
+	@Override
+	public ControllerInterface[] getSubControllers() {
+		ControllerInterface[] subControllers = {headerController, performanceMetricController, expressionsController,
+				performanceMetricsGraphController, expressionGraphController, faceController, connectionPopUpController, serverController};
+		return subControllers;
+	}
+
+	@Override
+	public void setConnectionStatus(boolean connectionStatus) {
+		connected = connectionStatus;
+		headerController.setConnectionStatus(connectionStatus);
+	}
+
+	public void setTabSelected(boolean tabSelected) {
+		expressionsController.setTabSelected(tabSelected);
 	}
 
 	private void initializeHeader(ViewFactory viewFactory, ControllerFactory controllerFactory) {
 		ConnectionPopUpModel connectionPopUpModel = new ConnectionPopUpModel();
 		ConnectionPopUpView connectionPopUpView = (ConnectionPopUpView) viewFactory.getView("CONNECTION_POP_UP", connectionPopUpModel);
-		connectionPopUpController = (ConnectionPopUpController) controllerFactory.getController("CONNECTION_POP_UP", connectionPopUpModel, connectionPopUpView, null);
+		connectionPopUpController = controllerFactory.getController("CONNECTION_POP_UP", connectionPopUpModel, connectionPopUpView, null);
 
 		ControllerInterface subControllers[] = {connectionPopUpController};
 
 		HeaderModel headerModel = new HeaderModel();
 		HeaderView headerView = (HeaderView) viewFactory.getView(ClientConstants.HEADER, headerModel);
-		headerController = (HeaderController)controllerFactory.getController(ClientConstants.HEADER, headerModel, headerView, subControllers);
+		headerController = (HeaderController) controllerFactory.getController(ClientConstants.HEADER, headerModel, headerView, subControllers);
 		headerController.initializeView();
 	}
 
 	private void initializePerformanceMetrics(ViewFactory viewFactory, ControllerFactory controllerFactory) {
 		GraphModel performanceMetricGraphModel = new GraphModel();
 		GraphView performanceMetricGraphView = (GraphView) viewFactory.getView(ClientConstants.GRAPH, performanceMetricGraphModel);
-		performanceMetricsGraphController = (GraphController) controllerFactory.getController(ClientConstants.GRAPH, performanceMetricGraphModel, performanceMetricGraphView, null);
+		performanceMetricsGraphController = controllerFactory.getController(ClientConstants.GRAPH, performanceMetricGraphModel, performanceMetricGraphView, null);
 		performanceMetricsGraphController.initializeView();
 
 		ControllerInterface subControllers[] = {performanceMetricsGraphController};
 
 		PerformanceMetricModel performanceMetricModel = new PerformanceMetricModel();
 		PerformanceMetricView performanceMetricView = (PerformanceMetricView) viewFactory.getView(ClientConstants.PERFORMANCE_METRICS, performanceMetricModel);
-		performanceMetricController = (PerformanceMetricController) controllerFactory.getController(ClientConstants.PERFORMANCE_METRICS, performanceMetricModel, performanceMetricView, subControllers);
+		performanceMetricController = controllerFactory.getController(ClientConstants.PERFORMANCE_METRICS, performanceMetricModel, performanceMetricView, subControllers);
 		performanceMetricController.initializeView();
 	}
 
 	private void initializeExpressions(ViewFactory viewFactory, ControllerFactory controllerFactory) {
 		GraphModel expressionsGraphModel = new GraphModel();
 		GraphView expressionsGraphView = (GraphView) viewFactory.getView(ClientConstants.GRAPH, expressionsGraphModel);
-		expressionGraphController = (GraphController) controllerFactory.getController(ClientConstants.GRAPH, expressionsGraphModel, expressionsGraphView, null);
+		expressionGraphController = controllerFactory.getController(ClientConstants.GRAPH, expressionsGraphModel, expressionsGraphView, null);
 		expressionGraphController.initializeView();
 
 		FaceModel faceModel = new FaceModel();
 		FaceView faceView = (FaceView) viewFactory.getView("FACE", faceModel);
-		faceController = (FaceController) controllerFactory.getController("FACE", faceModel, faceView, null);
+		faceController = controllerFactory.getController("FACE", faceModel, faceView, null);
 		faceController.initializeView();
 
 		ControllerInterface subControllers[] = {expressionGraphController, faceController};
@@ -115,22 +125,6 @@ public class ClientController implements ControllerInterface {
 		ExpressionsView expressionsView = (ExpressionsView) viewFactory.getView(ClientConstants.EXPRESSIONS, expressionsModel);
 		expressionsController = (ExpressionsController) controllerFactory.getController(ClientConstants.EXPRESSIONS, expressionsModel, expressionsView, subControllers);
 		expressionsController.initializeView();
-	}
-
-	public HeaderController getHeaderController() {
-		return headerController;
-	}
-
-	public PerformanceMetricController getPerformanceMetricController() {
-		return performanceMetricController;
-	}
-
-	public ExpressionsController getExpressionsController() {
-		return expressionsController;
-	}
-
-	public FaceController getFaceController() {
-		return faceController;
 	}
 
 	/**
@@ -159,14 +153,9 @@ public class ClientController implements ControllerInterface {
 		connected = false;
 	}
 
-	public void setConnectionStatus(boolean connectionStatus) {
-		connected = connectionStatus;
-		headerController.setConnectionStatus(connectionStatus);
-	}
-
 	public void openServer() {
         if(serverController == null) {
-            ControllerFactory controllerFactory = new ControllerFactory();
+            ControllerFactory controllerFactory = ControllerFactory.getInstance();
             serverController = (ServerController) controllerFactory.getController("SERVER", null, null, null);
             serverController.initializeView();
         } else {
@@ -206,7 +195,7 @@ public class ClientController implements ControllerInterface {
 			if (e.getSource() instanceof JTabbedPane) {
 				JTabbedPane pane = (JTabbedPane) e.getSource();
 				int selectedIndex = pane.getSelectedIndex();
-				expressionsController.setSelected((selectedIndex == 1) ? true : false);
+				expressionsController.setTabSelected((selectedIndex == 1) ? true : false);
 			}
 		}
 	}

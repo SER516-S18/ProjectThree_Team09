@@ -14,6 +14,7 @@ import ser516.project3.model.HeaderObservable;
 import ser516.project3.model.PerformanceMetricDataObservable;
 import ser516.project3.client.view.PerformanceMetricGraphObserver;
 import ser516.project3.client.helper.ClientConnectionThread;
+import ser516.project3.utilities.ControllerFactory;
 
 public class ClientConnectionServiceImpl implements ClientConnectionServiceInterface {
 	final static Logger logger = Logger.getLogger(ClientConnectionServiceImpl.class);
@@ -46,7 +47,7 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
 		try {
 			if(threadInstance != null && threadInstance.getClientSession() != null)
 				threadInstance.getClientSession().close();
-			ClientController.getInstance().setConnectionStatus(false);
+			ControllerFactory.getInstance().getClientController().setConnectionStatus(false);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			logger.error("Error while stopping client end point::::" + e.getMessage().toString());

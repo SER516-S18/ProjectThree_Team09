@@ -32,12 +32,14 @@ public class TimerController implements ControllerInterface{
   public void initializeView() {
     timerView.initializeView(null);
   }
-  
-  /**
-   * Method to get the TimerView object
-   * @return TimerView object 
-   */
-  public TimerView getTimerView() {
+
+  @Override
+  public ControllerInterface[] getSubControllers() {
+    return null;
+  }
+
+  @Override
+  public TimerView getView() {
     return timerView;
   }
 

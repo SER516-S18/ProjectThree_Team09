@@ -19,8 +19,14 @@ public class FaceController implements ControllerInterface{
     faceView.initializeView(null);
   }
 
-  public FaceView getFaceView() {
+  @Override
+  public FaceView getView() {
     return faceView;
+  }
+
+  @Override
+  public ControllerInterface[] getSubControllers() {
+    return null;
   }
 
   public void updateFaceElements(MessageModel messageModel) {

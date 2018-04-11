@@ -43,19 +43,22 @@ public class PerformanceMetricController implements ControllerInterface {
 				performanceMetricModel.getFocusColor() };
 		graphController.setChannelColors(channelColors);
 		graphController.updateGraphView();
-		ViewInterface clientViewInterface[] = { graphController.getGraphView() };
+		ViewInterface clientViewInterface[] = { graphController.getView() };
 		performanceMetricView.initializeView(clientViewInterface);
 		performanceMetricView.addEmotionButtonsListener(new EmotionButtonsListener());
 		performanceMetricView.addDisplayLengthListener(new DisplayLengthKeyListener(),
 				new DisplayLengthDocumentListener());
 	}
 
-	public PerformanceMetricView getPerformanceMetricView() {
+	@Override
+	public PerformanceMetricView getView() {
 		return performanceMetricView;
 	}
 
-	public GraphController getGraphController() {
-		return graphController;
+	@Override
+	public ControllerInterface[] getSubControllers() {
+		ControllerInterface[] subControllers = {graphController};
+		return subControllers;
 	}
 
 	public class EmotionButtonsListener implements ActionListener {

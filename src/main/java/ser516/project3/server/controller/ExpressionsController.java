@@ -1,6 +1,7 @@
 package ser516.project3.server.controller;
 
 import ser516.project3.interfaces.ControllerInterface;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ExpressionsModel;
 import ser516.project3.model.MessageModel;
 import ser516.project3.server.view.ExpressionsView;
@@ -54,7 +55,21 @@ public class ExpressionsController implements ControllerInterface{
     expressionsView.addActivateButtonListener(new ActivateButtonChangeListener());
     expressionsView.addEyeCheckBoxListener(new EyeCheckBoxListener());
   }
-  
+
+  /**
+   * Method to get the ExpressionsView object
+   * @return ExpressionsView object
+   */
+  @Override
+  public ExpressionsView getView() {
+    return expressionsView;
+  }
+
+  @Override
+  public ControllerInterface[] getSubControllers() {
+    return null;
+  }
+
   /**
    * Inner class to add action listener to lower face combo box 
    * component in the expressions panel 
@@ -270,13 +285,5 @@ public class ExpressionsController implements ControllerInterface{
           ServerCommonData.getInstance().getMessage().setSelectionFlag
                   ("eye", MessageModel.ConcreteExpression.lookingRight.name());
       }
-  }
-  
-  /**
-   * Method to get the ExpressionsView object
-   * @return ExpressionsView object 
-   */
-  public ExpressionsView getExpressionsView() {
-    return expressionsView;
   }
 }

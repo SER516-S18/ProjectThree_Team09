@@ -43,6 +43,20 @@ public class EmotionsController implements ControllerInterface{
   }
 
   /**
+   * Method to get the EmotionsView object
+   * @return EmotionsView object
+   */
+  @Override
+  public EmotionsView getView() {
+    return emotionsView;
+  }
+
+  @Override
+  public ControllerInterface[] getSubControllers() {
+    return null;
+  }
+
+  /**
    * Inner class to add change listeners to spinner components 
    * in the emotions panel 
    */
@@ -73,13 +87,5 @@ public class EmotionsController implements ControllerInterface{
       ServerCommonData.getInstance().getMessage().setEmotion(source.getName(),
     		  											(Double)source.getValue());
     }
-  }
-  
-  /**
-   * Method to get the EmotionsView object
-   * @return EmotionsView object 
-   */
-  public EmotionsView getEmotionsView() {
-    return emotionsView;
   }
 }

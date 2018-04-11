@@ -5,7 +5,9 @@ import java.util.Observer;
 
 import ser516.project3.client.controller.ClientController;
 import ser516.project3.client.controller.FaceController;
+import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.model.FaceExpressionsObservable;
+import ser516.project3.utilities.ControllerFactory;
 
 /**
  * 
@@ -23,7 +25,7 @@ public class FaceViewObserver implements Observer {
 	public void update(Observable dataObject, Object observerObj) {
 		FaceExpressionsObservable faceExpressionObject=(FaceExpressionsObservable) dataObject;
 
-		FaceController faceController = ClientController.getInstance().getFaceController();
+		FaceController faceController = ControllerFactory.getInstance().getFaceController();
 		faceController.updateFaceElements(faceExpressionObject.getMessageBean());
 	}
 

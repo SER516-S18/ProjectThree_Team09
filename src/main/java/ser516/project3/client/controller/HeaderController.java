@@ -4,8 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import ser516.project3.client.view.HeaderView;
+import ser516.project3.interfaces.CommonDataInterface;
 import ser516.project3.interfaces.ControllerInterface;
+import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.HeaderModel;
+import ser516.project3.utilities.ControllerFactory;
 
 /**
  * This class controls the UI for the header view on client which helps in
@@ -15,11 +18,13 @@ import ser516.project3.model.HeaderModel;
  *
  */
 
-public class HeaderController implements ControllerInterface {
+public class HeaderController implements ControllerInterface, CommonDataInterface {
 
 	private HeaderView headerView;
 	private HeaderModel headerModel;
-	private ConnectionPopUpController connectionPopUpController;
+	private ControllerInterface connectionPopUpController;
+	private boolean tabSelected;
+
 
 	/**
 	 * Constructor overloaded to initiate the model and view as well
@@ -41,33 +46,44 @@ public class HeaderController implements ControllerInterface {
 		headerView.addServerOpenButtonListener(new ServerOpenListener());
 	}
 
-	class ServerOpenListener implements ActionListener {
+	@Override
+	public HeaderView getView() {
+		return headerView;
+	}
 
+	@Override
+	public ControllerInterface[] getSubControllers() {
+		ControllerInterface[] subControllers = {connectionPopUpController};
+		return subControllers;
+	}
+
+	@Override
+	public void setConnectionStatus(boolean connectionStatus) {
+		headerModel.setConnectionStatus(connectionStatus);
+		headerView.updateConnectionLabel();
+	}
+
+	@Override
+	public void setTabSelected(boolean tabSelected) {
+		this.tabSelected = tabSelected;
+	}
+
+	class ServerOpenListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			ClientController.getInstance().openServer();
+			ControllerFactory.getInstance().getClientController().openServer();
 		}
-
 	}
 
 	class ConnectListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (headerModel.isConnectionStatus()) {
-				ClientController.getInstance().toggleConnectionToServer(null, 0);
+				ControllerFactory.getInstance().getClientController().toggleConnectionToServer(null, 0);
 			} else {
 				connectionPopUpController.initializeView();
 			}
 		}
-	}
-
-	public HeaderView getHeaderView() {
-		return headerView;
-	}
-
-	public void setConnectionStatus(boolean connectionStatus) {
-		headerModel.setConnectionStatus(connectionStatus);
-		headerView.updateConnectionLabel();
 	}
 
 	public void setHeaderTimeStamp(double timeStamp) {
