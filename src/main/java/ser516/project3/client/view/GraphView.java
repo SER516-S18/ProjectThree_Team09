@@ -44,12 +44,18 @@ public class GraphView extends JPanel implements ViewInterface {
    * Initializes a graph instance and creates a default empty
    * graph.
    *
+   * @param graphModel
    */
   public GraphView(GraphModel graphModel) {
     this.graphModel = graphModel;
     currentXCoordinate = 0;
   }
-
+  
+  /**
+   * This method generates the baisc view for the graph.
+   * 
+   * @param subViews
+   */
   @Override
   public void initializeView(ViewInterface[] subViews) {
     setLayout(new GridLayout(1, 1, 8, 8));
@@ -81,7 +87,10 @@ public class GraphView extends JPanel implements ViewInterface {
     add(chartPanel);
     setVisible(true);
   }
-
+  
+  /**
+   * 
+   */
   private XYDataset createDataSet() {
     XYSeries series[] = new XYSeries[graphModel.getNoOfChannels()];
     XYSeriesCollection dataSet = new XYSeriesCollection();
@@ -114,6 +123,12 @@ public class GraphView extends JPanel implements ViewInterface {
     return dataSet;
   }
 
+  /**
+   * This method generates the graph based on the values obtained.
+   * 
+   * @param dataSet
+   * @return chart
+   */
   private JFreeChart createChart(final XYDataset dataSet) {
     JFreeChart chart = ChartFactory.createXYLineChart("", "",
         "", dataSet, PlotOrientation.VERTICAL, legendDisplay, true,

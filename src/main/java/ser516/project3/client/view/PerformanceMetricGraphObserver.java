@@ -25,6 +25,9 @@ public class PerformanceMetricGraphObserver implements Observer {
 	/**
 	 * 
 	 * Overriding the update method in Observer class to update the graph .
+	 * 
+	 * @param observable
+	 * @param observerObj
 	 */
 	@Override
 	public void update(Observable observable, Object observerObj) {

@@ -33,6 +33,11 @@ public class ClientView extends JFrame implements ViewInterface {
 	private final static int FRAME_WIDTH = 1400;
 	private final static int FRAME_HEIGHT = 700;
 
+	/**
+	 * This method returns instance fof client view.
+	 * 
+	 * @return clientViewInstance
+	 */
 	public static ClientView getClientView() {
 		if (clientViewInstance == null) {
 			clientViewInstance = new ClientView();
@@ -40,6 +45,11 @@ public class ClientView extends JFrame implements ViewInterface {
 		return clientViewInstance;
 	}
 
+	/**
+	 * Initializes the basic view of Client UI that includes tabs and menu bar.
+	 * @param subViews
+	 * 
+	 */
 	@Override
 	public void initializeView(ViewInterface subviews[]) {
 		headerView = (HeaderView) subviews[0];
@@ -56,6 +66,9 @@ public class ClientView extends JFrame implements ViewInterface {
 		setVisible(true);
 	}
 
+	/**
+	 * Creates a enu bar with Open server option.
+	 */
 	private void createMenuBar() {
 		menuBar = new JMenuBar();
 		optionsMenu = new JMenu(ClientConstants.OPTIONS);
@@ -66,6 +79,9 @@ public class ClientView extends JFrame implements ViewInterface {
 		menuBar.add(optionsMenu);
 	}
 
+	/**
+	 * Create Performance Metrics and Expressions tab.
+	 */
 	private void createTabs() {
 		expressionsEmotionsCombinedTab = new JTabbedPane();
 		expressionsEmotionsCombinedTab.addTab(ClientConstants.PERFORMANCE_METRICS, performanceMetricView);
@@ -73,6 +89,9 @@ public class ClientView extends JFrame implements ViewInterface {
 		expressionsEmotionsCombinedTab.setFont(new Font(ClientConstants.FONT_NAME, Font.BOLD, FONT_SIZE));
 	}
 
+	/**
+	 * Creates Grid Bag layout to set tabs and menu bar.
+	 */
 	private void createLayout() {
 		setLayout(new GridBagLayout());
 		getContentPane().setBackground(Color.decode(ClientConstants.FRAME_COLOR_HEX));
@@ -93,14 +112,29 @@ public class ClientView extends JFrame implements ViewInterface {
 		add(expressionsEmotionsCombinedTab, gridBagConstraints);
 	}
 
+	/** 
+	 * Listener when open server option from menu bar is clicked.
+	 * 
+	 *  @param actionListener
+	 */
 	public void addServerMenuItemListener(ActionListener actionListener) {
 		serverMenuItem.addActionListener(actionListener);
 	}
 
+	/**
+	 * Listener when any of the component for client JFrame is clicked.
+	 * 
+	 * @param windowListener
+	 */
 	public void addClientWindowListener(WindowListener windowListener) {
 		addWindowListener(windowListener);
 	}
 
+	/**
+	 * Listener when tabs are changed.
+	 * 
+	 * @param changeListener
+	 */
 	public void addTabbedPaneSelectionListener(ChangeListener changeListener) {
 		expressionsEmotionsCombinedTab.addChangeListener(changeListener);
 	}

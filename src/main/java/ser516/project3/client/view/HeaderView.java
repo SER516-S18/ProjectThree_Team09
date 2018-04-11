@@ -36,10 +36,22 @@ public class HeaderView extends JPanel implements ViewInterface {
 
 	private final static int FONT_SIZE = 15;
 
+	/**
+	 * This method creates a model to display connect and open server 
+	 * button and status and timestamp text labels.
+	 * 
+	 * @param headerModel
+	 */
 	public HeaderView(HeaderModel headerModel) {
 		this.headerModel = headerModel;
 	}
-
+	
+	/**
+	 * This method creates buttons to connect to the server
+	 * and to open the server.
+	 * 
+	 * @param subViews
+	 */
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
 		setBorder(null);
@@ -53,7 +65,15 @@ public class HeaderView extends JPanel implements ViewInterface {
 		createConnectButton(bagConstraints);
 		createServerOpenButton(bagConstraints);
 	}
-
+	
+	/**
+	 * This method shows the label that describes the status of the server,
+	 * shows whether the server is connected to the client or not which
+	 * initially is initialised to disconnected and creates the label of 
+	 * the Timestamp which initially is initailised to 0.
+	 * 
+	 * @param gridbagConstraints
+	 */
 	private void createLabels(GridBagConstraints gridbagConstraints) {
 		connectionTextLabel = new JLabel(ClientConstants.STATUS);
 		connectionTextLabel.setHorizontalAlignment(JLabel.RIGHT);
@@ -92,6 +112,12 @@ public class HeaderView extends JPanel implements ViewInterface {
 		add(timeStampLabel, gridbagConstraints);
 	}
 
+	/**
+	 * This method creates the connect button which
+	 * when clicked connects to the server.
+	 * 
+	 * @param bagConstraints
+	 */
 	private void createConnectButton(GridBagConstraints bagConstraints) {
 		connectButton = new WebButton(ClientConstants.CONNECT);
 		connectButton.setPreferredSize(new Dimension(120, 35));
@@ -110,6 +136,12 @@ public class HeaderView extends JPanel implements ViewInterface {
 		add(connectButton, bagConstraints);
 	}
 
+	/**
+	 * This method creates the open server button which when 
+	 * clicked opens the server.
+	 * 
+	 * @param bagConstraints
+	 */
 	private void createServerOpenButton(GridBagConstraints bagConstraints) {
 		serverOpenButton = new WebButton(ClientConstants.OPEN_SERVER);
 		serverOpenButton.setPreferredSize(new Dimension(120, 35));
@@ -127,15 +159,30 @@ public class HeaderView extends JPanel implements ViewInterface {
 		bagConstraints.insets = new Insets(0, 20, 0, 20);
 		add(serverOpenButton, bagConstraints);
 	}
-
+	
+	/**
+	 * Action Listener when connect button is clicked.
+	 * 
+	 * @param actionListener
+	 */
 	public void addConnectButtonListener(ActionListener actionListener) {
 		connectButton.addActionListener(actionListener);
 	}
 
+	/**
+	 * Action Listener when Open Server button is clicked.
+	 * 
+	 * @param actionListener
+	 */
 	public void addServerOpenButtonListener(ActionListener actionListener) {
 		serverOpenButton.addActionListener(actionListener);
 	}
 
+	/**
+	 * This method is called to update the Status of the server
+	 * and sets the status as connected or disconnected depending on 
+	 * the connection to the server.
+	 */
 	public void updateConnectionLabel() {
 		// May need to update this
 		if (headerModel.isConnectionStatus()) {
@@ -147,6 +194,9 @@ public class HeaderView extends JPanel implements ViewInterface {
 		}
 	}
 
+	/**
+	 * This method is created to update the Timestamp.
+	 */
 	public void updateTimeStamp() {
 		timeStampLabel.setText(String.valueOf(headerModel.getTimeStamp()));
 	}

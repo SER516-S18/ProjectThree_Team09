@@ -37,7 +37,8 @@ public class FaceView extends JPanel implements ViewInterface {
     BufferedImage noseBufferedImage = null;
     private boolean isSelected;
 
-	public FaceView(int width, int height, Color faceColor) {
+	
+    public FaceView(int width, int height, Color faceColor) {
 		this.width = width;
 		this.height = height;
 		this.faceColor = faceColor;
@@ -80,7 +81,8 @@ public class FaceView extends JPanel implements ViewInterface {
 		return instance;
 
 	}
-
+	
+	
 	@Override
 	public void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
@@ -106,6 +108,7 @@ public class FaceView extends JPanel implements ViewInterface {
 
 	}
 
+	
 	public void updateFaceElements(MessageModel messageBean) {
 	    if (isSelected) {
             LeftEyeBrow.getInstance().moveElement("raiseBrow", messageBean.getAbstractExpression("raiseBrow"));

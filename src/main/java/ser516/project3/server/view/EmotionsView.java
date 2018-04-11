@@ -69,9 +69,9 @@ public class EmotionsView extends JPanel implements ViewInterface {
      * 
 	 */
 	public enum EmotionPanel{
-		Interest(0, 1, 0, 2, 0, "Interest"), Engagement(1, 3, 0, 4, 0, "Engagement"), 
-		Stress(2, 1, 1, 2, 1, "Stress"), Relaxation(3, 3, 1, 4, 1, "Relaxation"),
-		Excitement(4, 1, 2, 2, 2, "Excitement"), Focus(5, 3, 2, 4, 2, "Focus");
+		Interest(0, 1, 1, 2, 1, "Interest"), Engagement(1, 3, 1, 4, 1, "Engagement"), 
+		Stress(2, 1, 2, 2, 2, "Stress"), Relaxation(3, 3, 2, 4, 2, "Relaxation"),
+		Excitement(4, 1, 3, 2, 3, "Excitement"), Focus(5, 3, 3, 4, 3, "Focus");
 		int id, gbc_x, gbc_y, spinner_x, spinner_y;
 		String name;
 		EmotionPanel(int id, int gbc_x, int gbc_y, int spinner_x, int spinner_y, String name){

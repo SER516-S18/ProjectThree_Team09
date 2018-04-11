@@ -20,6 +20,14 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
 	Thread clientConnectionThread;
 	ClientConnectionThread threadInstance;
 
+	/**
+	 * Overridden method that will connect to the server, read and decode the json into
+	 * MessageModel bean
+	 * 
+	 *  @param ipAddress
+	 *  @param port
+	 *  @param endpoint
+	 */
 	@Override
 	public void createClientConnection(final String ipAddress, final int port, final String endpoint) {
 
@@ -41,6 +49,9 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
 		clientConnectionThread.start();
 	}
 
+	/**
+	 * Overridden method that disconnects the client from the server.
+	 */
 	@Override
 	public void stopClientConnection() {
 		try {

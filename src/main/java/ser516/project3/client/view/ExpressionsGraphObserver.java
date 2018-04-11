@@ -16,7 +16,13 @@ import ser516.project3.model.ExpressionsDataObservable;
  *
  */
 public class ExpressionsGraphObserver implements Observer {
-
+	
+	/** 
+	 * Overriden method to update the UI.
+	 * 
+	 * @param observable
+	 * @param observerObj
+	 */
 	@Override
 	public void update(Observable observable, Object observerObj) {
 		ExpressionsDataObservable expressionsDataObservable = (ExpressionsDataObservable) observable;

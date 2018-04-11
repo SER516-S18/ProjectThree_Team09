@@ -17,10 +17,16 @@ import java.awt.*;
 public class ExpressionsView extends JPanel implements ViewInterface {
 	private ExpressionsModel expressionsModel;
 
+	
 	public ExpressionsView(ExpressionsModel expressionsModel) {
 		this.expressionsModel = expressionsModel;
 	}
 
+	/**
+	 * This method initializes the graph and face for the expressions panel.
+	 * 
+	 * @param subViews
+	 */
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
 		GraphView graphView = (GraphView) subViews[0];
