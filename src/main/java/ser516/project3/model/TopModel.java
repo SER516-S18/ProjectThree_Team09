@@ -26,83 +26,145 @@ public class TopModel implements ModelInterface {
     sendButtonText = "Send";
   }
 
-  public double getInterval() {
-    return interval;
-  }
+/**
+ * @return the interval
+ */
+public double getInterval() {
+	return interval;
+}
 
-  public void setInterval(double interval) {
-    this.interval = interval;
-  }
+/**
+ * @param interval the interval to set
+ */
+public void setInterval(double interval) {
+	this.interval = interval;
+}
 
-  public boolean isAutoRepeatCheckBoxChecked() {
-    return autoRepeatCheckBoxChecked;
-  }
+/**
+ * @return the autoRepeatCheckBoxChecked
+ */
+public boolean isAutoRepeatCheckBoxChecked() {
+	return autoRepeatCheckBoxChecked;
+}
 
-  public void setAutoRepeatCheckBoxChecked(boolean autoRepeatCheckBoxChecked) {
-    this.autoRepeatCheckBoxChecked = autoRepeatCheckBoxChecked;
-  }
+/**
+ * @param autoRepeatCheckBoxChecked the autoRepeatCheckBoxChecked to set
+ */
+public void setAutoRepeatCheckBoxChecked(boolean autoRepeatCheckBoxChecked) {
+	this.autoRepeatCheckBoxChecked = autoRepeatCheckBoxChecked;
+}
 
-  public boolean isServerStarted() {
-    return serverStarted;
-  }
+/**
+ * @return the serverStarted
+ */
+public boolean isServerStarted() {
+	return serverStarted;
+}
 
-  public void setServerStarted(boolean serverStarted) {
-    this.serverStarted = serverStarted;
-  }
+/**
+ * @param serverStarted the serverStarted to set
+ */
+public void setServerStarted(boolean serverStarted) {
+	this.serverStarted = serverStarted;
+}
 
-  public boolean isShouldSendData() {
-    return shouldSendData;
-  }
+/**
+ * @return the shouldSendData
+ */
+public boolean isShouldSendData() {
+	return shouldSendData;
+}
 
-  public void setShouldSendData(boolean shouldSendData) {
-    this.shouldSendData = shouldSendData;
-  }
+/**
+ * @param shouldSendData the shouldSendData to set
+ */
+public void setShouldSendData(boolean shouldSendData) {
+	this.shouldSendData = shouldSendData;
+}
 
-  public boolean isSendButtonEnabled() {
-    return sendButtonEnabled;
-  }
+/**
+ * @return the intervalError
+ */
+public boolean isIntervalError() {
+	return intervalError;
+}
 
-  public void setSendButtonEnabled(boolean sendButtonEnabled) {
-    this.sendButtonEnabled = sendButtonEnabled;
-  }
+/**
+ * @param intervalError the intervalError to set
+ */
+public void setIntervalError(boolean intervalError) {
+	this.intervalError = intervalError;
+}
 
-  public boolean isAutoRepeatEnabled() {
-    return autoRepeatEnabled;
-  }
+/**
+ * @return the intervalEditable
+ */
+public boolean isIntervalEditable() {
+	return intervalEditable;
+}
 
-  public void setAutoRepeatEnabled(boolean autoRepeatEnabled) {
-    this.autoRepeatEnabled = autoRepeatEnabled;
-  }
+/**
+ * @param intervalEditable the intervalEditable to set
+ */
+public void setIntervalEditable(boolean intervalEditable) {
+	this.intervalEditable = intervalEditable;
+}
 
-  public String getServerStartStopButtonText() {
-    return serverStartStopButtonText;
-  }
+/**
+ * @return the autoRepeatEnabled
+ */
+public boolean isAutoRepeatEnabled() {
+	return autoRepeatEnabled;
+}
 
-  public void setServerStartStopButtonText(String serverStartStopButtonText) {
-    this.serverStartStopButtonText = serverStartStopButtonText;
-  }
+/**
+ * @param autoRepeatEnabled the autoRepeatEnabled to set
+ */
+public void setAutoRepeatEnabled(boolean autoRepeatEnabled) {
+	this.autoRepeatEnabled = autoRepeatEnabled;
+}
 
-  public String getSendButtonText() {
-    return sendButtonText;
-  }
+/**
+ * @return the sendButtonEnabled
+ */
+public boolean isSendButtonEnabled() {
+	return sendButtonEnabled;
+}
 
-  public void setSendButtonText(String sendButtonText) {
-    this.sendButtonText = sendButtonText;
-  }
+/**
+ * @param sendButtonEnabled the sendButtonEnabled to set
+ */
+public void setSendButtonEnabled(boolean sendButtonEnabled) {
+	this.sendButtonEnabled = sendButtonEnabled;
+}
 
-  public boolean isIntervalEditable() {
-    return intervalEditable;
-  }
+/**
+ * @return the serverStartStopButtonText
+ */
+public String getServerStartStopButtonText() {
+	return serverStartStopButtonText;
+}
 
-  public void setIntervalEditable(boolean intervalEditable) {
-    this.intervalEditable = intervalEditable;
-  }
+/**
+ * @param serverStartStopButtonText the serverStartStopButtonText to set
+ */
+public void setServerStartStopButtonText(String serverStartStopButtonText) {
+	this.serverStartStopButtonText = serverStartStopButtonText;
+}
 
-  public boolean isIntervalError() {
-    return intervalError;
-  }
+/**
+ * @return the sendButtonText
+ */
+public String getSendButtonText() {
+	return sendButtonText;
+}
 
-  public void setIntervalError(boolean intervalError) {
-    this.intervalError = intervalError;
-  }
+/**
+ * @param sendButtonText the sendButtonText to set
+ */
+public void setSendButtonText(String sendButtonText) {
+	this.sendButtonText = sendButtonText;
+}
+
+  
 }

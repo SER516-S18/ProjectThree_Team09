@@ -179,13 +179,16 @@ public class TopController implements ControllerInterface{
     public void actionPerformed(ActionEvent e) {
       logger.info(ServerConstants.SEND_PRESSED);
       if(!topModel.isIntervalError()) {
-        ServerController.getInstance().getConsoleController().getConsoleModel().
-      											logMessage(ServerConstants.DATA_TO_CLIENT);
         if(topModel.isAutoRepeatCheckBoxChecked()) {
-          if(topModel.getSendButtonText().equals(START))
+          if(topModel.getSendButtonText().equals(START)) {
             topModel.setSendButtonText(STOP);
-          else
+            ServerController.getInstance().getConsoleController().getConsoleModel().
+                logMessage(ServerConstants.DATA_TO_CLIENT);
+          } else {
             topModel.setSendButtonText(START);
+            ServerController.getInstance().getConsoleController().getConsoleModel().
+                logMessage(ServerConstants.DATA_STOPPED_SENDING);
+          }
           topModel.setAutoRepeatEnabled(!topModel.isAutoRepeatEnabled());
           topModel.setIntervalEditable(!topModel.isIntervalEditable());
           topView.updateSendButtonText();

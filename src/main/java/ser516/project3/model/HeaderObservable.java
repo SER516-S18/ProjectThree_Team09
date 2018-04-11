@@ -4,23 +4,24 @@ import java.util.Observable;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Class which notifies the observers if any changes take place which needs to
+ * be updated in the header view
+ * 
+ * @author Adhiraj Tikku
+ *
+ */
 public class HeaderObservable extends Observable {
-	final static Logger logger = Logger
-			.getLogger(HeaderObservable.class);
+	final static Logger logger = Logger.getLogger(HeaderObservable.class);
 	private static HeaderObservable instance;
 	private double headerTimeStamp;
 	private double interval;
 
+	/**
+	 * Constructor to initialize the private members
+	 */
 	private HeaderObservable() {
 		headerTimeStamp = 0;
-	}
-
-	public double getHeaderTimeStamp() {
-		return headerTimeStamp;
-	}
-
-	public double getInterval() {
-		return interval;
 	}
 
 	/**
@@ -53,5 +54,19 @@ public class HeaderObservable extends Observable {
 		this.interval = interval;
 		setChanged();
 		notifyObservers();
+	}
+
+	/**
+	 * @return the headerTimeStamp
+	 */
+	public double getHeaderTimeStamp() {
+		return headerTimeStamp;
+	}
+
+	/**
+	 * @return the interval
+	 */
+	public double getInterval() {
+		return interval;
 	}
 }

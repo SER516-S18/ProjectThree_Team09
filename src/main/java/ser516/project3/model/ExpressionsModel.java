@@ -17,6 +17,9 @@ public class ExpressionsModel implements ModelInterface {
     private boolean eyeCheckBoxChecked;
     private boolean isTabSelected;
 
+    /**
+     * Constructor to initialize the values to initial values
+     */
     public ExpressionsModel() {
         lowerFaceItem = "Smile";
         upperFaceItem = "Raise Brow";
@@ -27,67 +30,117 @@ public class ExpressionsModel implements ModelInterface {
         eyeCheckBoxChecked = false;
     }
 
-    public String getUpperFaceItem() {
-        return upperFaceItem;
-    }
+	/**
+	 * @return the lowerFaceItem
+	 */
+	public String getLowerFaceItem() {
+		return lowerFaceItem;
+	}
 
-    public void setUpperFaceItem(String upperFaceItem) {
-        this.upperFaceItem = upperFaceItem;
-    }
+	/**
+	 * @param lowerFaceItem the lowerFaceItem to set
+	 */
+	public void setLowerFaceItem(String lowerFaceItem) {
+		this.lowerFaceItem = lowerFaceItem;
+	}
 
-    public String getLowerFaceItem() {
-        return lowerFaceItem;
-    }
+	/**
+	 * @return the upperFaceItem
+	 */
+	public String getUpperFaceItem() {
+		return upperFaceItem;
+	}
 
-    public void setLowerFaceItem(String lowerFaceItem) {
-        this.lowerFaceItem = lowerFaceItem;
-    }
+	/**
+	 * @param upperFaceItem the upperFaceItem to set
+	 */
+	public void setUpperFaceItem(String upperFaceItem) {
+		this.upperFaceItem = upperFaceItem;
+	}
 
-    public String getEyeItem() {
-        return eyeItem;
-    }
+	/**
+	 * @return the eyeItem
+	 */
+	public String getEyeItem() {
+		return eyeItem;
+	}
 
-    public void setEyeItem(String eyeItem) {
-        this.eyeItem = eyeItem;
-    }
+	/**
+	 * @param eyeItem the eyeItem to set
+	 */
+	public void setEyeItem(String eyeItem) {
+		this.eyeItem = eyeItem;
+	}
 
-    public double getUpperFaceValue() {
-        return upperFaceValue;
-    }
+	/**
+	 * @return the upperFaceValue
+	 */
+	public double getUpperFaceValue() {
+		return upperFaceValue;
+	}
 
-    public void setUpperFaceValue(double upperFaceValue) {
-        this.upperFaceValue = upperFaceValue;
-    }
+	/**
+	 * @param upperFaceValue the upperFaceValue to set
+	 */
+	public void setUpperFaceValue(double upperFaceValue) {
+		this.upperFaceValue = upperFaceValue;
+	}
 
-    public double getLowerFaceValue() {
-        return lowerFaceValue;
-    }
+	/**
+	 * @return the lowerFaceValue
+	 */
+	public double getLowerFaceValue() {
+		return lowerFaceValue;
+	}
 
-    public void setLowerFaceValue(double lowerFaceValue) {
-        this.lowerFaceValue = lowerFaceValue;
-    }
+	/**
+	 * @param lowerFaceValue the lowerFaceValue to set
+	 */
+	public void setLowerFaceValue(double lowerFaceValue) {
+		this.lowerFaceValue = lowerFaceValue;
+	}
 
-    public boolean getEyeValue() {
-        return eyeValue;
-    }
+	/**
+	 * @return the eyeValue
+	 */
+	public boolean isEyeValue() {
+		return eyeValue;
+	}
 
-    public void setEyeValue(boolean eyeValue) {
-        this.eyeValue = eyeValue;
-    }
+	/**
+	 * @param eyeValue the eyeValue to set
+	 */
+	public void setEyeValue(boolean eyeValue) {
+		this.eyeValue = eyeValue;
+	}
 
-    public boolean isEyeCheckBoxChecked() {
-        return eyeCheckBoxChecked;
-    }
+	/**
+	 * @return the eyeCheckBoxChecked
+	 */
+	public boolean isEyeCheckBoxChecked() {
+		return eyeCheckBoxChecked;
+	}
 
-    public void setEyeCheckBoxChecked(boolean eyeCheckBoxChecked) {
-        this.eyeCheckBoxChecked = eyeCheckBoxChecked;
-    }
+	/**
+	 * @param eyeCheckBoxChecked the eyeCheckBoxChecked to set
+	 */
+	public void setEyeCheckBoxChecked(boolean eyeCheckBoxChecked) {
+		this.eyeCheckBoxChecked = eyeCheckBoxChecked;
+	}
 
-    public boolean isTabSelected() {
-        return isTabSelected;
-    }
+	/**
+	 * @return the isTabSelected
+	 */
+	public boolean isTabSelected() {
+		return isTabSelected;
+	}
 
-    public void setTabSelected(boolean tabSelected) {
-        isTabSelected = tabSelected;
-    }
+	/**
+	 * @param isTabSelected the isTabSelected to set
+	 */
+	public void setTabSelected(boolean isTabSelected) {
+		this.isTabSelected = isTabSelected;
+	}
+
+    
 }

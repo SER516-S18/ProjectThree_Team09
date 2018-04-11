@@ -55,6 +55,7 @@ public class ServerConstants {
     public final static String STOP_SERVER = "Stop Server";
     public final static String SEND_PRESSED = "Send button pressed";
     public final static String DATA_TO_CLIENT = "Sending Data to Client.";
+    public final static String DATA_STOPPED_SENDING = "Stopped sending data.";
 
     // Connectivity and error constants
     public final static String CLIENT_CONNECTED = "Client Connected ";

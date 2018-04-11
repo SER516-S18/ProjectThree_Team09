@@ -106,7 +106,7 @@ public class ExpressionsController implements ControllerInterface{
     public void actionPerformed(ActionEvent e) {
       JComboBox comboBox = (JComboBox) e.getSource();
       expressionsModel.setEyeItem(String.valueOf(comboBox.getSelectedItem()));
-      updateEye(expressionsModel.getEyeItem(), expressionsModel.getEyeValue());
+      updateEye(expressionsModel.getEyeItem(), expressionsModel.isEyeValue());
     }
   }
 
@@ -145,7 +145,7 @@ public class ExpressionsController implements ControllerInterface{
     public void itemStateChanged(ItemEvent ev) {
       JToggleButton jToggleButton = (JToggleButton) ev.getSource();
       expressionsModel.setEyeValue(jToggleButton.isSelected());
-      updateEye(expressionsModel.getEyeItem(), expressionsModel.getEyeValue());
+      updateEye(expressionsModel.getEyeItem(), expressionsModel.isEyeValue());
     }
   }
 
@@ -162,11 +162,11 @@ public class ExpressionsController implements ControllerInterface{
         } catch(InterruptedException ex) {
           ex.printStackTrace();
         }
-        updateEye(expressionsModel.getEyeItem(), expressionsModel.getEyeValue());
+        updateEye(expressionsModel.getEyeItem(), expressionsModel.isEyeValue());
         pressed = model.isPressed();
       } else {
         expressionsModel.setEyeValue(false);
-        updateEye(expressionsModel.getEyeItem(), expressionsModel.getEyeValue());
+        updateEye(expressionsModel.getEyeItem(), expressionsModel.isEyeValue());
       }
     }
   }
