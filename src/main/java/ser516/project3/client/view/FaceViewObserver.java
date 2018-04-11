@@ -3,11 +3,9 @@ package ser516.project3.client.view;
 import java.util.Observable;
 import java.util.Observer;
 
-import ser516.project3.client.controller.ClientController;
 import ser516.project3.client.controller.FaceController;
-import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.model.FaceExpressionsObservable;
-import ser516.project3.utilities.ControllerFactory;
+import ser516.project3.factory.ControllerFactory;
 
 /**
  * 

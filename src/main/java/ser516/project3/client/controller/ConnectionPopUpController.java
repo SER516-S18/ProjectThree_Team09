@@ -5,7 +5,7 @@ import ser516.project3.constants.ClientConstants;
 import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ConnectionPopUpModel;
-import ser516.project3.utilities.ControllerFactory;
+import ser516.project3.factory.ControllerFactory;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
