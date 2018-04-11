@@ -2,52 +2,56 @@ package ser516.project3.model;
 
 import java.util.Observable;
 
+import org.apache.log4j.Logger;
+
 public class HeaderObservable extends Observable {
-  private static HeaderObservable instance;
-  private double headerTimeStamp;
-  private double interval;
+	final static Logger logger = Logger
+			.getLogger(HeaderObservable.class);
+	private static HeaderObservable instance;
+	private double headerTimeStamp;
+	private double interval;
 
-  private HeaderObservable() {
-    headerTimeStamp = 0;
-  }
+	private HeaderObservable() {
+		headerTimeStamp = 0;
+	}
 
-  public double getHeaderTimeStamp() {
-    return headerTimeStamp;
-  }
+	public double getHeaderTimeStamp() {
+		return headerTimeStamp;
+	}
 
-  public double getInterval() {
-    return interval;
-  }
+	public double getInterval() {
+		return interval;
+	}
 
-  /**
-   * Creates a singleton instance . If exists, returns
-   * it, else creates it.
-   *
-   * @return instance of the HeaderObservable
-   */
-  public static HeaderObservable getInstance() {
+	/**
+	 * Creates a singleton instance . If exists, returns it, else creates it.
+	 *
+	 * @return instance of the HeaderObservable
+	 */
+	public static HeaderObservable getInstance() {
 
-    try {
-      if (instance == null) {
-        instance = new HeaderObservable();
-      }
-    } catch (Exception e) {
-      // TODO Auto-generated catch block
-      System.out.println(e.getMessage());
-    }
-    return instance;
+		try {
+			if (instance == null) {
+				instance = new HeaderObservable();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			logger.error(e.getMessage());
+		}
+		return instance;
 
-  }
+	}
 
-  /**
-   * Sets the time stamp value for the header view.
-   *
-   * @param headerTimeStamp time stamp value for the header view.
-   */
-  public void setHeaderData(double headerTimeStamp, double interval) {
-    this.headerTimeStamp = headerTimeStamp;
-    this.interval = interval;
-    setChanged();
-    notifyObservers();
-  }
+	/**
+	 * Sets the time stamp value for the header view.
+	 *
+	 * @param headerTimeStamp
+	 *            time stamp value for the header view.
+	 */
+	public void setHeaderData(double headerTimeStamp, double interval) {
+		this.headerTimeStamp = headerTimeStamp;
+		this.interval = interval;
+		setChanged();
+		notifyObservers();
+	}
 }

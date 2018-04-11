@@ -21,9 +21,9 @@ public class HeaderObserver implements Observer {
 		HeaderController headerController = ClientControllerFactory.getInstance().getHeaderController();
 		double currentTimeStampFromServer = headerObservable.getHeaderTimeStamp();
 		if (currentTimeStampFromServer == 0) {
-			headerController.setHeaderTimeStamp((int)currentTimeStampFromServer);
+			headerController.setHeaderTimeStamp(currentTimeStampFromServer);
 		} else {
-			headerController.setHeaderTimeStamp((int)currentTimeStampFromServer - headerObservable.getInterval());
+			headerController.setHeaderTimeStamp(currentTimeStampFromServer - headerObservable.getInterval());
 		}
 	}
 }
