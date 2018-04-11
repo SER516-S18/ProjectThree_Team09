@@ -79,12 +79,18 @@ public class MessageModel {
 	 * Adds the passed double value to the corresponding string in the hashmap
 	 * 
 	 * @param aex key for the abstract expression type 
-	 * @param val value for the emotion key
+	 * @param val value for the abstract expression key
 	 */
 	public void setAbstractExpression(String aex, Double val) {
 		this.abstractExpressionMap.put(aex, val);
 	}
 
+	/**
+	 * Returns the value for the respective key
+	 *
+	 * @param aex abstract expression key for which the value has to be received
+	 * @return returns the value for the respective abstract expression key
+	 */
 	public double getAbstractExpression(String aex) {
 		if (aex == null || this.abstractExpressionMap.get(aex) == null) {
 			return 0.0;
@@ -92,10 +98,22 @@ public class MessageModel {
 		return this.abstractExpressionMap.get(aex);
 	}
 
+	/**
+	 * Adds the passed double value to the corresponding string in the hashmap
+	 *
+	 * @param cex key for the concrete expression type
+	 * @param val value for the concrete expression key
+	 */
 	public void setConcreteExpression(String cex, Boolean val) {
 		this.concreteExpressionMap.put(cex, val);
 	}
 
+	/**
+	 * Returns the value for the respective key
+	 *
+	 * @param cex concrete expression key for which the value has to be received
+	 * @return returns the value for the respective concrete expression key
+	 */
 	public Boolean getConcreteExpression(String cex) {
 		if (cex == null || this.concreteExpressionMap.get(cex) == null) {
 			return false;
@@ -103,6 +121,12 @@ public class MessageModel {
 		return this.concreteExpressionMap.get(cex);
 	}
 
+	/**
+	 * Returns the value for the respective key
+	 *
+	 * @param selectionFlag selection  key for which the value has to be received
+	 * @return returns the value for the respective concrete expression key
+	 */
 	public String getSelectionFlag(String selectionFlag) {
 		if (selectionFlag == null || this.selectionFlagMap.get(selectionFlag) == null) {
 			return "";
@@ -110,11 +134,23 @@ public class MessageModel {
 		return this.selectionFlagMap.get(selectionFlag);
 	}
 
+	/**
+	 * Maps the value for the respective key for which the upper, lower and eye
+	 * has been currently selected
+	 *
+	 * @param selectionKey  key for which the value has to be set
+	 * @param selectionValue Value of the corresponding key
+	 */
 	public void setSelectionFlag(String selectionKey, String selectionValue) {
 		selectionValue = selectionValue.replaceAll("\"", "");
 		this.selectionFlagMap.put(selectionKey, selectionValue);
 	}
 
+	/**
+	 * Overridden method to convert the model into string in the specified format
+	 *
+	 * @return returns the string conversion of the class
+	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -135,18 +171,30 @@ public class MessageModel {
 		return builder.toString();
 	}
 
+	/**
+	 * Enum to standardize the kind of emotion
+	 */
 	public enum Emotion {
 		interest, engagement, stress, relaxation, excitement, focus
 	}
 
+	/**
+	 * Enum to standardize the kind of abstract expression
+	 */
 	public enum AbstractExpression {
 		smile, clench, leftSmirk, rightSmirk, laugh, furrowBrow, raiseBrow
 	}
 
+	/**
+	 * Enum ro standardize the kind of Concrete expression
+	 */
 	public enum ConcreteExpression {
 		blink, rightWink, leftWink, lookingRight, lookingLeft
 	}
 
+	/**
+	 * Enum to standardize the selection type of the expressions
+	 */
 	public enum SelectedCriteria {
 		upperFace, lowerFace, eye
 	}
