@@ -1,6 +1,7 @@
 package ser516.project3.server.controller;
 
 import org.apache.log4j.Logger;
+import ser516.project3.constants.ServerConstants;
 import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.TopModel;
@@ -91,12 +92,12 @@ public class TopController implements ControllerInterface{
         }
         topModel.setIntervalError(false);
         ServerCommonData.getInstance().getMessage().setInterval(topModel.getInterval());
-        logger.info("Removed value of interval");
+        logger.info(ServerConstants.REMOVED_VALUE_INTERVAL);
       } catch(NumberFormatException ex) {
         topModel.setIntervalError(true);
-        JOptionPane.showMessageDialog(null, "Invalid interval!");
+        JOptionPane.showMessageDialog(null, ServerConstants.INVALID_INTERVAL);
       } catch(BadLocationException ex) {
-        logger.info("Some problem in the interval input.");
+        logger.info(ServerConstants.INTERVAL_PROBLEM);
       }
     }
 	/**
@@ -109,12 +110,12 @@ public class TopController implements ControllerInterface{
         											e.getDocument().getLength())));
         ServerCommonData.getInstance().getMessage().setInterval(topModel.getInterval());
         topModel.setIntervalError(false);
-        logger.info("Inserted value of interval");
+        logger.info(ServerConstants.INSERT_INTERVAL_VALUE);
       } catch(NumberFormatException ex) {
         topModel.setIntervalError(true);
-        JOptionPane.showMessageDialog(null, "Invalid interval!");
+        JOptionPane.showMessageDialog(null, ServerConstants.INVALID_INTERVAL);
       } catch(BadLocationException ex) {
-        logger.info("Some problem in the interval input.");
+        logger.info(ServerConstants.INTERVAL_PROBLEM);
       }
     }
 
@@ -138,7 +139,7 @@ public class TopController implements ControllerInterface{
         topModel.setSendButtonText(SEND);
       }
       topView.updateSendButtonText();
-      logger.info("Value of auto Repeat toggle changed: " + isChecked);
+      logger.info(ServerConstants.TOGGLE_VALUE_CHANGED + isChecked);
     }
   }
   
@@ -149,19 +150,19 @@ public class TopController implements ControllerInterface{
   class ServerStartStopButtonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-      logger.info("Start/Stop button pressed");
+      logger.info(ServerConstants.START_STOP_PRESSED);
       boolean isStarted = topModel.isServerStarted();
       if(isStarted) {
         serverConnectionService.stopServerEndpoint();
         topModel.setServerStarted(false);
         topModel.setSendButtonEnabled(false);
-        topModel.setServerStartStopButtonText("Start Server");
+        topModel.setServerStartStopButtonText(ServerConstants.START_SERVER);
         setBlinking(false);
       } else {
         serverConnectionService.initServerEndpoint();
         topModel.setServerStarted(true);
         topModel.setSendButtonEnabled(true);
-        topModel.setServerStartStopButtonText("Stop Server");
+        topModel.setServerStartStopButtonText(ServerConstants.STOP_SERVER);
         setBlinking(true);
       }
       topView.enableDisableSendButton();
@@ -176,10 +177,10 @@ public class TopController implements ControllerInterface{
   class SendButtonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-      logger.info("Send button pressed");
+      logger.info(ServerConstants.SEND_PRESSED);
       if(!topModel.isIntervalError()) {
         ServerController.getInstance().getConsoleController().getConsoleModel().
-      											logMessage("Sending Data to Client.");
+      											logMessage(ServerConstants.DATA_TO_CLIENT);
         if(topModel.isAutoRepeatCheckBoxChecked()) {
           if(topModel.getSendButtonText().equals(START))
             topModel.setSendButtonText(STOP);
@@ -197,7 +198,7 @@ public class TopController implements ControllerInterface{
           topModel.setShouldSendData(true);
         }
       } else {
-        JOptionPane.showMessageDialog(null, "Invalid interval! Please correct it.");
+        JOptionPane.showMessageDialog(null, ServerConstants.INVALID_INTERVAL);
       }
     }
   }

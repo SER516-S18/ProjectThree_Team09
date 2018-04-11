@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import org.apache.log4j.Logger;
 import org.glassfish.tyrus.server.Server;
 
+import ser516.project3.constants.ServerConstants;
 import ser516.project3.server.controller.ServerController;
 
 /**
@@ -23,16 +24,16 @@ public class ServerContainerThread implements Runnable {
 
 	@Override
 	public void run() {
-		server = new Server("localhost", PORT, "", null, ServerConnectionEndpoint.class);
+		server = new Server(ServerConstants.LOCALHOST, PORT, "", null, ServerConnectionEndpoint.class);
 		try {
 			server.start();
 			ServerController.getInstance().getTopController().getTopModel().setServerStarted(true);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			reader.readLine();
 		} catch (Exception e) {
-			logger.error("Error occurred while trying to start the server websocket::::" + e.getMessage());
+			logger.error(ServerConstants.ERROR_SERVER_START + e.getMessage());
 			ServerController.getInstance().getConsoleController().getConsoleModel()
-					.logMessage("Error occurred while trying to start the server");
+					.logMessage(ServerConstants.ERROR_SERVER_START);
 		} finally {
 			server.stop();
 			ServerController.getInstance().getTopController().getTopModel().setServerStarted(false);

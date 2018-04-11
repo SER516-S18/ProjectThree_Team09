@@ -13,6 +13,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.apache.log4j.Logger;
 
+import ser516.project3.constants.ServerConstants;
 import ser516.project3.model.MessageModel;
 import ser516.project3.server.controller.ServerController;
 import ser516.project3.utilities.MessageEncoder;
@@ -40,9 +41,9 @@ public class ServerConnectionEndpoint {
     	connectionCount++;
     	double syncTimeElapsed = 0;
         try {
-        	logger.info("New Client connected :::: " + session.getBasicRemote());
+        	logger.info(ServerConstants.CLIENT_CONNECTED + session.getBasicRemote());
             ServerController.getInstance().getConsoleController().getConsoleModel().
-            	logMessage("Client Connected");
+            	logMessage(ServerConstants.CLIENT_CONNECTED);
             ServerCommonData serverCommonDataObject = ServerCommonData.getInstance();
             while (true) {
                 boolean isShouldSend = ServerController.getInstance().getTopController().
@@ -70,9 +71,9 @@ public class ServerConnectionEndpoint {
             }
 
         } catch (IOException | EncodeException | InterruptedException e) {
-            logger.error("Error occurred in onOpen method :::: " + e.getMessage());
+            logger.error(ServerConstants.ERROR_CLIENT_CONNECTION + e.getMessage());
             ServerController.getInstance().getConsoleController().getConsoleModel().
-            	logMessage("Error occurred while connecting to client");
+            	logMessage(ServerConstants.ERROR_CLIENT_CONNECTION);
         }
     }
     
@@ -93,12 +94,12 @@ public class ServerConnectionEndpoint {
 	 */
     @OnClose
     public void onClose(Session session, CloseReason closeReason) {
-        logger.info("onClose: " + closeReason);
+        logger.info(ServerConstants.ON_CLOSE + closeReason);
         connectionCount--;
         try {
-            session.getBasicRemote().sendText("Connection closed");
+            session.getBasicRemote().sendText(ServerConstants.CONNECTION_CLOSED);
         } catch (IOException e) {
-            logger.error("Error occurred while sending text::::" + e.getMessage());
+            logger.error(ServerConstants.ERROR_SENDING_TEXT + e.getMessage());
         }
     }
 
@@ -109,6 +110,6 @@ public class ServerConnectionEndpoint {
 	 */
     @OnError
     public void onError(Session session, Throwable throwable) {
-        logger.error("Error occurred in Server Endpoint");
+        logger.error(ServerConstants.ERROR_SERVER_ENDPOINT);
     }
 }

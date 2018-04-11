@@ -5,6 +5,7 @@ import java.awt.event.WindowEvent;
 
 import org.apache.log4j.Logger;
 
+import ser516.project3.constants.ServerConstants;
 import ser516.project3.interfaces.ControllerInterface;
 import ser516.project3.interfaces.ViewInterface;
 import ser516.project3.model.ConsoleModel;
@@ -77,7 +78,7 @@ public class ServerController implements ControllerInterface {
 	*/
 	@Override
 	public void initializeView() {
-		serverView = (ServerView) viewFactory.getView("SERVER", null);
+		serverView = (ServerView) viewFactory.getView(ServerConstants.SERVER, null);
 		serverView = ServerView.getServerView();
 		ViewInterface subViews[] = { topController.getView(), timerController.getView(),
 				emotionsController.getView(), expressionsController.getView(),
@@ -104,8 +105,8 @@ public class ServerController implements ControllerInterface {
 	*/
 	private void initializeTop(ViewFactory viewFactory, ControllerFactory controllerFactory) {
 		TopModel topModel = new TopModel();
-		TopView topView = (TopView) viewFactory.getView("TOP", topModel);
-		topController = (TopController) controllerFactory.getController("TOP", topModel, topView, null);
+		TopView topView = (TopView) viewFactory.getView(ServerConstants.TOP, topModel);
+		topController = (TopController) controllerFactory.getController(ServerConstants.TOP, topModel, topView, null);
 		topController.setServerConnectionService(serverConnectionService);
 		topController.initializeView();
 	}
@@ -117,8 +118,8 @@ public class ServerController implements ControllerInterface {
 	*/
 	private void initializeTimer(ViewFactory viewFactory, ControllerFactory controllerFactory) {
 		TimerModel timerModel = new TimerModel();
-		TimerView timerView = (TimerView) viewFactory.getView("TIMER", timerModel);
-		timerController = (TimerController) controllerFactory.getController("TIMER", timerModel, timerView, null);
+		TimerView timerView = (TimerView) viewFactory.getView(ServerConstants.TIMER, timerModel);
+		timerController = (TimerController) controllerFactory.getController(ServerConstants.TIMER, timerModel, timerView, null);
 		timerController.initializeView();
 	}
 
@@ -129,8 +130,8 @@ public class ServerController implements ControllerInterface {
 	*/
 	private void initializeEmotions(ViewFactory viewFactory, ControllerFactory controllerFactory) {
 		EmotionsModel emotionsModel = new EmotionsModel();
-		EmotionsView emotionsView = (EmotionsView) viewFactory.getView("EMOTIONS", emotionsModel);
-		emotionsController = (EmotionsController) controllerFactory.getController("EMOTIONS", emotionsModel,
+		EmotionsView emotionsView = (EmotionsView) viewFactory.getView(ServerConstants.EMOTIONS, emotionsModel);
+		emotionsController = (EmotionsController) controllerFactory.getController(ServerConstants.EMOTIONS, emotionsModel,
 				emotionsView, null);
 		emotionsController.initializeView();
 	}
@@ -143,9 +144,9 @@ public class ServerController implements ControllerInterface {
 	private void initializeExpressions(ViewFactory viewFactory,ControllerFactory controllerFactory){
 		ExpressionsModel expressionsModel = new ExpressionsModel();
 		ExpressionsView expressionsView = (ExpressionsView) viewFactory.getView(
-				"SERVER_EXPRESSIONS", expressionsModel);
+				ServerConstants.SERVER_EXPRESSIONS, expressionsModel);
 		expressionsController = (ExpressionsController) controllerFactory.getController(
-				"SERVER_EXPRESSIONS", expressionsModel, expressionsView, null);
+				ServerConstants.SERVER_EXPRESSIONS, expressionsModel, expressionsView, null);
 		expressionsController.initializeView();
 	}
 
@@ -156,8 +157,8 @@ public class ServerController implements ControllerInterface {
 	*/
 	private void initializeConsole(ViewFactory viewFactory, ControllerFactory controllerFactory){
 		ConsoleModel consoleModel = new ConsoleModel();
-		ConsoleView consoleView = (ConsoleView) viewFactory.getView("CONSOLE", consoleModel);
-		consoleController = (ConsoleController) controllerFactory.getController("CONSOLE",
+		ConsoleView consoleView = (ConsoleView) viewFactory.getView(ServerConstants.CONSOLE, consoleModel);
+		consoleController = (ConsoleController) controllerFactory.getController(ServerConstants.CONSOLE,
 				consoleModel, consoleView, null);
 		consoleController.initializeView();
 	}
@@ -175,7 +176,7 @@ public class ServerController implements ControllerInterface {
 	class ServerWindowsListener extends WindowAdapter {
 		public void windowClosed(WindowEvent e) {
 			serverConnectionService.stopServerEndpoint();
-			logger.info("server window closed");
+			logger.info(ServerConstants.SERVER_CLOSE_MESSAGE);
 		}
 	}
 
