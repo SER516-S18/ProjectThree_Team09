@@ -15,8 +15,6 @@ public class MessageModel {
 
     private double interval;
     private double timeStamp;
-    // Selection flag contains the value that is currently selected in the slection
-    // dropdown on server
     private HashMap<String, String> selectionFlagMap = new HashMap<String, String>();
     private HashMap<String, Double> emotionMap = new HashMap<String, Double>();
     private HashMap<String, Double> abstractExpressionMap = new HashMap<String, Double>();
@@ -77,7 +75,7 @@ public class MessageModel {
     /**
      * Adds the passed double value to the corresponding string in the hashmap
      *
-     * @param aex key for the abstract expression type
+     * @param abstractExpression key for the abstract expression type
      * @param val value for the abstract expression key
      */
     public void setAbstractExpression(String abstractExpression, Double val) {

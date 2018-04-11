@@ -23,6 +23,9 @@ public class PerformanceMetricModel implements ModelInterface {
 
     private int displayLength;
 
+    /**
+     * Creates a model for the performance metric data.
+     */
     public PerformanceMetricModel() {
         interestColor = Color.decode(ClientConstants.INTEREST_DEFAULT_COLOR_HEX);
         engagementColor = Color.decode(ClientConstants.ENGAGEMENT_DEFAULT_COLOR_HEX);

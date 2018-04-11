@@ -20,7 +20,10 @@ public class PerformanceMetricGraphObserver implements Observer {
     final static Logger logger = Logger.getLogger(PerformanceMetricGraphObserver.class);
 
     /**
-     * Overriding the update method in Observer class to update the graph .
+     * Update the graph
+     *
+     * @param observable observable for graph
+     * @param observerObj observer obj for graph
      */
     @Override
     public void update(Observable observable, Object observerObj) {

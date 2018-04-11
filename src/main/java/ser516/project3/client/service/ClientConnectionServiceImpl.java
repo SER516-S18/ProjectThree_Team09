@@ -25,6 +25,13 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
     Thread clientConnectionThread;
     ClientConnectionThread threadInstance;
 
+    /**
+     * Creates a client server connection
+     *
+     * @param ipAddress the ip address
+     * @param port port number
+     * @param endpoint endpoint string
+     */
     @Override
     public void createClientConnection(final String ipAddress, final int port, final String endpoint) {
 
@@ -46,6 +53,9 @@ public class ClientConnectionServiceImpl implements ClientConnectionServiceInter
         clientConnectionThread.start();
     }
 
+    /**
+     * Stops the client server connection.
+     */
     @Override
     public void stopClientConnection() {
         try {

@@ -154,6 +154,9 @@ public class ExpressionsController implements ControllerInterface {
         }
     }
 
+    /**
+     * Listener for activate button.
+     */
     private class ActivateButtonChangeListener implements ChangeListener {
         private boolean pressed = false;
 
