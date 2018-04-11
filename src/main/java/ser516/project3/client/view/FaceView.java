@@ -43,8 +43,6 @@ public class FaceView extends JPanel implements ViewInterface {
 	private LeftEyeBall leftEyeBall;
 
 	private static Color faceColor = new Color(255, 223, 135);
-	private static int width = 300;
-	private static int height = 300;
 	private static final String faceLayoutPath = "images/FaceImage.png";
 	private static final String nosePath = "images/nose.png";
 
@@ -128,7 +126,7 @@ public class FaceView extends JPanel implements ViewInterface {
 	 */
 	@Override
 	public void initializeView(ViewInterface[] subViews) {
-		setPreferredSize(new Dimension(width, height));
+		setPreferredSize(new Dimension(faceModel.getWidth(), faceModel.getHeight()));
 		mouthView = new Mouth();
 		leftEye = new LeftEye();
 		rightEye = new RightEye();
